@@ -5,20 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
+        <groupId>de.cdietze</groupId>
+        <artifactId>pythagoras.kt-parent</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>de.cdietze</groupId>
-    <artifactId>pythagoras.kt</artifactId>
+    <artifactId>pythagoras.kt-js</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.1.2</kotlin.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -29,17 +23,17 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <sourceDirectory>../src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>../src/test/kotlin</testSourceDirectory>
         <outputDirectory>target/js</outputDirectory>
 
         <resources>
             <!-- include source files in JAR which is useful for KotlinJS -->
             <resource>
-                <directory>${basedir}/src/main/kotlin</directory>
+                <directory>../src/main/kotlin</directory>
             </resource>
             <resource>
-                <directory>${basedir}/src/main/kotlin-js</directory>
+                <directory>../src/main/kotlin-js</directory>
             </resource>
         </resources>
 
@@ -60,8 +54,8 @@
                         <configuration>
                             <metaInfo>true</metaInfo>
                             <sourceDirs>
-                                <sourceDir>${project.build.sourceDirectory}</sourceDir>
-                                <sourceDir>src/main/kotlin-js</sourceDir>
+                                <sourceDir>../src/main/kotlin</sourceDir>
+                                <sourceDir>../src/main/kotlin-js</sourceDir>
                             </sourceDirs>
                         </configuration>
 
@@ -73,14 +67,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <classifier>js</classifier>
-                </configuration>
             </plugin>
         </plugins>
     </build>
