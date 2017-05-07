@@ -7,7 +7,6 @@
     <parent>
         <groupId>de.cdietze</groupId>
         <artifactId>pythagoras.kt-parent</artifactId>
-        <relativePath>../pom.xml</relativePath>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
