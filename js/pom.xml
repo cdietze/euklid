@@ -52,6 +52,7 @@
                         </goals>
                         <configuration>
                             <metaInfo>true</metaInfo>
+                            <sourceMap>true</sourceMap>
                             <sourceDirs>
                                 <sourceDir>../src/main/kotlin</sourceDir>
                                 <sourceDir>../src/main/kotlin-js</sourceDir>
