@@ -38,7 +38,7 @@ object CubicCurves {
 
     fun flatness(x1: Float, y1: Float, ctrlx1: Float, ctrly1: Float,
                  ctrlx2: Float, ctrly2: Float, x2: Float, y2: Float): Float {
-        return FloatMath.sqrt(flatnessSq(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2))
+        return MathUtil.sqrt(flatnessSq(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2))
     }
 
     fun flatness(coords: FloatArray, offset: Int): Float {

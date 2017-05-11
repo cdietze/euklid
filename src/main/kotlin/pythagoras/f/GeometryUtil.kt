@@ -24,7 +24,7 @@ import java.lang.Math
  * Various geometry utility methods.
  */
 object GeometryUtil {
-    val EPSILON = FloatMath.pow(10f, -14f)
+    val EPSILON = MathUtil.pow(10f, -14f)
 
     fun intersectLinesWithParams(x1: Float, y1: Float, x2: Float, y2: Float,
                                  x3: Float, y3: Float, x4: Float, y4: Float,

@@ -102,13 +102,13 @@ class Quaternion : IQuaternion {
         if (angle < MathUtil.EPSILON) {
             return set(IDENTITY)
         }
-        if (angle <= FloatMath.PI - MathUtil.EPSILON) {
+        if (angle <= MathUtil.PI - MathUtil.EPSILON) {
             return fromAngleAxis(angle, from.cross(to).normalizeLocal())
         }
         // it's a 180 degree rotation; any axis orthogonal to the from vector will do
         val axis = Vector3(0f, from.z, -from.y)
         val length = axis.length()
-        return fromAngleAxis(FloatMath.PI, if (length < MathUtil.EPSILON)
+        return fromAngleAxis(MathUtil.PI, if (length < MathUtil.EPSILON)
             axis.set(-from.z, 0f, from.x).normalizeLocal()
         else
             axis.multLocal(1f / length))
@@ -129,14 +129,14 @@ class Quaternion : IQuaternion {
      * @return a reference to the quaternion, for chaining.
      */
     fun fromVectorFromNegativeZ(tx: Float, ty: Float, tz: Float): Quaternion {
-        val angle = FloatMath.acos(-tz)
+        val angle = MathUtil.acos(-tz)
         if (angle < MathUtil.EPSILON) {
             return set(IDENTITY)
         }
-        if (angle > FloatMath.PI - MathUtil.EPSILON) {
+        if (angle > MathUtil.PI - MathUtil.EPSILON) {
             return set(0f, 1f, 0f, 0f) // 180 degrees about y
         }
-        val len = FloatMath.hypot(tx, ty)
+        val len = MathUtil.hypot(tx, ty)
         return fromAngleAxis(angle, ty / len, -tx / len, 0f)
     }
 
@@ -153,10 +153,10 @@ class Quaternion : IQuaternion {
         val y2 = (1f - nxx + nyy - nzz) / 4f
         val z2 = (1f - nxx - nyy + nzz) / 4f
         val w2 = 1f - x2 - y2 - z2
-        return set(FloatMath.sqrt(x2) * if (ny.z >= nz.y) +1f else -1f,
-                FloatMath.sqrt(y2) * if (nz.x >= nx.z) +1f else -1f,
-                FloatMath.sqrt(z2) * if (nx.y >= ny.x) +1f else -1f,
-                FloatMath.sqrt(w2))
+        return set(MathUtil.sqrt(x2) * if (ny.z >= nz.y) +1f else -1f,
+                MathUtil.sqrt(y2) * if (nz.x >= nx.z) +1f else -1f,
+                MathUtil.sqrt(z2) * if (nx.y >= ny.x) +1f else -1f,
+                MathUtil.sqrt(w2))
     }
 
     /**
@@ -176,8 +176,8 @@ class Quaternion : IQuaternion {
      * @return a reference to this quaternion, for chaining.
      */
     fun fromAngleAxis(angle: Float, x: Float, y: Float, z: Float): Quaternion {
-        val sina = FloatMath.sin(angle / 2f)
-        return set(x * sina, y * sina, z * sina, FloatMath.cos(angle / 2f))
+        val sina = MathUtil.sin(angle / 2f)
+        return set(x * sina, y * sina, z * sina, MathUtil.cos(angle / 2f))
     }
 
     /**
@@ -185,9 +185,9 @@ class Quaternion : IQuaternion {
      */
     fun randomize(rand: Random): Quaternion {
         // pick angles according to the surface area distribution
-        return fromAngles(MathUtil.lerp(-FloatMath.PI, +FloatMath.PI, rand.nextFloat()),
-                FloatMath.asin(MathUtil.lerp(-1f, +1f, rand.nextFloat())),
-                MathUtil.lerp(-FloatMath.PI, +FloatMath.PI, rand.nextFloat()))
+        return fromAngles(MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, rand.nextFloat()),
+                MathUtil.asin(MathUtil.lerp(-1f, +1f, rand.nextFloat())),
+                MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, rand.nextFloat()))
     }
 
     /**
@@ -197,10 +197,10 @@ class Quaternion : IQuaternion {
     fun fromAnglesXZ(x: Float, z: Float): Quaternion {
         val hx = x * 0.5f
         val hz = z * 0.5f
-        val sx = FloatMath.sin(hx)
-        val cx = FloatMath.cos(hx)
-        val sz = FloatMath.sin(hz)
-        val cz = FloatMath.cos(hz)
+        val sx = MathUtil.sin(hx)
+        val cx = MathUtil.cos(hx)
+        val sz = MathUtil.sin(hz)
+        val cz = MathUtil.cos(hz)
         return set(cz * sx, sz * sx, sz * cx, cz * cx)
     }
 
@@ -211,10 +211,10 @@ class Quaternion : IQuaternion {
     fun fromAnglesXY(x: Float, y: Float): Quaternion {
         val hx = x * 0.5f
         val hy = y * 0.5f
-        val sx = FloatMath.sin(hx)
-        val cx = FloatMath.cos(hx)
-        val sy = FloatMath.sin(hy)
-        val cy = FloatMath.cos(hy)
+        val sx = MathUtil.sin(hx)
+        val cx = MathUtil.cos(hx)
+        val sy = MathUtil.sin(hy)
+        val cy = MathUtil.cos(hy)
         return set(cy * sx, sy * cx, -sy * sx, cy * cx)
     }
 
@@ -236,12 +236,12 @@ class Quaternion : IQuaternion {
         val hx = x * 0.5f
         val hy = y * 0.5f
         val hz = z * 0.5f
-        val sz = FloatMath.sin(hz)
-        val cz = FloatMath.cos(hz)
-        val sy = FloatMath.sin(hy)
-        val cy = FloatMath.cos(hy)
-        val sx = FloatMath.sin(hx)
-        val cx = FloatMath.cos(hx)
+        val sz = MathUtil.sin(hz)
+        val cz = MathUtil.cos(hz)
+        val sy = MathUtil.sin(hy)
+        val cy = MathUtil.cos(hy)
+        val sx = MathUtil.sin(hx)
+        val cx = MathUtil.cos(hx)
         val szsy = sz * sy
         val czsy = cz * sy
         val szcy = sz * cy
@@ -325,20 +325,20 @@ class Quaternion : IQuaternion {
         val sy = 2f * (y * w - x * z)
         if (sy < 1f - MathUtil.EPSILON) {
             if (sy > -1 + MathUtil.EPSILON) {
-                return result.set(FloatMath.atan2(y * z + x * w, 0.5f - (x * x + y * y)),
-                        FloatMath.asin(sy),
-                        FloatMath.atan2(x * y + z * w, 0.5f - (y * y + z * z)))
+                return result.set(MathUtil.atan2(y * z + x * w, 0.5f - (x * x + y * y)),
+                        MathUtil.asin(sy),
+                        MathUtil.atan2(x * y + z * w, 0.5f - (y * y + z * z)))
             } else {
                 // not a unique solution; x + z = atan2(-m21, m11)
                 return result.set(0f,
                         -MathUtil.HALF_PI,
-                        FloatMath.atan2(x * w - y * z, 0.5f - (x * x + z * z)))
+                        MathUtil.atan2(x * w - y * z, 0.5f - (x * x + z * z)))
             }
         } else {
             // not a unique solution; x - z = atan2(-m21, m11)
             return result.set(0f,
                     MathUtil.HALF_PI,
-                    -FloatMath.atan2(x * w - y * z, 0.5f - (x * x + z * z)))
+                    -MathUtil.atan2(x * w - y * z, 0.5f - (x * x + z * z)))
         }
     }
 
@@ -354,7 +354,7 @@ class Quaternion : IQuaternion {
 
     override // from IQuaternion
     fun normalize(result: Quaternion): Quaternion {
-        val rlen = 1f / FloatMath.sqrt(x * x + y * y + z * z + w * w)
+        val rlen = 1f / MathUtil.sqrt(x * x + y * y + z * z + w * w)
         return result.set(x * rlen, y * rlen, z * rlen, w * rlen)
     }
 
@@ -412,10 +412,10 @@ class Quaternion : IQuaternion {
         // calculate coefficients; if the angle is too close to zero, we must fall back
         // to linear interpolation
         if (1f - cosa > MathUtil.EPSILON) {
-            val angle = FloatMath.acos(cosa)
-            val sina = FloatMath.sin(angle)
-            s0 = FloatMath.sin((1f - t) * angle) / sina
-            s1 = FloatMath.sin(t * angle) / sina
+            val angle = MathUtil.acos(cosa)
+            val sina = MathUtil.sin(angle)
+            s0 = MathUtil.sin((1f - t) * angle) / sina
+            s1 = MathUtil.sin(t * angle) / sina
         } else {
             s0 = 1f - t
             s1 = t
@@ -520,7 +520,7 @@ class Quaternion : IQuaternion {
 
     override // from IQuaternion
     val rotationZ: Float
-        get() = FloatMath.atan2(2f * (x * y + z * w), 1f - 2f * (y * y + z * z))
+        get() = MathUtil.atan2(2f * (x * y + z * w), 1f - 2f * (y * y + z * z))
 
     override // from IQuaternion
     fun integrate(velocity: IVector3, t: Float): Quaternion {

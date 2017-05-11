@@ -169,7 +169,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         protected val TYPES = intArrayOf(PathIterator.SEG_MOVETO, PathIterator.SEG_LINETO, PathIterator.SEG_CUBICTO, PathIterator.SEG_LINETO, PathIterator.SEG_CUBICTO, PathIterator.SEG_LINETO, PathIterator.SEG_CUBICTO, PathIterator.SEG_LINETO, PathIterator.SEG_CUBICTO)
 
         /** The coefficient to calculate control points of Bezier curves.  */
-        protected val U = 0.5f - 2f / 3f * (FloatMath.sqrt(2f) - 1f)
+        protected val U = 0.5f - 2f / 3f * (MathUtil.sqrt(2f) - 1f)
 
         /** The points coordinates calculation table.  */
         protected val POINTS = arrayOf(floatArrayOf(0f, 0.5f, 0f, 0f), // MOVETO

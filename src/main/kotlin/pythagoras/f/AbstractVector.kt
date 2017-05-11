@@ -66,7 +66,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun length(): Float {
-        return FloatMath.sqrt(lengthSq())
+        return MathUtil.sqrt(lengthSq())
     }
 
     override // from interface IVector
@@ -82,7 +82,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun distance(other: IVector): Float {
-        return FloatMath.sqrt(distanceSq(other))
+        return MathUtil.sqrt(distanceSq(other))
     }
 
     override // from interface IVector
@@ -94,13 +94,13 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun angle(): Float {
-        return FloatMath.atan2(y, x)
+        return MathUtil.atan2(y, x)
     }
 
     override // from interface IVector
     fun angleBetween(other: IVector): Float {
         val cos = dot(other) / (length() * other.length())
-        return if (cos >= 1f) 0f else FloatMath.acos(cos)
+        return if (cos >= 1f) 0f else MathUtil.acos(cos)
     }
 
     override // from interface IVector
@@ -182,8 +182,8 @@ abstract class AbstractVector : IVector {
     fun rotate(angle: Float, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = FloatMath.sin(angle)
-        val cosa = FloatMath.cos(angle)
+        val sina = MathUtil.sin(angle)
+        val cosa = MathUtil.cos(angle)
         return result.set(x * cosa - y * sina, x * sina + y * cosa)
     }
 
@@ -191,8 +191,8 @@ abstract class AbstractVector : IVector {
     fun rotateAndAdd(angle: Float, add: IVector, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = FloatMath.sin(angle)
-        val cosa = FloatMath.cos(angle)
+        val sina = MathUtil.sin(angle)
+        val cosa = MathUtil.cos(angle)
         return result.set(x * cosa - y * sina + add.x, x * sina + y * cosa + add.y)
     }
 
@@ -200,8 +200,8 @@ abstract class AbstractVector : IVector {
     fun rotateScaleAndAdd(angle: Float, scale: Float, add: IVector, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = FloatMath.sin(angle)
-        val cosa = FloatMath.cos(angle)
+        val sina = MathUtil.sin(angle)
+        val cosa = MathUtil.cos(angle)
         return result.set((x * cosa - y * sina) * scale + add.x,
                 (x * sina + y * cosa) * scale + add.y)
     }

@@ -47,7 +47,7 @@ abstract class AbstractPoint : IPoint {
 
     override // from interface IPoint
     fun direction(other: XY): Float {
-        return FloatMath.atan2(other.y - y, other.x - x)
+        return MathUtil.atan2(other.y - y, other.x - x)
     }
 
     override // from IPoint
@@ -99,8 +99,8 @@ abstract class AbstractPoint : IPoint {
     fun rotate(angle: Float, result: Point): Point {
         val x = x
         val y = y
-        val sina = FloatMath.sin(angle)
-        val cosa = FloatMath.cos(angle)
+        val sina = MathUtil.sin(angle)
+        val cosa = MathUtil.cos(angle)
         return result.set(x * cosa - y * sina, x * sina + y * cosa)
     }
 

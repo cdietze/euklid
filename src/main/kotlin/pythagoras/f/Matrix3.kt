@@ -234,8 +234,8 @@ class Matrix3 : IMatrix3 {
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float, x: Float, y: Float, z: Float): Matrix3 {
-        val c = FloatMath.cos(angle)
-        val s = FloatMath.sin(angle)
+        val c = MathUtil.cos(angle)
+        val s = MathUtil.sin(angle)
         val omc = 1f - c
         val xs = x * s
         val ys = y * s
@@ -407,8 +407,8 @@ class Matrix3 : IMatrix3 {
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float): Matrix3 {
-        val sina = FloatMath.sin(angle)
-        val cosa = FloatMath.cos(angle)
+        val sina = MathUtil.sin(angle)
+        val cosa = MathUtil.cos(angle)
         return set(cosa, -sina, 0f,
                 sina, cosa, 0f,
                 0f, 0f, 1f)
@@ -931,7 +931,7 @@ class Matrix3 : IMatrix3 {
             }
         }
         // now that we have a nice orthogonal matrix, we can extract the rotation
-        return FloatMath.atan2(n01, n00)
+        return MathUtil.atan2(n01, n00)
     }
 
     override // from IMatrix3
@@ -945,14 +945,14 @@ class Matrix3 : IMatrix3 {
         val m01 = this.m01
         val m10 = this.m10
         val m11 = this.m11
-        return result.set(FloatMath.sqrt(m00 * m00 + m01 * m01),
-                FloatMath.sqrt(m10 * m10 + m11 * m11))
+        return result.set(MathUtil.sqrt(m00 * m00 + m01 * m01),
+                MathUtil.sqrt(m10 * m10 + m11 * m11))
     }
 
     override // from IMatrix3
     fun approximateUniformScale(): Float {
         val cp = m00 * m11 - m01 * m10
-        return if (cp < 0f) -FloatMath.sqrt(-cp) else FloatMath.sqrt(cp)
+        return if (cp < 0f) -MathUtil.sqrt(-cp) else MathUtil.sqrt(cp)
     }
 
     override fun toString(): String {

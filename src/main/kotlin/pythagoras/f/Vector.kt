@@ -156,7 +156,7 @@ class Vector : AbstractVector {
      */
     fun setAngle(angle: Float): Vector {
         val l = length()
-        return set(l * FloatMath.cos(angle), l * FloatMath.sin(angle))
+        return set(l * MathUtil.cos(angle), l * MathUtil.sin(angle))
     }
 
     /**

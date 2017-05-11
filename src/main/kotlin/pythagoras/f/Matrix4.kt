@@ -194,13 +194,13 @@ class Matrix4 : IMatrix4 {
         if (angle < MathUtil.EPSILON) {
             return setToIdentity()
         }
-        if (angle <= FloatMath.PI - MathUtil.EPSILON) {
+        if (angle <= MathUtil.PI - MathUtil.EPSILON) {
             return setToRotation(angle, from.cross(to).normalizeLocal())
         }
         // it's a 180 degree rotation; any axis orthogonal to the from vector will do
         val axis = Vector3(0f, from.z, -from.y)
         val length = axis.length()
-        return setToRotation(FloatMath.PI, if (length < MathUtil.EPSILON)
+        return setToRotation(MathUtil.PI, if (length < MathUtil.EPSILON)
             axis.set(-from.z, 0f, from.x).normalizeLocal()
         else
             axis.multLocal(1f / length))
@@ -222,8 +222,8 @@ class Matrix4 : IMatrix4 {
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float, x: Float, y: Float, z: Float): Matrix4 {
-        val c = FloatMath.cos(angle)
-        val s = FloatMath.sin(angle)
+        val c = MathUtil.cos(angle)
+        val s = MathUtil.sin(angle)
         val omc = 1f - c
         val xs = x * s
         val ys = y * s
@@ -407,7 +407,7 @@ class Matrix4 : IMatrix4 {
      * @return a reference to this matrix, for chaining.
      */
     fun setToPerspective(fovy: Float, aspect: Float, near: Float, far: Float): Matrix4 {
-        val f = 1f / FloatMath.tan(fovy / 2f)
+        val f = 1f / MathUtil.tan(fovy / 2f)
         val dscale = 1f / (near - far)
         return set(f / aspect, 0f, 0f, 0f,
                 0f, f, 0f, 0f,
@@ -1050,10 +1050,10 @@ class Matrix4 : IMatrix4 {
         val z2 = Math.abs(1f - n00 - n11 + n22)
         val w2 = Math.abs(1f + n00 + n11 + n22)
         result.set(
-                0.5f * FloatMath.sqrt(x2) * if (n12 >= n21) +1f else -1f,
-                0.5f * FloatMath.sqrt(y2) * if (n20 >= n02) +1f else -1f,
-                0.5f * FloatMath.sqrt(z2) * if (n01 >= n10) +1f else -1f,
-                0.5f * FloatMath.sqrt(w2))
+                0.5f * MathUtil.sqrt(x2) * if (n12 >= n21) +1f else -1f,
+                0.5f * MathUtil.sqrt(y2) * if (n20 >= n02) +1f else -1f,
+                0.5f * MathUtil.sqrt(z2) * if (n01 >= n10) +1f else -1f,
+                0.5f * MathUtil.sqrt(w2))
         return result
     }
 
@@ -1071,14 +1071,14 @@ class Matrix4 : IMatrix4 {
 
     override // from IMatrix4
     fun extractScale(result: Vector3): Vector3 {
-        return result.set(FloatMath.sqrt(m00 * m00 + m01 * m01 + m02 * m02),
-                FloatMath.sqrt(m10 * m10 + m11 * m11 + m12 * m12),
-                FloatMath.sqrt(m20 * m20 + m21 * m21 + m22 * m22))
+        return result.set(MathUtil.sqrt(m00 * m00 + m01 * m01 + m02 * m02),
+                MathUtil.sqrt(m10 * m10 + m11 * m11 + m12 * m12),
+                MathUtil.sqrt(m20 * m20 + m21 * m21 + m22 * m22))
     }
 
     override // from IMatrix4
     fun approximateUniformScale(): Float {
-        return FloatMath.cbrt(m00 * (m11 * m22 - m12 * m21) +
+        return MathUtil.cbrt(m00 * (m11 * m22 - m12 * m21) +
                 m01 * (m12 * m20 - m10 * m22) +
                 m02 * (m10 * m21 - m11 * m20))
     }

@@ -76,7 +76,7 @@ class Frustum {
      * @return a reference to this frustum, for chaining.
      */
     fun setToPerspective(fovy: Float, aspect: Float, znear: Float, zfar: Float): Frustum {
-        val top = znear * FloatMath.tan(fovy / 2f)
+        val top = znear * MathUtil.tan(fovy / 2f)
         val bottom = -top
         val right = top * aspect
         val left = -right
