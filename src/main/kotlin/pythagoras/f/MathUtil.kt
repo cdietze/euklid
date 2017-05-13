@@ -242,13 +242,15 @@ object MathUtil {
                 ivalue = value.toInt()
                 buf.append(ivalue)
             }
+
             // trim trailing zeros
-            // TODO(cdi) commented out, because Kotlin does not have StringBuilder#setLength
-//                for (ii in 0..decimalPlaces - 1 - 1) {
-//                    if (buf[buf.length - 1] == '0') {
-//                        buf.setLength(buf.length - 1)
-//                    }
-//                }
+            var endIndex = buf.length
+            for (ii in 0 until decimalPlaces - 1) {
+                if (buf[buf.length - 1 - ii] == '0') {
+                    endIndex--
+                }
+            }
+            return buf.substring(0, endIndex)
         }
         return buf.toString()
     }
