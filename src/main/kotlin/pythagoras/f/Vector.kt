@@ -39,7 +39,7 @@ class Vector : AbstractVector {
     }
 
     /** Creates a vector with zero x and y components.  */
-    constructor() {}
+    constructor()
 
     /** Computes the cross product of this and the specified other vector, storing the result in
      * this vector.

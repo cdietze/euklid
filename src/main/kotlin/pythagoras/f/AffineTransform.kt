@@ -429,8 +429,7 @@ class AffineTransform : AbstractTransform {
     // we don't publicize this because it might encourage someone to do something stupid like
     // create a new AffineTransform from another AffineTransform using this instead of copy()
     protected constructor(other: Transform) : this(other.scaleX, other.scaleY, other.rotation,
-            other.tx, other.ty) {
-    }
+            other.tx, other.ty)
 
     companion object {
         /** Identifies the affine transform in [.generality].  */

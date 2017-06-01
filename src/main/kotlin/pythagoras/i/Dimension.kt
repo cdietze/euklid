@@ -35,7 +35,7 @@ constructor(
     /**
      * Creates a dimension with width and height equal to the supplied dimension.
      */
-    constructor(d: IDimension) : this(d.width, d.height) {}
+    constructor(d: IDimension) : this(d.width, d.height)
 
     /**
      * Sets the magnitudes of this dimension to the specified width and height.

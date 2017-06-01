@@ -40,7 +40,7 @@ class Rectangle : AbstractRectangle {
     /**
      * Constructs a rectangle at (0,0) and with dimensions (0,0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Constructs a rectangle with the supplied upper-left corner and dimensions (0,0).

@@ -61,7 +61,7 @@ class Plane : IPlane {
     /**
      * Creates an empty (invalid) plane.
      */
-    constructor() {}
+    constructor()
 
     /**
      * Copies the parameters of another plane.

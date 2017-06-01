@@ -232,7 +232,7 @@ internal object Crossing {
                 val t = res[i]
                 if (t > -DELTA && t < 1 + DELTA) {
                     val rx = t * (t * _Ax + _Bx)
-                    if (minX <= rx && rx <= maxX) {
+                    if (rx in minX..maxX) {
                         bound[bc++] = t
                         bound[bc++] = rx
                         bound[bc++] = t * (t * _Ay + _By)
@@ -353,7 +353,7 @@ internal object Crossing {
                 val t = res[i]
                 if (t > -DELTA && t < 1 + DELTA) {
                     val rx = t * (t * (t * _Ax + _Bx) + _Cx)
-                    if (minX <= rx && rx <= maxX) {
+                    if (rx in minX..maxX) {
                         bound[bc++] = t
                         bound[bc++] = rx
                         bound[bc++] = t * (t * (t * _Ay + _By) + _Cy)

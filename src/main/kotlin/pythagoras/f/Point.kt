@@ -32,7 +32,7 @@ class Point : AbstractPoint {
     /**
      * Constructs a point at (0, 0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Constructs a point at the specified coordinates.

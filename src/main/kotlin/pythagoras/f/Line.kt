@@ -38,7 +38,7 @@ class Line : AbstractLine {
     /**
      * Creates a line from (0,0) to (0,0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Creates a line from (x1,y1), to (x2,y2).

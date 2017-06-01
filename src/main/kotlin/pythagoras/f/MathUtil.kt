@@ -96,7 +96,7 @@ object MathUtil {
      * Checks whether the value supplied is in [lower, upper].
      */
     fun isWithin(v: Float, lower: Float, upper: Float): Boolean {
-        return v >= lower && v <= upper
+        return v in lower..upper
     }
 
     /**

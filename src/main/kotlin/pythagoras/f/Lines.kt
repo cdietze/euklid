@@ -76,8 +76,8 @@ object Lines {
                            rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
         val rr = rx + rw
         val rb = ry + rh
-        return rx <= x1 && x1 <= rr && ry <= y1 && y1 <= rb
-                || rx <= x2 && x2 <= rr && ry <= y2 && y2 <= rb
+        return x1 in rx..rr && ry <= y1 && y1 <= rb
+                || x2 in rx..rr && ry <= y2 && y2 <= rb
                 || linesIntersect(rx, ry, rr, rb, x1, y1, x2, y2)
                 || linesIntersect(rr, ry, rx, rb, x1, y1, x2, y2)
     }

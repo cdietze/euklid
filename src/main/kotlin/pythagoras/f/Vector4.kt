@@ -56,7 +56,7 @@ class Vector4 : IVector4 {
     /**
      * Creates a zero vector.
      */
-    constructor() {}
+    constructor()
 
     /**
      * Copies the elements of another vector.

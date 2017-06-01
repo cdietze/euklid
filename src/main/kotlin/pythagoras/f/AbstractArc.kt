@@ -65,7 +65,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         if (a2 < 0f) {
             return angle >= a2 + 360f || angle <= a1
         }
-        return if (extent > 0f) a1 <= angle && angle <= a2 else a2 <= angle && angle <= a1
+        return if (extent > 0f) angle in a1..a2 else angle in a2..a1
     }
 
     override // from interface IArc
@@ -223,10 +223,10 @@ abstract class AbstractArc : RectangularShape(), IArc {
         private val y: Float
 
         /** The width of the arc rectangle bounds  */
-        private val width: Float
+        private val width: Float = a.width / 2f
 
         /** The height of the arc rectangle bounds  */
-        private val height: Float
+        private val height: Float = a.height / 2f
 
         /** The start angle of the arc in degrees  */
         private var angle: Float = 0.toFloat()
@@ -272,8 +272,6 @@ abstract class AbstractArc : RectangularShape(), IArc {
         private var my: Float = 0.toFloat()
 
         init {
-            this.width = a.width / 2f
-            this.height = a.height / 2f
             this.x = a.x + width
             this.y = a.y + height
             this.angle = -MathUtil.toRadians(a.angleStart)

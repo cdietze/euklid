@@ -44,7 +44,7 @@ class RoundRectangle : AbstractRoundRectangle {
     /**
      * Creates a rounded rectangle with frame (0x0+0+0) and corners of size (0x0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Creates a rounded rectangle with the specified frame and corner dimensions.

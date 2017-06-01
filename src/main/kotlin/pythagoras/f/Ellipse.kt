@@ -38,7 +38,7 @@ class Ellipse : AbstractEllipse {
     /**
      * Creates an ellipse with framing rectangle (0x0+0+0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Creates an ellipse with the specified framing rectangle.

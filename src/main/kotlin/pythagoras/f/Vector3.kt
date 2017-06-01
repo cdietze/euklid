@@ -55,7 +55,7 @@ class Vector3 : IVector3 {
     /**
      * Creates a zero vector.
      */
-    constructor() {}
+    constructor()
 
     /**
      * Computes the cross product of this and the specified other vector, storing the result

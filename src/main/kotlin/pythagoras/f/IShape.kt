@@ -41,7 +41,7 @@ interface IShape {
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean
 
     /** Returns true if this shape intersects the supplied rectangle.  */
-    fun intersects(r: IRectangle): Boolean
+    fun intersects(rect: IRectangle): Boolean
 
     /** Returns a copy of the bounding rectangle for this shape.  */
     fun bounds(): Rectangle

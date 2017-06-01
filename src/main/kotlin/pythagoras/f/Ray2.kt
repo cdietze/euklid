@@ -48,7 +48,7 @@ class Ray2 : IRay2 {
     /**
      * Creates an empty (invalid) ray.
      */
-    constructor() {}
+    constructor()
 
     /**
      * Copies the parameters of another ray.

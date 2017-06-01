@@ -128,8 +128,8 @@ abstract class AbstractLine : ILine {
     }
 
     override // from interface IShape
-    fun intersects(r: IRectangle): Boolean {
-        return r.intersectsLine(this)
+    fun intersects(rect: IRectangle): Boolean {
+        return rect.intersectsLine(this)
     }
 
     override // from interface IShape
@@ -177,18 +177,11 @@ abstract class AbstractLine : ILine {
 
     /** An iterator over an [ILine].  */
     protected class Iterator internal constructor(l: ILine, private val t: Transform?) : PathIterator {
-        private val x1: Float
-        private val y1: Float
-        private val x2: Float
-        private val y2: Float
+        private val x1: Float = l.x1
+        private val y1: Float = l.y1
+        private val x2: Float = l.x2
+        private val y2: Float = l.y2
         private var index: Int = 0
-
-        init {
-            this.x1 = l.x1
-            this.y1 = l.y1
-            this.x2 = l.x2
-            this.y2 = l.y2
-        }
 
         override fun windingRule(): Int {
             return PathIterator.WIND_NON_ZERO

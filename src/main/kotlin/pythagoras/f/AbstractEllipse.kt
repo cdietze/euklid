@@ -67,14 +67,13 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
 
     /** An iterator over an [IEllipse].  */
     protected class Iterator internal constructor(e: IEllipse, private val t: Transform?) : PathIterator {
-        private val x: Float
+        private val x: Float = e.x
         private val y: Float
         private val width: Float
         private val height: Float
         private var index: Int = 0
 
         init {
-            this.x = e.x
             this.y = e.y
             this.width = e.width
             this.height = e.height

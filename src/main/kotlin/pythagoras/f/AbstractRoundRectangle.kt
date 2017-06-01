@@ -110,19 +110,15 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
 
     /** Provides an iterator over an [IRoundRectangle].  */
     protected class Iterator internal constructor(rr: IRoundRectangle, private val t: Transform?) : PathIterator {
-        private val x: Float
-        private val y: Float
-        private val width: Float
-        private val height: Float
+        private val x: Float = rr.x
+        private val y: Float = rr.y
+        private val width: Float = rr.width
+        private val height: Float = rr.height
         private val aw: Float
         private val ah: Float
         private var index: Int = 0
 
         init {
-            this.x = rr.x
-            this.y = rr.y
-            this.width = rr.width
-            this.height = rr.height
             this.aw = Math.min(width, rr.arcWidth)
             this.ah = Math.min(height, rr.arcHeight)
             if (width < 0f || height < 0f || aw < 0f || ah < 0f) {

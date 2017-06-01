@@ -93,8 +93,8 @@ abstract class AbstractQuadCurve : IQuadCurve {
     }
 
     override // from interface IShape
-    fun intersects(r: IRectangle): Boolean {
-        return intersects(r.x, r.y, r.width, r.height)
+    fun intersects(rect: IRectangle): Boolean {
+        return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
     override // from interface IShape

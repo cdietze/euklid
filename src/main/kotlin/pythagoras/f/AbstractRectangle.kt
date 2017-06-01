@@ -184,19 +184,15 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
 
     /** An iterator over an [IRectangle].  */
     protected class Iterator internal constructor(r: IRectangle, private val t: Transform?) : PathIterator {
-        private val x: Float
-        private val y: Float
-        private val width: Float
-        private val height: Float
+        private val x: Float = r.x
+        private val y: Float = r.y
+        private val width: Float = r.width
+        private val height: Float = r.height
 
         /** The current segment index.  */
         private var index: Int = 0
 
         init {
-            this.x = r.x
-            this.y = r.y
-            this.width = r.width
-            this.height = r.height
             if (width < 0f || height < 0f) {
                 index = 6
             }

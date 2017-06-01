@@ -142,7 +142,7 @@ internal class FlatteningPathIterator constructor(
                     bufIndex -= 6
                     buf[bufIndex + 0] = px
                     buf[bufIndex + 1] = py
-                    System.arraycopy(coords, 0, buf!!, bufIndex + 2, 4)
+                    System.arraycopy(coords, 0, buf, bufIndex + 2, 4)
                     bufSubdiv = 0
                 }
 
@@ -154,7 +154,7 @@ internal class FlatteningPathIterator constructor(
                     // Realloc buffer
                     if (bufIndex <= 4) {
                         val tmp = FloatArray(bufSize + BUFFER_CAPACITY)
-                        System.arraycopy(buf!!, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
+                        System.arraycopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
                         buf = tmp
                         bufSize += BUFFER_CAPACITY
                         bufIndex += BUFFER_CAPACITY
@@ -167,8 +167,8 @@ internal class FlatteningPathIterator constructor(
                 }
 
                 bufIndex += 4
-                px = buf!![bufIndex]
-                py = buf!![bufIndex + 1]
+                px = buf[bufIndex]
+                py = buf[bufIndex + 1]
 
                 bufEmpty = bufIndex == bufSize - 2
                 if (bufEmpty) {
@@ -182,7 +182,7 @@ internal class FlatteningPathIterator constructor(
                     bufIndex -= 8
                     buf[bufIndex + 0] = px
                     buf[bufIndex + 1] = py
-                    System.arraycopy(coords, 0, buf!!, bufIndex + 2, 6)
+                    System.arraycopy(coords, 0, buf, bufIndex + 2, 6)
                     bufSubdiv = 0
                 }
 
@@ -194,7 +194,7 @@ internal class FlatteningPathIterator constructor(
                     // Realloc buffer
                     if (bufIndex <= 6) {
                         val tmp = FloatArray(bufSize + BUFFER_CAPACITY)
-                        System.arraycopy(buf!!, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
+                        System.arraycopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
                         buf = tmp
                         bufSize += BUFFER_CAPACITY
                         bufIndex += BUFFER_CAPACITY
@@ -207,8 +207,8 @@ internal class FlatteningPathIterator constructor(
                 }
 
                 bufIndex += 6
-                px = buf!![bufIndex]
-                py = buf!![bufIndex + 1]
+                px = buf[bufIndex]
+                py = buf[bufIndex + 1]
 
                 bufEmpty = bufIndex == bufSize - 2
                 if (bufEmpty) {

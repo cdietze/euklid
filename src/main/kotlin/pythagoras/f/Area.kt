@@ -30,7 +30,7 @@ class Area : IShape {
     /**
      * Creates an empty area.
      */
-    constructor() {}
+    constructor()
 
     /**
      * Creates an area from the supplied shape.
@@ -240,8 +240,8 @@ class Area : IShape {
     }
 
     override // from interface IShape
-    fun intersects(r: IRectangle): Boolean {
-        return intersects(r.x, r.y, r.width, r.height)
+    fun intersects(rect: IRectangle): Boolean {
+        return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
     override // from interface IShape
@@ -308,7 +308,7 @@ class Area : IShape {
                 arrayOf(_offsets, area._offsets))
         val intersectPoints = crossHelper.findCrossing()
 
-        if (intersectPoints.size == 0) {
+        if (intersectPoints.isEmpty()) {
             if (area.contains(bounds())) {
                 copy(area, this)
             } else if (!contains(area.bounds())) {
@@ -342,11 +342,7 @@ class Area : IShape {
             val curIndex = point.endIndex(true)
             if (curIndex < 0) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0) {
-                isCurrentArea = false
-            } else {
-                isCurrentArea = true
-            }
+            } else isCurrentArea = area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) <= 0
 
             val nextPoint = nextIntersectPoint(intersectPoints, point, isCurrentArea)
             val coords = if (isCurrentArea) this._coords else area._coords
@@ -391,7 +387,7 @@ class Area : IShape {
                 intArrayOf(_coordsSize, area._coordsSize))
         val intersectPoints = crossHelper.findCrossing()
 
-        if (intersectPoints.size == 0) {
+        if (intersectPoints.isEmpty()) {
             if (area.contains(bounds())) {
                 copy(area, this)
             } else if (!contains(area.bounds())) {
@@ -426,11 +422,7 @@ class Area : IShape {
             val curIndex = point.endIndex(true)
             if (curIndex < 0) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0) {
-                isCurrentArea = false
-            } else {
-                isCurrentArea = true
-            }
+            } else isCurrentArea = area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) <= 0
 
             val nextPoint = nextIntersectPoint(intersectPoints, point, isCurrentArea)
             val coords = if (isCurrentArea) this._coords else area._coords
@@ -480,7 +472,7 @@ class Area : IShape {
                 intArrayOf(_rulesSize, area._rulesSize),
                 arrayOf(_offsets, area._offsets))
         val intersectPoints = crossHelper.findCrossing()
-        if (intersectPoints.size == 0) {
+        if (intersectPoints.isEmpty()) {
             if (contains(area.bounds())) {
                 copy(area, this)
             } else if (!area.contains(bounds())) {
@@ -508,11 +500,7 @@ class Area : IShape {
             val curIndex = point.endIndex(true)
             if (curIndex < 0 || area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) == 0) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0) {
-                isCurrentArea = true
-            } else {
-                isCurrentArea = false
-            }
+            } else isCurrentArea = area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0
 
             nextPoint = nextIntersectPoint(intersectPoints, point, isCurrentArea)
             val coords = if (isCurrentArea) this._coords else area._coords
@@ -579,7 +567,7 @@ class Area : IShape {
                 arrayOf(_coords, area._coords),
                 intArrayOf(_coordsSize, area._coordsSize))
         val intersectPoints = crossHelper.findCrossing()
-        if (intersectPoints.size == 0) {
+        if (intersectPoints.isEmpty()) {
             if (contains(area.bounds())) {
                 copy(area, this)
             } else if (!area.contains(bounds())) {
@@ -608,11 +596,7 @@ class Area : IShape {
 
             if (curIndex < 0 || area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) == 0) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0) {
-                isCurrentArea = true
-            } else {
-                isCurrentArea = false
-            }
+            } else isCurrentArea = area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0
 
             val nextPoint = nextIntersectPoint(intersectPoints, point, isCurrentArea)
             val coords = if (isCurrentArea) this._coords else area._coords
@@ -662,7 +646,7 @@ class Area : IShape {
                 intArrayOf(_rulesSize, area._rulesSize),
                 arrayOf(_offsets, area._offsets))
         val intersectPoints = crossHelper.findCrossing()
-        if (intersectPoints.size == 0 && contains(area.bounds())) {
+        if (intersectPoints.isEmpty() && contains(area.bounds())) {
             copy(area, this)
             return
         }
@@ -684,11 +668,7 @@ class Area : IShape {
             val curIndex = _offsets[point.ruleIndex(true)] % _coordsSize
             if (area.containsExact(_coords[curIndex], _coords[curIndex + 1]) == 0) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[curIndex], _coords[curIndex + 1]) > 0) {
-                isCurrentArea = false
-            } else {
-                isCurrentArea = true
-            }
+            } else isCurrentArea = area.containsExact(_coords[curIndex], _coords[curIndex + 1]) <= 0
 
             val nextPoint = if (isCurrentArea)
                 nextIntersectPoint(intersectPoints, point, isCurrentArea)
@@ -750,7 +730,7 @@ class Area : IShape {
                 arrayOf(_coords, area._coords),
                 intArrayOf(_coordsSize, area._coordsSize))
         val intersectPoints = crossHelper.findCrossing()
-        if (intersectPoints.size == 0) {
+        if (intersectPoints.isEmpty()) {
             if (contains(area.bounds())) {
                 copy(area, this)
                 return
@@ -784,11 +764,7 @@ class Area : IShape {
                     crossHelper.containsPoint(floatArrayOf(_coords[2 * curIndex], _coords[2 * curIndex + 1])) &&
                     (_coords[2 * curIndex] != point.x() || _coords[2 * curIndex + 1] != point.y())) {
                 isCurrentArea = !isCurrentArea
-            } else if (area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) > 0) {
-                isCurrentArea = false
-            } else {
-                isCurrentArea = true
-            }
+            } else isCurrentArea = area.containsExact(_coords[2 * curIndex], _coords[2 * curIndex + 1]) <= 0
 
             if (countPoints >= intersectPoints.size) {
                 isCurrentArea = !isCurrentArea
@@ -983,7 +959,7 @@ class Area : IShape {
                 PathIterator.SEG_LINETO, PathIterator.SEG_CLOSE -> {
                     resultRules[resultRulesPos] = PathIterator.SEG_LINETO
                     resultOffsets[resultRulesPos++] = resultCoordPos + 2
-                    var isLeft = CrossingHelper.compare(
+                    val isLeft = CrossingHelper.compare(
                             coords[index], coords[index + 1], point.x(), point.y()) > 0
                     if (way || !isLeft) {
                         temp[coordsCount++] = coords[index]
@@ -994,7 +970,7 @@ class Area : IShape {
                 PathIterator.SEG_QUADTO -> {
                     resultRules[resultRulesPos] = PathIterator.SEG_QUADTO
                     resultOffsets[resultRulesPos++] = resultCoordPos + 4
-                    var coefs = floatArrayOf(coords[index - 2], coords[index - 1], coords[index], coords[index + 1], coords[index + 2], coords[index + 3])
+                    val coefs = floatArrayOf(coords[index - 2], coords[index - 1], coords[index], coords[index + 1], coords[index + 2], coords[index + 3])
                     var isLeft = CrossingHelper.compare(
                             coords[index - 2], coords[index - 1], point.x(), point.y()) > 0
 
@@ -1016,8 +992,8 @@ class Area : IShape {
                 PathIterator.SEG_CUBICTO -> {
                     resultRules[resultRulesPos] = PathIterator.SEG_CUBICTO
                     resultOffsets[resultRulesPos++] = resultCoordPos + 6
-                    var coefs = floatArrayOf(coords[index - 2], coords[index - 1], coords[index], coords[index + 1], coords[index + 2], coords[index + 3], coords[index + 4], coords[index + 5])
-                    var isLeft = CrossingHelper.compare(
+                    val coefs = floatArrayOf(coords[index - 2], coords[index - 1], coords[index], coords[index + 1], coords[index + 2], coords[index + 3], coords[index + 4], coords[index + 5])
+                    val isLeft = CrossingHelper.compare(
                             coords[index - 2], coords[index - 1], point.x(), point.y()) > 0
                     GeometryUtil.subCubic(coefs, point.param(isCurrentArea), !isLeft)
 
@@ -1128,7 +1104,7 @@ class Area : IShape {
         while (i < coords.size) {
             coords[i] = temp[coords.size - i - 2]
             coords[i + 1] = temp[coords.size - i - 1]
-            i = i + 2
+            i += 2
         }
     }
 

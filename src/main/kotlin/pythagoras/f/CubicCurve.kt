@@ -50,7 +50,7 @@ class CubicCurve : AbstractCubicCurve {
     /**
      * Creates a cubic curve with all points at (0,0).
      */
-    constructor() {}
+    constructor()
 
     /**
      * Creates a cubic curve with the specified start, control, and end points.

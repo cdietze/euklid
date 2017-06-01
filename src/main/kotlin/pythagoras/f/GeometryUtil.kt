@@ -47,7 +47,7 @@ object GeometryUtil {
             params[1] = 0f
         }
 
-        if (params[0] >= 0 && params[0] <= 1 && params[1] >= 0 && params[1] <= 1) {
+        if (params[0] in 0..1 && params[1] >= 0 && params[1] <= 1) {
             return 1
         }
 
@@ -124,7 +124,7 @@ object GeometryUtil {
             } else {
                 s[i] = 0f
             }
-            if (t[i] >= 0 && t[i] <= 1 && s[i] >= 0 && s[i] <= 1) {
+            if (t[i] in 0..1 && s[i] >= 0 && s[i] <= 1) {
                 params[2 * quantity] = t[i]
                 params[2 * quantity + 1] = s[i]
                 ++quantity
@@ -171,7 +171,7 @@ object GeometryUtil {
             } else {
                 s[i] = 0f
             }
-            if (t[i] >= 0 && t[i] <= 1 && s[i] >= 0 && s[i] <= 1) {
+            if (t[i] in 0..1 && s[i] >= 0 && s[i] <= 1) {
                 params[2 * quantity] = t[i]
                 params[2 * quantity + 1] = s[i]
                 ++quantity
@@ -218,7 +218,7 @@ object GeometryUtil {
         params[1] = 0.25f
         params[0] = params[1]
         quadNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, initParams)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -227,7 +227,7 @@ object GeometryUtil {
         params[1] = 0.75f
         params[0] = params[1]
         quadNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, params)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -275,7 +275,7 @@ object GeometryUtil {
         params[1] = 0.25f
         params[0] = params[1]
         quadAndCubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, initParams)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -284,7 +284,7 @@ object GeometryUtil {
         params[1] = 0.5f
         params[0] = params[1]
         quadAndCubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, params)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -293,7 +293,7 @@ object GeometryUtil {
         params[1] = 0.75f
         params[0] = params[1]
         quadAndCubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, params)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -342,7 +342,7 @@ object GeometryUtil {
         params[1] = 0.25f
         params[0] = params[1]
         cubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, initParams)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -351,7 +351,7 @@ object GeometryUtil {
         params[1] = 0.5f
         params[0] = params[1]
         cubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, params)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity
@@ -360,7 +360,7 @@ object GeometryUtil {
         params[1] = 0.75f
         params[0] = params[1]
         cubicNewton(xCoefs1, yCoefs1, xCoefs2, yCoefs2, params)
-        if (initParams[0] <= 1 && initParams[0] >= 0 && initParams[1] >= 0 && initParams[1] <= 1) {
+        if (initParams[0] in 0..1 && initParams[1] >= 0 && initParams[1] <= 1) {
             params[2 * quantity] = initParams[0]
             params[2 * quantity + 1] = initParams[1]
             ++quantity

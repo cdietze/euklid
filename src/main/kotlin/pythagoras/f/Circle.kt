@@ -35,7 +35,7 @@ class Circle : AbstractCircle {
     /**
      * Constructs a circle at (0, 0) with radius 0
      */
-    constructor() {}
+    constructor()
 
     /**
      * Constructs a circle with the specified properties
@@ -47,12 +47,12 @@ class Circle : AbstractCircle {
     /**
      * Constructs a circle with the specified properties
      */
-    constructor(p: XY, radius: Float) : this(p.x, p.y, radius) {}
+    constructor(p: XY, radius: Float) : this(p.x, p.y, radius)
 
     /**
      * Constructs a circle with properties equal to the supplied circle.
      */
-    constructor(c: ICircle) : this(c.x, c.y, c.radius) {}
+    constructor(c: ICircle) : this(c.x, c.y, c.radius)
 
     /** Sets the properties of this circle to be equal to those of the supplied circle.
      * @return a reference to this this, for chaining.

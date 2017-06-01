@@ -35,13 +35,13 @@ interface IShape {
     fun contains(x: Int, y: Int, width: Int, height: Int): Boolean
 
     /** Returns true if this shape completely contains the supplied rectangle.  */
-    operator fun contains(r: IRectangle): Boolean
+    operator fun contains(rect: IRectangle): Boolean
 
     /** Returns true if this shape intersects the specified rectangle.  */
     fun intersects(x: Int, y: Int, width: Int, height: Int): Boolean
 
     /** Returns true if this shape intersects the supplied rectangle.  */
-    fun intersects(r: IRectangle): Boolean
+    fun intersects(rect: IRectangle): Boolean
 
     /** Returns a copy of the bounding rectangle for this shape.  */
     fun bounds(): Rectangle
