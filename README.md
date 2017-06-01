@@ -1,5 +1,7 @@
 # Pythagoras.kt
 
+[![Build Status](https://travis-ci.org/cdietze/pythagoras.kt.svg?branch=master)](https://travis-ci.org/cdietze/pythagoras.kt)
+
 Pythagoras.kt is a collection of geometry classes that aims to provide performant,
 portable geometry routines. Written in Kotlin.
 
