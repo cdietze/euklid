@@ -144,12 +144,6 @@ abstract class AbstractTransform : Transform {
         throw UnsupportedOperationException()
     }
 
-    @Deprecated("")
-    override // from Transform
-    fun clone(): Transform {
-        return copy()
-    }
-
     abstract override // from Transform
     fun copy(): Transform
 }
