@@ -109,12 +109,12 @@ abstract class AbstractPoint : IPoint {
         return Point(this)
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (obj === this) {
+    override fun equals(other: Any?): Boolean {
+        if (other === this) {
             return true
         }
-        if (obj is AbstractPoint) {
-            val p = obj
+        if (other is AbstractPoint) {
+            val p = other
             return x == p.x && y == p.y
         }
         return false

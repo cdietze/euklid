@@ -32,13 +32,13 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
     }
 
     override // from interface IShape
-    fun contains(px: Float, py: Float): Boolean {
-        var px = px
-        var py = py
+    fun contains(x: Float, y: Float): Boolean {
+        var px = x
+        var py = y
         if (isEmpty) return false
 
-        val rx1 = x
-        val ry1 = y
+        val rx1 = this.x
+        val ry1 = this.y
         val rx2 = rx1 + width
         val ry2 = ry1 + height
         if (px < rx1 || px >= rx2 || py < ry1 || py >= ry2) {
@@ -71,27 +71,27 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
     }
 
     override // from interface IShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (isEmpty || rw <= 0f || rh <= 0f) return false
-        val rx1 = rx
-        val ry1 = ry
-        val rx2 = rx + rw
-        val ry2 = ry + rh
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (isEmpty || width <= 0f || height <= 0f) return false
+        val rx1 = x
+        val ry1 = y
+        val rx2 = x + width
+        val ry2 = y + height
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (isEmpty || rw <= 0f || rh <= 0f) return false
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (isEmpty || width <= 0f || height <= 0f) return false
 
-        val x1 = x
-        val y1 = y
-        val x2 = x1 + width
-        val y2 = y1 + height
-        val rx1 = rx
-        val ry1 = ry
-        val rx2 = rx + rw
-        val ry2 = ry + rh
+        val x1 = this.x
+        val y1 = this.y
+        val x2 = x1 + this.width
+        val y2 = y1 + this.height
+        val rx1 = x
+        val ry1 = y
+        val rx2 = x + width
+        val ry2 = y + height
         if (rx2 < x1 || x2 < rx1 || ry2 < y1 || y2 < ry1) {
             return false
         }
@@ -104,8 +104,8 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?): PathIterator {
-        return Iterator(this, at)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     /** Provides an iterator over an [IRoundRectangle].  */

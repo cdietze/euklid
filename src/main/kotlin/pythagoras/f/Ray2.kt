@@ -219,10 +219,6 @@ class Ray2 : IRay2 {
 
     override // from IRay2
     fun getNearestPoint(point: IVector, result: Vector): Vector {
-        var result = result
-        if (result == null) {
-            result = Vector()
-        }
         val r = point.subtract(origin).dot(direction)
         result.set(origin.add(direction.scale(r)))
         return result

@@ -201,21 +201,21 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not affine or greater.
      */
-    fun shear(tx: Float, ty: Float): Transform
+    fun shear(sx: Float, sy: Float): Transform
 
     /** Shears this transform in the x dimension.
      * @return this instance, for chaining.
      * *
      * @throws UnsupportedOperationException if the transform is not affine or greater.
      */
-    fun shearX(tx: Float): Transform
+    fun shearX(sx: Float): Transform
 
     /** Shears this transform in the y dimension.
      * @return this instance, for chaining.
      * *
      * @throws UnsupportedOperationException if the transform is not affine or greater.
      */
-    fun shearY(ty: Float): Transform
+    fun shearY(sy: Float): Transform
 
     /** Returns a new transform that represents the inverse of this transform.
      * @throws NoninvertibleTransformException if the transform is not invertible.

@@ -102,8 +102,8 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
     }
 
     override // from interface IRectangle
-    fun outcode(p: XY): Int {
-        return outcode(p.x, p.y)
+    fun outcode(point: XY): Int {
+        return outcode(point.x, point.y)
     }
 
     override // from interface IRectangle
@@ -112,59 +112,57 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
     }
 
     override // from interface IShape
-    fun contains(px: Float, py: Float): Boolean {
-        var px = px
-        var py = py
+    fun contains(x: Float, y: Float): Boolean {
+        var px = x
+        var py = y
         if (isEmpty) return false
 
-        val x = x
-        val y = y
-        if (px < x || py < y) return false
+        if (px < this.x || py < this.y) return false
 
-        px -= x
-        py -= y
+        px -= this.x
+        py -= this.y
         return px <= width && py <= height
     }
 
     override // from interface IShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
-        val x1 = x
-        val y1 = y
-        val x2 = x1 + width
-        val y2 = y1 + height
-        return x1 <= rx && rx + rw <= x2 && y1 <= ry && ry + rh <= y2
+        val x1 = this.x
+        val y1 = this.y
+        val x2 = x1 + this.width
+        val y2 = y1 + this.height
+        return x1 <= x && x + width <= x2 && y1 <= y && y + height <= y2
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
-        val x1 = x
-        val y1 = y
-        val x2 = x1 + width
-        val y2 = y1 + height
-        return rx + rw > x1 && rx < x2 && ry + rh > y1 && ry < y2
+        val x1 = this.x
+        val y1 = this.y
+        val x2 = x1 + this.width
+        val y2 = y1 + this.height
+        return x + width > x1 && x < x2 && y + height > y1 && y < y2
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?): PathIterator {
-        return Iterator(this, t)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?, flatness: Float): PathIterator {
-        return Iterator(this, t)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return Iterator(this, transform)
     }
 
     override // from Object
-    fun equals(obj: Any?): Boolean {
-        if (obj === this) {
+    fun equals(other: Any?): Boolean {
+        if (other === this) {
             return true
         }
-        if (obj is AbstractRectangle) {
-            val r = obj
+        if (other is AbstractRectangle) {
+            val r = other
             return r.x == x && r.y == y &&
                     r.width == width && r.height == height
         }

@@ -59,12 +59,12 @@ abstract class AbstractCircle : ICircle {
         return Circle(this)
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (obj === this) {
+    override fun equals(other: Any?): Boolean {
+        if (other === this) {
             return true
         }
-        if (obj is AbstractCircle) {
-            val c = obj
+        if (other is AbstractCircle) {
+            val c = other
             return x == c.x && y == c.y && radius == c.radius
         }
         return false

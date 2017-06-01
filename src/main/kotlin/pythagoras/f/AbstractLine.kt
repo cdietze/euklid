@@ -113,18 +113,18 @@ abstract class AbstractLine : ILine {
     }
 
     override // from interface IShape
-    fun contains(x: Float, y: Float, w: Float, h: Float): Boolean {
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         return false
     }
 
     override // from interface IShape
-    fun contains(r: IRectangle): Boolean {
+    fun contains(rect: IRectangle): Boolean {
         return false
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        return Lines.lineIntersectsRect(x1, y1, x2, y2, rx, ry, rw, rh)
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        return Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
     }
 
     override // from interface IShape
@@ -166,13 +166,13 @@ abstract class AbstractLine : ILine {
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?): PathIterator {
-        return Iterator(this, at)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?, flatness: Float): PathIterator {
-        return Iterator(this, at)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return Iterator(this, transform)
     }
 
     /** An iterator over an [ILine].  */

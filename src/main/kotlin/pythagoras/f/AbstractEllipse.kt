@@ -29,40 +29,40 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
     }
 
     override // from interface IShape
-    fun contains(px: Float, py: Float): Boolean {
+    fun contains(x: Float, y: Float): Boolean {
         if (isEmpty) return false
-        val a = (px - x) / width - 0.5f
-        val b = (py - y) / height - 0.5f
+        val a = (x - this.x) / width - 0.5f
+        val b = (y - this.y) / height - 0.5f
         return a * a + b * b < 0.25f
     }
 
     override // from interface IShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (isEmpty || rw <= 0f || rh <= 0f) return false
-        val rx1 = rx
-        val ry1 = ry
-        val rx2 = rx + rw
-        val ry2 = ry + rh
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (isEmpty || width <= 0f || height <= 0f) return false
+        val rx1 = x
+        val ry1 = y
+        val rx2 = x + width
+        val ry2 = y + height
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (isEmpty || rw <= 0f || rh <= 0f) return false
-        val cx = x + width / 2f
-        val cy = y + height / 2f
-        val rx1 = rx
-        val ry1 = ry
-        val rx2 = rx + rw
-        val ry2 = ry + rh
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (isEmpty || width <= 0f || height <= 0f) return false
+        val cx = this.x + this.width / 2f
+        val cy = this.y + this.height / 2f
+        val rx1 = x
+        val ry1 = y
+        val rx2 = x + width
+        val ry2 = y + height
         val nx = if (cx < rx1) rx1 else if (cx > rx2) rx2 else cx
         val ny = if (cy < ry1) ry1 else if (cy > ry2) ry2 else cy
         return contains(nx, ny)
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?): PathIterator {
-        return Iterator(this, at)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     /** An iterator over an [IEllipse].  */

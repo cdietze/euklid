@@ -34,12 +34,12 @@ abstract class AbstractDimension : IDimension {
         return Platform.hashCode(width) xor Platform.hashCode(height)
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (obj === this) {
+    override fun equals(other: Any?): Boolean {
+        if (other === this) {
             return true
         }
-        if (obj is AbstractDimension) {
-            val d = obj
+        if (other is AbstractDimension) {
+            val d = other
             return d.width == width && d.height == height
         }
         return false

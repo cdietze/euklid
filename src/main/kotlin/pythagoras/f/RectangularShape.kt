@@ -41,8 +41,8 @@ abstract class RectangularShape : IRectangularShape {
      * Sets the location and size of the framing rectangle of this shape to be equal to the
      * supplied rectangle.
      */
-    fun setFrame(r: IRectangle) {
-        setFrame(r.x, r.y, r.width, r.height)
+    fun setFrame(rect: IRectangle) {
+        setFrame(rect.x, rect.y, rect.width, rect.height)
     }
 
     /**
@@ -193,7 +193,7 @@ abstract class RectangularShape : IRectangularShape {
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?, flatness: Float): PathIterator {
-        return FlatteningPathIterator(pathIterator(t), flatness)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 }

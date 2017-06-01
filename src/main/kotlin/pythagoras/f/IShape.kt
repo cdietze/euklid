@@ -35,7 +35,7 @@ interface IShape {
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean
 
     /** Returns true if this shape completely contains the supplied rectangle.  */
-    operator fun contains(r: IRectangle): Boolean
+    operator fun contains(rect: IRectangle): Boolean
 
     /** Returns true if this shape intersects the specified rectangle.  */
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean
@@ -54,18 +54,18 @@ interface IShape {
     /**
      * Returns an iterator over the path described by this shape.
 
-     * @param at if supplied, the points in the path are transformed using this.
+     * @param transform if supplied, the points in the path are transformed using this.
      */
-    fun pathIterator(at: Transform?): PathIterator
+    fun pathIterator(transform: Transform?): PathIterator
 
     /**
      * Returns an iterator over the path described by this shape.
 
-     * @param at if supplied, the points in the path are transformed using this.
+     * @param transform if supplied, the points in the path are transformed using this.
      * *
      * @param flatness when approximating curved segments with lines, this controls the maximum
      * *        distance the lines are allowed to deviate from the approximated curve, thus a higher
      * *        flatness value generally allows for a path with fewer segments.
      */
-    fun pathIterator(at: Transform?, flatness: Float): PathIterator
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator
 }

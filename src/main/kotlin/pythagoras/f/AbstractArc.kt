@@ -51,12 +51,11 @@ abstract class AbstractArc : RectangularShape(), IArc {
 
     override // from interface IArc
     fun containsAngle(angle: Float): Boolean {
-        var angle = angle
         val extent = angleExtent
         if (extent >= 360f) {
             return true
         }
-        angle = normAngle(angle)
+        val angle = normAngle(angle)
         val a1 = normAngle(angleStart)
         val a2 = a1 + extent
         if (a2 > 360f) {
@@ -79,10 +78,10 @@ abstract class AbstractArc : RectangularShape(), IArc {
         get() = arcType == IArc.OPEN || super.isEmpty
 
     override // from RectangularShape
-    fun contains(px: Float, py: Float): Boolean {
+    fun contains(x: Float, y: Float): Boolean {
         // normalize point
-        val nx = (px - x) / width - 0.5f
-        val ny = (py - y) / height - 0.5f
+        val nx = (x - this.x) / width - 0.5f
+        val ny = (y - this.y) / height - 0.5f
         if (nx * nx + ny * ny > 0.25) {
             return false
         }
@@ -102,15 +101,15 @@ abstract class AbstractArc : RectangularShape(), IArc {
         }
 
         val l = Line(startPoint, endPoint)
-        val ccw1 = l.relativeCCW(px, py)
+        val ccw1 = l.relativeCCW(x, y)
         val ccw2 = l.relativeCCW(centerX, centerY)
         return ccw1 == 0 || ccw2 == 0 || (ccw1 + ccw2 == 0) xor (absExtent > 180f)
     }
 
     override // from RectangularShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (!(contains(rx, ry) && contains(rx + rw, ry) &&
-                contains(rx + rw, ry + rh) && contains(rx, ry + rh))) {
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (!(contains(x, y) && contains(x + width, y) &&
+                contains(x + width, y + height) && contains(x, y + height))) {
             return false
         }
 
@@ -119,7 +118,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
             return true
         }
 
-        val r = Rectangle(rx, ry, rw, rh)
+        val r = Rectangle(x, y, width, height)
         val cx = centerX
         val cy = centerY
         if (r.contains(cx, cy)) {
@@ -132,14 +131,14 @@ abstract class AbstractArc : RectangularShape(), IArc {
     }
 
     override // from RectangularShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        if (isEmpty || rw <= 0f || rh <= 0f) {
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (isEmpty || width <= 0f || height <= 0f) {
             return false
         }
 
         // check: does arc contain rectangle's points
-        if (contains(rx, ry) || contains(rx + rw, ry) ||
-                contains(rx, ry + rh) || contains(rx + rw, ry + rh)) {
+        if (contains(x, y) || contains(x + width, y) ||
+                contains(x, y + height) || contains(x + width, y + height)) {
             return true
         }
 
@@ -149,7 +148,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         val p2 = endPoint
 
         // check: does rectangle contain arc's points
-        val r = Rectangle(rx, ry, rw, rh)
+        val r = Rectangle(x, y, width, height)
         if (r.contains(p1) || r.contains(p2) || arcType == IArc.PIE && r.contains(cx, cy)) {
             return true
         }
@@ -165,8 +164,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
         }
 
         // nearest rectangle point
-        val nx = if (cx < rx) rx else if (cx > rx + rw) rx + rw else cx
-        val ny = if (cy < ry) ry else if (cy > ry + rh) ry + rh else cy
+        val nx = if (cx < x) x else if (cx > x + width) x + width else cx
+        val ny = if (cy < y) y else if (cy > y + height) y + height else cy
         return contains(nx, ny)
     }
 
@@ -203,8 +202,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?): PathIterator {
-        return Iterator(this, at)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     /** Returns a normalized angle (bound between 0 and 360 degrees).  */

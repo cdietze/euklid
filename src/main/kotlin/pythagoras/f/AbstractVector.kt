@@ -225,12 +225,12 @@ abstract class AbstractVector : IVector {
         return Vector(this)
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (obj === this) {
+    override fun equals(other: Any?): Boolean {
+        if (other === this) {
             return true
         }
-        if (obj is AbstractVector) {
-            val p = obj
+        if (other is AbstractVector) {
+            val p = other
             return x == p.x && y == p.y
         }
         return false

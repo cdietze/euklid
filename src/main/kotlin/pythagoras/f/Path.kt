@@ -206,30 +206,30 @@ class Path : IShape {
         get() = bounds().isEmpty
 
     override // from interface IShape
-    fun contains(px: Float, py: Float): Boolean {
-        return isInside(Crossing.crossShape(this, px, py))
+    fun contains(x: Float, y: Float): Boolean {
+        return isInside(Crossing.crossShape(this, x, y))
     }
 
     override // from interface IShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        val cross = Crossing.intersectShape(this, rx, ry, rw, rh)
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+        val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && isInside(cross)
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        val cross = Crossing.intersectShape(this, rx, ry, rw, rh)
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || isInside(cross)
     }
 
     override // from interface IShape
-    fun contains(p: XY): Boolean {
-        return contains(p.x, p.y)
+    fun contains(point: XY): Boolean {
+        return contains(point.x, point.y)
     }
 
     override // from interface IShape
-    fun contains(r: IRectangle): Boolean {
-        return contains(r.x, r.y, r.width, r.height)
+    fun contains(rect: IRectangle): Boolean {
+        return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
     override // from interface IShape
@@ -238,13 +238,13 @@ class Path : IShape {
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?): PathIterator {
-        return Iterator(this, t)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?, flatness: Float): PathIterator {
-        return FlatteningPathIterator(pathIterator(t), flatness)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
     // @Override // can't declare @Override due to GWT

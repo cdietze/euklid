@@ -219,13 +219,13 @@ class Area : IShape {
     }
 
     override // from interface IShape
-    fun contains(p: XY): Boolean {
-        return contains(p.x, p.y)
+    fun contains(point: XY): Boolean {
+        return contains(point.x, point.y)
     }
 
     override // from interface IShape
-    fun contains(r: IRectangle): Boolean {
-        return contains(r.x, r.y, r.width, r.height)
+    fun contains(rect: IRectangle): Boolean {
+        return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
     override // from interface IShape
@@ -266,24 +266,24 @@ class Area : IShape {
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?): PathIterator {
-        return AreaPathIterator(t)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return AreaPathIterator(transform)
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?, flatness: Float): PathIterator {
-        return FlatteningPathIterator(pathIterator(t), flatness)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
     override // from Object
-    fun equals(obj: Any?): Boolean {
-        if (this === obj) {
+    fun equals(other: Any?): Boolean {
+        if (this === other) {
             return true
-        } else if (obj !is Area) {
+        } else if (other !is Area) {
             return false
         }
         val area = clone()
-        area.subtract(obj as Area?)
+        area.subtract(other as Area?)
         return area.isEmpty
     }
 
@@ -1163,7 +1163,7 @@ class Area : IShape {
             curRuleIndex++
         }
 
-        override fun currentSegment(c: FloatArray): Int {
+        override fun currentSegment(coords: FloatArray): Int {
             if (isDone) {
                 throw NoSuchElementException("Iterator out of bounds")
             }
@@ -1172,32 +1172,32 @@ class Area : IShape {
             // the fallthrough below is on purpose
             when (_rules[curRuleIndex]) {
                 PathIterator.SEG_CUBICTO -> {
-                    c[4] = _coords[curCoordIndex + 4]
-                    c[5] = _coords[curCoordIndex + 5]
+                    coords[4] = _coords[curCoordIndex + 4]
+                    coords[5] = _coords[curCoordIndex + 5]
                     count = 1
-                    c[2] = _coords[curCoordIndex + 2]
-                    c[3] = _coords[curCoordIndex + 3]
+                    coords[2] = _coords[curCoordIndex + 2]
+                    coords[3] = _coords[curCoordIndex + 3]
                     count += 1
-                    c[0] = _coords[curCoordIndex]
-                    c[1] = _coords[curCoordIndex + 1]
+                    coords[0] = _coords[curCoordIndex]
+                    coords[1] = _coords[curCoordIndex + 1]
                     count += 1
                 }
                 PathIterator.SEG_QUADTO -> {
-                    c[2] = _coords[curCoordIndex + 2]
-                    c[3] = _coords[curCoordIndex + 3]
+                    coords[2] = _coords[curCoordIndex + 2]
+                    coords[3] = _coords[curCoordIndex + 3]
                     count += 1
-                    c[0] = _coords[curCoordIndex]
-                    c[1] = _coords[curCoordIndex + 1]
+                    coords[0] = _coords[curCoordIndex]
+                    coords[1] = _coords[curCoordIndex + 1]
                     count += 1
                 }
                 PathIterator.SEG_MOVETO, PathIterator.SEG_LINETO -> {
-                    c[0] = _coords[curCoordIndex]
-                    c[1] = _coords[curCoordIndex + 1]
+                    coords[0] = _coords[curCoordIndex]
+                    coords[1] = _coords[curCoordIndex + 1]
                     count += 1
                 }
             }
 
-            transform?.transform(c, 0, c, 0, count)
+            transform?.transform(coords, 0, coords, 0, count)
 
             return _rules[curRuleIndex]
         }

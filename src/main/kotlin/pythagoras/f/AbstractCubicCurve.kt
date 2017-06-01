@@ -74,29 +74,29 @@ abstract class AbstractCubicCurve : ICubicCurve {
         get() = true
 
     override // from interface IShape
-    fun contains(px: Float, py: Float): Boolean {
-        return Crossing.isInsideEvenOdd(Crossing.crossShape(this, px, py))
+    fun contains(x: Float, y: Float): Boolean {
+        return Crossing.isInsideEvenOdd(Crossing.crossShape(this, x, y))
     }
 
     override // from interface IShape
-    fun contains(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        val cross = Crossing.intersectShape(this, rx, ry, rw, rh)
+    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+        val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && Crossing.isInsideEvenOdd(cross)
     }
 
     override // from interface IShape
-    fun contains(p: XY): Boolean {
-        return contains(p.x, p.y)
+    fun contains(point: XY): Boolean {
+        return contains(point.x, point.y)
     }
 
     override // from interface IShape
-    fun contains(r: IRectangle): Boolean {
-        return contains(r.x, r.y, r.width, r.height)
+    fun contains(rect: IRectangle): Boolean {
+        return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
     override // from interface IShape
-    fun intersects(rx: Float, ry: Float, rw: Float, rh: Float): Boolean {
-        val cross = Crossing.intersectShape(this, rx, ry, rw, rh)
+    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+        val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || Crossing.isInsideEvenOdd(cross)
     }
 
@@ -112,30 +112,22 @@ abstract class AbstractCubicCurve : ICubicCurve {
 
     override // from interface IShape
     fun bounds(target: Rectangle): Rectangle {
-        val x1 = x1
-        val y1 = y1
-        val x2 = x2
-        val y2 = y2
-        val ctrlx1 = ctrlX1
-        val ctrly1 = ctrlY1
-        val ctrlx2 = ctrlX2
-        val ctrly2 = ctrlY2
-        val rx1 = Math.min(Math.min(x1, x2), Math.min(ctrlx1, ctrlx2))
-        val ry1 = Math.min(Math.min(y1, y2), Math.min(ctrly1, ctrly2))
-        val rx2 = Math.max(Math.max(x1, x2), Math.max(ctrlx1, ctrlx2))
-        val ry2 = Math.max(Math.max(y1, y2), Math.max(ctrly1, ctrly2))
+        val rx1 = Math.min(Math.min(x1, x2), Math.min(ctrlX1, ctrlX2))
+        val ry1 = Math.min(Math.min(y1, y2), Math.min(ctrlY1, ctrlY2))
+        val rx2 = Math.max(Math.max(x1, x2), Math.max(ctrlX1, ctrlX2))
+        val ry2 = Math.max(Math.max(y1, y2), Math.max(ctrlY1, ctrlY2))
         target.setBounds(rx1, ry1, rx2 - rx1, ry2 - ry1)
         return target
     }
 
     override // from interface IShape
-    fun pathIterator(t: Transform?): PathIterator {
-        return Iterator(this, t)
+    fun pathIterator(transform: Transform?): PathIterator {
+        return Iterator(this, transform)
     }
 
     override // from interface IShape
-    fun pathIterator(at: Transform?, flatness: Float): PathIterator {
-        return FlatteningPathIterator(pathIterator(at), flatness)
+    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+        return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
     /** An iterator over an [ICubicCurve].  */
