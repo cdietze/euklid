@@ -15,8 +15,7 @@
  */
 package pythagoras.f
 
-import junit.framework.Assert
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
@@ -41,20 +40,20 @@ class MathUtilTest {
 
     @Test
     fun testToString() {
-        Assert.assertEquals("+1.0", MathUtil.toString(1f))
-        Assert.assertEquals("-1.0", MathUtil.toString(-1f))
-        Assert.assertEquals("+1.1", MathUtil.toString(1.1f))
-        Assert.assertEquals("-1.1", MathUtil.toString(-1.1f))
-        Assert.assertEquals("+3.141", MathUtil.toString(MathUtil.PI))
-        Assert.assertEquals("-3.141", MathUtil.toString(-MathUtil.PI))
+        assertEquals("+1.0", MathUtil.toString(1f))
+        assertEquals("-1.0", MathUtil.toString(-1f))
+        assertEquals("+1.1", MathUtil.toString(1.1f))
+        assertEquals("-1.1", MathUtil.toString(-1.1f))
+        assertEquals("+3.141", MathUtil.toString(MathUtil.PI))
+        assertEquals("-3.141", MathUtil.toString(-MathUtil.PI))
 
         MathUtil.setToStringDecimalPlaces(5)
-        Assert.assertEquals("+1.0", MathUtil.toString(1f))
-        Assert.assertEquals("-1.0", MathUtil.toString(-1f))
-        Assert.assertEquals("+1.1", MathUtil.toString(1.1f))
-        Assert.assertEquals("-1.1", MathUtil.toString(-1.1f))
-        Assert.assertEquals("+3.14159", MathUtil.toString(MathUtil.PI))
-        Assert.assertEquals("-3.14159", MathUtil.toString(-MathUtil.PI))
+        assertEquals("+1.0", MathUtil.toString(1f))
+        assertEquals("-1.0", MathUtil.toString(-1f))
+        assertEquals("+1.1", MathUtil.toString(1.1f))
+        assertEquals("-1.1", MathUtil.toString(-1.1f))
+        assertEquals("+3.14159", MathUtil.toString(MathUtil.PI))
+        assertEquals("-3.14159", MathUtil.toString(-MathUtil.PI))
     }
 
     companion object {

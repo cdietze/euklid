@@ -15,7 +15,7 @@
  */
 package pythagoras.i
 
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
