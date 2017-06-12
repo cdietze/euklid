@@ -1,0 +1,19 @@
+load("@org_pubref_rules_kotlin//kotlin:rules.bzl", "kotlin_library", "kotlin_test")
+
+kotlin_library(
+    name = "pythagoras_kt",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+)
+
+kotlin_test(
+    name = "pythagoras_kt_test",
+    test_class = "pythagoras.FullTestSuite",
+    srcs = glob(["src/test/kotlin/**/*.kt"]),
+    size = "small",
+    deps = [
+        ":pythagoras_kt",
+    ],
+    java_deps = [
+        "@junit4//jar",
+    ],
+)
