@@ -20,6 +20,14 @@
         <kotlin.version>1.1.2</kotlin.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>bintray-cdietze-de.cdietze.pythagoras_kt</id>
+            <name>cdietze-de.cdietze.pythagoras_kt</name>
+            <url>https://api.bintray.com/maven/cdietze/de.cdietze.pythagoras_kt/pythagoras.kt/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
     <developers>
         <developer>
             <id>cdietze</id>

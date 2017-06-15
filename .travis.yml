@@ -1,5 +1,15 @@
 language: java
 install: "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 script: "mvn test -B"
+after_success: etc/travis-deploy.sh
 jdk:
   - oraclejdk8
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+
+env:
+  global:
+    - secure: "rAmb+fBhLfoGWAavRrc6GewmR7kLXrVDAoP4rhr1r6wQxuu10xNfzZyYxqhoS5kYWx6uw7x2G4/h9LcSIdG6GS5ZmMGI09C4ku4zVggoaPLxU/R8PFBSHzTES8k8PjoCZrhaIJpXfTivdQavvxw2Ag+IM6iVJok4OdPoMzw+Jl1yCddXx36NZC2h6gwOsxkRK3HOxE14ejjLy3/YucpgIgUoJjAItrpylAZXS1Dx6YoloBkCgjaZsmMZ/OOBUTNs7HSCLykWaGcTXFRghk9l82cbAgs+n7ey/KB+2AJDXtrfH12ksPFpMkw/+e9iwFyamvGiY2OtCY1EHN0gvjkru7Xm4u8gTpIYAMjkLm3NHNPxWoTZJVUVQ9NE3d+9Iw5kxgUK99hzpKm5BLSelGjuYTrCePMZiBWz6QYkAwLxxQyJPRKofTZnjTwqVMLg0tH/kF4PgA25ZP/+BkHi5vQ5msW2bVNtXlFrMbzXT0dLKwV4Y87My7tHoi/ivsly3QHMTk6uEdEmn+9JPVVzfzbHnZgzzvOvP9N5PO4himm2M1G6WcjgUpo10WyeDhwC41z4ky3OfcYZNxbQiB2me63lGBxGWrxK1dvMh49m0Qi0AAgLngwmd3ws3sHsDnoppfMevZ48xGbeJ7ZUb1DJpd6/N/rYwvDc0h8KQDdmlouTBUk="
+    - secure: "I1seEIQvEUYkQtPEXtXYkqlAhevRzfYFhQdDPSwHxBbh+0G0o7HlHat8plw6A3Sd1bXv/rxXwaNIQE0oEQy8hLy5cz0Ygs5HqhKzJPza6+a99f2j08I/PPFUxc8vOZ7780gya3vJjS3kH84cqroqlxhbS+kbR2ml647W4As6qvxuWbAg8uq2M9iWdEawaxGSBRPIyGNv32qlRv267k3Tupo55MyrI9FvUWozOvK5Eg0/mR6SJiGdSIOPFRkMIL1+yHqDxo3DGWBI9RJCxojr2S+ifH+X3N7ZXwsb7MJrhLFvno87DT0TKY4Xud91FmMO0DuLjITymmX+ILt73jZY6kYUWC5QvR+ehocC+xPADs8tT1sUO/Op4BTWkNUFK4NaG+nmpIqzI+ZjibHdUnDLxT1OsOkyPuW7HFCoUVZeokYjFeUrjR+1FaptU33iOM8+t8SGAUy8mwWki4+utl1WvBdKEK2IP4k5m2POTzvTdWeV4W/xalWSt/fNuPntNG3n2kE1Vl/iv6uBEco/4aha63ZHmLUuiXWGX06FVBUIL3ZrT7+5hBbcjw65k8nY4NRbmm3KePUsJNHnQjksf+YRyBwbe9EQ61rQwFzXwYY+Y9q9kjcHbe5M/cJ4zKzgLfa+w+oHKcZko+ArippnaBl19pTQn3RLe31ihFY789Rs2y8="
