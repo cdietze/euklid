@@ -236,5 +236,5 @@ interface IVector3 {
     /**
      * Populates the supplied array with the contents of this vector.
      */
-    operator fun get(values: FloatArray)
+    fun get(values: FloatArray)
 }
