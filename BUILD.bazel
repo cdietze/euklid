@@ -2,6 +2,7 @@ load("@org_pubref_rules_kotlin//kotlin:rules.bzl", "kotlin_library", "kotlin_tes
 
 kotlin_library(
     name = "pythagoras_kt",
+    visibility = ["//visibility:public"],
     srcs = glob(["src/main/kotlin/**/*.kt"]),
 )
 
