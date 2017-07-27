@@ -150,7 +150,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun add(x: Float, y: Float, result: Vector): Vector {
-        return result.set(x + x, y + y)
+        return result.set(this.x + x, this.y + y)
     }
 
     override // from interface IVector
@@ -160,7 +160,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun subtract(x: Float, y: Float, result: Vector): Vector {
-        return result.set(x - x, y - y)
+        return result.set(this.x - x, this.y - y)
     }
 
     override // from interface IVector
