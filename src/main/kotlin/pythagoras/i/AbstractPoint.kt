@@ -45,12 +45,12 @@ abstract class AbstractPoint : IPoint {
 
     override // from IPoint
     fun add(x: Int, y: Int): Point {
-        return Point(x + x, y + y)
+        return Point(this.x + x, this.y + y)
     }
 
     override // from IPoint
     fun add(x: Int, y: Int, result: Point): Point {
-        return result.set(x + x, y + y)
+        return result.set(this.x + x, this.y + y)
     }
 
     override // from IPoint
@@ -59,7 +59,7 @@ abstract class AbstractPoint : IPoint {
     }
 
     override fun subtract(x: Int, y: Int, result: Point): Point {
-        return result.set(x - x, y - y)
+        return result.set(this.x - x, this.y - y)
     }
 
     override fun subtract(other: IPoint, result: Point): Point {
