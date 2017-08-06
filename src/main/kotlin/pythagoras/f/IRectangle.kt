@@ -66,7 +66,7 @@ interface IRectangle : IRectangularShape {
     fun outcode(point: XY): Int
 
     /** Returns a mutable copy of this rectangle.  */
-    fun clone(): Rectangle
+    fun copy(x: Float = this.x, y: Float = this.y, width: Float = this.width, height: Float = this.height): Rectangle
 
     companion object {
         /** The bitmask that indicates that a point lies to the left of this rectangle. See

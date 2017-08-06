@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.f
 
-import pythagoras.util.Platform
 import java.lang.Math
 
 /**
@@ -106,11 +103,6 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return outcode(point.x, point.y)
     }
 
-    override // from interface IRectangle
-    fun clone(): Rectangle {
-        return Rectangle(this)
-    }
-
     override // from interface IShape
     fun contains(x: Float, y: Float): Boolean {
         var px = x
@@ -154,25 +146,6 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
     override // from interface IShape
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return Iterator(this, transform)
-    }
-
-    override // from Object
-    fun equals(other: Any?): Boolean {
-        if (other === this) {
-            return true
-        }
-        if (other is AbstractRectangle) {
-            val r = other
-            return r.x == x && r.y == y &&
-                    r.width == width && r.height == height
-        }
-        return false
-    }
-
-    override // from Object
-    fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y) xor
-                Platform.hashCode(width) xor Platform.hashCode(height)
     }
 
     override // from Object
