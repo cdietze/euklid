@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
@@ -88,7 +86,7 @@ interface IRectangle : IShape {
     fun outcode(point: IPoint): Int
 
     /** Returns a mutable copy of this rectangle.  */
-    fun clone(): Rectangle
+    fun copy(x: Int = this.x, y: Int = this.y, width: Int = this.width, height: Int = this.height): Rectangle
 
     companion object {
         /** The bitmask that indicates that a point lies to the left of this rectangle. See

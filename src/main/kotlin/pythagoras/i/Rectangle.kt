@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 import java.lang.Math
@@ -23,60 +21,42 @@ import java.lang.Math
 /**
  * Represents an area in two dimensions.
  */
-class Rectangle : AbstractRectangle {
-
-    /** The x-coordinate of the rectangle's upper left corner.  */
-    override var x: Int = 0
-
-    /** The y-coordinate of the rectangle's upper left corner.  */
-    override var y: Int = 0
-
-    /** The width of the rectangle.  */
-    override var width: Int = 0
-
-    /** The height of the rectangle.  */
-    override var height: Int = 0
+data class Rectangle(
+        /** The x-coordinate of the rectangle's upper left corner.  */
+        override var x: Int = 0,
+        /** The y-coordinate of the rectangle's upper left corner.  */
+        override var y: Int = 0,
+        /** The width of the rectangle.  */
+        override var width: Int = 0,
+        /** The height of the rectangle.  */
+        override var height: Int = 0
+) : AbstractRectangle() {
 
     /**
      * Constructs a rectangle at (0,0) and with dimensions (0,0).
      */
-    constructor()
+    constructor() : this(0, 0, 0, 0)
 
     /**
      * Constructs a rectangle with the supplied upper-left corner and dimensions (0,0).
      */
-    constructor(p: IPoint) {
-        setBounds(p.x, p.y, 0, 0)
-    }
+    constructor(p: IPoint) : this(p.x, p.y, 0, 0)
 
     /**
      * Constructs a rectangle with upper-left corner at (0,0) and the supplied dimensions.
      */
-    constructor(d: IDimension) {
-        setBounds(0, 0, d.width, d.height)
-    }
+    constructor(d: IDimension) : this(0, 0, d.width, d.height)
 
     /**
      * Constructs a rectangle with upper-left corner at the supplied point and with the supplied
      * dimensions.
      */
-    constructor(p: IPoint, d: IDimension) {
-        setBounds(p.x, p.y, d.width, d.height)
-    }
-
-    /**
-     * Constructs a rectangle with the specified upper-left corner and dimensions.
-     */
-    constructor(x: Int, y: Int, width: Int, height: Int) {
-        setBounds(x, y, width, height)
-    }
+    constructor(p: IPoint, d: IDimension) : this(p.x, p.y, d.width, d.height)
 
     /**
      * Constructs a rectangle with bounds equal to the supplied rectangle.
      */
-    constructor(r: IRectangle) {
-        setBounds(r.x, r.y, r.width, r.height)
-    }
+    constructor(r: IRectangle) : this(r.x, r.y, r.width, r.height)
 
     /**
      * Sets the upper-left corner of this rectangle to the specified point.

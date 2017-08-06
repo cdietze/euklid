@@ -116,11 +116,6 @@ abstract class AbstractRectangle : IRectangle {
         return outcode(point.x, point.y)
     }
 
-    override // from interface IRectangle
-    fun clone(): Rectangle {
-        return Rectangle(this)
-    }
-
     override // from interface IShape
     val isEmpty: Boolean
         get() = width <= 0 || height <= 0
@@ -184,26 +179,7 @@ abstract class AbstractRectangle : IRectangle {
         return target
     }
 
-    override // from Object
-    fun equals(other: Any?): Boolean {
-        if (other === this) {
-            return true
-        }
-        if (other is AbstractRectangle) {
-            val r = other
-            return r.x == x && r.y == y &&
-                    r.width == width && r.height == height
-        }
-        return false
-    }
-
-    override // from Object
-    fun hashCode(): Int {
-        return x xor y xor width xor height
-    }
-
-    override // from Object
-    fun toString(): String {
+    override fun toString(): String {
         return Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
     }
 }
