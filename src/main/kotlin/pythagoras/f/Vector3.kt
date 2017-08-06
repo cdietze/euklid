@@ -27,9 +27,9 @@ import java.lang.Math
 class Vector3 : IVector3 {
 
     /** The components of the vector.  */
-    override var x: Float = 0.toFloat()
-    override var y: Float = 0.toFloat()
-    override var z: Float = 0.toFloat()
+    override var x: Float = 0f
+    override var y: Float = 0f
+    override var z: Float = 0f
 
     /**
      * Creates a vector from three components.

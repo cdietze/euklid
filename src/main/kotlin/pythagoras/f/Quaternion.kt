@@ -28,10 +28,10 @@ import java.util.*
 class Quaternion : IQuaternion {
 
     /** The components of the quaternion.  */
-    override var x: Float = 0.toFloat()
-    override var y: Float = 0.toFloat()
-    override var z: Float = 0.toFloat()
-    override var w: Float = 0.toFloat()
+    override var x: Float = 0f
+    override var y: Float = 0f
+    override var z: Float = 0f
+    override var w: Float = 0f
 
     /**
      * Creates a quaternion from four components.

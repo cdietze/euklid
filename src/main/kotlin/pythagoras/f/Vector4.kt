@@ -27,10 +27,10 @@ import java.lang.Math
 class Vector4 : IVector4 {
 
     /** The components of the vector.  */
-    override var x: Float = 0.toFloat()
-    override var y: Float = 0.toFloat()
-    override var z: Float = 0.toFloat()
-    override var w: Float = 0.toFloat()
+    override var x: Float = 0f
+    override var y: Float = 0f
+    override var z: Float = 0f
+    override var w: Float = 0f
 
     /**
      * Creates a vector from four components.

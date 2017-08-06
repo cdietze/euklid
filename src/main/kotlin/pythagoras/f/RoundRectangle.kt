@@ -24,22 +24,22 @@ package pythagoras.f
 class RoundRectangle : AbstractRoundRectangle {
 
     /** The x-coordinate of the framing rectangle.  */
-    override var x: Float = 0.toFloat()
+    override var x: Float = 0f
 
     /** The y-coordinate of the framing rectangle.  */
-    override var y: Float = 0.toFloat()
+    override var y: Float = 0f
 
     /** The width of the framing rectangle.  */
-    override var width: Float = 0.toFloat()
+    override var width: Float = 0f
 
     /** The height of the framing rectangle.  */
-    override var height: Float = 0.toFloat()
+    override var height: Float = 0f
 
     /** The width of the arc that defines the rounded corners.  */
-    override var arcWidth: Float = 0.toFloat()
+    override var arcWidth: Float = 0f
 
     /** The height of the arc that defines the rounded corners.  */
-    override var arcHeight: Float = 0.toFloat()
+    override var arcHeight: Float = 0f
 
     /**
      * Creates a rounded rectangle with frame (0x0+0+0) and corners of size (0x0).

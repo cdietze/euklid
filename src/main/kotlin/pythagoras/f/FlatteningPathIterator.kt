@@ -54,10 +54,10 @@ internal class FlatteningPathIterator constructor(
     private val flatness2: Float
 
     /** The x coordinate of previous path segment  */
-    private var px: Float = 0.toFloat()
+    private var px: Float = 0f
 
     /** The y coordinate of previous path segment  */
-    private var py: Float = 0.toFloat()
+    private var py: Float = 0f
 
     /** The tamporary buffer for getting points from PathIterator  */
     private val coords = FloatArray(6)

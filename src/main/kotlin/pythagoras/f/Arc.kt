@@ -26,22 +26,22 @@ import java.lang.Math
 class Arc : AbstractArc {
 
     /** The x-coordinate of this arc's framing rectangle.  */
-    override var x: Float = 0.toFloat()
+    override var x: Float = 0f
 
     /** The y-coordinate of this arc's framing rectangle.  */
-    override var y: Float = 0.toFloat()
+    override var y: Float = 0f
 
     /** The width of this arc's framing rectangle.  */
-    override var width: Float = 0.toFloat()
+    override var width: Float = 0f
 
     /** The height of this arc's framing rectangle.  */
-    override var height: Float = 0.toFloat()
+    override var height: Float = 0f
 
     /** The starting angle of this arc.  */
-    var start: Float = 0.toFloat()
+    var start: Float = 0f
 
     /** The angular extent of this arc.  */
-    var extent: Float = 0.toFloat()
+    var extent: Float = 0f
 
     /**
      * Creates an arc of the specified type with frame (0x0+0+0) and zero angles.

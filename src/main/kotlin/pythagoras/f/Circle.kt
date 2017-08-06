@@ -24,13 +24,13 @@ package pythagoras.f
 class Circle : AbstractCircle {
 
     /** The x-coordinate of the circle.  */
-    override var x: Float = 0.toFloat()
+    override var x: Float = 0f
 
     /** The y-coordinate of the circle.  */
-    override var y: Float = 0.toFloat()
+    override var y: Float = 0f
 
     /** The radius of the circle.  */
-    override var radius: Float = 0.toFloat()
+    override var radius: Float = 0f
 
     /**
      * Constructs a circle at (0, 0) with radius 0

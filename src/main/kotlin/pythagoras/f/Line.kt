@@ -24,16 +24,16 @@ package pythagoras.f
 class Line : AbstractLine {
 
     /** The x-coordinate of the start of this line segment.  */
-    override var x1: Float = 0.toFloat()
+    override var x1: Float = 0f
 
     /** The y-coordinate of the start of this line segment.  */
-    override var y1: Float = 0.toFloat()
+    override var y1: Float = 0f
 
     /** The x-coordinate of the end of this line segment.  */
-    override var x2: Float = 0.toFloat()
+    override var x2: Float = 0f
 
     /** The y-coordinate of the end of this line segment.  */
-    override var y2: Float = 0.toFloat()
+    override var y2: Float = 0f
 
     /**
      * Creates a line from (0,0) to (0,0).

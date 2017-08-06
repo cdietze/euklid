@@ -146,14 +146,14 @@ internal object Crossing {
      * QuadCurve class provides basic functionality to find curve crossing and calculating bounds
      */
     class QuadCurve(x1: Float, y1: Float, cx: Float, cy: Float, x2: Float, y2: Float) {
-        internal var ax: Float = 0.toFloat()
-        internal var ay: Float = 0.toFloat()
-        internal var bx: Float = 0.toFloat()
-        internal var by: Float = 0.toFloat()
-        internal var _Ax: Float = 0.toFloat()
-        internal var _Ay: Float = 0.toFloat()
-        internal var _Bx: Float = 0.toFloat()
-        internal var _By: Float = 0.toFloat()
+        internal var ax: Float = 0f
+        internal var ay: Float = 0f
+        internal var bx: Float = 0f
+        internal var by: Float = 0f
+        internal var _Ax: Float = 0f
+        internal var _Ay: Float = 0f
+        internal var _Bx: Float = 0f
+        internal var _By: Float = 0f
 
         init {
             ax = x2 - x1
@@ -250,20 +250,20 @@ internal object Crossing {
     /** CubicCurve helper for finding curve crossing and calculating bounds.  */
     class CubicCurveH(x1: Float, y1: Float, cx1: Float, cy1: Float, cx2: Float, cy2: Float,
                       x2: Float, y2: Float) {
-        internal var ax: Float = 0.toFloat()
-        internal var ay: Float = 0.toFloat()
-        internal var bx: Float = 0.toFloat()
-        internal var by: Float = 0.toFloat()
-        internal var cx: Float = 0.toFloat()
-        internal var cy: Float = 0.toFloat()
-        internal var _Ax: Float = 0.toFloat()
-        internal var _Ay: Float = 0.toFloat()
-        internal var _Bx: Float = 0.toFloat()
-        internal var _By: Float = 0.toFloat()
-        internal var _Cx: Float = 0.toFloat()
-        internal var _Cy: Float = 0.toFloat()
-        internal var Ax3: Float = 0.toFloat()
-        internal var Bx2: Float = 0.toFloat()
+        internal var ax: Float = 0f
+        internal var ay: Float = 0f
+        internal var bx: Float = 0f
+        internal var by: Float = 0f
+        internal var cx: Float = 0f
+        internal var cy: Float = 0f
+        internal var _Ax: Float = 0f
+        internal var _Ay: Float = 0f
+        internal var _Bx: Float = 0f
+        internal var _By: Float = 0f
+        internal var _Cx: Float = 0f
+        internal var _Cy: Float = 0f
+        internal var Ax3: Float = 0f
+        internal var Bx2: Float = 0f
 
         init {
             ax = x2 - x1

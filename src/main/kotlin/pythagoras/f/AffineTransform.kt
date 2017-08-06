@@ -32,13 +32,13 @@ class AffineTransform : AbstractTransform {
 
     /** The scale, rotation and shear components of this transform.  */
     var m00: Float = 1.toFloat()
-    var m01: Float = 0.toFloat()
-    var m10: Float = 0.toFloat()
+    var m01: Float = 0f
+    var m10: Float = 0f
     var m11: Float = 1.toFloat()
 
     /** The translation components of this transform.  */
-    override var tx: Float = 0.toFloat()
-    override var ty: Float = 0.toFloat()
+    override var tx: Float = 0f
+    override var ty: Float = 0f
 
     /** Creates an affine transform configured with the identity transform. */
     constructor()

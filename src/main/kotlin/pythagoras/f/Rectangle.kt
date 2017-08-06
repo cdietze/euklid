@@ -26,16 +26,16 @@ import java.lang.Math
 class Rectangle : AbstractRectangle {
 
     /** The x-coordinate of the rectangle's upper left corner.  */
-    override var x: Float = 0.toFloat()
+    override var x: Float = 0f
 
     /** The y-coordinate of the rectangle's upper left corner.  */
-    override var y: Float = 0.toFloat()
+    override var y: Float = 0f
 
     /** The width of the rectangle.  */
-    override var width: Float = 0.toFloat()
+    override var width: Float = 0f
 
     /** The height of the rectangle.  */
-    override var height: Float = 0.toFloat()
+    override var height: Float = 0f
 
     /**
      * Constructs a rectangle at (0,0) and with dimensions (0,0).

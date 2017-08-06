@@ -228,7 +228,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         private val height: Float = a.height / 2f
 
         /** The start angle of the arc in degrees  */
-        private var angle: Float = 0.toFloat()
+        private var angle: Float = 0f
 
         /** The angle extent in degrees  */
         private val extent: Float
@@ -247,28 +247,28 @@ abstract class AbstractArc : RectangularShape(), IArc {
         private var lineCount: Int = 0
 
         /** The step to calculate next arc subdivision point  */
-        private var step: Float = 0.toFloat()
+        private var step: Float = 0f
 
         /** The temporary value of cosinus of the current angle  */
-        private var cos: Float = 0.toFloat()
+        private var cos: Float = 0f
 
         /** The temporary value of sinus of the current angle  */
-        private var sin: Float = 0.toFloat()
+        private var sin: Float = 0f
 
         /** The coefficient to calculate control points of Bezier curves  */
-        private var k: Float = 0.toFloat()
+        private var k: Float = 0f
 
         /** The temporary value of x coordinate of the Bezier curve control vector  */
-        private var kx: Float = 0.toFloat()
+        private var kx: Float = 0f
 
         /** The temporary value of y coordinate of the Bezier curve control vector  */
-        private var ky: Float = 0.toFloat()
+        private var ky: Float = 0f
 
         /** The x coordinate of the first path point (MOVE_TO)  */
-        private var mx: Float = 0.toFloat()
+        private var mx: Float = 0f
 
         /** The y coordinate of the first path point (MOVE_TO)  */
-        private var my: Float = 0.toFloat()
+        private var my: Float = 0f
 
         init {
             this.x = a.x + width

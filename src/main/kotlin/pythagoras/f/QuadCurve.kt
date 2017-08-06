@@ -24,22 +24,22 @@ package pythagoras.f
 class QuadCurve : AbstractQuadCurve {
 
     /** The x-coordinate of the start of this curve.  */
-    override var x1: Float = 0.toFloat()
+    override var x1: Float = 0f
 
     /** The y-coordinate of the start of this curve.  */
-    override var y1: Float = 0.toFloat()
+    override var y1: Float = 0f
 
     /** The x-coordinate of the control point.  */
-    override var ctrlX: Float = 0.toFloat()
+    override var ctrlX: Float = 0f
 
     /** The y-coordinate of the control point.  */
-    override var ctrlY: Float = 0.toFloat()
+    override var ctrlY: Float = 0f
 
     /** The x-coordinate of the end of this curve.  */
-    override var x2: Float = 0.toFloat()
+    override var x2: Float = 0f
 
     /** The y-coordinate of the end of this curve.  */
-    override var y2: Float = 0.toFloat()
+    override var y2: Float = 0f
 
     /**
      * Creates a quad curve with all points at (0,0).

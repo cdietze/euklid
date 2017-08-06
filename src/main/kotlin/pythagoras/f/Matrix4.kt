@@ -27,22 +27,22 @@ import java.lang.Math
  * The property names take the form `mCOLROW`.
  */
 data class Matrix4(
-        override var m00: Float = 0.toFloat(),
-        override var m10: Float = 0.toFloat(),
-        override var m20: Float = 0.toFloat(),
-        override var m30: Float = 0.toFloat(),
-        override var m01: Float = 0.toFloat(),
-        override var m11: Float = 0.toFloat(),
-        override var m21: Float = 0.toFloat(),
-        override var m31: Float = 0.toFloat(),
-        override var m02: Float = 0.toFloat(),
-        override var m12: Float = 0.toFloat(),
-        override var m22: Float = 0.toFloat(),
-        override var m32: Float = 0.toFloat(),
-        override var m03: Float = 0.toFloat(),
-        override var m13: Float = 0.toFloat(),
-        override var m23: Float = 0.toFloat(),
-        override var m33: Float = 0.toFloat()
+        override var m00: Float = 0f,
+        override var m10: Float = 0f,
+        override var m20: Float = 0f,
+        override var m30: Float = 0f,
+        override var m01: Float = 0f,
+        override var m11: Float = 0f,
+        override var m21: Float = 0f,
+        override var m31: Float = 0f,
+        override var m02: Float = 0f,
+        override var m12: Float = 0f,
+        override var m22: Float = 0f,
+        override var m32: Float = 0f,
+        override var m03: Float = 0f,
+        override var m13: Float = 0f,
+        override var m23: Float = 0f,
+        override var m33: Float = 0f
 ) : IMatrix4 {
 
     /**

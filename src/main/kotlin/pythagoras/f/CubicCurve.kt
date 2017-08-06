@@ -24,28 +24,28 @@ package pythagoras.f
 class CubicCurve : AbstractCubicCurve {
 
     /** The x-coordinate of the start of this curve.  */
-    override var x1: Float = 0.toFloat()
+    override var x1: Float = 0f
 
     /** The y-coordinate of the start of this curve.  */
-    override var y1: Float = 0.toFloat()
+    override var y1: Float = 0f
 
     /** The x-coordinate of the first control point.  */
-    override var ctrlX1: Float = 0.toFloat()
+    override var ctrlX1: Float = 0f
 
     /** The y-coordinate of the first control point.  */
-    override var ctrlY1: Float = 0.toFloat()
+    override var ctrlY1: Float = 0f
 
     /** The x-coordinate of the second control point.  */
-    override var ctrlX2: Float = 0.toFloat()
+    override var ctrlX2: Float = 0f
 
     /** The x-coordinate of the second control point.  */
-    override var ctrlY2: Float = 0.toFloat()
+    override var ctrlY2: Float = 0f
 
     /** The x-coordinate of the end of this curve.  */
-    override var x2: Float = 0.toFloat()
+    override var x2: Float = 0f
 
     /** The y-coordinate of the end of this curve.  */
-    override var y2: Float = 0.toFloat()
+    override var y2: Float = 0f
 
     /**
      * Creates a cubic curve with all points at (0,0).

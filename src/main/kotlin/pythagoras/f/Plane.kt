@@ -28,7 +28,7 @@ import java.lang.Math
 class Plane : IPlane {
 
     /** The plane constant.  */
-    override var constant: Float = 0.toFloat()
+    override var constant: Float = 0f
 
     /**
      * Creates a plane from the specified normal and constant.
