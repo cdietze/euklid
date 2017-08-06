@@ -14,29 +14,22 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.f
 
 /**
  * Represents a magnitude in two dimensions.
  */
-class Dimension
+data class Dimension
 /**
  * Creates a dimension with the specified width and height,
  * using (0,0) as default.
  */
-constructor(width: Float = 0f, height: Float = 0f) : AbstractDimension() {
-
-    /** The magnitude in the x-dimension.  */
-    override var width: Float = 0.toFloat()
-
-    /** The magnitude in the y-dimension.  */
-    override var height: Float = 0.toFloat()
-
-    init {
-        setSize(width, height)
-    }
+constructor(
+        /** The magnitude in the x-dimension.  */
+        override var width: Float = 0f,
+        /** The magnitude in the y-dimension.  */
+        override var height: Float = 0f)
+    : IDimension {
 
     /**
      * Creates a dimension with width and height equal to the supplied dimension.
@@ -56,6 +49,10 @@ constructor(width: Float = 0f, height: Float = 0f) : AbstractDimension() {
      */
     fun setSize(d: IDimension) {
         setSize(d.width, d.height)
+    }
+
+    override fun toString(): String {
+        return Dimensions.dimenToString(width, height)
     }
 
     companion object {
