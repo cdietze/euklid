@@ -18,8 +18,6 @@
 
 package pythagoras.f
 
-import pythagoras.util.Platform
-
 /**
  * Provides most of the implementation of [IVector], obtaining only x and y from the derived
  * class.
@@ -218,26 +216,6 @@ abstract class AbstractVector : IVector {
         val dx = other.x - x
         val dy = other.y - y
         return result.set(x + t * dx, y + t * dy)
-    }
-
-    override // from interface IVector
-    fun clone(): Vector {
-        return Vector(this)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other === this) {
-            return true
-        }
-        if (other is AbstractVector) {
-            val p = other
-            return x == p.x && y == p.y
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y)
     }
 
     override fun toString(): String {

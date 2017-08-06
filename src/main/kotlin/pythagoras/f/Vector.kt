@@ -14,32 +14,23 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.f
 
 /**
  * Represents a vector in a plane.
  */
-class Vector : AbstractVector {
-    /** The x-component of the vector.  */
-    override var x: Float = 0.toFloat()
-
-    /** The y-component of the vector.  */
-    override var y: Float = 0.toFloat()
-
-    /** Creates a vector with the specified x and y components.  */
-    constructor(x: Float, y: Float) {
-        set(x, y)
-    }
-
-    /** Creates a vector equal to `other`.  */
-    constructor(other: XY) {
-        set(other)
-    }
+data class Vector(
+        /** The x-component of the vector.  */
+        override var x: Float = 0f,
+        /** The y-component of the vector.  */
+        override var y: Float = 0f
+) : AbstractVector() {
 
     /** Creates a vector with zero x and y components.  */
-    constructor()
+    constructor() : this(0f, 0f)
+
+    /** Creates a vector equal to `other`.  */
+    constructor(other: XY) : this(other.x, other.y)
 
     /** Computes the cross product of this and the specified other vector, storing the result in
      * this vector.

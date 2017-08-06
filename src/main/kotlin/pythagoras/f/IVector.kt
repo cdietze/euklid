@@ -184,5 +184,5 @@ interface IVector : XY {
     fun lerp(other: IVector, t: Float, result: Vector): Vector
 
     /** Returns a mutable copy of this vector.  */
-    fun clone(): Vector
+    fun copy(x: Float = this.x, y: Float = this.y): Vector
 }
