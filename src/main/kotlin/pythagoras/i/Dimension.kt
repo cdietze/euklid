@@ -14,23 +14,26 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
  * Represents a magnitude in two dimensions.
  */
-class Dimension
+data class Dimension
 /**
  * Creates a dimension with the specified width and height.
  */
-constructor(
+(
         /** The magnitude in the x-dimension.  */
         override var width: Int = 0,
         /** The magnitude in the y-dimension.  */
         override var height: Int = 0
-) : AbstractDimension() {
+) : IDimension {
+
+    /**
+     * Creates a dimension with magnitude (0, 0).
+     */
+    constructor() : this(0, 0)
 
     /**
      * Creates a dimension with width and height equal to the supplied dimension.
@@ -52,10 +55,11 @@ constructor(
         setSize(d.width, d.height)
     }
 
+    override fun toString(): String {
+        return Dimensions.dimenToString(width, height)
+    }
+
     companion object {
         private const val serialVersionUID = 5773214044931265346L
     }
 }
-/**
- * Creates a dimension with magnitude (0, 0).
- */

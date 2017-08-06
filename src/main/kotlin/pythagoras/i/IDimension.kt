@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
@@ -35,5 +33,5 @@ interface IDimension {
     /**
      * Returns a mutable copy of this dimension.
      */
-    fun clone(): Dimension
+    fun copy(width: Int = this.width, height: Int = this.height): Dimension
 }
