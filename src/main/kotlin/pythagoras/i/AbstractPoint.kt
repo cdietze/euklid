@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
@@ -64,26 +62,6 @@ abstract class AbstractPoint : IPoint {
 
     override fun subtract(other: IPoint, result: Point): Point {
         return subtract(other.x, other.y, result)
-    }
-
-    override // from interface IPoint
-    fun clone(): Point {
-        return Point(this)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other === this) {
-            return true
-        }
-        if (other is AbstractPoint) {
-            val p = other
-            return x == p.x && y == p.y
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        return x xor y
     }
 
     override fun toString(): String {

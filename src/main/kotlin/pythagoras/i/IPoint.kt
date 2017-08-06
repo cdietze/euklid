@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
@@ -66,5 +64,5 @@ interface IPoint {
     fun subtract(other: IPoint, result: Point): Point
 
     /** Returns a mutable copy of this point.  */
-    fun clone(): Point
+    fun copy(x: Int = this.x, y: Int = this.y): Point
 }

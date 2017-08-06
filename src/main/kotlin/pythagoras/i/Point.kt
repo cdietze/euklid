@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.i
 
 /**
  * Represents a point on a plane.
  */
-class Point
+data class Point
 /**
  * Constructs a point at the specified coordinates.
  */
-constructor(
+(
         /** The x-coordinate of the point.  */
         override var x: Int = 0,
         /** The y-coordinate of the point.  */
