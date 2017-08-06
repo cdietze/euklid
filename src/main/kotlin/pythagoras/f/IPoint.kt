@@ -90,5 +90,5 @@ interface IPoint : XY {
     fun rotate(angle: Float, result: Point): Point
 
     /** Returns a mutable copy of this point.  */
-    fun clone(): Point
+    fun copy(x: Float = this.x, y: Float = this.y): Point
 }

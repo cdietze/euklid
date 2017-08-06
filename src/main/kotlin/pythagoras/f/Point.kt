@@ -21,32 +21,22 @@ package pythagoras.f
 /**
  * Represents a point on a plane.
  */
-class Point : AbstractPoint {
-
-    /** The x-coordinate of the point.  */
-    override var x: Float = 0.toFloat()
-
-    /** The y-coordinate of the point.  */
-    override var y: Float = 0.toFloat()
+data class Point(
+        /** The x-coordinate of the point.  */
+        override var x: Float = 0f,
+        /** The y-coordinate of the point.  */
+        override var y: Float = 0f
+) : AbstractPoint() {
 
     /**
      * Constructs a point at (0, 0).
      */
-    constructor()
-
-    /**
-     * Constructs a point at the specified coordinates.
-     */
-    constructor(x: Float, y: Float) {
-        set(x, y)
-    }
+    constructor() : this(0f, 0f)
 
     /**
      * Constructs a point with coordinates equal to the supplied point.
      */
-    constructor(p: XY) {
-        set(p.x, p.y)
-    }
+    constructor(p: XY) : this(p.x, p.y)
 
     /** Sets the coordinates of this point to be equal to those of the supplied point.
      * @return a reference to this this, for chaining.

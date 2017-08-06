@@ -18,8 +18,6 @@
 
 package pythagoras.f
 
-import pythagoras.util.Platform
-
 /**
  * Provides most of the implementation of [IPoint], obtaining only the location from the
  * derived class.
@@ -102,26 +100,6 @@ abstract class AbstractPoint : IPoint {
         val sina = MathUtil.sin(angle)
         val cosa = MathUtil.cos(angle)
         return result.set(x * cosa - y * sina, x * sina + y * cosa)
-    }
-
-    override // from IPoint
-    fun clone(): Point {
-        return Point(this)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other === this) {
-            return true
-        }
-        if (other is AbstractPoint) {
-            val p = other
-            return x == p.x && y == p.y
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y)
     }
 
     override fun toString(): String {
