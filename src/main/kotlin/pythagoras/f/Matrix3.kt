@@ -14,61 +14,52 @@
  * limitations under the License.
  */
 
-
-
 package pythagoras.f
 
-import pythagoras.util.Platform
 import pythagoras.util.SingularMatrixException
 import java.lang.Math
 
 /**
  * A 3x3 column-major matrix.
+ *
+ * The property names take the form `mCOLROW`.
  */
-class Matrix3 : IMatrix3 {
-
-    /** The values of the matrix. The names take the form `mCOLROW`.  */
-    override var m00: Float = 0.toFloat()
-    override var m10: Float = 0.toFloat()
-    override var m20: Float = 0.toFloat()
-    override var m01: Float = 0.toFloat()
-    override var m11: Float = 0.toFloat()
-    override var m21: Float = 0.toFloat()
-    override var m02: Float = 0.toFloat()
-    override var m12: Float = 0.toFloat()
-    override var m22: Float = 0.toFloat()
-
+data class Matrix3(
+        override var m00: Float = 0.toFloat(),
+        override var m10: Float = 0.toFloat(),
+        override var m20: Float = 0.toFloat(),
+        override var m01: Float = 0.toFloat(),
+        override var m11: Float = 0.toFloat(),
+        override var m21: Float = 0.toFloat(),
+        override var m02: Float = 0.toFloat(),
+        override var m12: Float = 0.toFloat(),
+        override var m22: Float = 0.toFloat()
+) : IMatrix3 {
     /**
-     * Creates a matrix from its components.
+     * Creates an identity matrix.
      */
-    constructor(m00: Float, m10: Float, m20: Float,
-                m01: Float, m11: Float, m21: Float,
-                m02: Float, m12: Float, m22: Float) {
-        set(m00, m10, m20,
-                m01, m11, m21,
-                m02, m12, m22)
-    }
+    constructor() : this(
+            1f, 0f, 0f,
+            0f, 1f, 0f,
+            0f, 0f, 1f)
 
     /**
      * Creates a matrix from an array of values.
      */
-    constructor(values: FloatArray) {
-        set(values)
-    }
+    constructor(values: FloatArray) : this(
+            values[0], values[1], values[2],
+            values[3], values[4], values[5],
+            values[6], values[7], values[8]
+    )
 
     /**
      * Copy constructor.
      */
-    constructor(other: Matrix3) {
-        set(other)
-    }
-
-    /**
-     * Creates an identity matrix.
-     */
-    constructor() {
-        setToIdentity()
-    }
+    constructor(other: Matrix3) : this(
+            other.m00, other.m10, other.m20,
+            other.m01, other.m11, other.m21,
+            other.m02, other.m12, other.m22
+    )
 
     /**
      * Sets the matrix element at the specified row and column.
@@ -960,23 +951,7 @@ class Matrix3 : IMatrix3 {
                 "[" + m01 + ", " + m11 + ", " + m21 + "], " +
                 "[" + m02 + ", " + m12 + ", " + m22 + "]]"
     }
-
-    override fun hashCode(): Int {
-        return Platform.hashCode(m00) xor Platform.hashCode(m10) xor Platform.hashCode(m20) xor
-                Platform.hashCode(m01) xor Platform.hashCode(m11) xor Platform.hashCode(m21) xor
-                Platform.hashCode(m02) xor Platform.hashCode(m12) xor Platform.hashCode(m22)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other !is Matrix3) {
-            return false
-        }
-        val omat = other
-        return m00 == omat.m00 && m10 == omat.m10 && m20 == omat.m20 &&
-                m01 == omat.m01 && m11 == omat.m11 && m21 == omat.m21 &&
-                m02 == omat.m02 && m12 == omat.m12 && m22 == omat.m22
-    }
-
+    
     companion object {
         private const val serialVersionUID = 2090355290484132872L
 
