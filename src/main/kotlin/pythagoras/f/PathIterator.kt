@@ -36,7 +36,7 @@ interface PathIterator {
     /**
      * Advances this path to the next segment.
      */
-    operator fun next()
+    fun next()
 
     /**
      * Returns the coordinates and type of the current path segment. The number of points stored in

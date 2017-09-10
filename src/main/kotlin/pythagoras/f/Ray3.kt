@@ -62,7 +62,7 @@ class Ray3 : IRay3 {
 
      * @return a reference to this ray, for chaining.
      */
-    operator fun set(origin: Vector3, direction: Vector3): Ray3 {
+    fun set(origin: Vector3, direction: Vector3): Ray3 {
         this.origin.set(origin)
         this.direction.set(direction)
         return this

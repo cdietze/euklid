@@ -81,7 +81,7 @@ class Vector4 : IVector4 {
 
      * @return a reference to this vector, for chaining.
      */
-    operator fun set(x: Float, y: Float, z: Float, w: Float): Vector4 {
+    fun set(x: Float, y: Float, z: Float, w: Float): Vector4 {
         this.x = x
         this.y = y
         this.z = z

@@ -70,7 +70,7 @@ class Box : IBox {
 
      * @return a reference to this box, for chaining.
      */
-    operator fun set(minExtent: IVector3, maxExtent: IVector3): Box {
+    fun set(minExtent: IVector3, maxExtent: IVector3): Box {
         _minExtent.set(minExtent)
         _maxExtent.set(maxExtent)
         return this

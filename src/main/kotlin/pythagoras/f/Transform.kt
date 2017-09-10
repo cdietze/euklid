@@ -58,7 +58,7 @@ interface Transform {
     /** Copies the affine transform matrix into the supplied array.
      * @param matrix the array which receives `m00, m01, m10, m11, tx, ty`.
      */
-    operator fun get(matrix: FloatArray)
+    fun get(matrix: FloatArray)
 
     /** Sets the uniform scale of this transform.
      * @return this instance, for chaining.

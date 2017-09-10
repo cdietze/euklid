@@ -77,7 +77,7 @@ class Plane : IPlane {
 
      * @return a reference to this plane (for chaining).
      */
-    operator fun set(normal: IVector3, constant: Float): Plane {
+    fun set(normal: IVector3, constant: Float): Plane {
         return set(normal.x, normal.y, normal.z, constant)
     }
 
@@ -95,7 +95,7 @@ class Plane : IPlane {
 
      * @return a reference to this plane (for chaining).
      */
-    operator fun set(a: Float, b: Float, c: Float, d: Float): Plane {
+    fun set(a: Float, b: Float, c: Float, d: Float): Plane {
         _normal.set(a, b, c)
         constant = d
         return this

@@ -37,7 +37,7 @@ interface IQuaternion {
     /**
      * Populates the supplied array with the contents of this quaternion.
      */
-    operator fun get(values: FloatArray)
+    fun get(values: FloatArray)
 
     /**
      * Checks whether any of the components of this quaternion are not-numbers.

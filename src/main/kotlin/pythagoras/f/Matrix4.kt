@@ -473,7 +473,7 @@ data class Matrix4(
 
      * @return a reference to this matrix, for chaining.
      */
-    operator fun set(
+    fun set(
             m00: Float, m10: Float, m20: Float, m30: Float,
             m01: Float, m11: Float, m21: Float, m31: Float,
             m02: Float, m12: Float, m22: Float, m32: Float,

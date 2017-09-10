@@ -76,7 +76,7 @@ data class Point
     /** Sets the coordinates of this point to the supplied values.
      * @return a reference to this this, for chaining.
      */
-    operator fun set(x: Int, y: Int): Point {
+    fun set(x: Int, y: Int): Point {
         this.x = x
         this.y = y
         return this

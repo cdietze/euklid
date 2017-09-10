@@ -135,7 +135,7 @@ data class Vector(
     /** Sets all of the elements of the vector.
      * @return a reference to this vector, for chaining.
      */
-    operator fun set(x: Float, y: Float): Vector {
+    fun set(x: Float, y: Float): Vector {
         this.x = x
         this.y = y
         return this

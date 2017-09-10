@@ -181,7 +181,7 @@ class Vector3 : IVector3 {
 
      * @return a reference to this vector, for chaining.
      */
-    operator fun set(x: Float, y: Float, z: Float): Vector3 {
+    fun set(x: Float, y: Float, z: Float): Vector3 {
         this.x = x
         this.y = y
         this.z = z

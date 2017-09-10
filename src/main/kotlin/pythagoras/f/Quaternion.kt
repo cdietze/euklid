@@ -84,7 +84,7 @@ class Quaternion : IQuaternion {
 
      * @return a reference to this quaternion, for chaining.
      */
-    operator fun set(x: Float, y: Float, z: Float, w: Float): Quaternion {
+    fun set(x: Float, y: Float, z: Float, w: Float): Quaternion {
         this.x = x
         this.y = y
         this.z = z

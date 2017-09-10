@@ -64,7 +64,7 @@ class Circle : AbstractCircle {
     /** Sets the properties of this circle to the supplied values.
      * @return a reference to this this, for chaining.
      */
-    operator fun set(x: Float, y: Float, radius: Float): Circle {
+    fun set(x: Float, y: Float, radius: Float): Circle {
         this.x = x
         this.y = y
         this.radius = radius
