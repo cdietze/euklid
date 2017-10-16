@@ -54,6 +54,8 @@ class MathUtilTest {
         assertEquals("-1.1", MathUtil.toString(-1.1f))
         assertEquals("+3.14159", MathUtil.toString(MathUtil.PI))
         assertEquals("-3.14159", MathUtil.toString(-MathUtil.PI))
+
+        MathUtil.setToStringDecimalPlaces(3) // restore the default
     }
 
     companion object {
