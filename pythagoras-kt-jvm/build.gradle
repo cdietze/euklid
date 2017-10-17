@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-apply plugin: 'kotlin-platform-common'
+apply plugin: 'kotlin-platform-jvm'
 
 repositories {
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
@@ -18,8 +18,11 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-    testCompile "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implement project(":")
+    testCompile "junit:junit:4.12"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 
 test {

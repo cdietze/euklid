@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Cubic curve-related utility methods.
@@ -26,7 +26,7 @@ import java.lang.Math
 object CubicCurves {
     fun flatnessSq(x1: Float, y1: Float, ctrlx1: Float, ctrly1: Float,
                    ctrlx2: Float, ctrly2: Float, x2: Float, y2: Float): Float {
-        return Math.max(Lines.pointSegDistSq(ctrlx1, ctrly1, x1, y1, x2, y2),
+        return max(Lines.pointSegDistSq(ctrlx1, ctrly1, x1, y1, x2, y2),
                 Lines.pointSegDistSq(ctrlx2, ctrly2, x1, y1, x2, y2))
     }
 

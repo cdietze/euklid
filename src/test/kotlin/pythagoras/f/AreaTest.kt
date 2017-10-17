@@ -16,9 +16,10 @@
 
 package pythagoras.f
 
-import org.junit.Assert
-import org.junit.Assert.fail
 import org.junit.Test
+import pythagoras.assertEquals
+import kotlin.test.assertEquals
+import kotlin.test.fail
 
 class AreaTest {
     @Test
@@ -64,9 +65,9 @@ class AreaTest {
             if (iter2.isDone) fail("$two path shorter than $one")
             val seg1 = iter1.currentSegment(coords1)
             val seg2 = iter2.currentSegment(coords2)
-            Assert.assertEquals("Same path segment", seg1.toLong(), seg2.toLong())
-            Assert.assertEquals("Same x coord", coords1[0], coords2[0], MathUtil.EPSILON)
-            Assert.assertEquals("Same y coord", coords1[1], coords2[1], MathUtil.EPSILON)
+            assertEquals(seg1.toLong(), seg2.toLong(), "Same path segment")
+            assertEquals(coords1[0], coords2[0], MathUtil.EPSILON, "Same x coord")
+            assertEquals(coords1[1], coords2[1], MathUtil.EPSILON, "Same y coord")
             iter1.next()
             iter2.next()
         }

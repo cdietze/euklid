@@ -15,8 +15,9 @@
  */
 package pythagoras.f
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
+import pythagoras.assertEquals
+import kotlin.test.assertEquals
 
 /**
  * Tests parts of the [MathUtil] class.

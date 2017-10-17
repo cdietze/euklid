@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A pyramidal frustum.
@@ -207,7 +207,7 @@ class Frustum {
     fun distance(point: Vector3): Float {
         var distance = -Float.MAX_VALUE
         for (plane in _planes) {
-            distance = Math.max(distance, plane.distance(point))
+            distance = max(distance, plane.distance(point))
         }
         return distance
     }

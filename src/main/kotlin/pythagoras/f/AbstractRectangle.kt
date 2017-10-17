@@ -16,7 +16,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IRectangle], obtaining only the location and
@@ -46,10 +46,10 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
 
     override // from interface IRectangle
     fun intersection(rx: Float, ry: Float, rw: Float, rh: Float): Rectangle {
-        val x1 = Math.max(x, rx)
-        val y1 = Math.max(y, ry)
-        val x2 = Math.min(maxX, rx + rw)
-        val y2 = Math.min(maxY, ry + rh)
+        val x1 = max(x, rx)
+        val y1 = max(y, ry)
+        val x2 = min(maxX, rx + rw)
+        val y2 = min(maxY, ry + rh)
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
     }
 

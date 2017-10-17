@@ -1,0 +1,3 @@
+rootProject.name = 'pythagoras-kt'
+
+include 'pythagoras-kt-jvm', 'pythagoras-kt-js'

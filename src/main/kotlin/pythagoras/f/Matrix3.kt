@@ -17,7 +17,7 @@
 package pythagoras.f
 
 import pythagoras.util.SingularMatrixException
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A 3x3 column-major matrix.
@@ -709,7 +709,7 @@ data class Matrix3(
         val sd10 = m01 * m22 - m21 * m02
         val sd20 = m01 * m12 - m11 * m02
         val det = m00 * sd00 + m20 * sd20 - m10 * sd10
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw SingularMatrixException(this.toString())
         }
@@ -742,7 +742,7 @@ data class Matrix3(
         val m21 = this.m21
         // compute the determinant, storing the subdeterminants for later use
         val det = m00 * m11 - m10 * m01
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw SingularMatrixException(this.toString())
         }
@@ -901,7 +901,7 @@ data class Matrix3(
 
             // compute average of the matrix with its inverse transpose
             val det = o00 * o11 - o10 * o01
-            if (Math.abs(det) == 0f) {
+            if (abs(det) == 0f) {
                 // determinant is zero; matrix is not invertible
                 throw SingularMatrixException(this.toString())
             }

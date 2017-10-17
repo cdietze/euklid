@@ -18,8 +18,8 @@
 
 package pythagoras.f
 
+import pythagoras.system.Random
 import pythagoras.util.Platform
-import java.util.*
 
 /**
  * A unit quaternion. Many of the formulas come from the

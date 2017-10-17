@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A ray consisting of an origin point and a unit direction vector.
@@ -93,7 +93,7 @@ class Ray2 : IRay2 {
 
     override // from IRay2
     fun intersects(pt: IVector): Boolean {
-        if (Math.abs(direction.x) > Math.abs(direction.y)) {
+        if (abs(direction.x) > abs(direction.y)) {
             val t = (pt.x - origin.x) / direction.x
             return t >= 0f && origin.y + t * direction.y == pt.y
         } else {
@@ -115,9 +115,9 @@ class Ray2 : IRay2 {
         val dy = end.y - start.y
 
         val divisor = bx * dy - by * dx
-        if (Math.abs(divisor) < MathUtil.EPSILON) {
+        if (abs(divisor) < MathUtil.EPSILON) {
             // the lines are parallel (or the segment is zero-length)
-            val t = Math.min(getIntersection(start), getIntersection(end))
+            val t = min(getIntersection(start), getIntersection(end))
             val isect = t != Float.MAX_VALUE
             if (isect) {
                 origin.addScaled(direction, t, result)
@@ -162,7 +162,7 @@ class Ray2 : IRay2 {
         val y: Float
         if (above || below) { // check the intersection with the top/bottom boundary
             val divisor = a * direction.x + b * direction.y
-            if (Math.abs(divisor) < MathUtil.EPSILON) { // lines are parallel
+            if (abs(divisor) < MathUtil.EPSILON) { // lines are parallel
                 return false
             }
             c += if (above) -radius else +radius
@@ -233,7 +233,7 @@ class Ray2 : IRay2 {
      * [Float.MAX_VALUE] if there is no such intersection.
      */
     protected fun getIntersection(pt: IVector): Float {
-        if (Math.abs(direction.x) > Math.abs(direction.y)) {
+        if (abs(direction.x) > abs(direction.y)) {
             val t = (pt.x - origin.x) / direction.x
             return if (t >= 0f && origin.y + t * direction.y == pt.y) t else Float.MAX_VALUE
         } else {

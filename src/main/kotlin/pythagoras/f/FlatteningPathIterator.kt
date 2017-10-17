@@ -18,8 +18,8 @@
 
 package pythagoras.f
 
-import java.lang.Math
-import java.lang.System
+import pythagoras.system.arrayCopy
+import kotlin.math.min
 
 /**
  * A path iterator that flattens curves.
@@ -69,11 +69,8 @@ internal class FlatteningPathIterator constructor(
         if (bufLimit < 0) {
             throw IllegalArgumentException("Limit is less then zero")
         }
-        if (p == null) {
-            throw NullPointerException("Path is null")
-        }
         this.flatness2 = flatness * flatness
-        this.bufSize = Math.min(bufLimit, BUFFER_SIZE)
+        this.bufSize = min(bufLimit, BUFFER_SIZE)
         this.buf = FloatArray(bufSize)
         this.bufIndex = bufSize
     }
@@ -142,7 +139,7 @@ internal class FlatteningPathIterator constructor(
                     bufIndex -= 6
                     buf[bufIndex + 0] = px
                     buf[bufIndex + 1] = py
-                    System.arraycopy(coords, 0, buf, bufIndex + 2, 4)
+                    arrayCopy(coords, 0, buf, bufIndex + 2, 4)
                     bufSubdiv = 0
                 }
 
@@ -154,7 +151,7 @@ internal class FlatteningPathIterator constructor(
                     // Realloc buffer
                     if (bufIndex <= 4) {
                         val tmp = FloatArray(bufSize + BUFFER_CAPACITY)
-                        System.arraycopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
+                        arrayCopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
                         buf = tmp
                         bufSize += BUFFER_CAPACITY
                         bufIndex += BUFFER_CAPACITY
@@ -182,7 +179,7 @@ internal class FlatteningPathIterator constructor(
                     bufIndex -= 8
                     buf[bufIndex + 0] = px
                     buf[bufIndex + 1] = py
-                    System.arraycopy(coords, 0, buf, bufIndex + 2, 6)
+                    arrayCopy(coords, 0, buf, bufIndex + 2, 6)
                     bufSubdiv = 0
                 }
 
@@ -194,7 +191,7 @@ internal class FlatteningPathIterator constructor(
                     // Realloc buffer
                     if (bufIndex <= 6) {
                         val tmp = FloatArray(bufSize + BUFFER_CAPACITY)
-                        System.arraycopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
+                        arrayCopy(buf, bufIndex, tmp, bufIndex + BUFFER_CAPACITY, bufSize - bufIndex)
                         buf = tmp
                         bufSize += BUFFER_CAPACITY
                         bufIndex += BUFFER_CAPACITY

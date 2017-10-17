@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Represents an arc defined by a framing rectangle, start angle, angular extend, and closure type.
@@ -154,7 +154,7 @@ class Arc : AbstractArc {
         var a2 = -MathUtil.atan2(p3.y - p2.y, p3.x - p2.x)
         val am = (a1 + a2) / 2f
         var ah = a1 - am
-        val d = radius / Math.abs(MathUtil.sin(ah))
+        val d = radius / abs(MathUtil.sin(ah))
         val x = p2.x + d * MathUtil.cos(am)
         val y = p2.y - d * MathUtil.sin(am)
         ah = if (ah >= 0f) MathUtil.PI * 1.5f - ah else MathUtil.PI * 0.5f - ah

@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A three element vector.
@@ -237,7 +237,7 @@ class Vector3 : IVector3 {
 
     override // from interface IVector3
     fun abs(result: Vector3): Vector3 {
-        return result.set(Math.abs(x), Math.abs(y), Math.abs(z))
+        return result.set(abs(x), abs(y), abs(z))
     }
 
     override // from interface IVector3
@@ -283,7 +283,7 @@ class Vector3 : IVector3 {
 
     override // from interface IVector3
     fun manhattanDistance(other: IVector3): Float {
-        return Math.abs(x - other.x) + Math.abs(y - other.y) + Math.abs(z - other.z)
+        return abs(x - other.x) + abs(y - other.y) + abs(z - other.z)
     }
 
     override // from interface IVector3

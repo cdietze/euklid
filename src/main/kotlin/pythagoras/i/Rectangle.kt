@@ -16,7 +16,7 @@
 
 package pythagoras.i
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Represents an area in two dimensions.
@@ -129,10 +129,10 @@ data class Rectangle(
      * Expands the bounds of this rectangle to contain the specified point.
      */
     fun add(px: Int, py: Int) {
-        val x1 = Math.min(x, px)
-        val x2 = Math.max(x + width, px)
-        val y1 = Math.min(y, py)
-        val y2 = Math.max(y + height, py)
+        val x1 = min(x, px)
+        val x2 = max(x + width, px)
+        val y1 = min(y, py)
+        val y2 = max(y + height, py)
         setBounds(x1, y1, x2 - x1, y2 - y1)
     }
 
@@ -147,10 +147,10 @@ data class Rectangle(
      * Expands the bounds of this rectangle to contain the supplied rectangle.
      */
     fun add(r: IRectangle) {
-        val x1 = Math.min(x, r.x)
-        val x2 = Math.max(x + width, r.x + r.width)
-        val y1 = Math.min(y, r.y)
-        val y2 = Math.max(y + height, r.y + r.height)
+        val x1 = min(x, r.x)
+        val x2 = max(x + width, r.x + r.width)
+        val y1 = min(y, r.y)
+        val y2 = max(y + height, r.y + r.height)
         setBounds(x1, y1, x2 - x1, y2 - y1)
     }
 

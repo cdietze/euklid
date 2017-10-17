@@ -18,9 +18,9 @@
 
 package pythagoras.f
 
+import pythagoras.system.arrayCopy
 import pythagoras.util.Platform
-import java.lang.Math
-import java.lang.System
+import kotlin.math.max
 
 /**
  * Represents a path constructed from lines and curves and which can contain subpaths.
@@ -264,12 +264,12 @@ class Path : IShape {
         }
         if (typeSize == types.size) {
             val tmp = ByteArray(typeSize + BUFFER_CAPACITY)
-            System.arraycopy(types, 0, tmp, 0, typeSize)
+            arrayCopy(types, 0, tmp, 0, typeSize)
             types = tmp
         }
         if (pointSize + pointCount > points.size) {
-            val tmp = FloatArray(pointSize + Math.max(BUFFER_CAPACITY * 2, pointCount))
-            System.arraycopy(points, 0, tmp, 0, pointSize)
+            val tmp = FloatArray(pointSize + max(BUFFER_CAPACITY * 2, pointCount))
+            arrayCopy(points, 0, tmp, 0, pointSize)
             points = tmp
         }
     }
@@ -325,7 +325,7 @@ class Path : IShape {
             }
             val type = p.types[typeIndex].toInt()
             val count = Path.pointShift[type]
-            System.arraycopy(p.points, pointIndex, coords, 0, count)
+            arrayCopy(p.points, pointIndex, coords, 0, count)
             t?.transform(coords, 0, coords, 0, count / 2)
             pointIndex += count
             return type

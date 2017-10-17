@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A four element vector.
@@ -127,10 +127,10 @@ class Vector4 : IVector4 {
 
     override // from IVector4
     fun epsilonEquals(other: IVector4, epsilon: Float): Boolean {
-        return Math.abs(x - other.x) < epsilon &&
-                Math.abs(y - other.y) < epsilon &&
-                Math.abs(z - other.z) < epsilon &&
-                Math.abs(w - other.w) < epsilon
+        return abs(x - other.x) < epsilon &&
+                abs(y - other.y) < epsilon &&
+                abs(z - other.z) < epsilon &&
+                abs(w - other.w) < epsilon
     }
 
     override // from interface IVector4
@@ -150,7 +150,7 @@ class Vector4 : IVector4 {
 
     override // from interface IVector4
     fun abs(result: Vector4): Vector4 {
-        return result.set(Math.abs(x), Math.abs(y), Math.abs(z), Math.abs(w))
+        return result.set(abs(x), abs(y), abs(z), abs(w))
     }
 
     override // from interface IVector4

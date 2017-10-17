@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.NoninvertibleTransformException
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Implements an affine (3x2 matrix) transform. The transformation matrix has the form:
@@ -116,7 +116,7 @@ class AffineTransform : AbstractTransform {
 
                 // compute average of the matrix with its inverse transpose
                 val det = o00 * o11 - o10 * o01
-                if (Math.abs(det) == 0f) {
+                if (abs(det) == 0f) {
                     // determinant is zero; matrix is not invertible
                     throw NoninvertibleTransformException(this.toString())
                 }
@@ -285,7 +285,7 @@ class AffineTransform : AbstractTransform {
     fun invert(): AffineTransform {
         // compute the determinant, storing the subdeterminants for later use
         val det = m00 * m11 - m10 * m01
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw NoninvertibleTransformException(this.toString())
         }
@@ -368,7 +368,7 @@ class AffineTransform : AbstractTransform {
         val x = p.x - tx
         val y = p.y - ty
         val det = m00 * m11 - m01 * m10
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw NoninvertibleTransformException(this.toString())
         }
@@ -396,7 +396,7 @@ class AffineTransform : AbstractTransform {
         val x = v.x
         val y = v.y
         val det = m00 * m11 - m01 * m10
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw NoninvertibleTransformException(this.toString())
         }

@@ -15,10 +15,8 @@
  */
 package pythagoras.f
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import java.util.Vector
+import pythagoras.assertEquals
 
 /**
  * Tests aspects of the [Vector] class.
