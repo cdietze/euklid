@@ -12,6 +12,21 @@ buildscript {
 
 apply plugin: 'kotlin-platform-common'
 
+allprojects {
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            MyPublication(MavenPublication) {
+                from components.java
+                groupId 'com.github.cdietze'
+                artifactId project.name
+                version project.version
+            }
+        }
+    }
+}
+
 repositories {
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     mavenCentral()
