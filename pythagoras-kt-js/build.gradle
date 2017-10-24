@@ -3,17 +3,17 @@ buildscript {
 
     repositories {
         maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
-//        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//        classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
+        classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
     }
 }
 
 apply plugin: 'kotlin-platform-js'
-//apply plugin: 'com.moowork.node'
+apply plugin: 'com.moowork.node'
 
 repositories {
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
@@ -26,36 +26,37 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
 }
 
-//[compileKotlin2Js, compileTestKotlin2Js]*.configure {
-//    kotlinOptions.moduleKind = "commonjs"
-//}
-//
-//compileKotlin2Js {
-//    kotlinOptions.sourceMap = true
-//    kotlinOptions.sourceMapEmbedSources = "always"
-//}
-//
-//task populateNodeModules(type: Copy, dependsOn: compileKotlin2Js) {
-//    from compileKotlin2Js.destinationDir
-//
-//    configurations.testCompile.each {
-//        from zipTree(it.absolutePath).matching { include '*.js' }
-//    }
-//
-//    into "${buildDir}/node_modules"
-//}
-//
-//node {
-//    download = true
-//}
-//
-//task installQunit(type: NpmTask) {
-//    args = ['install', 'qunitjs']
-//}
-//
-//task runQunit(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules, installQunit]) {
-//    script = file('node_modules/.bin/qunit')
-//    args = [projectDir.toPath().relativize(file(compileTestKotlin2Js.outputFile).toPath())]
-//}
-//
-//test.dependsOn runQunit
+[compileKotlin2Js, compileTestKotlin2Js]*.configure {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.moduleKind = "commonjs"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.sourceMapEmbedSources = "always"
+}
+
+task populateNodeModules(type: Copy, dependsOn: compileKotlin2Js) {
+    from compileKotlin2Js.destinationDir
+
+    configurations.testCompile.each {
+        from zipTree(it.absolutePath).matching { include '*.js' }
+    }
+
+    into "${buildDir}/node_modules"
+}
+
+node {
+    download = true
+}
+
+task installQunit(type: NpmTask) {
+    args = ['install', 'qunitjs']
+}
+
+task runQunit(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules, installQunit]) {
+    script = file('node_modules/.bin/qunit')
+    args = [
+            'build/node_modules/kotlin.js',
+            projectDir.toPath().relativize(file(compileTestKotlin2Js.outputFile).toPath()),
+    ]
+}
+
+test.dependsOn runQunit
