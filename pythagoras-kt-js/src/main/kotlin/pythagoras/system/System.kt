@@ -38,3 +38,16 @@ actual fun arrayCopy(src: FloatArray, srcPos: Int, dest: FloatArray, destPos: In
         dest[i + offset] = src[i]
     }
 }
+
+actual fun <T> arrayCopy(src: Array<T>, srcPos: Int, dest: Array<T>, destPos: Int, length: Int) {
+    if (srcPos < 0 || destPos < 0 || length < 0 || srcPos + length > src.size || destPos + length > dest.size) {
+        throw IndexOutOfBoundsException()
+    }
+    val offset = destPos - srcPos
+    val range = if (offset > 0)
+        srcPos..(srcPos + length) else
+        (srcPos + length)..srcPos
+    for (i in range) {
+        dest[i + offset] = src[i]
+    }
+}
