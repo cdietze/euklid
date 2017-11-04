@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IArc], obtaining only the frame and other metrics
@@ -87,7 +88,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         }
 
         val extent = angleExtent
-        val absExtent = Math.abs(extent)
+        val absExtent = abs(extent)
         if (absExtent >= 360f) {
             return true
         }
@@ -113,7 +114,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
             return false
         }
 
-        val absExtent = Math.abs(angleExtent)
+        val absExtent = abs(angleExtent)
         if (arcType != IArc.PIE || absExtent <= 180f || absExtent >= 360f) {
             return true
         }
@@ -184,18 +185,18 @@ abstract class AbstractArc : RectangularShape(), IArc {
         val p1 = startPoint
         val p2 = endPoint
 
-        var bx1 = if (containsAngle(180f)) rx1 else Math.min(p1.x, p2.x)
-        var by1 = if (containsAngle(90f)) ry1 else Math.min(p1.y, p2.y)
-        var bx2 = if (containsAngle(0f)) rx2 else Math.max(p1.x, p2.x)
-        var by2 = if (containsAngle(270f)) ry2 else Math.max(p1.y, p2.y)
+        var bx1 = if (containsAngle(180f)) rx1 else min(p1.x, p2.x)
+        var by1 = if (containsAngle(90f)) ry1 else min(p1.y, p2.y)
+        var bx2 = if (containsAngle(0f)) rx2 else max(p1.x, p2.x)
+        var by2 = if (containsAngle(270f)) ry2 else max(p1.y, p2.y)
 
         if (arcType == IArc.PIE) {
             val cx = centerX
             val cy = centerY
-            bx1 = Math.min(bx1, cx)
-            by1 = Math.min(by1, cy)
-            bx2 = Math.max(bx2, cx)
-            by2 = Math.max(by2, cy)
+            bx1 = min(bx1, cx)
+            by1 = min(by1, cy)
+            bx2 = max(bx2, cx)
+            by2 = max(by2, cy)
         }
         target.setBounds(bx1, by1, bx2 - bx1, by2 - by1)
         return target
@@ -283,7 +284,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
                 index = 1
             } else {
 
-                if (Math.abs(extent) >= 360f) {
+                if (abs(extent) >= 360f) {
                     arcCount = 4
                     k = 4f / 3f * (MathUtil.sqrt(2f) - 1f)
                     step = MathUtil.PI / 2f
@@ -292,7 +293,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
                         k = -k
                     }
                 } else {
-                    arcCount = MathUtil.iceil(Math.abs(extent) / 90f)
+                    arcCount = MathUtil.iceil(abs(extent) / 90f)
                     step = MathUtil.toRadians(extent / arcCount)
                     k = 4f / 3f * (1f - MathUtil.cos(step / 2f)) / MathUtil.sin(step / 2f)
                 }

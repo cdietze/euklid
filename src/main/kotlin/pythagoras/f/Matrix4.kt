@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@
 
 package pythagoras.f
 
+import pythagoras.f.MathUtil.cbrt
 import pythagoras.util.SingularMatrixException
-import java.lang.Math
+import kotlin.math.abs
 
 /**
  * A 4x4 column-major matrix.
@@ -725,7 +726,7 @@ data class Matrix4(
         val sd20 = m01 * (m12 * m33 - m13 * m32) + m11 * (m03 * m32 - m02 * m33) + m31 * (m02 * m13 - m03 * m12)
         val sd30 = m01 * (m12 * m23 - m13 * m22) + m11 * (m03 * m22 - m02 * m23) + m21 * (m02 * m13 - m03 * m12)
         val det = m00 * sd00 + m20 * sd20 - m10 * sd10 - m30 * sd30
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw SingularMatrixException(this.toString())
         }
@@ -776,7 +777,7 @@ data class Matrix4(
         val sd10 = m01 * m22 - m21 * m02
         val sd20 = m01 * m12 - m11 * m02
         val det = m00 * sd00 + m20 * sd20 - m10 * sd10
-        if (Math.abs(det) == 0f) {
+        if (abs(det) == 0f) {
             // determinant is zero; matrix is not invertible
             throw SingularMatrixException(this.toString())
         }
@@ -1003,7 +1004,7 @@ data class Matrix4(
             val sd10 = o01 * o22 - o21 * o02
             val sd20 = o01 * o12 - o11 * o02
             val det = o00 * sd00 + o20 * sd20 - o10 * sd10
-            if (Math.abs(det) == 0f) {
+            if (abs(det) == 0f) {
                 // determinant is zero; matrix is not invertible
                 throw SingularMatrixException(this.toString())
             }
@@ -1037,10 +1038,10 @@ data class Matrix4(
         }
         // now that we have a nice orthogonal matrix, we can extract the rotation quaternion
         // using the method described in http://en.wikipedia.org/wiki/Rotation_matrix#Conversions
-        val x2 = Math.abs(1f + n00 - n11 - n22)
-        val y2 = Math.abs(1f - n00 + n11 - n22)
-        val z2 = Math.abs(1f - n00 - n11 + n22)
-        val w2 = Math.abs(1f + n00 + n11 + n22)
+        val x2 = abs(1f + n00 - n11 - n22)
+        val y2 = abs(1f - n00 + n11 - n22)
+        val z2 = abs(1f - n00 - n11 + n22)
+        val w2 = abs(1f + n00 + n11 + n22)
         result.set(
                 0.5f * MathUtil.sqrt(x2) * if (n12 >= n21) +1f else -1f,
                 0.5f * MathUtil.sqrt(y2) * if (n20 >= n02) +1f else -1f,
@@ -1070,32 +1071,32 @@ data class Matrix4(
 
     override // from IMatrix4
     fun approximateUniformScale(): Float {
-        return MathUtil.cbrt(m00 * (m11 * m22 - m12 * m21) +
+        return cbrt(m00 * (m11 * m22 - m12 * m21) +
                 m01 * (m12 * m20 - m10 * m22) +
                 m02 * (m10 * m21 - m11 * m20))
     }
 
     override // from IMatrix4
     fun epsilonEquals(other: IMatrix4, epsilon: Float): Boolean {
-        return Math.abs(m00 - other.m00) < epsilon &&
-                Math.abs(m10 - other.m10) < epsilon &&
-                Math.abs(m20 - other.m20) < epsilon &&
-                Math.abs(m30 - other.m30) < epsilon &&
+        return abs(m00 - other.m00) < epsilon &&
+                abs(m10 - other.m10) < epsilon &&
+                abs(m20 - other.m20) < epsilon &&
+                abs(m30 - other.m30) < epsilon &&
 
-                Math.abs(m01 - other.m01) < epsilon &&
-                Math.abs(m11 - other.m11) < epsilon &&
-                Math.abs(m21 - other.m21) < epsilon &&
-                Math.abs(m31 - other.m31) < epsilon &&
+                abs(m01 - other.m01) < epsilon &&
+                abs(m11 - other.m11) < epsilon &&
+                abs(m21 - other.m21) < epsilon &&
+                abs(m31 - other.m31) < epsilon &&
 
-                Math.abs(m02 - other.m02) < epsilon &&
-                Math.abs(m12 - other.m12) < epsilon &&
-                Math.abs(m22 - other.m22) < epsilon &&
-                Math.abs(m32 - other.m32) < epsilon &&
+                abs(m02 - other.m02) < epsilon &&
+                abs(m12 - other.m12) < epsilon &&
+                abs(m22 - other.m22) < epsilon &&
+                abs(m32 - other.m32) < epsilon &&
 
-                Math.abs(m03 - other.m03) < epsilon &&
-                Math.abs(m13 - other.m13) < epsilon &&
-                Math.abs(m23 - other.m23) < epsilon &&
-                Math.abs(m33 - other.m33) < epsilon
+                abs(m03 - other.m03) < epsilon &&
+                abs(m13 - other.m13) < epsilon &&
+                abs(m23 - other.m23) < epsilon &&
+                abs(m33 - other.m33) < epsilon
     }
 
     override fun toString(): String {

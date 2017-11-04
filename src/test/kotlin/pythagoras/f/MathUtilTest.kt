@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
  */
 package pythagoras.f
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
+import pythagoras.assertEqualsWithDelta
+import kotlin.test.assertEquals
 
 /**
  * Tests parts of the [MathUtil] class.
@@ -25,17 +26,17 @@ class MathUtilTest {
 
     @Test
     fun testLerpa() {
-        assertEquals(MathUtil.lerpa(PI4, -PI4, 0.25f), PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(PI4, -PI4, 0.75f), -PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, PI4, 0.25f), -PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, PI4, 0.75f), PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, -PI4, 0.25f), PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, -PI4, 0.75f), -PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, PI4, 0.25f), -PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, PI4, 0.75f), PI8, MathUtil.EPSILON)
         // make sure we lerp the shortest route around the circle
-        assertEquals(MathUtil.lerpa(3 * PI4, PI4, 0.5f), PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(PI4, 3 * PI4, 0.5f), PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-3 * PI4, -PI4, 0.5f), -PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, -3 * PI4, 0.5f), -PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(3 * PI4, PI4, 0.5f), PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, 3 * PI4, 0.5f), PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-3 * PI4, -PI4, 0.5f), -PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, -3 * PI4, 0.5f), -PI2, MathUtil.EPSILON)
 
-        assertEquals(MathUtil.lerpa(3 * PI4, -3 * PI4, 0.5f), -PI, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(3 * PI4, -3 * PI4, 0.5f), -PI, MathUtil.EPSILON)
     }
 
     @Test
@@ -54,6 +55,8 @@ class MathUtilTest {
         assertEquals("-1.1", MathUtil.toString(-1.1f))
         assertEquals("+3.14159", MathUtil.toString(MathUtil.PI))
         assertEquals("-3.14159", MathUtil.toString(-MathUtil.PI))
+
+        MathUtil.setToStringDecimalPlaces(3) // restore the default
     }
 
     companion object {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IRoundRectangle], obtaining the framing rectangle
@@ -119,8 +119,8 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         private var index: Int = 0
 
         init {
-            this.aw = Math.min(width, rr.arcWidth)
-            this.ah = Math.min(height, rr.arcHeight)
+            this.aw = min(width, rr.arcWidth)
+            this.ah = min(height, rr.arcHeight)
             if (width < 0f || height < 0f || aw < 0f || ah < 0f) {
                 index = POINTS.size
             }

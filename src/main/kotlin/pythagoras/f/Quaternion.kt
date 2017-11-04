@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 
 package pythagoras.f
 
+import pythagoras.system.Random
 import pythagoras.util.Platform
-import java.util.*
 
 /**
  * A unit quaternion. Many of the formulas come from the

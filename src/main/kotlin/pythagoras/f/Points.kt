@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Point-related utility methods.
@@ -50,7 +50,7 @@ object Points {
      * `epsilon`.
      */
     fun epsilonEquals(p1: IPoint, p2: IPoint, epsilon: Float = MathUtil.EPSILON): Boolean {
-        return Math.abs(p1.x - p2.x) < epsilon && Math.abs(p1.y - p2.y) < epsilon
+        return abs(p1.x - p2.x) < epsilon && abs(p1.y - p2.y) < epsilon
     }
 
     /** Transforms a point as specified, storing the result in the point provided.

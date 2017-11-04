@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package pythagoras.f
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
+import pythagoras.assertEqualsWithDelta
 
 class RectangleTest {
     @Test
@@ -27,7 +27,6 @@ class RectangleTest {
     }
 
     protected fun testPointRectDistance(expected: Float, r: IRectangle, p: Point) {
-        assertEquals(expected, Rectangles.pointRectDistance(r, p), MathUtil.EPSILON)
+        assertEqualsWithDelta(expected, Rectangles.pointRectDistance(r, p), MathUtil.EPSILON)
     }
-
 }

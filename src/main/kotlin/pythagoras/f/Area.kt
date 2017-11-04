@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,11 @@
 
 package pythagoras.f
 
+import pythagoras.system.arrayCopy
 import pythagoras.util.Platform
-import java.lang.Math
-import java.lang.System
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Stores and manipulates an enclosed area of 2D space.
@@ -65,12 +67,12 @@ class Area : IShape {
                     --rulesIndex
                 }
                 PathIterator.SEG_QUADTO -> {
-                    System.arraycopy(segmentCoords, 0, _coords, coordsIndex, 4)
+                    arrayCopy(segmentCoords, 0, _coords, coordsIndex, 4)
                     coordsIndex += 4
                     isPolygonal = false
                 }
                 PathIterator.SEG_CUBICTO -> {
-                    System.arraycopy(segmentCoords, 0, _coords, coordsIndex, 6)
+                    arrayCopy(segmentCoords, 0, _coords, coordsIndex, 6)
                     coordsIndex += 6
                     isPolygonal = false
                 }
@@ -257,10 +259,10 @@ class Area : IShape {
         var minY = _coords[1]
         var i = 0
         while (i < _coordsSize) {
-            minX = Math.min(minX, _coords[i])
-            maxX = Math.max(maxX, _coords[i++])
-            minY = Math.min(minY, _coords[i])
-            maxY = Math.max(maxY, _coords[i++])
+            minX = min(minX, _coords[i])
+            maxX = max(maxX, _coords[i++])
+            minY = min(minY, _coords[i])
+            maxY = max(maxY, _coords[i++])
         }
         return Rectangle(minX, minY, maxX - minX, maxY - minY)
     }
@@ -313,13 +315,13 @@ class Area : IShape {
                 copy(area, this)
             } else if (!contains(area.bounds())) {
                 _coords = adjustSize(_coords, _coordsSize + area._coordsSize)
-                System.arraycopy(area._coords, 0, _coords, _coordsSize, area._coordsSize)
+                arrayCopy(area._coords, 0, _coords, _coordsSize, area._coordsSize)
                 _coordsSize += area._coordsSize
                 _rules = adjustSize(_rules, _rulesSize + area._rulesSize)
-                System.arraycopy(area._rules, 0, _rules, _rulesSize, area._rulesSize)
+                arrayCopy(area._rules, 0, _rules, _rulesSize, area._rulesSize)
                 _rulesSize += area._rulesSize
                 _offsets = adjustSize(_offsets, _rulesSize + area._rulesSize)
-                System.arraycopy(area._offsets, 0, _offsets, _rulesSize, area._rulesSize)
+                arrayCopy(area._offsets, 0, _offsets, _rulesSize, area._rulesSize)
             }
 
             return
@@ -392,13 +394,13 @@ class Area : IShape {
                 copy(area, this)
             } else if (!contains(area.bounds())) {
                 _coords = adjustSize(_coords, _coordsSize + area._coordsSize)
-                System.arraycopy(area._coords, 0, _coords, _coordsSize, area._coordsSize)
+                arrayCopy(area._coords, 0, _coords, _coordsSize, area._coordsSize)
                 _coordsSize += area._coordsSize
                 _rules = adjustSize(_rules, _rulesSize + area._rulesSize)
-                System.arraycopy(area._rules, 0, _rules, _rulesSize, area._rulesSize)
+                arrayCopy(area._rules, 0, _rules, _rulesSize, area._rulesSize)
                 _rulesSize += area._rulesSize
                 _offsets = adjustSize(_offsets, _rulesSize + area._rulesSize)
-                System.arraycopy(area._offsets, 0, _offsets, _rulesSize, area._rulesSize)
+                arrayCopy(area._offsets, 0, _offsets, _rulesSize, area._rulesSize)
             }
             return
         }
@@ -430,7 +432,7 @@ class Area : IShape {
             if (offset >= 0 && nextPoint.begIndex(isCurrentArea) < point.endIndex(isCurrentArea)) {
                 val coordSize = if (isCurrentArea) this._coordsSize else area._coordsSize
                 val length = coordSize - offset
-                System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
 
                 for (i in 0..length / 2 - 1) {
                     resultRules[resultRulesPos] = PathIterator.SEG_LINETO
@@ -443,7 +445,7 @@ class Area : IShape {
 
             if (offset >= 0) {
                 val length = 2 * nextPoint.begIndex(isCurrentArea) - offset + 2
-                System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
 
                 for (i in 0..length / 2 - 1) {
                     resultRules[resultRulesPos] = PathIterator.SEG_LINETO
@@ -604,7 +606,7 @@ class Area : IShape {
             if (offset >= 0 && nextPoint.begIndex(isCurrentArea) < point.endIndex(isCurrentArea)) {
                 val coordSize = if (isCurrentArea) this._coordsSize else area._coordsSize
                 val length = coordSize - offset
-                System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
 
                 for (i in 0..length / 2 - 1) {
                     resultRules[resultRulesPos] = PathIterator.SEG_LINETO
@@ -617,7 +619,7 @@ class Area : IShape {
 
             if (offset >= 0) {
                 val length = 2 * nextPoint.begIndex(isCurrentArea) - offset + 2
-                System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
 
                 for (i in 0..length / 2 - 1) {
                     resultRules[resultRulesPos] = PathIterator.SEG_LINETO
@@ -793,12 +795,12 @@ class Area : IShape {
                 val length = coordSize - offset
 
                 if (isCurrentArea) {
-                    System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                    arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
                 } else {
                     val temp = FloatArray(length)
-                    System.arraycopy(coords, offset, temp, 0, length)
+                    arrayCopy(coords, offset, temp, 0, length)
                     reverseCopy(temp)
-                    System.arraycopy(temp, 0, resultCoords, resultCoordPos, length)
+                    arrayCopy(temp, 0, resultCoords, resultCoordPos, length)
                 }
 
                 for (i in 0..length / 2 - 1) {
@@ -817,12 +819,12 @@ class Area : IShape {
                     2 * point.begIndex(isCurrentArea) - offset + 2
 
                 if (isCurrentArea) {
-                    System.arraycopy(coords, offset, resultCoords, resultCoordPos, length)
+                    arrayCopy(coords, offset, resultCoords, resultCoordPos, length)
                 } else {
                     val temp = FloatArray(length)
-                    System.arraycopy(coords, offset, temp, 0, length)
+                    arrayCopy(coords, offset, temp, 0, length)
                     reverseCopy(temp)
-                    System.arraycopy(temp, 0, resultCoords, resultCoordPos, length)
+                    arrayCopy(temp, 0, resultCoords, resultCoordPos, length)
                 }
 
                 for (i in 0..length / 2 - 1) {
@@ -850,7 +852,7 @@ class Area : IShape {
                                    isCurrentArea: Boolean): IntersectPoint {
         val endIndex = isectPoint.endIndex(isCurrentArea)
         if (endIndex < 0) {
-            return iPoints[Math.abs(endIndex) - 1]
+            return iPoints[abs(endIndex) - 1]
         }
 
         var firstIsectPoint: IntersectPoint? = null
@@ -882,7 +884,7 @@ class Area : IShape {
                                    isCurrentArea: Boolean): IntersectPoint {
         val begIndex = isectPoint.begIndex(isCurrentArea)
         if (begIndex < 0) {
-            return iPoints[Math.abs(begIndex) - 1]
+            return iPoints[abs(begIndex) - 1]
         }
 
         var firstIsectPoint: IntersectPoint? = null
@@ -984,7 +986,7 @@ class Area : IShape {
                         temp[coordsCount++] = coefs[2]
                         temp[coordsCount++] = coefs[3]
                     } else {
-                        System.arraycopy(coefs, 2, temp, coordsCount, 4)
+                        arrayCopy(coefs, 2, temp, coordsCount, 4)
                         coordsCount += 4
                     }
                 }
@@ -998,10 +1000,10 @@ class Area : IShape {
                     GeometryUtil.subCubic(coefs, point.param(isCurrentArea), !isLeft)
 
                     if (isLeft) {
-                        System.arraycopy(coefs, 2, temp, coordsCount, 6)
+                        arrayCopy(coefs, 2, temp, coordsCount, 6)
                         coordsCount += 6
                     } else {
-                        System.arraycopy(coefs, 2, temp, coordsCount, 4)
+                        arrayCopy(coefs, 2, temp, coordsCount, 4)
                         coordsCount += 4
                     }
                 }
@@ -1010,9 +1012,9 @@ class Area : IShape {
 
         if (operation == 2 && !isCurrentArea && coordsCount > 2) {
             reverseCopy(temp)
-            System.arraycopy(temp, 0, resultCoords, resultCoordPos, coordsCount)
+            arrayCopy(temp, 0, resultCoords, resultCoordPos, coordsCount)
         } else {
-            System.arraycopy(temp, 0, resultCoords, resultCoordPos, coordsCount)
+            arrayCopy(temp, 0, resultCoords, resultCoordPos, coordsCount)
         }
 
         return resultCoordPos + coordsCount
@@ -1099,7 +1101,7 @@ class Area : IShape {
 
     private fun reverseCopy(coords: FloatArray) {
         val temp = FloatArray(coords.size)
-        System.arraycopy(coords, 0, temp, 0, coords.size)
+        arrayCopy(coords, 0, temp, 0, coords.size)
         var i = 0
         while (i < coords.size) {
             coords[i] = temp[coords.size - i - 2]
@@ -1129,7 +1131,7 @@ class Area : IShape {
             return array
         }
         val newArray = FloatArray(2 * newSize)
-        System.arraycopy(array, 0, newArray, 0, array.size)
+        arrayCopy(array, 0, newArray, 0, array.size)
         return newArray
     }
 
@@ -1138,7 +1140,7 @@ class Area : IShape {
             return array
         }
         val newArray = IntArray(2 * newSize)
-        System.arraycopy(array, 0, newArray, 0, array.size)
+        arrayCopy(array, 0, newArray, 0, array.size)
         return newArray
     }
 

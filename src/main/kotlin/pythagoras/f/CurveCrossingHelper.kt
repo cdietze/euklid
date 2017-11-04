@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,8 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import pythagoras.f.MathUtil.pow
+import kotlin.math.abs
 
 /**
  * An internal class used to compute crossings.
@@ -261,7 +262,7 @@ internal class CurveCrossingHelper(private val coords: Array<FloatArray>, privat
         val i = isectPoints.iterator()
         while (i.hasNext()) {
             ipoint = i.next()
-            if (Math.abs(ipoint.x() - x) < Math.pow(10.0, -6.0) && Math.abs(ipoint.y() - y) < Math.pow(10.0, -6.0)) {
+            if (abs(ipoint.x() - x) < pow(10.0f, -6.0f) && abs(ipoint.y() - y) < pow(10.0f, -6.0f)) {
                 return true
             }
         }

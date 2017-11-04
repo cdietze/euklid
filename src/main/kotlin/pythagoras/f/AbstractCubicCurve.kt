@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [ICubicCurve], obtaining only the start, end and
@@ -112,10 +112,10 @@ abstract class AbstractCubicCurve : ICubicCurve {
 
     override // from interface IShape
     fun bounds(target: Rectangle): Rectangle {
-        val rx1 = Math.min(Math.min(x1, x2), Math.min(ctrlX1, ctrlX2))
-        val ry1 = Math.min(Math.min(y1, y2), Math.min(ctrlY1, ctrlY2))
-        val rx2 = Math.max(Math.max(x1, x2), Math.max(ctrlX1, ctrlX2))
-        val ry2 = Math.max(Math.max(y1, y2), Math.max(ctrlY1, ctrlY2))
+        val rx1 = min(min(x1, x2), min(ctrlX1, ctrlX2))
+        val ry1 = min(min(y1, y2), min(ctrlY1, ctrlY2))
+        val rx2 = max(max(x1, x2), max(ctrlX1, ctrlX2))
+        val ry2 = max(max(y1, y2), max(ctrlY1, ctrlY2))
         target.setBounds(rx1, ry1, rx2 - rx1, ry2 - ry1)
         return target
     }

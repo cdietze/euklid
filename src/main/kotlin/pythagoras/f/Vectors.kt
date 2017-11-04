@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Vector-related utility methods.
@@ -80,7 +80,7 @@ object Vectors {
      * magnitude.
      */
     fun isEpsilonZero(x: Float, y: Float, epsilon: Float = MathUtil.EPSILON): Boolean {
-        return Math.abs(x) <= epsilon && Math.abs(y) <= epsilon
+        return abs(x) <= epsilon && abs(y) <= epsilon
     }
 
     /**
@@ -88,7 +88,7 @@ object Vectors {
      * `epsilon`.
      */
     fun epsilonEquals(v1: IVector, v2: IVector, epsilon: Float = MathUtil.EPSILON): Boolean {
-        return Math.abs(v1.x - v2.x) <= epsilon && Math.abs(v1.y - v2.y) <= epsilon
+        return abs(v1.x - v2.x) <= epsilon && abs(v1.y - v2.y) <= epsilon
     }
 
     /** Transforms a vector as specified (as a point, accounting for translation), storing the

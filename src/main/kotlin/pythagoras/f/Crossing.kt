@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Internal utility methods for computing intersections and containment.
@@ -99,7 +99,7 @@ internal object Crossing {
             res[rc++] = m * MathUtil.cos(t - p) + n
         } else {
             // Debug.println("R2 >= Q3 (" + R2 + "/" + Q3 + ")");
-            var A = MathUtil.pow(Math.abs(R) + MathUtil.sqrt(R2 - Q3), 1f / 3f)
+            var A = MathUtil.pow(abs(R) + MathUtil.sqrt(R2 - Q3), 1f / 3f)
             if (R > 0f) {
                 A = -A
             }

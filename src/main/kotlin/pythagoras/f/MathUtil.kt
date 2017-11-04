@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Math utility methods and constants for single-precision floating point math.
@@ -28,19 +28,19 @@ object MathUtil {
     val EPSILON = 0.00001f
 
     /** The circle constant, Tau (&#964;) http://tauday.com/  */
-    val TAU = (Math.PI * 2).toFloat()
+    val TAU = (kotlin.math.PI * 2).toFloat()
 
     /** The ratio of a circle's circumference to its diameter.  */
-    val PI = Math.PI.toFloat()
+    val PI = kotlin.math.PI.toFloat()
 
     /** Twice Pi.  */
     val TWO_PI = TAU
 
     /** Pi times one half.  */
-    val HALF_PI = (Math.PI * 0.5).toFloat()
+    val HALF_PI = (kotlin.math.PI * 0.5).toFloat()
 
     /** The base value of the natural logarithm.  */
-    val E = Math.E.toFloat()
+    val E = kotlin.math.E.toFloat()
 
     /**
      * A cheaper version of [Math.round] that doesn't handle the special cases.
@@ -84,7 +84,7 @@ object MathUtil {
      */
     fun roundNearest(v: Float, target: Float): Float {
         var target = target
-        target = Math.abs(target)
+        target = abs(target)
         if (v >= 0) {
             return target * floor((v + 0.5f * target) / target)
         } else {
@@ -131,8 +131,8 @@ object MathUtil {
     fun lerpa(a1: Float, a2: Float, t: Float): Float {
         val ma1 = mirrorAngle(a1)
         val ma2 = mirrorAngle(a2)
-        val d = Math.abs(a2 - a1)
-        val md = Math.abs(ma1 - ma2)
+        val d = abs(a2 - a1)
+        val md = abs(ma1 - ma2)
         return if (d <= md) lerp(a1, a2, t) else mirrorAngle(lerp(ma1, ma2, t))
     }
 
@@ -147,7 +147,7 @@ object MathUtil {
      * Determines whether two values are "close enough" to equal.
      */
     fun epsilonEquals(v1: Float, v2: Float): Boolean {
-        return Math.abs(v1 - v2) < EPSILON
+        return abs(v1 - v2) < EPSILON
     }
 
     /**
@@ -157,7 +157,7 @@ object MathUtil {
     fun angularDistance(a1: Float, a2: Float): Float {
         val ma1 = mirrorAngle(a1)
         val ma2 = mirrorAngle(a2)
-        return Math.min(Math.abs(a1 - a2), Math.abs(ma1 - ma2))
+        return min(abs(a1 - a2), abs(ma1 - ma2))
     }
 
     /**
@@ -169,7 +169,7 @@ object MathUtil {
         val ma2 = mirrorAngle(a2)
         val diff = a1 - a2
         val mdiff = ma2 - ma1
-        return if (Math.abs(diff) < Math.abs(mdiff)) diff else mdiff
+        return if (abs(diff) < abs(mdiff)) diff else mdiff
     }
 
     /**
@@ -259,63 +259,70 @@ object MathUtil {
      * Computes and returns the sine of the given angle.
 
      * @see Math.sin
+     * TODO: inline
      */
     fun sin(a: Float): Float {
-        return Math.sin(a.toDouble()).toFloat()
+        return sin(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the cosine of the given angle.
 
      * @see Math.cos
+     * TODO: inline
      */
     fun cos(a: Float): Float {
-        return Math.cos(a.toDouble()).toFloat()
+        return cos(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the tangent of the given angle.
 
      * @see Math.tan
+     * TODO: inline
      */
     fun tan(a: Float): Float {
-        return Math.tan(a.toDouble()).toFloat()
+        return tan(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the arc sine of the given value.
 
      * @see Math.asin
+     * TODO: inline
      */
     fun asin(a: Float): Float {
-        return Math.asin(a.toDouble()).toFloat()
+        return asin(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the arc cosine of the given value.
 
      * @see Math.acos
+     * TODO: inline
      */
     fun acos(a: Float): Float {
-        return Math.acos(a.toDouble()).toFloat()
+        return acos(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the arc tangent of the given value.
 
      * @see Math.atan
+     * TODO: inline
      */
     fun atan(a: Float): Float {
-        return Math.atan(a.toDouble()).toFloat()
+        return atan(a.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns the arc tangent of the given values.
 
      * @see Math.atan2
+     * TODO: inline
      */
     fun atan2(y: Float, x: Float): Float {
-        return Math.atan2(y.toDouble(), x.toDouble()).toFloat()
+        return atan2(y.toDouble(), x.toDouble()).toFloat()
     }
 
     /**
@@ -340,45 +347,39 @@ object MathUtil {
      * Returns the square root of the supplied value.
 
      * @see Math.sqrt
+     * TODO: inline
      */
     fun sqrt(v: Float): Float {
-        return Math.sqrt(v.toDouble()).toFloat()
-    }
-
-    /**
-     * Returns the cube root of the supplied value.
-
-     * @see Math.cbrt
-     */
-    fun cbrt(v: Float): Float {
-        return Math.cbrt(v.toDouble()).toFloat()
+        return sqrt(v.toDouble()).toFloat()
     }
 
     /**
      * Computes and returns sqrt(x*x + y*y).
 
      * @see Math.hypot
+     * TODO: inline
      */
     fun hypot(x: Float, y: Float): Float {
-        return Math.hypot(x.toDouble(), y.toDouble()).toFloat()
+        return hypot(x.toDouble(), y.toDouble()).toFloat()
     }
 
     /**
      * Returns e to the power of the supplied value.
 
      * @see Math.exp
+     * TODO: inline
      */
     fun exp(v: Float): Float {
-        return Math.exp(v.toDouble()).toFloat()
+        return exp(v.toDouble()).toFloat()
     }
 
     /**
      * Returns the natural logarithm of the supplied value.
-
      * @see Math.log
+     * TODO: inline
      */
     fun log(v: Float): Float {
-        return Math.log(v.toDouble()).toFloat()
+        return ln(v)
     }
 
     /**
@@ -387,35 +388,42 @@ object MathUtil {
      * @see Math.log10
      */
     fun log10(v: Float): Float {
-        return Math.log10(v.toDouble()).toFloat()
+        return log10(v.toDouble()).toFloat()
     }
 
     /**
      * Returns v to the power of e.
 
      * @see Math.pow
+     * TODO: inline
      */
     fun pow(v: Float, e: Float): Float {
-        return Math.pow(v.toDouble(), e.toDouble()).toFloat()
+        return v.pow(e)
     }
 
     /**
      * Returns the floor of v.
-
      * @see Math.floor
+     * TODO: inline
      */
     fun floor(v: Float): Float {
-        return Math.floor(v.toDouble()).toFloat()
+        return floor(v.toDouble()).toFloat()
     }
 
     /**
      * Returns the ceiling of v.
 
      * @see Math.ceil
+     * TODO: inline
      */
     fun ceil(v: Float): Float {
-        return Math.ceil(v.toDouble()).toFloat()
+        return ceil(v.toDouble()).toFloat()
     }
+
+    /**
+     * Returns the cube root of the supplied value.
+     */
+    fun cbrt(a: Float): Float = if (a == 0.0f || !a.isFinite()) a else a.pow(1.0f / 3.0f)
 
     private var TO_STRING_DECIMAL_PLACES = 3
 }

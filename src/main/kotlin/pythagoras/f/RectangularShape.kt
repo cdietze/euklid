@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * The base class for various [IShape] objects whose geometry is defined by a rectangular
@@ -85,8 +85,8 @@ abstract class RectangularShape : IRectangularShape {
      */
     fun setFrameFromCenter(centerX: Float, centerY: Float,
                            cornerX: Float, cornerY: Float) {
-        val width = Math.abs(cornerX - centerX)
-        val height = Math.abs(cornerY - centerY)
+        val width = abs(cornerX - centerX)
+        val height = abs(cornerY - centerY)
         setFrame(centerX - width, centerY - height, width * 2, height * 2)
     }
 

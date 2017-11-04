@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * An axis-aligned box.
@@ -170,7 +172,7 @@ class Box : IBox {
 
     override // from IBox
     fun longestEdge(): Float {
-        return Math.max(Math.max(_maxExtent.x - _minExtent.x, _maxExtent.y - _minExtent.y),
+        return max(max(_maxExtent.x - _minExtent.x, _maxExtent.y - _minExtent.y),
                 _maxExtent.z - _minExtent.z)
     }
 
@@ -187,13 +189,13 @@ class Box : IBox {
     override // from IBox
     fun add(point: IVector3, result: Box): Box {
         result._minExtent.set(
-                Math.min(_minExtent.x, point.x),
-                Math.min(_minExtent.y, point.y),
-                Math.min(_minExtent.z, point.z))
+                min(_minExtent.x, point.x),
+                min(_minExtent.y, point.y),
+                min(_minExtent.z, point.z))
         result._maxExtent.set(
-                Math.max(_maxExtent.x, point.x),
-                Math.max(_maxExtent.y, point.y),
-                Math.max(_maxExtent.z, point.z))
+                max(_maxExtent.x, point.x),
+                max(_maxExtent.y, point.y),
+                max(_maxExtent.z, point.z))
         return result
     }
 
@@ -207,13 +209,13 @@ class Box : IBox {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         result._minExtent.set(
-                Math.min(_minExtent.x, omin.x),
-                Math.min(_minExtent.y, omin.y),
-                Math.min(_minExtent.z, omin.z))
+                min(_minExtent.x, omin.x),
+                min(_minExtent.y, omin.y),
+                min(_minExtent.z, omin.z))
         result._maxExtent.set(
-                Math.max(_maxExtent.x, omax.x),
-                Math.max(_maxExtent.y, omax.y),
-                Math.max(_maxExtent.z, omax.z))
+                max(_maxExtent.x, omax.x),
+                max(_maxExtent.y, omax.y),
+                max(_maxExtent.z, omax.z))
         return result
     }
 
@@ -227,13 +229,13 @@ class Box : IBox {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         result._minExtent.set(
-                Math.max(_minExtent.x, omin.x),
-                Math.max(_minExtent.y, omin.y),
-                Math.max(_minExtent.z, omin.z))
+                max(_minExtent.x, omin.x),
+                max(_minExtent.y, omin.y),
+                max(_minExtent.z, omin.z))
         result._maxExtent.set(
-                Math.min(_maxExtent.x, omax.x),
-                Math.min(_maxExtent.y, omax.y),
-                Math.min(_maxExtent.z, omax.z))
+                min(_maxExtent.x, omax.x),
+                min(_maxExtent.y, omax.y),
+                min(_maxExtent.z, omax.z))
         return result
     }
 
@@ -308,12 +310,12 @@ class Box : IBox {
             val px = (matrix.m00 * x + matrix.m10 * y + matrix.m20 * z + matrix.m30) * rw
             val py = (matrix.m01 * x + matrix.m11 * y + matrix.m21 * z + matrix.m31) * rw
             val pz = (matrix.m02 * x + matrix.m12 * y + matrix.m22 * z + matrix.m32) * rw
-            minx = Math.min(minx, px)
-            miny = Math.min(miny, py)
-            minz = Math.min(minz, pz)
-            maxx = Math.max(maxx, px)
-            maxy = Math.max(maxy, py)
-            maxz = Math.max(maxz, pz)
+            minx = min(minx, px)
+            miny = min(miny, py)
+            minz = min(minz, pz)
+            maxx = max(maxx, px)
+            maxy = max(maxy, py)
+            maxz = max(maxz, pz)
         }
         result._minExtent.set(minx, miny, minz)
         result._maxExtent.set(maxx, maxy, maxz)
@@ -377,9 +379,9 @@ class Box : IBox {
     override // from IBox
     fun intersects(ray: IRay3): Boolean {
         val dir = ray.direction
-        return Math.abs(dir.x) > MathUtil.EPSILON && (intersectsX(ray, _minExtent.x) || intersectsX(ray, _maxExtent.x)) ||
-                Math.abs(dir.y) > MathUtil.EPSILON && (intersectsY(ray, _minExtent.y) || intersectsY(ray, _maxExtent.y)) ||
-                Math.abs(dir.z) > MathUtil.EPSILON && (intersectsZ(ray, _minExtent.z) || intersectsZ(ray, _maxExtent.z))
+        return abs(dir.x) > MathUtil.EPSILON && (intersectsX(ray, _minExtent.x) || intersectsX(ray, _maxExtent.x)) ||
+                abs(dir.y) > MathUtil.EPSILON && (intersectsY(ray, _minExtent.y) || intersectsY(ray, _maxExtent.y)) ||
+                abs(dir.z) > MathUtil.EPSILON && (intersectsZ(ray, _minExtent.z) || intersectsZ(ray, _maxExtent.z))
     }
 
     override // from IBox
@@ -391,17 +393,17 @@ class Box : IBox {
         }
         val dir = ray.direction
         var t = Float.MAX_VALUE
-        if (Math.abs(dir.x) > MathUtil.EPSILON) {
-            t = Math.min(t, intersectionX(ray, _minExtent.x))
-            t = Math.min(t, intersectionX(ray, _maxExtent.x))
+        if (abs(dir.x) > MathUtil.EPSILON) {
+            t = min(t, intersectionX(ray, _minExtent.x))
+            t = min(t, intersectionX(ray, _maxExtent.x))
         }
-        if (Math.abs(dir.y) > MathUtil.EPSILON) {
-            t = Math.min(t, intersectionY(ray, _minExtent.y))
-            t = Math.min(t, intersectionY(ray, _maxExtent.y))
+        if (abs(dir.y) > MathUtil.EPSILON) {
+            t = min(t, intersectionY(ray, _minExtent.y))
+            t = min(t, intersectionY(ray, _maxExtent.y))
         }
-        if (Math.abs(dir.z) > MathUtil.EPSILON) {
-            t = Math.min(t, intersectionZ(ray, _minExtent.z))
-            t = Math.min(t, intersectionZ(ray, _maxExtent.z))
+        if (abs(dir.z) > MathUtil.EPSILON) {
+            t = min(t, intersectionZ(ray, _minExtent.z))
+            t = min(t, intersectionZ(ray, _maxExtent.z))
         }
         if (t == Float.MAX_VALUE) {
             return false

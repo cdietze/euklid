@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IQuadCurve], obtaining only the start, end and
@@ -110,10 +110,10 @@ abstract class AbstractQuadCurve : IQuadCurve {
         val y2 = y2
         val ctrlx = ctrlX
         val ctrly = ctrlY
-        val rx0 = Math.min(Math.min(x1, x2), ctrlx)
-        val ry0 = Math.min(Math.min(y1, y2), ctrly)
-        val rx1 = Math.max(Math.max(x1, x2), ctrlx)
-        val ry1 = Math.max(Math.max(y1, y2), ctrly)
+        val rx0 = min(min(x1, x2), ctrlx)
+        val ry0 = min(min(y1, y2), ctrly)
+        val rx1 = max(max(x1, x2), ctrlx)
+        val ry1 = max(max(y1, y2), ctrly)
         target.setBounds(rx0, ry0, rx1 - rx0, ry1 - ry0)
         return target
     }

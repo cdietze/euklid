@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,8 @@
 
 package pythagoras.i
 
-import java.lang.Math
+import kotlin.math.abs
+import kotlin.math.sqrt
 
 /**
  * Point-related utility methods.
@@ -40,14 +41,14 @@ object Points {
      * integer.
      */
     fun distance(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        return Math.sqrt(distanceSq(x1, y1, x2, y2).toDouble()).toInt()
+        return sqrt(distanceSq(x1, y1, x2, y2).toDouble()).toInt()
     }
 
     /**
      * Returns the Manhattan distance between the specified two points.
      */
     fun manhattanDistance(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        return Math.abs(x2 - x1) + Math.abs(y2 - y1)
+        return abs(x2 - x1) + abs(y2 - y1)
     }
 
     /**

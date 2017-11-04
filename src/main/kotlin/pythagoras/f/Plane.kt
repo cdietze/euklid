@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A plane consisting of a unit normal and a constant. All points on the plane satisfy the equation
@@ -193,9 +193,9 @@ class Plane : IPlane {
     fun distance(ray: IRay3): Float {
         val dividend = -distance(ray.origin)
         val divisor = _normal.dot(ray.direction)
-        if (Math.abs(dividend) < MathUtil.EPSILON) {
+        if (abs(dividend) < MathUtil.EPSILON) {
             return 0f // origin is on plane
-        } else if (Math.abs(divisor) < MathUtil.EPSILON) {
+        } else if (abs(divisor) < MathUtil.EPSILON) {
             return Float.NaN // ray is parallel to plane
         } else {
             return dividend / divisor

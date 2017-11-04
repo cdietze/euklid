@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.i
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IRectangle], obtaining only the location and
@@ -69,10 +69,10 @@ abstract class AbstractRectangle : IRectangle {
 
     override // from interface IRectangle
     fun intersection(rx: Int, ry: Int, rw: Int, rh: Int): Rectangle {
-        val x1 = Math.max(x, rx)
-        val y1 = Math.max(y, ry)
-        val x2 = Math.min(maxX(), rx + rw - 1)
-        val y2 = Math.min(maxY(), ry + rh - 1)
+        val x1 = max(x, rx)
+        val y1 = max(y, ry)
+        val x2 = min(maxX(), rx + rw - 1)
+        val y2 = min(maxY(), ry + rh - 1)
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
     }
 

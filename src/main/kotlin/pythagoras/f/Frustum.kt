@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Pythagoras.kt Authors
+ * Copyright 2017 The Pythagoras-kt Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import java.lang.Math
+import kotlin.math.*
 
 /**
  * A pyramidal frustum.
@@ -207,7 +207,7 @@ class Frustum {
     fun distance(point: Vector3): Float {
         var distance = -Float.MAX_VALUE
         for (plane in _planes) {
-            distance = Math.max(distance, plane.distance(point))
+            distance = max(distance, plane.distance(point))
         }
         return distance
     }
