@@ -16,7 +16,7 @@
 package pythagoras.f
 
 import org.junit.Test
-import pythagoras.assertEquals
+import pythagoras.assertEqualsWithDelta
 
 class RectangleTest {
     @Test
@@ -27,6 +27,6 @@ class RectangleTest {
     }
 
     protected fun testPointRectDistance(expected: Float, r: IRectangle, p: Point) {
-        assertEquals(expected, Rectangles.pointRectDistance(r, p), MathUtil.EPSILON)
+        assertEqualsWithDelta(expected, Rectangles.pointRectDistance(r, p), MathUtil.EPSILON)
     }
 }

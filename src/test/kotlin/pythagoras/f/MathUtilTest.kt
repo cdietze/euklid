@@ -16,7 +16,7 @@
 package pythagoras.f
 
 import org.junit.Test
-import pythagoras.assertEquals
+import pythagoras.assertEqualsWithDelta
 import kotlin.test.assertEquals
 
 /**
@@ -26,17 +26,17 @@ class MathUtilTest {
 
     @Test
     fun testLerpa() {
-        assertEquals(MathUtil.lerpa(PI4, -PI4, 0.25f), PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(PI4, -PI4, 0.75f), -PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, PI4, 0.25f), -PI8, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, PI4, 0.75f), PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, -PI4, 0.25f), PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, -PI4, 0.75f), -PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, PI4, 0.25f), -PI8, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, PI4, 0.75f), PI8, MathUtil.EPSILON)
         // make sure we lerp the shortest route around the circle
-        assertEquals(MathUtil.lerpa(3 * PI4, PI4, 0.5f), PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(PI4, 3 * PI4, 0.5f), PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-3 * PI4, -PI4, 0.5f), -PI2, MathUtil.EPSILON)
-        assertEquals(MathUtil.lerpa(-PI4, -3 * PI4, 0.5f), -PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(3 * PI4, PI4, 0.5f), PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(PI4, 3 * PI4, 0.5f), PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-3 * PI4, -PI4, 0.5f), -PI2, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(-PI4, -3 * PI4, 0.5f), -PI2, MathUtil.EPSILON)
 
-        assertEquals(MathUtil.lerpa(3 * PI4, -3 * PI4, 0.5f), -PI, MathUtil.EPSILON)
+        assertEqualsWithDelta(MathUtil.lerpa(3 * PI4, -3 * PI4, 0.5f), -PI, MathUtil.EPSILON)
     }
 
     @Test

@@ -17,7 +17,7 @@
 package pythagoras.f
 
 import org.junit.Test
-import pythagoras.assertEquals
+import pythagoras.assertEqualsWithDelta
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -66,8 +66,8 @@ class AreaTest {
             val seg1 = iter1.currentSegment(coords1)
             val seg2 = iter2.currentSegment(coords2)
             assertEquals(seg1.toLong(), seg2.toLong(), "Same path segment")
-            assertEquals(coords1[0], coords2[0], MathUtil.EPSILON, "Same x coord")
-            assertEquals(coords1[1], coords2[1], MathUtil.EPSILON, "Same y coord")
+            assertEqualsWithDelta(coords1[0], coords2[0], MathUtil.EPSILON, "Same x coord")
+            assertEqualsWithDelta(coords1[1], coords2[1], MathUtil.EPSILON, "Same y coord")
             iter1.next()
             iter2.next()
         }
