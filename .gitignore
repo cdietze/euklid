@@ -4,3 +4,4 @@ target
 .classpath
 /bazel-*
 pythagoras-kt-js/node_modules
+.idea
