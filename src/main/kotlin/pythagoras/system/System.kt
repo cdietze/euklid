@@ -6,7 +6,7 @@ expect fun arrayCopy(src: IntArray, srcPos: Int, dest: IntArray, destPos: Int, l
 
 expect fun arrayCopy(src: FloatArray, srcPos: Int, dest: FloatArray, destPos: Int, length: Int)
 
-expect fun <T>arrayCopy(src: Array<T>, srcPos: Int, dest: Array<T>, destPos: Int, length: Int)
+expect fun <T> arrayCopy(src: Array<T>, srcPos: Int, dest: Array<T>, destPos: Int, length: Int)
 
 interface Random {
     fun nextFloat(): Float

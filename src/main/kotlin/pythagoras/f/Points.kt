@@ -18,7 +18,10 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 /**
  * Point-related utility methods.

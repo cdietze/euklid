@@ -18,7 +18,8 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.min
+import kotlin.math.sqrt
 
 /**
  * Provides most of the implementation of [IRoundRectangle], obtaining the framing rectangle

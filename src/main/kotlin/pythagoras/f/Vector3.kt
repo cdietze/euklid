@@ -19,7 +19,9 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.acos
+import kotlin.math.sqrt
 
 /**
  * A three element vector.

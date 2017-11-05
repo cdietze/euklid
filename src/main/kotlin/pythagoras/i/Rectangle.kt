@@ -16,7 +16,8 @@
 
 package pythagoras.i
 
-import kotlin.math.*
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Represents an area in two dimensions.

@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import kotlin.math.*
+import kotlin.math.abs
 
 /**
  * A plane consisting of a unit normal and a constant. All points on the plane satisfy the equation
@@ -145,9 +145,10 @@ class Plane : IPlane {
     }
 
     override // from IPlane
-    val normal: IVector3 get() {
-        return _normal
-    }
+    val normal: IVector3
+        get() {
+            return _normal
+        }
 
     override // from IPlane
     fun distance(pt: IVector3): Float {

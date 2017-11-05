@@ -19,7 +19,7 @@
 package pythagoras.f
 
 import pythagoras.util.Platform
-import kotlin.math.*
+import kotlin.math.abs
 
 /**
  * A four element vector.

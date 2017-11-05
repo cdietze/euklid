@@ -18,7 +18,10 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
 
 /**
  * Represents an arc defined by a framing rectangle, start angle, angular extend, and closure type.

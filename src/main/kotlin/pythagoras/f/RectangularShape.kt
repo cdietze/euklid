@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.abs
 
 /**
  * The base class for various [IShape] objects whose geometry is defined by a rectangular

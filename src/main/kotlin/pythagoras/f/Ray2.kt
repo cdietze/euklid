@@ -18,7 +18,10 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.hypot
+import kotlin.math.min
+import kotlin.math.sqrt
 
 /**
  * A ray consisting of an origin point and a unit direction vector.

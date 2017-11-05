@@ -18,7 +18,8 @@
 
 package pythagoras.i
 
-import kotlin.math.*
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Provides most of the implementation of [IRectangle], obtaining only the location and

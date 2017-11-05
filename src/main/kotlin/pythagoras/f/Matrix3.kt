@@ -951,7 +951,7 @@ data class Matrix3(
                 "[" + m01 + ", " + m11 + ", " + m21 + "], " +
                 "[" + m02 + ", " + m12 + ", " + m22 + "]]"
     }
-    
+
     companion object {
         private const val serialVersionUID = 2090355290484132872L
 

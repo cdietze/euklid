@@ -18,7 +18,8 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.max
+import kotlin.math.tan
 
 /**
  * A pyramidal frustum.
