@@ -44,7 +44,7 @@ object Vectors {
      * Creates a new vector from polar coordinates.
      */
     fun fromPolar(magnitude: Float, angle: Float): Vector {
-        return Vector(magnitude * MathUtil.cos(angle), magnitude * MathUtil.sin(angle))
+        return Vector(magnitude * cos(angle), magnitude * sin(angle))
     }
 
     /**
@@ -58,7 +58,7 @@ object Vectors {
      * Returns the magnitude of the specified vector.
      */
     fun length(x: Float, y: Float): Float {
-        return MathUtil.sqrt(lengthSq(x, y))
+        return sqrt(lengthSq(x, y))
     }
 
     /**
@@ -97,7 +97,7 @@ object Vectors {
      */
     fun transform(x: Float, y: Float, sx: Float, sy: Float, rotation: Float,
                   tx: Float, ty: Float, result: Vector): Vector {
-        return transform(x, y, sx, sy, MathUtil.sin(rotation), MathUtil.cos(rotation), tx, ty,
+        return transform(x, y, sx, sy, sin(rotation), cos(rotation), tx, ty,
                 result)
     }
 
@@ -107,7 +107,7 @@ object Vectors {
      */
     fun transform(x: Float, y: Float, sx: Float, sy: Float, rotation: Float,
                   result: Vector): Vector {
-        return transform(x, y, sx, sy, MathUtil.sin(rotation), MathUtil.cos(rotation), result)
+        return transform(x, y, sx, sy, sin(rotation), cos(rotation), result)
     }
 
     /**
@@ -134,8 +134,8 @@ object Vectors {
      */
     fun inverseTransform(x: Float, y: Float, sx: Float, sy: Float, rotation: Float,
                          result: Vector): Vector {
-        val sinnega = MathUtil.sin(-rotation)
-        val cosnega = MathUtil.cos(-rotation)
+        val sinnega = sin(-rotation)
+        val cosnega = cos(-rotation)
         val nx = x * cosnega - y * sinnega // unrotate
         val ny = x * sinnega + y * cosnega
         return result.set(nx / sx, ny / sy) // unscale

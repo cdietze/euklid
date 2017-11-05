@@ -20,7 +20,7 @@ package pythagoras.f
 
 import pythagoras.f.MathUtil.cbrt
 import pythagoras.util.SingularMatrixException
-import kotlin.math.abs
+import kotlin.math.*
 
 /**
  * A 4x4 column-major matrix.
@@ -215,8 +215,8 @@ data class Matrix4(
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float, x: Float, y: Float, z: Float): Matrix4 {
-        val c = MathUtil.cos(angle)
-        val s = MathUtil.sin(angle)
+        val c = cos(angle)
+        val s = sin(angle)
         val omc = 1f - c
         val xs = x * s
         val ys = y * s
@@ -400,7 +400,7 @@ data class Matrix4(
      * @return a reference to this matrix, for chaining.
      */
     fun setToPerspective(fovy: Float, aspect: Float, near: Float, far: Float): Matrix4 {
-        val f = 1f / MathUtil.tan(fovy / 2f)
+        val f = 1f / tan(fovy / 2f)
         val dscale = 1f / (near - far)
         return set(f / aspect, 0f, 0f, 0f,
                 0f, f, 0f, 0f,
@@ -1043,10 +1043,10 @@ data class Matrix4(
         val z2 = abs(1f - n00 - n11 + n22)
         val w2 = abs(1f + n00 + n11 + n22)
         result.set(
-                0.5f * MathUtil.sqrt(x2) * if (n12 >= n21) +1f else -1f,
-                0.5f * MathUtil.sqrt(y2) * if (n20 >= n02) +1f else -1f,
-                0.5f * MathUtil.sqrt(z2) * if (n01 >= n10) +1f else -1f,
-                0.5f * MathUtil.sqrt(w2))
+                0.5f * sqrt(x2) * if (n12 >= n21) +1f else -1f,
+                0.5f * sqrt(y2) * if (n20 >= n02) +1f else -1f,
+                0.5f * sqrt(z2) * if (n01 >= n10) +1f else -1f,
+                0.5f * sqrt(w2))
         return result
     }
 
@@ -1064,9 +1064,9 @@ data class Matrix4(
 
     override // from IMatrix4
     fun extractScale(result: Vector3): Vector3 {
-        return result.set(MathUtil.sqrt(m00 * m00 + m01 * m01 + m02 * m02),
-                MathUtil.sqrt(m10 * m10 + m11 * m11 + m12 * m12),
-                MathUtil.sqrt(m20 * m20 + m21 * m21 + m22 * m22))
+        return result.set(sqrt(m00 * m00 + m01 * m01 + m02 * m02),
+                sqrt(m10 * m10 + m11 * m11 + m12 * m12),
+                sqrt(m20 * m20 + m21 * m21 + m22 * m22))
     }
 
     override // from IMatrix4

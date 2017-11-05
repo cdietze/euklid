@@ -150,13 +150,13 @@ class Arc : AbstractArc {
      */
     fun setArcByTangent(p1: XY, p2: XY, p3: XY, radius: Float) {
         // use simple geometric calculations of arc center, radius and angles by tangents
-        var a1 = -MathUtil.atan2(p1.y - p2.y, p1.x - p2.x)
-        var a2 = -MathUtil.atan2(p3.y - p2.y, p3.x - p2.x)
+        var a1 = -atan2(p1.y - p2.y, p1.x - p2.x)
+        var a2 = -atan2(p3.y - p2.y, p3.x - p2.x)
         val am = (a1 + a2) / 2f
         var ah = a1 - am
-        val d = radius / abs(MathUtil.sin(ah))
-        val x = p2.x + d * MathUtil.cos(am)
-        val y = p2.y - d * MathUtil.sin(am)
+        val d = radius / abs(sin(ah))
+        val x = p2.x + d * cos(am)
+        val y = p2.y - d * sin(am)
         ah = if (ah >= 0f) MathUtil.PI * 1.5f - ah else MathUtil.PI * 0.5f - ah
         a1 = normAngle(MathUtil.toDegrees(am - ah))
         a2 = normAngle(MathUtil.toDegrees(am + ah))
@@ -172,7 +172,7 @@ class Arc : AbstractArc {
      * the center of this arc.
      */
     fun setAngleStart(point: XY) {
-        val angle = MathUtil.atan2(point.y - centerY, point.x - centerX)
+        val angle = atan2(point.y - centerY, point.x - centerX)
         setAngleStart(normAngle(-MathUtil.toDegrees(angle)))
     }
 
@@ -186,8 +186,8 @@ class Arc : AbstractArc {
     fun setAngles(x1: Float, y1: Float, x2: Float, y2: Float) {
         val cx = centerX
         val cy = centerY
-        val a1 = normAngle(-MathUtil.toDegrees(MathUtil.atan2(y1 - cy, x1 - cx)))
-        var a2 = normAngle(-MathUtil.toDegrees(MathUtil.atan2(y2 - cy, x2 - cx)))
+        val a1 = normAngle(-MathUtil.toDegrees(atan2(y1 - cy, x1 - cx)))
+        var a2 = normAngle(-MathUtil.toDegrees(atan2(y2 - cy, x2 - cx)))
         a2 -= a1
         if (a2 <= 0f) {
             a2 += 360f

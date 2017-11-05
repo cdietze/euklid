@@ -145,7 +145,7 @@ class Ray2 : IRay2 {
         // compute the segment's line parameters
         var a = starty - end.y
         var b = end.x - startx
-        val len = MathUtil.hypot(a, b)
+        val len = hypot(a, b)
         if (len < MathUtil.EPSILON) { // start equals end; check as circle
             return getIntersection(start, radius, result)
         }
@@ -209,7 +209,7 @@ class Ray2 : IRay2 {
         if (radicand < 0f) {
             return false
         }
-        val t = (-b - MathUtil.sqrt(radicand)) * 0.5f
+        val t = (-b - sqrt(radicand)) * 0.5f
         val isect = t >= 0f
         if (isect) {
             origin.addScaled(direction, t, result)

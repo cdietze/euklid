@@ -17,7 +17,6 @@
 package pythagoras.f
 
 import kotlin.math.*
-import kotlin.math.*
 
 /**
  * Provides most of the implementation of [IArc], obtaining only the frame and other metrics
@@ -33,8 +32,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
     override // from interface IArc
     fun startPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart)
-        return target.set(x + (1f + MathUtil.cos(a)) * width / 2f,
-                y + (1f - MathUtil.sin(a)) * height / 2f)
+        return target.set(x + (1f + cos(a)) * width / 2f,
+                y + (1f - sin(a)) * height / 2f)
     }
 
     override // from interface IArc
@@ -46,8 +45,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
     override // from interface IArc
     fun endPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart + angleExtent)
-        return target.set(x + (1f + MathUtil.cos(a)) * width / 2f,
-                y + (1f - MathUtil.sin(a)) * height / 2f)
+        return target.set(x + (1f + cos(a)) * width / 2f,
+                y + (1f - sin(a)) * height / 2f)
     }
 
     override // from interface IArc
@@ -93,7 +92,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
             return true
         }
 
-        val containsAngle = containsAngle(MathUtil.toDegrees(-MathUtil.atan2(ny, nx)))
+        val containsAngle = containsAngle(MathUtil.toDegrees(-atan2(ny, nx)))
         if (arcType == IArc.PIE) {
             return containsAngle
         }
@@ -209,7 +208,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
 
     /** Returns a normalized angle (bound between 0 and 360 degrees).  */
     protected fun normAngle(angle: Float): Float {
-        return angle - MathUtil.floor(angle / 360f) * 360f
+        return angle - floor(angle / 360f) * 360f
     }
 
     /** An iterator over an [IArc].  */
@@ -286,7 +285,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
 
                 if (abs(extent) >= 360f) {
                     arcCount = 4
-                    k = 4f / 3f * (MathUtil.sqrt(2f) - 1f)
+                    k = 4f / 3f * (sqrt(2f) - 1f)
                     step = MathUtil.PI / 2f
                     if (extent < 0f) {
                         step = -step
@@ -295,7 +294,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
                 } else {
                     arcCount = MathUtil.iceil(abs(extent) / 90f)
                     step = MathUtil.toRadians(extent / arcCount)
-                    k = 4f / 3f * (1f - MathUtil.cos(step / 2f)) / MathUtil.sin(step / 2f)
+                    k = 4f / 3f * (1f - cos(step / 2f)) / sin(step / 2f)
                 }
 
                 lineCount = 0
@@ -327,8 +326,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
             if (index == 0) {
                 type = PathIterator.SEG_MOVETO
                 count = 1
-                cos = MathUtil.cos(angle)
-                sin = MathUtil.sin(angle)
+                cos = cos(angle)
+                sin = sin(angle)
                 kx = k * width * sin
                 ky = k * height * cos
                 mx = x + cos * width
@@ -341,8 +340,8 @@ abstract class AbstractArc : RectangularShape(), IArc {
                 coords[0] = mx - kx
                 coords[1] = my + ky
                 angle += step
-                cos = MathUtil.cos(angle)
-                sin = MathUtil.sin(angle)
+                cos = cos(angle)
+                sin = sin(angle)
                 kx = k * width * sin
                 ky = k * height * cos
                 mx = x + cos * width

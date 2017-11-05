@@ -18,6 +18,10 @@
 
 package pythagoras.f
 
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+
 /**
  * Provides most of the implementation of [IPoint], obtaining only the location from the
  * derived class.
@@ -45,7 +49,7 @@ abstract class AbstractPoint : IPoint {
 
     override // from interface IPoint
     fun direction(other: XY): Float {
-        return MathUtil.atan2(other.y - y, other.x - x)
+        return atan2(other.y - y, other.x - x)
     }
 
     override // from IPoint
@@ -97,8 +101,8 @@ abstract class AbstractPoint : IPoint {
     fun rotate(angle: Float, result: Point): Point {
         val x = x
         val y = y
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         return result.set(x * cosa - y * sina, x * sina + y * cosa)
     }
 

@@ -18,8 +18,8 @@
 
 package pythagoras.f
 
-import pythagoras.f.MathUtil.pow
 import kotlin.math.abs
+import kotlin.math.pow
 
 /**
  * An internal class used to compute crossings.
@@ -262,7 +262,7 @@ internal class CurveCrossingHelper(private val coords: Array<FloatArray>, privat
         val i = isectPoints.iterator()
         while (i.hasNext()) {
             ipoint = i.next()
-            if (abs(ipoint.x() - x) < pow(10.0f, -6.0f) && abs(ipoint.y() - y) < pow(10.0f, -6.0f)) {
+            if (abs(ipoint.x() - x) < 10.0f.pow(-6.0f) && abs(ipoint.y() - y) < 10.0f.pow(-6.0f)) {
                 return true
             }
         }

@@ -73,7 +73,7 @@ object Rectangles {
      * will be zero.
      */
     fun pointRectDistance(r: IRectangle, p: IPoint): Float {
-        return MathUtil.sqrt(pointRectDistanceSq(r, p))
+        return sqrt(pointRectDistanceSq(r, p))
     }
 }
 /**

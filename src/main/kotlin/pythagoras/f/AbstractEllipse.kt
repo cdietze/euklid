@@ -18,6 +18,8 @@
 
 package pythagoras.f
 
+import kotlin.math.sqrt
+
 /**
  * Provides most of the implementation of [IEllipse], obtaining the framing rectangle from
  * the derived class.
@@ -132,7 +134,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         // the arc.
 
         /** The coefficient to calculate control points of Bezier curves.  */
-        private val U = 2f / 3f * (MathUtil.sqrt(2f) - 1f)
+        private val U = 2f / 3f * (sqrt(2f) - 1f)
 
         /** The points coordinates calculation table.  */
         private val POINTS = arrayOf(floatArrayOf(1f, 0.5f + U, 0.5f + U, 1f, 0.5f, 1f), floatArrayOf(0.5f - U, 1f, 0f, 0.5f + U, 0f, 0.5f), floatArrayOf(0f, 0.5f - U, 0.5f - U, 0f, 0.5f, 0f), floatArrayOf(0.5f + U, 0f, 1f, 0.5f - U, 1f, 0.5f))

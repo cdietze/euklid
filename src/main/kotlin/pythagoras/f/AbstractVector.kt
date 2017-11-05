@@ -18,6 +18,8 @@
 
 package pythagoras.f
 
+import kotlin.math.*
+
 /**
  * Provides most of the implementation of [IVector], obtaining only x and y from the derived
  * class.
@@ -64,7 +66,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun length(): Float {
-        return MathUtil.sqrt(lengthSq())
+        return sqrt(lengthSq())
     }
 
     override // from interface IVector
@@ -80,7 +82,7 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun distance(other: IVector): Float {
-        return MathUtil.sqrt(distanceSq(other))
+        return sqrt(distanceSq(other))
     }
 
     override // from interface IVector
@@ -92,13 +94,13 @@ abstract class AbstractVector : IVector {
 
     override // from interface IVector
     fun angle(): Float {
-        return MathUtil.atan2(y, x)
+        return atan2(y, x)
     }
 
     override // from interface IVector
     fun angleBetween(other: IVector): Float {
         val cos = dot(other) / (length() * other.length())
-        return if (cos >= 1f) 0f else MathUtil.acos(cos)
+        return if (cos >= 1f) 0f else acos(cos)
     }
 
     override // from interface IVector
@@ -180,8 +182,8 @@ abstract class AbstractVector : IVector {
     fun rotate(angle: Float, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         return result.set(x * cosa - y * sina, x * sina + y * cosa)
     }
 
@@ -189,8 +191,8 @@ abstract class AbstractVector : IVector {
     fun rotateAndAdd(angle: Float, add: IVector, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         return result.set(x * cosa - y * sina + add.x, x * sina + y * cosa + add.y)
     }
 
@@ -198,8 +200,8 @@ abstract class AbstractVector : IVector {
     fun rotateScaleAndAdd(angle: Float, scale: Float, add: IVector, result: Vector): Vector {
         val x = x
         val y = y
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         return result.set((x * cosa - y * sina) * scale + add.x,
                 (x * sina + y * cosa) * scale + add.y)
     }

@@ -55,7 +55,7 @@ internal object Crossing {
             if (d < 0f) {
                 return 0
             }
-            d = MathUtil.sqrt(d)
+            d = sqrt(d)
             res[rc++] = (-b + d) / (a * 2f)
             // d != 0f
             if (d != 0f) {
@@ -91,15 +91,15 @@ internal object Crossing {
         val n = -a / 3f
 
         if (R2 < Q3) {
-            val t = MathUtil.acos(R / MathUtil.sqrt(Q3)) / 3f
+            val t = acos(R / sqrt(Q3)) / 3f
             val p = 2f * MathUtil.PI / 3f
-            val m = -2f * MathUtil.sqrt(Q)
-            res[rc++] = m * MathUtil.cos(t) + n
-            res[rc++] = m * MathUtil.cos(t + p) + n
-            res[rc++] = m * MathUtil.cos(t - p) + n
+            val m = -2f * sqrt(Q)
+            res[rc++] = m * cos(t) + n
+            res[rc++] = m * cos(t + p) + n
+            res[rc++] = m * cos(t - p) + n
         } else {
             // Debug.println("R2 >= Q3 (" + R2 + "/" + Q3 + ")");
-            var A = MathUtil.pow(abs(R) + MathUtil.sqrt(R2 - Q3), 1f / 3f)
+            var A = (abs(R) + sqrt(R2 - Q3)).pow(1f / 3f)
             if (R > 0f) {
                 A = -A
             }

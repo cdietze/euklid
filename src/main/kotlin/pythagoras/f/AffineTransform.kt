@@ -48,8 +48,8 @@ class AffineTransform : AbstractTransform {
 
     /** Creates an affine transform from the supplied scale, rotation and translation.  */
     constructor(scaleX: Float, scaleY: Float, angle: Float, tx: Float, ty: Float) {
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
 
         this.m00 = cosa * scaleX
         this.m01 = sina * scaleY
@@ -81,19 +81,19 @@ class AffineTransform : AbstractTransform {
         get() {
             // the square root of the signed area of the parallelogram spanned by the axis vectors
             val cp = m00 * m11 - m01 * m10
-            return if (cp < 0f) -MathUtil.sqrt(-cp) else MathUtil.sqrt(cp)
+            return if (cp < 0f) -sqrt(-cp) else sqrt(cp)
         }
 
     override // from Transform
     val scaleX: Float
         get() {
-            return MathUtil.sqrt(m00 * m00 + m01 * m01)
+            return sqrt(m00 * m00 + m01 * m01)
         }
 
     override // from Transform
     val scaleY: Float
         get() {
-            return MathUtil.sqrt(m10 * m10 + m11 * m11)
+            return sqrt(m10 * m10 + m11 * m11)
         }
 
     override // from Transform
@@ -137,7 +137,7 @@ class AffineTransform : AbstractTransform {
                 }
             }
             // now that we have a nice orthogonal matrix, we can extract the rotation
-            return MathUtil.atan2(n01, n00)
+            return atan2(n01, n00)
         }
 
     override // from Transform
@@ -178,8 +178,8 @@ class AffineTransform : AbstractTransform {
         // extract the scale, then reapply rotation and scale together
         val sx = scaleX
         val sy = scaleY
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         m00 = cosa * sx
         m01 = sina * sx
         m10 = -sina * sy
@@ -244,8 +244,8 @@ class AffineTransform : AbstractTransform {
 
     override // from Transform
     fun rotate(angle: Float): AffineTransform {
-        val sina = MathUtil.sin(angle)
-        val cosa = MathUtil.cos(angle)
+        val sina = sin(angle)
+        val cosa = cos(angle)
         return Transforms.multiply(this, cosa, sina, -sina, cosa, 0f, 0f, this)
     }
 

@@ -18,7 +18,10 @@
 
 package pythagoras.f
 
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.ln
+import kotlin.math.min
+import kotlin.math.pow
 
 /**
  * Math utility methods and constants for single-precision floating point math.
@@ -86,9 +89,9 @@ object MathUtil {
         var target = target
         target = abs(target)
         if (v >= 0) {
-            return target * floor((v + 0.5f * target) / target)
+            return target * kotlin.math.floor((v + 0.5f * target) / target)
         } else {
-            return target * ceil((v - 0.5f * target) / target)
+            return target * kotlin.math.ceil((v - 0.5f * target) / target)
         }
     }
 
@@ -121,7 +124,7 @@ object MathUtil {
      * @param mean the desired mean.
      */
     fun exponential(random: Float, mean: Float): Float {
-        return -log(1f - random) * mean
+        return -ln(1f - random) * mean
     }
 
     /**
@@ -256,76 +259,6 @@ object MathUtil {
     }
 
     /**
-     * Computes and returns the sine of the given angle.
-
-     * @see Math.sin
-     * TODO: inline
-     */
-    fun sin(a: Float): Float {
-        return sin(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the cosine of the given angle.
-
-     * @see Math.cos
-     * TODO: inline
-     */
-    fun cos(a: Float): Float {
-        return cos(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the tangent of the given angle.
-
-     * @see Math.tan
-     * TODO: inline
-     */
-    fun tan(a: Float): Float {
-        return tan(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the arc sine of the given value.
-
-     * @see Math.asin
-     * TODO: inline
-     */
-    fun asin(a: Float): Float {
-        return asin(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the arc cosine of the given value.
-
-     * @see Math.acos
-     * TODO: inline
-     */
-    fun acos(a: Float): Float {
-        return acos(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the arc tangent of the given value.
-
-     * @see Math.atan
-     * TODO: inline
-     */
-    fun atan(a: Float): Float {
-        return atan(a.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns the arc tangent of the given values.
-
-     * @see Math.atan2
-     * TODO: inline
-     */
-    fun atan2(y: Float, x: Float): Float {
-        return atan2(y.toDouble(), x.toDouble()).toFloat()
-    }
-
-    /**
      * Converts from radians to degrees.
 
      * @see Math.toDegrees
@@ -341,83 +274,6 @@ object MathUtil {
      */
     fun toRadians(a: Float): Float {
         return a * (PI / 180f)
-    }
-
-    /**
-     * Returns the square root of the supplied value.
-
-     * @see Math.sqrt
-     * TODO: inline
-     */
-    fun sqrt(v: Float): Float {
-        return sqrt(v.toDouble()).toFloat()
-    }
-
-    /**
-     * Computes and returns sqrt(x*x + y*y).
-
-     * @see Math.hypot
-     * TODO: inline
-     */
-    fun hypot(x: Float, y: Float): Float {
-        return hypot(x.toDouble(), y.toDouble()).toFloat()
-    }
-
-    /**
-     * Returns e to the power of the supplied value.
-
-     * @see Math.exp
-     * TODO: inline
-     */
-    fun exp(v: Float): Float {
-        return exp(v.toDouble()).toFloat()
-    }
-
-    /**
-     * Returns the natural logarithm of the supplied value.
-     * @see Math.log
-     * TODO: inline
-     */
-    fun log(v: Float): Float {
-        return ln(v)
-    }
-
-    /**
-     * Returns the base 10 logarithm of the supplied value.
-
-     * @see Math.log10
-     */
-    fun log10(v: Float): Float {
-        return log10(v.toDouble()).toFloat()
-    }
-
-    /**
-     * Returns v to the power of e.
-
-     * @see Math.pow
-     * TODO: inline
-     */
-    fun pow(v: Float, e: Float): Float {
-        return v.pow(e)
-    }
-
-    /**
-     * Returns the floor of v.
-     * @see Math.floor
-     * TODO: inline
-     */
-    fun floor(v: Float): Float {
-        return floor(v.toDouble()).toFloat()
-    }
-
-    /**
-     * Returns the ceiling of v.
-
-     * @see Math.ceil
-     * TODO: inline
-     */
-    fun ceil(v: Float): Float {
-        return ceil(v.toDouble()).toFloat()
     }
 
     /**

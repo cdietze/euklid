@@ -18,6 +18,8 @@
 
 package pythagoras.f
 
+import kotlin.math.sqrt
+
 /**
  * Line-related utility methods.
  */
@@ -103,7 +105,7 @@ object Lines {
      * Returns the distance from the specified point to the specified line.
      */
     fun pointLineDist(px: Float, py: Float, x1: Float, y1: Float, x2: Float, y2: Float): Float {
-        return MathUtil.sqrt(pointLineDistSq(px, py, x1, y1, x2, y2))
+        return sqrt(pointLineDistSq(px, py, x1, y1, x2, y2))
     }
 
     /**
@@ -145,7 +147,7 @@ object Lines {
      * Returns the distance between the specified point and the specified line segment.
      */
     fun pointSegDist(px: Float, py: Float, x1: Float, y1: Float, x2: Float, y2: Float): Float {
-        return MathUtil.sqrt(pointSegDistSq(px, py, x1, y1, x2, y2))
+        return sqrt(pointSegDistSq(px, py, x1, y1, x2, y2))
     }
 
     /**

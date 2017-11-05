@@ -252,12 +252,12 @@ class Vector3 : IVector3 {
 
     override // from interface IVector3
     fun angle(other: IVector3): Float {
-        return MathUtil.acos(dot(other) / (length() * other.length()))
+        return acos(dot(other) / (length() * other.length()))
     }
 
     override // from interface IVector3
     fun length(): Float {
-        return MathUtil.sqrt(lengthSquared())
+        return sqrt(lengthSquared())
     }
 
     override // from interface IVector3
@@ -270,7 +270,7 @@ class Vector3 : IVector3 {
 
     override // from interface IVector3
     fun distance(other: IVector3): Float {
-        return MathUtil.sqrt(distanceSquared(other))
+        return sqrt(distanceSquared(other))
     }
 
     override // from interface IVector3

@@ -18,16 +18,13 @@
 
 package pythagoras.f
 
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
+import kotlin.math.*
 
 /**
  * Various geometry utility methods.
  */
 object GeometryUtil {
-    val EPSILON = MathUtil.pow(10f, -14f)
+    val EPSILON = 10f.pow(-14f)
 
     fun intersectLinesWithParams(x1: Float, y1: Float, x2: Float, y2: Float,
                                  x3: Float, y3: Float, x4: Float, y4: Float,

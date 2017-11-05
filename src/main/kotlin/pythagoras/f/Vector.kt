@@ -16,6 +16,9 @@
 
 package pythagoras.f
 
+import kotlin.math.cos
+import kotlin.math.sin
+
 /**
  * Represents a vector in a plane.
  */
@@ -147,7 +150,7 @@ data class Vector(
      */
     fun setAngle(angle: Float): Vector {
         val l = length()
-        return set(l * MathUtil.cos(angle), l * MathUtil.sin(angle))
+        return set(l * cos(angle), l * sin(angle))
     }
 
     /**

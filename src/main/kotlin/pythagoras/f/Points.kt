@@ -42,7 +42,7 @@ object Points {
      * Returns the Euclidean distance between the specified two points.
      */
     fun distance(x1: Float, y1: Float, x2: Float, y2: Float): Float {
-        return MathUtil.sqrt(distanceSq(x1, y1, x2, y2))
+        return sqrt(distanceSq(x1, y1, x2, y2))
     }
 
     /**
@@ -58,7 +58,7 @@ object Points {
      */
     fun transform(x: Float, y: Float, sx: Float, sy: Float, rotation: Float,
                   tx: Float, ty: Float, result: Point): Point {
-        return transform(x, y, sx, sy, MathUtil.sin(rotation), MathUtil.cos(rotation), tx, ty,
+        return transform(x, y, sx, sy, sin(rotation), cos(rotation), tx, ty,
                 result)
     }
 
@@ -79,8 +79,8 @@ object Points {
         var y = y
         x -= tx
         y -= ty // untranslate
-        val sinnega = MathUtil.sin(-rotation)
-        val cosnega = MathUtil.cos(-rotation)
+        val sinnega = sin(-rotation)
+        val cosnega = cos(-rotation)
         val nx = x * cosnega - y * sinnega // unrotate
         val ny = x * sinnega + y * cosnega
         return result.set(nx / sx, ny / sy) // unscale
