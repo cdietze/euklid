@@ -18,20 +18,23 @@
 
 package pythagoras.f
 
+import kotlin.math.abs
+
 /**
  * Provides read-only access to a [Plane].
  */
 interface IPlane {
-    /** Returns the plane constant.  */
-    val constant: Float
 
     /** Returns the plane normal.  */
     val normal: IVector3
 
+    /** Returns the plane constant.  */
+    val constant: Float
+
     /**
      * Computes and returns the signed distance from the plane to the specified point.
      */
-    fun distance(pt: IVector3): Float
+    fun distance(pt: IVector3): Float = normal.dot(pt) + constant
 
     // /**
     //  * Transforms this plane by the specified transformation.
@@ -53,14 +56,18 @@ interface IPlane {
 
      * @return a new plane containing the result.
      */
-    fun negate(): Plane
+    fun negate(): Plane = negate(Plane())
 
     /**
      * Negates this plane, placing the result in the object provided.
 
      * @return a reference to the result, for chaining.
      */
-    fun negate(result: Plane): Plane
+    fun negate(result: Plane): Plane {
+        normal.negate(result.normal)
+        result.constant = -constant
+        return result
+    }
 
     /**
      * Computes the intersection of the supplied ray with this plane, placing the result
@@ -69,12 +76,30 @@ interface IPlane {
      * @return true if the ray intersects the plane (in which case the result will contain
      * * the point of intersection), false if not.
      */
-    fun intersection(ray: IRay3, result: Vector3): Boolean
+    fun intersection(ray: IRay3, result: Vector3): Boolean {
+        val distance = distance(ray)
+        return if (distance.isNaN() || distance < 0f) {
+            false
+        } else {
+            ray.origin.addScaled(ray.direction, distance, result)
+            true
+        }
+    }
 
     /**
      * Computes the signed distance to this plane along the specified ray.
 
      * @return the signed distance, or [Float.NaN] if the ray runs parallel to the plane.
      */
-    fun distance(ray: IRay3): Float
+    fun distance(ray: IRay3): Float {
+        val dividend = -distance(ray.origin)
+        val divisor = normal.dot(ray.direction)
+        return if (abs(dividend) < MathUtil.EPSILON) {
+            0f // origin is on plane
+        } else if (abs(divisor) < MathUtil.EPSILON) {
+            Float.NaN // ray is parallel to plane
+        } else {
+            dividend / divisor
+        }
+    }
 }
