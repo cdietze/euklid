@@ -26,14 +26,12 @@ import kotlin.math.sqrt
  * from the derived class.
  */
 abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
-    override
-    fun clone(): RoundRectangle {
+    override fun clone(): RoundRectangle {
         return RoundRectangle(x, y, width, height,
                 arcWidth, arcHeight)
     }
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         var px = x
         var py = y
         if (isEmpty) return false
@@ -71,8 +69,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return px * px + py * py <= 1f
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val rx1 = x
         val ry1 = y
@@ -81,8 +78,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
 
         val x1 = this.x
@@ -104,8 +100,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return contains(nx, ny)
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 

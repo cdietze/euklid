@@ -98,82 +98,68 @@ abstract class RectangularShape : IRectangularShape {
         setFrameFromCenter(center.x, center.y, corner.x, corner.y)
     }
 
-    override
-    val min: Point
+    override val min: Point
         get() {
             return Point(minX, minY)
         }
 
-    override
-    val minX: Float
+    override val minX: Float
         get() {
             return x
         }
 
-    override
-    val minY: Float
+    override val minY: Float
         get() {
             return y
         }
 
-    override
-    val max: Point
+    override val max: Point
         get() {
             return Point(maxX, maxY)
         }
 
-    override
-    val maxX: Float
+    override val maxX: Float
         get() {
             return x + width
         }
 
-    override
-    val maxY: Float
+    override val maxY: Float
         get() {
             return y + height
         }
 
-    override
-    val center: Point
+    override val center: Point
         get() {
             return Point(centerX, centerY)
         }
 
-    override
-    val centerX: Float
+    override val centerX: Float
         get() {
             return x + width / 2
         }
 
-    override
-    val centerY: Float
+    override val centerY: Float
         get() {
             return y + height / 2
         }
 
-    override
-    fun frame(): Rectangle {
+    override fun frame(): Rectangle {
         return bounds()
     }
 
-    override
-    fun frame(target: Rectangle): Rectangle {
+    override fun frame(target: Rectangle): Rectangle {
         return bounds(target)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = width <= 0 || height <= 0
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         target.setBounds(x, y, width, height)
         return target
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 }

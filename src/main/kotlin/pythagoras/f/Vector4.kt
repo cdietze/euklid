@@ -118,51 +118,42 @@ class Vector4 : IVector4 {
         return mult(matrix, this)
     }
 
-    override
-    fun epsilonEquals(other: IVector4, epsilon: Float): Boolean {
+    override fun epsilonEquals(other: IVector4, epsilon: Float): Boolean {
         return abs(x - other.x) < epsilon &&
                 abs(y - other.y) < epsilon &&
                 abs(z - other.z) < epsilon &&
                 abs(w - other.w) < epsilon
     }
 
-    override
-    fun negate(): Vector4 {
+    override fun negate(): Vector4 {
         return negate(Vector4())
     }
 
-    override
-    fun negate(result: Vector4): Vector4 {
+    override fun negate(result: Vector4): Vector4 {
         return result.set(-x, -y, -z, -w)
     }
 
-    override
-    fun abs(): Vector4 {
+    override fun abs(): Vector4 {
         return abs(Vector4())
     }
 
-    override
-    fun abs(result: Vector4): Vector4 {
+    override fun abs(result: Vector4): Vector4 {
         return result.set(abs(x), abs(y), abs(z), abs(w))
     }
 
-    override
-    fun mult(v: Float): Vector4 {
+    override fun mult(v: Float): Vector4 {
         return mult(v, Vector4())
     }
 
-    override
-    fun mult(v: Float, result: Vector4): Vector4 {
+    override fun mult(v: Float, result: Vector4): Vector4 {
         return result.set(x * v, y * v, z * v, w * v)
     }
 
-    override
-    fun mult(matrix: IMatrix4): Vector4 {
+    override fun mult(matrix: IMatrix4): Vector4 {
         return mult(matrix, Vector4())
     }
 
-    override
-    fun mult(matrix: IMatrix4, result: Vector4): Vector4 {
+    override fun mult(matrix: IMatrix4, result: Vector4): Vector4 {
         val m00 = matrix.m00
         val m10 = matrix.m10
         val m20 = matrix.m20

@@ -176,18 +176,15 @@ class Vector3 : IVector3 {
         return this
     }
 
-    override
-    fun dot(other: IVector3): Float {
+    override fun dot(other: IVector3): Float {
         return x * other.x + y * other.y + z * other.z
     }
 
-    override
-    fun cross(other: IVector3): Vector3 {
+    override fun cross(other: IVector3): Vector3 {
         return cross(other, Vector3())
     }
 
-    override
-    fun cross(other: IVector3, result: Vector3): Vector3 {
+    override fun cross(other: IVector3, result: Vector3): Vector3 {
         val x = this.x
         val y = this.y
         val z = this.z
@@ -197,8 +194,7 @@ class Vector3 : IVector3 {
         return result.set(y * oz - z * oy, z * ox - x * oz, x * oy - y * ox)
     }
 
-    override
-    fun triple(b: IVector3, c: IVector3): Float {
+    override fun triple(b: IVector3, c: IVector3): Float {
         val bx = b.x
         val by = b.y
         val bz = b.z
@@ -208,147 +204,120 @@ class Vector3 : IVector3 {
         return x * (by * cz - bz * cy) + y * (bz * cx - bx * cz) + z * (bx * cy - by * cx)
     }
 
-    override
-    fun negate(): Vector3 {
+    override fun negate(): Vector3 {
         return negate(Vector3())
     }
 
-    override
-    fun negate(result: Vector3): Vector3 {
+    override fun negate(result: Vector3): Vector3 {
         return result.set(-x, -y, -z)
     }
 
-    override
-    fun abs(): Vector3 {
+    override fun abs(): Vector3 {
         return abs(Vector3())
     }
 
-    override
-    fun abs(result: Vector3): Vector3 {
+    override fun abs(result: Vector3): Vector3 {
         return result.set(abs(x), abs(y), abs(z))
     }
 
-    override
-    fun normalize(): Vector3 {
+    override fun normalize(): Vector3 {
         return normalize(Vector3())
     }
 
-    override
-    fun normalize(result: Vector3): Vector3 {
+    override fun normalize(result: Vector3): Vector3 {
         return mult(1f / length(), result)
     }
 
-    override
-    fun angle(other: IVector3): Float {
+    override fun angle(other: IVector3): Float {
         return acos(dot(other) / (length() * other.length()))
     }
 
-    override
-    fun length(): Float {
+    override fun length(): Float {
         return sqrt(lengthSquared())
     }
 
-    override
-    fun lengthSquared(): Float {
+    override fun lengthSquared(): Float {
         val x = this.x
         val y = this.y
         val z = this.z
         return x * x + y * y + z * z
     }
 
-    override
-    fun distance(other: IVector3): Float {
+    override fun distance(other: IVector3): Float {
         return sqrt(distanceSquared(other))
     }
 
-    override
-    fun distanceSquared(other: IVector3): Float {
+    override fun distanceSquared(other: IVector3): Float {
         val dx = x - other.x
         val dy = y - other.y
         val dz = z - other.z
         return dx * dx + dy * dy + dz * dz
     }
 
-    override
-    fun manhattanDistance(other: IVector3): Float {
+    override fun manhattanDistance(other: IVector3): Float {
         return abs(x - other.x) + abs(y - other.y) + abs(z - other.z)
     }
 
-    override
-    fun mult(v: Float): Vector3 {
+    override fun mult(v: Float): Vector3 {
         return mult(v, Vector3())
     }
 
-    override
-    fun mult(v: Float, result: Vector3): Vector3 {
+    override fun mult(v: Float, result: Vector3): Vector3 {
         return result.set(x * v, y * v, z * v)
     }
 
-    override
-    fun mult(other: IVector3): Vector3 {
+    override fun mult(other: IVector3): Vector3 {
         return mult(other, Vector3())
     }
 
-    override
-    fun mult(other: IVector3, result: Vector3): Vector3 {
+    override fun mult(other: IVector3, result: Vector3): Vector3 {
         return result.set(x * other.x, y * other.y, z * other.z)
     }
 
-    override
-    fun add(other: IVector3): Vector3 {
+    override fun add(other: IVector3): Vector3 {
         return add(other, Vector3())
     }
 
-    override
-    fun add(other: IVector3, result: Vector3): Vector3 {
+    override fun add(other: IVector3, result: Vector3): Vector3 {
         return add(other.x, other.y, other.z, result)
     }
 
-    override
-    fun subtract(other: IVector3): Vector3 {
+    override fun subtract(other: IVector3): Vector3 {
         return subtract(other, Vector3())
     }
 
-    override
-    fun subtract(other: IVector3, result: Vector3): Vector3 {
+    override fun subtract(other: IVector3, result: Vector3): Vector3 {
         return add(-other.x, -other.y, -other.z, result)
     }
 
-    override
-    fun add(x: Float, y: Float, z: Float): Vector3 {
+    override fun add(x: Float, y: Float, z: Float): Vector3 {
         return add(x, y, z, Vector3())
     }
 
-    override
-    fun add(x: Float, y: Float, z: Float, result: Vector3): Vector3 {
+    override fun add(x: Float, y: Float, z: Float, result: Vector3): Vector3 {
         return result.set(this.x + x, this.y + y, this.z + z)
     }
 
-    override
-    fun addScaled(other: IVector3, v: Float): Vector3 {
+    override fun addScaled(other: IVector3, v: Float): Vector3 {
         return addScaled(other, v, Vector3())
     }
 
-    override
-    fun addScaled(other: IVector3, v: Float, result: Vector3): Vector3 {
+    override fun addScaled(other: IVector3, v: Float, result: Vector3): Vector3 {
         return result.set(x + other.x * v, y + other.y * v, z + other.z * v)
     }
 
-    override
-    fun lerp(other: IVector3, t: Float): Vector3 {
+    override fun lerp(other: IVector3, t: Float): Vector3 {
         return lerp(other, t, Vector3())
     }
 
-    override
-    fun lerp(other: IVector3, t: Float, result: Vector3): Vector3 {
+    override fun lerp(other: IVector3, t: Float, result: Vector3): Vector3 {
         val x = this.x
         val y = this.y
         val z = this.z
         return result.set(x + t * (other.x - x), y + t * (other.y - y), z + t * (other.z - z))
     }
 
-    override
-    fun get(idx: Int): Float {
+    override fun get(idx: Int): Float {
         when (idx) {
             0 -> return x
             1 -> return y
@@ -357,8 +326,7 @@ class Vector3 : IVector3 {
         throw IndexOutOfBoundsException(idx.toString())
     }
 
-    override
-    fun get(values: FloatArray) {
+    override fun get(values: FloatArray) {
         values[0] = x
         values[1] = y
         values[2] = z

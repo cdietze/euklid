@@ -23,102 +23,82 @@ package pythagoras.f
  * from the derived class.
  */
 abstract class AbstractLine : ILine {
-    override
-    fun p1(): Point {
+    override fun p1(): Point {
         return p1(Point())
     }
 
-    override
-    fun p1(target: Point): Point {
+    override fun p1(target: Point): Point {
         return target.set(x1, y1)
     }
 
-    override
-    fun p2(): Point {
+    override fun p2(): Point {
         return p2(Point())
     }
 
-    override
-    fun p2(target: Point): Point {
+    override fun p2(target: Point): Point {
         return target.set(x2, y2)
     }
 
-    override
-    fun pointLineDistSq(px: Float, py: Float): Float {
+    override fun pointLineDistSq(px: Float, py: Float): Float {
         return Lines.pointLineDistSq(px, py, x1, y1, x2, y2)
     }
 
-    override
-    fun pointLineDistSq(p: XY): Float {
+    override fun pointLineDistSq(p: XY): Float {
         return Lines.pointLineDistSq(p.x, p.y, x1, y1, x2, y2)
     }
 
-    override
-    fun pointLineDist(px: Float, py: Float): Float {
+    override fun pointLineDist(px: Float, py: Float): Float {
         return Lines.pointLineDist(px, py, x1, y1, x2, y2)
     }
 
-    override
-    fun pointLineDist(p: XY): Float {
+    override fun pointLineDist(p: XY): Float {
         return Lines.pointLineDist(p.x, p.y, x1, y1, x2, y2)
     }
 
-    override
-    fun pointSegDistSq(px: Float, py: Float): Float {
+    override fun pointSegDistSq(px: Float, py: Float): Float {
         return Lines.pointSegDistSq(px, py, x1, y1, x2, y2)
     }
 
-    override
-    fun pointSegDistSq(p: XY): Float {
+    override fun pointSegDistSq(p: XY): Float {
         return Lines.pointSegDistSq(p.x, p.y, x1, y1, x2, y2)
     }
 
-    override
-    fun pointSegDist(px: Float, py: Float): Float {
+    override fun pointSegDist(px: Float, py: Float): Float {
         return Lines.pointSegDist(px, py, x1, y1, x2, y2)
     }
 
-    override
-    fun pointSegDist(p: XY): Float {
+    override fun pointSegDist(p: XY): Float {
         return Lines.pointSegDist(p.x, p.y, x1, y1, x2, y2)
     }
 
-    override
-    fun relativeCCW(px: Float, py: Float): Int {
+    override fun relativeCCW(px: Float, py: Float): Int {
         return Lines.relativeCCW(px, py, x1, y1, x2, y2)
     }
 
-    override
-    fun relativeCCW(p: XY): Int {
+    override fun relativeCCW(p: XY): Int {
         return Lines.relativeCCW(p.x, p.y, x1, y1, x2, y2)
     }
 
-    override
-    fun clone(): Line {
+    override fun clone(): Line {
         return Line(x1, y1, x2, y2)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = false
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         return false
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         return false
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         return Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         val x1 = x1
         val x2 = x2
         val y1 = y1
@@ -145,13 +125,11 @@ abstract class AbstractLine : ILine {
         return target
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return Iterator(this, transform)
     }
 

@@ -210,8 +210,7 @@ class Arc : AbstractArc {
         setAngles(p1.x, p1.y, p2.x, p2.y)
     }
 
-    override
-    fun setFrame(x: Float, y: Float, width: Float, height: Float) {
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         setArc(x, y, width, height, angleStart, angleExtent, type)
     }
 

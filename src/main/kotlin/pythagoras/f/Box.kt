@@ -136,49 +136,40 @@ class Box : IBox {
         return expand(x, y, z, this)
     }
 
-    override
-    fun minimumExtent(): IVector3 {
+    override fun minimumExtent(): IVector3 {
         return _minExtent
     }
 
-    override
-    fun maximumExtent(): IVector3 {
+    override fun maximumExtent(): IVector3 {
         return _maxExtent
     }
 
-    override
-    fun center(): Vector3 {
+    override fun center(): Vector3 {
         return center(Vector3())
     }
 
-    override
-    fun center(result: Vector3): Vector3 {
+    override fun center(result: Vector3): Vector3 {
         return _minExtent.add(_maxExtent, result).multLocal(0.5f)
     }
 
-    override
-    fun diagonalLength(): Float {
+    override fun diagonalLength(): Float {
         return _minExtent.distance(_maxExtent)
     }
 
-    override
-    fun longestEdge(): Float {
+    override fun longestEdge(): Float {
         return max(max(_maxExtent.x - _minExtent.x, _maxExtent.y - _minExtent.y),
                 _maxExtent.z - _minExtent.z)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = _minExtent.x > _maxExtent.x || _minExtent.y > _maxExtent.y ||
                 _minExtent.z > _maxExtent.z
 
-    override
-    fun add(point: IVector3): Box {
+    override fun add(point: IVector3): Box {
         return add(point, Box())
     }
 
-    override
-    fun add(point: IVector3, result: Box): Box {
+    override fun add(point: IVector3, result: Box): Box {
         result._minExtent.set(
                 min(_minExtent.x, point.x),
                 min(_minExtent.y, point.y),
@@ -190,13 +181,11 @@ class Box : IBox {
         return result
     }
 
-    override
-    fun add(other: IBox): Box {
+    override fun add(other: IBox): Box {
         return add(other, Box())
     }
 
-    override
-    fun add(other: IBox, result: Box): Box {
+    override fun add(other: IBox, result: Box): Box {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         result._minExtent.set(
@@ -210,13 +199,11 @@ class Box : IBox {
         return result
     }
 
-    override
-    fun intersect(other: IBox): Box {
+    override fun intersect(other: IBox): Box {
         return intersect(other, Box())
     }
 
-    override
-    fun intersect(other: IBox, result: Box): Box {
+    override fun intersect(other: IBox, result: Box): Box {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         result._minExtent.set(
@@ -280,13 +267,11 @@ class Box : IBox {
     //     return result;
     // }
 
-    override
-    fun project(matrix: IMatrix4): Box {
+    override fun project(matrix: IMatrix4): Box {
         return project(matrix, Box())
     }
 
-    override
-    fun project(matrix: IMatrix4, result: Box): Box {
+    override fun project(matrix: IMatrix4, result: Box): Box {
         var minx = +Float.MAX_VALUE
         var miny = +Float.MAX_VALUE
         var minz = +Float.MAX_VALUE
@@ -313,44 +298,37 @@ class Box : IBox {
         return result
     }
 
-    override
-    fun expand(x: Float, y: Float, z: Float): Box {
+    override fun expand(x: Float, y: Float, z: Float): Box {
         return expand(x, y, z, Box())
     }
 
-    override
-    fun expand(x: Float, y: Float, z: Float, result: Box): Box {
+    override fun expand(x: Float, y: Float, z: Float, result: Box): Box {
         result._minExtent.set(_minExtent.x - x, _minExtent.y - y, _minExtent.z - z)
         result._maxExtent.set(_maxExtent.x + x, _maxExtent.y + y, _maxExtent.z + z)
         return result
     }
 
-    override
-    fun vertex(code: Int, result: Vector3): Vector3 {
+    override fun vertex(code: Int, result: Vector3): Vector3 {
         return result.set(if (code and (1 shl 2) == 0) _minExtent.x else _maxExtent.x,
                 if (code and (1 shl 1) == 0) _minExtent.y else _maxExtent.y,
                 if (code and (1 shl 0) == 0) _minExtent.z else _maxExtent.z)
     }
 
-    override
-    fun contains(point: IVector3): Boolean {
+    override fun contains(point: IVector3): Boolean {
         return contains(point.x, point.y, point.z)
     }
 
-    override
-    fun contains(x: Float, y: Float, z: Float): Boolean {
+    override fun contains(x: Float, y: Float, z: Float): Boolean {
         return x >= _minExtent.x && x <= _maxExtent.x &&
                 y >= _minExtent.y && y <= _maxExtent.y &&
                 z >= _minExtent.z && z <= _maxExtent.z
     }
 
-    override
-    fun extentDistance(other: IBox): Float {
+    override fun extentDistance(other: IBox): Float {
         return other.minimumExtent().manhattanDistance(_minExtent) + other.maximumExtent().manhattanDistance(_maxExtent)
     }
 
-    override
-    fun contains(other: IBox): Boolean {
+    override fun contains(other: IBox): Boolean {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         return omin.x >= _minExtent.x && omax.x <= _maxExtent.x &&
@@ -358,8 +336,7 @@ class Box : IBox {
                 omin.z >= _minExtent.z && omax.z <= _maxExtent.z
     }
 
-    override
-    fun intersects(other: IBox): Boolean {
+    override fun intersects(other: IBox): Boolean {
         val omin = other.minimumExtent()
         val omax = other.maximumExtent()
         return _maxExtent.x >= omin.x && _minExtent.x <= omax.x &&
@@ -367,16 +344,14 @@ class Box : IBox {
                 _maxExtent.z >= omin.z && _minExtent.z <= omax.z
     }
 
-    override
-    fun intersects(ray: IRay3): Boolean {
+    override fun intersects(ray: IRay3): Boolean {
         val dir = ray.direction
         return abs(dir.x) > MathUtil.EPSILON && (intersectsX(ray, _minExtent.x) || intersectsX(ray, _maxExtent.x)) ||
                 abs(dir.y) > MathUtil.EPSILON && (intersectsY(ray, _minExtent.y) || intersectsY(ray, _maxExtent.y)) ||
                 abs(dir.z) > MathUtil.EPSILON && (intersectsZ(ray, _minExtent.z) || intersectsZ(ray, _maxExtent.z))
     }
 
-    override
-    fun intersection(ray: IRay3, result: Vector3): Boolean {
+    override fun intersection(ray: IRay3, result: Vector3): Boolean {
         val origin = ray.origin
         if (contains(origin)) {
             result.set(origin)

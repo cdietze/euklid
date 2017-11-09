@@ -205,23 +205,19 @@ class Area : IShape {
         subtract(a)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = _rulesSize == 0 && _coordsSize == 0
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         return !isEmpty && containsExact(x, y) > 0
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val crossCount = Crossing.intersectPath(pathIterator(null), x, y, width, height)
         return crossCount != Crossing.CROSSING && Crossing.isInsideEvenOdd(crossCount)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (width <= 0f || height <= 0f) {
             return false
         } else if (!bounds().intersects(x, y, width, height)) {
@@ -231,8 +227,7 @@ class Area : IShape {
         return Crossing.isInsideEvenOdd(crossCount)
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         var maxX = _coords[0]
         var maxY = _coords[1]
         var minX = _coords[0]
@@ -247,18 +242,15 @@ class Area : IShape {
         return Rectangle(minX, minY, maxX - minX, maxY - minY)
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return AreaPathIterator(transform)
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
-    override
-    fun equals(other: Any?): Boolean {
+    override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
         } else if (other !is Area) {
@@ -275,8 +267,7 @@ class Area : IShape {
         return area
     }
 
-    override
-    fun toString(): String {
+    override fun toString(): String {
         return "Area[coords=" + _coordsSize + ", rules=" + _rulesSize +
                 ", isPoly=" + isPolygonal + "]"
     }

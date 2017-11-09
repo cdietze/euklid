@@ -525,26 +525,22 @@ data class Matrix4(
         return lerpAffine(other, t, this)
     }
 
-    override
-    fun transpose(): Matrix4 {
+    override fun transpose(): Matrix4 {
         return transpose(Matrix4())
     }
 
-    override
-    fun transpose(result: Matrix4): Matrix4 {
+    override fun transpose(result: Matrix4): Matrix4 {
         return result.set(m00, m01, m02, m03,
                 m10, m11, m12, m13,
                 m20, m21, m22, m23,
                 m30, m31, m32, m33)
     }
 
-    override
-    fun mult(other: IMatrix4): Matrix4 {
+    override fun mult(other: IMatrix4): Matrix4 {
         return mult(other, Matrix4())
     }
 
-    override
-    fun mult(other: IMatrix4, result: Matrix4): Matrix4 {
+    override fun mult(other: IMatrix4, result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -598,21 +594,17 @@ data class Matrix4(
                 m03 * om30 + m13 * om31 + m23 * om32 + m33 * om33)
     }
 
-    override
-    val isAffine: Boolean
+    override val isAffine: Boolean
         get() = m03 == 0f && m13 == 0f && m23 == 0f && m33 == 1f
 
-    override
-    val isMirrored: Boolean
+    override val isMirrored: Boolean
         get() = m00 * (m11 * m22 - m12 * m21) + m01 * (m12 * m20 - m10 * m22) + m02 * (m10 * m21 - m11 * m20) < 0f
 
-    override
-    fun multAffine(other: IMatrix4): Matrix4 {
+    override fun multAffine(other: IMatrix4): Matrix4 {
         return multAffine(other, Matrix4())
     }
 
-    override
-    fun multAffine(other: IMatrix4, result: Matrix4): Matrix4 {
+    override fun multAffine(other: IMatrix4, result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -655,8 +647,7 @@ data class Matrix4(
                 0f, 0f, 0f, 1f)
     }
 
-    override
-    fun invert(): Matrix4 {
+    override fun invert(): Matrix4 {
         return invert(Matrix4())
     }
 
@@ -664,8 +655,7 @@ data class Matrix4(
      * {@inheritDoc} This code is based on the examples in the
      * [Matrix and Quaternion FAQ](http://www.j3d.org/matrix_faq/matrfaq_latest.html).
      */
-    override
-    fun invert(result: Matrix4): Matrix4 {
+    override fun invert(result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -715,13 +705,11 @@ data class Matrix4(
                 +(m00 * (m11 * m22 - m12 * m21) + m10 * (m02 * m21 - m01 * m22) + m20 * (m01 * m12 - m02 * m11)) * rdet)
     }
 
-    override
-    fun invertAffine(): Matrix4 {
+    override fun invertAffine(): Matrix4 {
         return invertAffine(Matrix4())
     }
 
-    override
-    fun invertAffine(result: Matrix4): Matrix4 {
+    override fun invertAffine(result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -763,13 +751,11 @@ data class Matrix4(
                 0f, 0f, 0f, 1f)
     }
 
-    override
-    fun lerp(other: IMatrix4, t: Float): Matrix4 {
+    override fun lerp(other: IMatrix4, t: Float): Matrix4 {
         return lerp(other, t, Matrix4())
     }
 
-    override
-    fun lerp(other: IMatrix4, t: Float, result: Matrix4): Matrix4 {
+    override fun lerp(other: IMatrix4, t: Float, result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -807,13 +793,11 @@ data class Matrix4(
                 m33 + t * (other.m33 - m33))
     }
 
-    override
-    fun lerpAffine(other: IMatrix4, t: Float): Matrix4 {
+    override fun lerpAffine(other: IMatrix4, t: Float): Matrix4 {
         return lerpAffine(other, t, Matrix4())
     }
 
-    override
-    fun lerpAffine(other: IMatrix4, t: Float, result: Matrix4): Matrix4 {
+    override fun lerpAffine(other: IMatrix4, t: Float, result: Matrix4): Matrix4 {
         val m00 = this.m00
         val m10 = this.m10
         val m20 = this.m20
@@ -844,18 +828,15 @@ data class Matrix4(
                 0f, 0f, 0f, 1f)
     }
 
-    override
-    fun projectPointLocal(point: Vector3): Vector3 {
+    override fun projectPointLocal(point: Vector3): Vector3 {
         return projectPoint(point, point)
     }
 
-    override
-    fun projectPoint(point: IVector3): Vector3 {
+    override fun projectPoint(point: IVector3): Vector3 {
         return projectPoint(point, Vector3())
     }
 
-    override
-    fun projectPoint(point: IVector3, result: Vector3): Vector3 {
+    override fun projectPoint(point: IVector3, result: Vector3): Vector3 {
         val px = point.x
         val py = point.y
         val pz = point.z
@@ -865,18 +846,15 @@ data class Matrix4(
                 (m02 * px + m12 * py + m22 * pz + m32) * rw)
     }
 
-    override
-    fun transformPointLocal(point: Vector3): Vector3 {
+    override fun transformPointLocal(point: Vector3): Vector3 {
         return transformPoint(point, point)
     }
 
-    override
-    fun transformPoint(point: IVector3): Vector3 {
+    override fun transformPoint(point: IVector3): Vector3 {
         return transformPoint(point, Vector3())
     }
 
-    override
-    fun transformPoint(point: IVector3, result: Vector3): Vector3 {
+    override fun transformPoint(point: IVector3, result: Vector3): Vector3 {
         val px = point.x
         val py = point.y
         val pz = point.z
@@ -885,23 +863,19 @@ data class Matrix4(
                 m02 * px + m12 * py + m22 * pz + m32)
     }
 
-    override
-    fun transformPointZ(point: IVector3): Float {
+    override fun transformPointZ(point: IVector3): Float {
         return m02 * point.x + m12 * point.y + m22 * point.z + m32
     }
 
-    override
-    fun transformVectorLocal(vector: Vector3): Vector3 {
+    override fun transformVectorLocal(vector: Vector3): Vector3 {
         return transformVector(vector, vector)
     }
 
-    override
-    fun transformVector(vector: IVector3): Vector3 {
+    override fun transformVector(vector: IVector3): Vector3 {
         return transformVector(vector, Vector3())
     }
 
-    override
-    fun transformVector(vector: IVector3, result: Vector3): Vector3 {
+    override fun transformVector(vector: IVector3, result: Vector3): Vector3 {
         val vx = vector.x
         val vy = vector.y
         val vz = vector.z
@@ -910,13 +884,11 @@ data class Matrix4(
                 m02 * vx + m12 * vy + m22 * vz)
     }
 
-    override
-    fun transform(vector: IVector4): Vector4 {
+    override fun transform(vector: IVector4): Vector4 {
         return transform(vector, Vector4())
     }
 
-    override
-    fun transform(vector: IVector4, result: Vector4): Vector4 {
+    override fun transform(vector: IVector4, result: Vector4): Vector4 {
         val vx = vector.x
         val vy = vector.y
         val vz = vector.z
@@ -927,8 +899,7 @@ data class Matrix4(
                 m03 * vx + m13 * vy + m23 * vz + m33 * vw)
     }
 
-    override
-    fun extractRotation(): Quaternion {
+    override fun extractRotation(): Quaternion {
         return extractRotation(Quaternion())
     }
 
@@ -937,8 +908,7 @@ data class Matrix4(
      * [Ken
        * Shoemake](http://www.cs.wisc.edu/graphics/Courses/838-s2002/Papers/polar-decomp.pdf).
      */
-    override
-    fun extractRotation(result: Quaternion): Quaternion {
+    override fun extractRotation(result: Quaternion): Quaternion {
         // start with the contents of the upper 3x3 portion of the matrix
         var n00 = this.m00
         var n10 = this.m10
@@ -1012,34 +982,29 @@ data class Matrix4(
         return result
     }
 
-    override
-    fun extractRotationScale(result: Matrix3): Matrix3 {
+    override fun extractRotationScale(result: Matrix3): Matrix3 {
         return result.set(m00, m01, m02,
                 m10, m11, m12,
                 m20, m21, m22)
     }
 
-    override
-    fun extractScale(): Vector3 {
+    override fun extractScale(): Vector3 {
         return extractScale(Vector3())
     }
 
-    override
-    fun extractScale(result: Vector3): Vector3 {
+    override fun extractScale(result: Vector3): Vector3 {
         return result.set(sqrt(m00 * m00 + m01 * m01 + m02 * m02),
                 sqrt(m10 * m10 + m11 * m11 + m12 * m12),
                 sqrt(m20 * m20 + m21 * m21 + m22 * m22))
     }
 
-    override
-    fun approximateUniformScale(): Float {
+    override fun approximateUniformScale(): Float {
         return cbrt(m00 * (m11 * m22 - m12 * m21) +
                 m01 * (m12 * m20 - m10 * m22) +
                 m02 * (m10 * m21 - m11 * m20))
     }
 
-    override
-    fun epsilonEquals(other: IMatrix4, epsilon: Float): Boolean {
+    override fun epsilonEquals(other: IMatrix4, epsilon: Float): Boolean {
         return abs(m00 - other.m00) < epsilon &&
                 abs(m10 - other.m10) < epsilon &&
                 abs(m20 - other.m20) < epsilon &&

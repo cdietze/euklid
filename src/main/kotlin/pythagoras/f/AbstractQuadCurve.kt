@@ -26,65 +26,53 @@ import kotlin.math.min
  * control point from the derived class.
  */
 abstract class AbstractQuadCurve : IQuadCurve {
-    override
-    fun p1(): Point {
+    override fun p1(): Point {
         return Point(x1, y1)
     }
 
-    override
-    fun ctrlP(): Point {
+    override fun ctrlP(): Point {
         return Point(ctrlX, ctrlY)
     }
 
-    override
-    fun p2(): Point {
+    override fun p2(): Point {
         return Point(x2, y2)
     }
 
-    override
-    fun flatnessSq(): Float {
+    override fun flatnessSq(): Float {
         return Lines.pointSegDistSq(ctrlX, ctrlY, x1, y1, x2, y2)
     }
 
-    override
-    fun flatness(): Float {
+    override fun flatness(): Float {
         return Lines.pointSegDist(ctrlX, ctrlY, x1, y1, x2, y2)
     }
 
-    override
-    fun subdivide(left: QuadCurve, right: QuadCurve) {
+    override fun subdivide(left: QuadCurve, right: QuadCurve) {
         QuadCurves.subdivide(this, left, right)
     }
 
-    override
-    fun clone(): QuadCurve {
+    override fun clone(): QuadCurve {
         return QuadCurve(x1, y1, ctrlX, ctrlY, x2, y2)
     }
 
-    override
-            // curves contain no space
+    override            // curves contain no space
     val isEmpty: Boolean
         get() = true
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         return Crossing.isInsideEvenOdd(Crossing.crossShape(this, x, y))
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && Crossing.isInsideEvenOdd(cross)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || Crossing.isInsideEvenOdd(cross)
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         val x1 = x1
         val y1 = y1
         val x2 = x2
@@ -99,13 +87,11 @@ abstract class AbstractQuadCurve : IQuadCurve {
         return target
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 

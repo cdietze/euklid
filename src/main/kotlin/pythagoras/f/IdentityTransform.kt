@@ -23,44 +23,37 @@ package pythagoras.f
  */
 class IdentityTransform : AbstractTransform() {
 
-    override
-    val uniformScale: Float
+    override val uniformScale: Float
         get() {
             return 1f
         }
 
-    override
-    val scaleX: Float
+    override val scaleX: Float
         get() {
             return 1f
         }
 
-    override
-    val scaleY: Float
+    override val scaleY: Float
         get() {
             return 1f
         }
 
-    override
-    val rotation: Float
+    override val rotation: Float
         get() {
             return 0f
         }
 
-    override
-    val tx: Float
+    override val tx: Float
         get() {
             return 0f
         }
 
-    override
-    val ty: Float
+    override val ty: Float
         get() {
             return 0f
         }
 
-    override
-    fun get(matrix: FloatArray) {
+    override fun get(matrix: FloatArray) {
         matrix[0] = 1f
         matrix[1] = 0f
         matrix[2] = 0f
@@ -69,33 +62,27 @@ class IdentityTransform : AbstractTransform() {
         matrix[5] = 0f
     }
 
-    override
-    fun invert(): Transform {
+    override fun invert(): Transform {
         return this
     }
 
-    override
-    fun concatenate(other: Transform): Transform {
+    override fun concatenate(other: Transform): Transform {
         return other
     }
 
-    override
-    fun preConcatenate(other: Transform): Transform {
+    override fun preConcatenate(other: Transform): Transform {
         return other
     }
 
-    override
-    fun lerp(other: Transform, t: Float): Transform {
+    override fun lerp(other: Transform, t: Float): Transform {
         throw UnsupportedOperationException() // TODO
     }
 
-    override
-    fun transform(p: IPoint, into: Point): Point {
+    override fun transform(p: IPoint, into: Point): Point {
         return into.set(p)
     }
 
-    override
-    fun transform(src: Array<IPoint>, srcOff: Int, dst: Array<Point>, dstOff: Int, count: Int) {
+    override fun transform(src: Array<IPoint>, srcOff: Int, dst: Array<Point>, dstOff: Int, count: Int) {
         var srcOff = srcOff
         var dstOff = dstOff
         for (ii in 0..count - 1) {
@@ -103,8 +90,7 @@ class IdentityTransform : AbstractTransform() {
         }
     }
 
-    override
-    fun transform(src: FloatArray, srcOff: Int, dst: FloatArray, dstOff: Int, count: Int) {
+    override fun transform(src: FloatArray, srcOff: Int, dst: FloatArray, dstOff: Int, count: Int) {
         var srcOff = srcOff
         var dstOff = dstOff
         for (ii in 0..count - 1) {
@@ -112,33 +98,27 @@ class IdentityTransform : AbstractTransform() {
         }
     }
 
-    override
-    fun inverseTransform(p: IPoint, into: Point): Point {
+    override fun inverseTransform(p: IPoint, into: Point): Point {
         return into.set(p)
     }
 
-    override
-    fun transformPoint(v: IVector, into: Vector): Vector {
+    override fun transformPoint(v: IVector, into: Vector): Vector {
         return into.set(v)
     }
 
-    override
-    fun transform(v: IVector, into: Vector): Vector {
+    override fun transform(v: IVector, into: Vector): Vector {
         return into.set(v)
     }
 
-    override
-    fun inverseTransform(v: IVector, into: Vector): Vector {
+    override fun inverseTransform(v: IVector, into: Vector): Vector {
         return into.set(v)
     }
 
-    override
-    fun copy(): IdentityTransform {
+    override fun copy(): IdentityTransform {
         return this
     }
 
-    override
-    fun generality(): Int {
+    override fun generality(): Int {
         return GENERALITY
     }
 

@@ -27,78 +27,63 @@ import kotlin.math.sin
  * derived class.
  */
 abstract class AbstractPoint : IPoint {
-    override
-    fun distanceSq(px: Float, py: Float): Float {
+    override fun distanceSq(px: Float, py: Float): Float {
         return Points.distanceSq(x, y, px, py)
     }
 
-    override
-    fun distanceSq(p: XY): Float {
+    override fun distanceSq(p: XY): Float {
         return Points.distanceSq(x, y, p.x, p.y)
     }
 
-    override
-    fun distance(px: Float, py: Float): Float {
+    override fun distance(px: Float, py: Float): Float {
         return Points.distance(x, y, px, py)
     }
 
-    override
-    fun distance(p: XY): Float {
+    override fun distance(p: XY): Float {
         return Points.distance(x, y, p.x, p.y)
     }
 
-    override
-    fun direction(other: XY): Float {
+    override fun direction(other: XY): Float {
         return atan2(other.y - y, other.x - x)
     }
 
-    override
-    fun mult(s: Float): Point {
+    override fun mult(s: Float): Point {
         return mult(s, Point())
     }
 
-    override
-    fun mult(s: Float, result: Point): Point {
+    override fun mult(s: Float, result: Point): Point {
         return result.set(x * s, y * s)
     }
 
-    override
-    fun add(x: Float, y: Float): Point {
+    override fun add(x: Float, y: Float): Point {
         return Point(this.x + x, this.y + y)
     }
 
-    override
-    fun add(x: Float, y: Float, result: Point): Point {
+    override fun add(x: Float, y: Float, result: Point): Point {
         return result.set(this.x + x, this.y + y)
     }
 
-    override
-    fun add(other: XY, result: Point): Point {
+    override fun add(other: XY, result: Point): Point {
         return add(other.x, other.y, result)
     }
 
-    override
-    fun subtract(x: Float, y: Float): Point {
+    override fun subtract(x: Float, y: Float): Point {
         return subtract(x, y, Point())
     }
 
-    override
-    fun subtract(x: Float, y: Float, result: Point): Point {
+    override fun subtract(x: Float, y: Float, result: Point): Point {
         return result.set(this.x - x, this.y - y)
     }
 
-    override
-    fun subtract(other: XY, result: Point): Point {
+    override fun subtract(other: XY, result: Point): Point {
         return subtract(other.x, other.y, result)
     }
 
-    override
-    fun rotate(angle: Float): Point {
+    override fun rotate(angle: Float): Point {
         return rotate(angle, Point())
     }
 
-    override
-    fun rotate(angle: Float, result: Point): Point {
+    override fun rotate(angle: Float, result: Point): Point {
         val x = x
         val y = y
         val sina = sin(angle)

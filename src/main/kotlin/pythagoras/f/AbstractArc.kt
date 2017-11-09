@@ -23,34 +23,29 @@ import kotlin.math.*
  * from the derived class.
  */
 abstract class AbstractArc : RectangularShape(), IArc {
-    override
-    val startPoint: Point
+    override val startPoint: Point
         get() {
             return startPoint(Point())
         }
 
-    override
-    fun startPoint(target: Point): Point {
+    override fun startPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart)
         return target.set(x + (1f + cos(a)) * width / 2f,
                 y + (1f - sin(a)) * height / 2f)
     }
 
-    override
-    val endPoint: Point
+    override val endPoint: Point
         get() {
             return endPoint(Point())
         }
 
-    override
-    fun endPoint(target: Point): Point {
+    override fun endPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart + angleExtent)
         return target.set(x + (1f + cos(a)) * width / 2f,
                 y + (1f - sin(a)) * height / 2f)
     }
 
-    override
-    fun containsAngle(angle: Float): Boolean {
+    override fun containsAngle(angle: Float): Boolean {
         val extent = angleExtent
         if (extent >= 360f) {
             return true
@@ -67,18 +62,15 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return if (extent > 0f) angle in a1..a2 else angle in a2..a1
     }
 
-    override
-    fun clone(): Arc {
+    override fun clone(): Arc {
         return Arc(x, y, width, height, angleStart, angleExtent,
                 arcType)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = arcType == IArc.OPEN || super.isEmpty
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         // normalize point
         val nx = (x - this.x) / width - 0.5f
         val ny = (y - this.y) / height - 0.5f
@@ -106,8 +98,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return ccw1 == 0 || ccw2 == 0 || (ccw1 + ccw2 == 0) xor (absExtent > 180f)
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (!(contains(x, y) && contains(x + width, y) &&
                 contains(x + width, y + height) && contains(x, y + height))) {
             return false
@@ -130,8 +121,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return !r.intersectsLine(cx, cy, p1.x, p1.y) && !r.intersectsLine(cx, cy, p2.x, p2.y)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) {
             return false
         }
@@ -169,8 +159,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return contains(nx, ny)
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         if (isEmpty) {
             target.setBounds(x, y, width, height)
             return target
@@ -201,8 +190,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return target
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 

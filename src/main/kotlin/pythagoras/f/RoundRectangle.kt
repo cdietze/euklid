@@ -76,8 +76,7 @@ class RoundRectangle : AbstractRoundRectangle {
                 rr.arcWidth, rr.arcHeight)
     }
 
-    override
-    fun setFrame(x: Float, y: Float, width: Float, height: Float) {
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         setRoundRect(x, y, width, height, arcWidth, arcHeight)
     }
 

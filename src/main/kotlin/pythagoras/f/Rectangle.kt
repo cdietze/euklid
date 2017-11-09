@@ -155,8 +155,7 @@ data class Rectangle(
         setBounds(x1, y1, x2 - x1, y2 - y1)
     }
 
-    override
-    fun setFrame(x: Float, y: Float, width: Float, height: Float) {
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         setBounds(x, y, width, height)
     }
 

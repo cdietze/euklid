@@ -79,20 +79,17 @@ class Ray2 : IRay2 {
         return transform(transform, this)
     }
 
-    override
-    fun transform(transform: Transform): Ray2 {
+    override fun transform(transform: Transform): Ray2 {
         return transform(transform, Ray2())
     }
 
-    override
-    fun transform(transform: Transform, result: Ray2): Ray2 {
+    override fun transform(transform: Transform, result: Ray2): Ray2 {
         transform.transformPoint(origin, result.origin)
         transform.transform(direction, result.direction).normalizeLocal()
         return result
     }
 
-    override
-    fun intersects(pt: IVector): Boolean {
+    override fun intersects(pt: IVector): Boolean {
         if (abs(direction.x) > abs(direction.y)) {
             val t = (pt.x - origin.x) / direction.x
             return t >= 0f && origin.y + t * direction.y == pt.y
@@ -102,8 +99,7 @@ class Ray2 : IRay2 {
         }
     }
 
-    override
-    fun getIntersection(start: IVector, end: IVector, result: Vector): Boolean {
+    override fun getIntersection(start: IVector, end: IVector, result: Vector): Boolean {
         // ray is a + t*b, segment is c + s*d
         val ax = origin.x
         val ay = origin.y
@@ -138,8 +134,7 @@ class Ray2 : IRay2 {
         return isect
     }
 
-    override
-    fun getIntersection(start: IVector, end: IVector, radius: Float, result: Vector): Boolean {
+    override fun getIntersection(start: IVector, end: IVector, radius: Float, result: Vector): Boolean {
         val startx = start.x
         val starty = start.y
         // compute the segment's line parameters
@@ -193,8 +188,7 @@ class Ray2 : IRay2 {
         }
     }
 
-    override
-    fun getIntersection(center: IVector, radius: Float, result: Vector): Boolean {
+    override fun getIntersection(center: IVector, radius: Float, result: Vector): Boolean {
         // see if we start inside the circle
         if (origin.distanceSq(center) <= radius * radius) {
             result.set(origin)
@@ -217,8 +211,7 @@ class Ray2 : IRay2 {
         return isect
     }
 
-    override
-    fun getNearestPoint(point: IVector, result: Vector): Vector {
+    override fun getNearestPoint(point: IVector, result: Vector): Vector {
         val r = point.subtract(origin).dot(direction)
         result.set(origin.add(direction.scale(r)))
         return result

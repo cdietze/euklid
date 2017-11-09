@@ -26,50 +26,41 @@ import kotlin.math.min
  * dimensions from the derived class.
  */
 abstract class AbstractRectangle : IRectangle {
-    override
-    fun minX(): Int {
+    override fun minX(): Int {
         return x
     }
 
-    override
-    fun minY(): Int {
+    override fun minY(): Int {
         return y
     }
 
-    override
-    fun maxX(): Int {
+    override fun maxX(): Int {
         return x + width - 1
     }
 
-    override
-    fun maxY(): Int {
+    override fun maxY(): Int {
         return y + height - 1
     }
 
-    override
-    fun location(): Point {
+    override fun location(): Point {
         return location(Point())
     }
 
-    override
-    fun location(target: Point): Point {
+    override fun location(target: Point): Point {
         target.setLocation(x, y)
         return target
     }
 
-    override
-    fun size(): Dimension {
+    override fun size(): Dimension {
         return size(Dimension())
     }
 
-    override
-    fun size(target: Dimension): Dimension {
+    override fun size(target: Dimension): Dimension {
         target.setSize(width, height)
         return target
     }
 
-    override
-    fun intersection(rx: Int, ry: Int, rw: Int, rh: Int): Rectangle {
+    override fun intersection(rx: Int, ry: Int, rw: Int, rh: Int): Rectangle {
         val x1 = max(x, rx)
         val y1 = max(y, ry)
         val x2 = min(maxX(), rx + rw - 1)
@@ -77,20 +68,17 @@ abstract class AbstractRectangle : IRectangle {
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
     }
 
-    override
-    fun intersection(r: IRectangle): Rectangle {
+    override fun intersection(r: IRectangle): Rectangle {
         return intersection(r.x, r.y, r.width, r.height)
     }
 
-    override
-    fun union(r: IRectangle): Rectangle {
+    override fun union(r: IRectangle): Rectangle {
         val rect = Rectangle(this)
         rect.add(r)
         return rect
     }
 
-    override
-    fun outcode(px: Int, py: Int): Int {
+    override fun outcode(px: Int, py: Int): Int {
         var code = 0
 
         if (width <= 0) {
@@ -112,17 +100,14 @@ abstract class AbstractRectangle : IRectangle {
         return code
     }
 
-    override
-    fun outcode(point: IPoint): Int {
+    override fun outcode(point: IPoint): Int {
         return outcode(point.x, point.y)
     }
 
-    override
-    val isEmpty: Boolean
+    override val isEmpty: Boolean
         get() = width <= 0 || height <= 0
 
-    override
-    fun contains(x: Int, y: Int): Boolean {
+    override fun contains(x: Int, y: Int): Boolean {
         var px = x
         var py = y
         if (isEmpty) return false
@@ -134,8 +119,7 @@ abstract class AbstractRectangle : IRectangle {
         return px < width && py < height
     }
 
-    override
-    fun contains(x: Int, y: Int, width: Int, height: Int): Boolean {
+    override fun contains(x: Int, y: Int, width: Int, height: Int): Boolean {
         if (isEmpty) return false
         val x1 = this.x
         val y1 = this.y
@@ -144,8 +128,7 @@ abstract class AbstractRectangle : IRectangle {
         return x1 <= x && x + width <= x2 && y1 <= y && y + height <= y2
     }
 
-    override
-    fun intersects(x: Int, y: Int, width: Int, height: Int): Boolean {
+    override fun intersects(x: Int, y: Int, width: Int, height: Int): Boolean {
         if (isEmpty) return false
         val x1 = this.x
         val y1 = this.y
@@ -154,8 +137,7 @@ abstract class AbstractRectangle : IRectangle {
         return x + width > x1 && x < x2 && y + height > y1 && y < y2
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         target.setBounds(x, y, width, height)
         return target
     }

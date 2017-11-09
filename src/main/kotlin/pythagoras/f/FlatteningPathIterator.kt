@@ -83,24 +83,20 @@ internal class FlatteningPathIterator constructor(
         return bufLimit
     }
 
-    override
-    fun windingRule(): Int {
+    override fun windingRule(): Int {
         return p.windingRule()
     }
 
-    override
-    val isDone: Boolean
+    override val isDone: Boolean
         get() = bufEmpty && p.isDone
 
-    override
-    fun next() {
+    override fun next() {
         if (bufEmpty) {
             p.next()
         }
     }
 
-    override
-    fun currentSegment(coords: FloatArray): Int {
+    override fun currentSegment(coords: FloatArray): Int {
         if (isDone) {
             throw NoSuchElementException("Iterator out of bounds")
         }

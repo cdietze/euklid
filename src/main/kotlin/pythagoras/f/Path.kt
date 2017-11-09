@@ -159,8 +159,7 @@ class Path : IShape {
         return p
     }
 
-    override
-    fun bounds(target: Rectangle): Rectangle {
+    override fun bounds(target: Rectangle): Rectangle {
         var rx1: Float
         var ry1: Float
         var rx2: Float
@@ -195,35 +194,29 @@ class Path : IShape {
         return target
     }
 
-    override
-            // TODO: will this be insanely difficult to do correctly?
+    override            // TODO: will this be insanely difficult to do correctly?
     val isEmpty: Boolean
         get() = bounds().isEmpty
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         return isInside(Crossing.crossShape(this, x, y))
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && isInside(cross)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || isInside(cross)
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 

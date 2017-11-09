@@ -25,21 +25,18 @@ import kotlin.math.sqrt
  * the derived class.
  */
 abstract class AbstractEllipse : RectangularShape(), IEllipse {
-    override
-    fun clone(): Ellipse {
+    override fun clone(): Ellipse {
         return Ellipse(x, y, width, height)
     }
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         if (isEmpty) return false
         val a = (x - this.x) / width - 0.5f
         val b = (y - this.y) / height - 0.5f
         return a * a + b * b < 0.25f
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val rx1 = x
         val ry1 = y
@@ -48,8 +45,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val cx = this.x + this.width / 2f
         val cy = this.y + this.height / 2f
@@ -62,8 +58,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         return contains(nx, ny)
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 

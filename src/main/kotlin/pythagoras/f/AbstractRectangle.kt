@@ -24,29 +24,24 @@ import kotlin.math.min
  * dimensions from the derived class.
  */
 abstract class AbstractRectangle : RectangularShape(), IRectangle {
-    override
-    fun location(): Point {
+    override fun location(): Point {
         return location(Point())
     }
 
-    override
-    fun location(target: Point): Point {
+    override fun location(target: Point): Point {
         return target.set(x, y)
     }
 
-    override
-    fun size(): Dimension {
+    override fun size(): Dimension {
         return size(Dimension())
     }
 
-    override
-    fun size(target: Dimension): Dimension {
+    override fun size(target: Dimension): Dimension {
         target.setSize(width, height)
         return target
     }
 
-    override
-    fun intersection(rx: Float, ry: Float, rw: Float, rh: Float): Rectangle {
+    override fun intersection(rx: Float, ry: Float, rw: Float, rh: Float): Rectangle {
         val x1 = max(x, rx)
         val y1 = max(y, ry)
         val x2 = min(maxX, rx + rw)
@@ -54,30 +49,25 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
     }
 
-    override
-    fun intersection(r: IRectangle): Rectangle {
+    override fun intersection(r: IRectangle): Rectangle {
         return intersection(r.x, r.y, r.width, r.height)
     }
 
-    override
-    fun union(r: IRectangle): Rectangle {
+    override fun union(r: IRectangle): Rectangle {
         val rect = Rectangle(this)
         rect.add(r)
         return rect
     }
 
-    override
-    fun intersectsLine(x1: Float, y1: Float, x2: Float, y2: Float): Boolean {
+    override fun intersectsLine(x1: Float, y1: Float, x2: Float, y2: Float): Boolean {
         return Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
     }
 
-    override
-    fun intersectsLine(l: ILine): Boolean {
+    override fun intersectsLine(l: ILine): Boolean {
         return intersectsLine(l.x1, l.y1, l.x2, l.y2)
     }
 
-    override
-    fun outcode(px: Float, py: Float): Int {
+    override fun outcode(px: Float, py: Float): Int {
         var code = 0
 
         if (width <= 0) {
@@ -99,13 +89,11 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return code
     }
 
-    override
-    fun outcode(point: XY): Int {
+    override fun outcode(point: XY): Int {
         return outcode(point.x, point.y)
     }
 
-    override
-    fun contains(x: Float, y: Float): Boolean {
+    override fun contains(x: Float, y: Float): Boolean {
         var px = x
         var py = y
         if (isEmpty) return false
@@ -117,8 +105,7 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return px <= width && py <= height
     }
 
-    override
-    fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
         val x1 = this.x
@@ -128,8 +115,7 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return x1 <= x && x + width <= x2 && y1 <= y && y + height <= y2
     }
 
-    override
-    fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
+    override fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
         val x1 = this.x
@@ -139,18 +125,15 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return x + width > x1 && x < x2 && y + height > y1 && y < y2
     }
 
-    override
-    fun pathIterator(transform: Transform?): PathIterator {
+    override fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override
-    fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return Iterator(this, transform)
     }
 
-    override
-    fun toString(): String {
+    override fun toString(): String {
         return Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
     }
 
