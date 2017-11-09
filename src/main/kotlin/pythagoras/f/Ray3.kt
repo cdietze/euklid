@@ -21,40 +21,18 @@ package pythagoras.f
 /**
  * A ray consisting of an origin point and a unit direction vector.
  */
-class Ray3 : IRay3 {
-    /** The ray's point of origin.  */
-    override val origin = Vector3()
-
-    /** The ray's unit direction vector.  */
-    override val direction = Vector3()
-
-    /**
-     * Creates a ray with the values contained in the supplied origin point and unit direction
-     * vector.
-     */
-    constructor(origin: Vector3, direction: Vector3) {
-        set(origin, direction)
-    }
-
-    /**
-     * Copy constructor.
-     */
-    constructor(other: Ray3) {
-        set(other)
-    }
-
-    /**
-     * Creates an empty (invalid) ray.
-     */
-    constructor()
+data class Ray3(
+        /** The ray's point of origin.  */
+        override val origin: Vector3 = Vector3(),
+        /** The ray's unit direction vector.  */
+        override val direction: Vector3 = Vector3()
+) : IRay3 {
 
     /**
      * Copies the parameters of another ray.
      * @return a reference to this ray, for chaining.
      */
-    fun set(other: Ray3): Ray3 {
-        return set(other.origin, other.direction)
-    }
+    fun set(other: Ray3): Ray3 = set(other.origin, other.direction)
 
     /**
      * Sets the ray parameters to the values contained in the supplied vectors.
@@ -64,9 +42,5 @@ class Ray3 : IRay3 {
         this.origin.set(origin)
         this.direction.set(direction)
         return this
-    }
-
-    override fun toString(): String {
-        return "[origin=$origin, direction=$direction]"
     }
 }

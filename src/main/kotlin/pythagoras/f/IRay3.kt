@@ -31,5 +31,4 @@ interface IRay3 {
      * Returns a reference to the ray's unit direction vector.
      */
     val direction: IVector3
-
 }
