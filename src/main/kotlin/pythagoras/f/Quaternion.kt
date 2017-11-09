@@ -19,64 +19,35 @@
 package pythagoras.f
 
 import pythagoras.system.Random
-import pythagoras.util.Platform
 import kotlin.math.*
 
 /**
  * A unit quaternion. Many of the formulas come from the
  * [Matrix and Quaternion FAQ](http://www.j3d.org/matrix_faq/matrfaq_latest.html).
  */
-class Quaternion : IQuaternion {
-
-    /** The components of the quaternion.  */
-    override var x: Float = 0f
-    override var y: Float = 0f
-    override var z: Float = 0f
-    override var w: Float = 0f
-
-    /**
-     * Creates a quaternion from four components.
-     */
-    constructor(x: Float, y: Float, z: Float, w: Float) {
-        set(x, y, z, w)
-    }
+data class Quaternion(
+        override var x: Float = 0f,
+        override var y: Float = 0f,
+        override var z: Float = 0f,
+        override var w: Float = 0f
+) : IQuaternion {
 
     /**
      * Creates a quaternion from an array of values.
      */
-    constructor(values: FloatArray) {
-        set(values)
-    }
-
-    /**
-     * Copy constructor.
-     */
-    constructor(other: IQuaternion) {
-        set(other)
-    }
-
-    /**
-     * Creates an identity quaternion.
-     */
-    constructor() {
-        set(0f, 0f, 0f, 1f)
-    }
+    constructor(values: FloatArray) : this(values[0], values[1], values[2], values[3])
 
     /**
      * Copies the elements of another quaternion.
      * @return a reference to this quaternion, for chaining.
      */
-    fun set(other: IQuaternion): Quaternion {
-        return set(other.x, other.y, other.z, other.w)
-    }
+    fun set(other: IQuaternion): Quaternion = set(other.x, other.y, other.z, other.w)
 
     /**
      * Copies the elements of an array.
      * @return a reference to this quaternion, for chaining.
      */
-    fun set(values: FloatArray): Quaternion {
-        return set(values[0], values[1], values[2], values[3])
-    }
+    fun set(values: FloatArray): Quaternion = set(values[0], values[1], values[2], values[3])
 
     /**
      * Sets all of the elements of the quaternion.
@@ -115,9 +86,7 @@ class Quaternion : IQuaternion {
      * Sets this quaternion to the rotation of (0, 0, -1) onto the supplied normalized vector.
      * @return a reference to the quaternion, for chaining.
      */
-    fun fromVectorFromNegativeZ(to: IVector3): Quaternion {
-        return fromVectorFromNegativeZ(to.x, to.y, to.z)
-    }
+    fun fromVectorFromNegativeZ(to: IVector3): Quaternion = fromVectorFromNegativeZ(to.x, to.y, to.z)
 
     /**
      * Sets this quaternion to the rotation of (0, 0, -1) onto the supplied normalized vector.
@@ -257,41 +226,31 @@ class Quaternion : IQuaternion {
      * Inverts this quaternion in-place.
      * @return a reference to this quaternion, for chaining.
      */
-    fun invertLocal(): Quaternion {
-        return invert(this)
-    }
+    fun invertLocal(): Quaternion = invert(this)
 
     /**
      * Multiplies this quaternion in-place by another.
      * @return a reference to this quaternion, for chaining.
      */
-    fun multLocal(other: IQuaternion): Quaternion {
-        return mult(other, this)
-    }
+    fun multLocal(other: IQuaternion): Quaternion = mult(other, this)
 
     /**
      * Interpolates in-place between this and the specified other quaternion.
      * @return a reference to this quaternion, for chaining.
      */
-    fun slerpLocal(other: IQuaternion, t: Float): Quaternion {
-        return slerp(other, t, this)
-    }
+    fun slerpLocal(other: IQuaternion, t: Float): Quaternion = slerp(other, t, this)
 
     /**
      * Transforms a vector in-place by this quaternion.
      * @return a reference to the vector, for chaining.
      */
-    fun transformLocal(vector: Vector3): Vector3 {
-        return transform(vector, vector)
-    }
+    fun transformLocal(vector: Vector3): Vector3 = transform(vector, vector)
 
     /**
      * Integrates in-place the provided angular velocity over the specified timestep.
      * @return a reference to this quaternion, for chaining.
      */
-    fun integrateLocal(velocity: IVector3, t: Float): Quaternion {
-        return integrate(velocity, t, this)
-    }
+    fun integrateLocal(velocity: IVector3, t: Float): Quaternion = integrate(velocity, t, this)
 
     override fun get(values: FloatArray) {
         values[0] = x
@@ -398,9 +357,7 @@ class Quaternion : IQuaternion {
         return result.set(s0 * x + s1 * ox, s0 * y + s1 * oy, s0 * z + s1 * oz, s0 * w + s1 * ow)
     }
 
-    override fun transform(vector: IVector3): Vector3 {
-        return transform(vector, Vector3())
-    }
+    override fun transform(vector: IVector3): Vector3 = transform(vector, Vector3())
 
     override fun transform(vector: IVector3, result: Vector3): Vector3 {
         val xx = x * x
@@ -423,17 +380,14 @@ class Quaternion : IQuaternion {
                 vz + vx2 * (xz - yw) + vy2 * (yz + xw) - vz2 * (xx + yy))
     }
 
-    override fun transformUnitX(result: Vector3): Vector3 {
-        return result.set(1f - 2f * (y * y + z * z), 2f * (x * y + z * w), 2f * (x * z - y * w))
-    }
+    override fun transformUnitX(result: Vector3): Vector3 =
+            result.set(1f - 2f * (y * y + z * z), 2f * (x * y + z * w), 2f * (x * z - y * w))
 
-    override fun transformUnitY(result: Vector3): Vector3 {
-        return result.set(2f * (x * y - z * w), 1f - 2f * (x * x + z * z), 2f * (y * z + x * w))
-    }
+    override fun transformUnitY(result: Vector3): Vector3 =
+            result.set(2f * (x * y - z * w), 1f - 2f * (x * x + z * z), 2f * (y * z + x * w))
 
-    override fun transformUnitZ(result: Vector3): Vector3 {
-        return result.set(2f * (x * z + y * w), 2f * (y * z - x * w), 1f - 2f * (x * x + y * y))
-    }
+    override fun transformUnitZ(result: Vector3): Vector3 =
+            result.set(2f * (x * z + y * w), 2f * (y * z - x * w), 1f - 2f * (x * x + y * y))
 
     override fun transformAndAdd(vector: IVector3, add: IVector3, result: Vector3): Vector3 {
         val xx = x * x
@@ -487,9 +441,7 @@ class Quaternion : IQuaternion {
     override val rotationZ: Float
         get() = atan2(2f * (x * y + z * w), 1f - 2f * (y * y + z * z))
 
-    override fun integrate(velocity: IVector3, t: Float): Quaternion {
-        return integrate(velocity, t, Quaternion())
-    }
+    override fun integrate(velocity: IVector3, t: Float): Quaternion = integrate(velocity, t, Quaternion())
 
     override fun integrate(velocity: IVector3, t: Float, result: Quaternion): Quaternion {
         // TODO: use Runge-Kutta integration?
@@ -502,25 +454,7 @@ class Quaternion : IQuaternion {
                 w + t * (-qx * x - qy * y - qz * z)).normalizeLocal()
     }
 
-    override // documentation inherited
-    fun toString(): String {
-        return "[$x, $y, $z, $w]"
-    }
-
-    override // documentation inherited
-    fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y) xor Platform.hashCode(z) xor
-                Platform.hashCode(w)
-    }
-
-    override // documentation inherited
-    fun equals(other: Any?): Boolean {
-        if (other !is Quaternion) {
-            return false
-        }
-        val oquat = other
-        return x == oquat.x && y == oquat.y && z == oquat.z && w == oquat.w || x == -oquat.x && y == -oquat.y && z == -oquat.z && w == -oquat.x
-    }
+    override fun toString(): String = "[$x, $y, $z, $w]"
 
     companion object {
         private const val serialVersionUID = 6152317379736947895L
