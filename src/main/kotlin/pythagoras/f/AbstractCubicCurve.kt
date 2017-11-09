@@ -26,92 +26,92 @@ import kotlin.math.min
  * control points from the derived class.
  */
 abstract class AbstractCubicCurve : ICubicCurve {
-    override // from interface ICubicCurve
+    override
     fun p1(): Point {
         return Point(x1, y1)
     }
 
-    override // from interface ICubicCurve
+    override
     fun ctrlP1(): Point {
         return Point(ctrlX1, ctrlY1)
     }
 
-    override // from interface ICubicCurve
+    override
     fun ctrlP2(): Point {
         return Point(ctrlX2, ctrlY2)
     }
 
-    override // from interface ICubicCurve
+    override
     fun p2(): Point {
         return Point(x2, y2)
     }
 
-    override // from interface ICubicCurve
+    override
     fun flatnessSq(): Float {
         return CubicCurves.flatnessSq(x1, y1, ctrlX1, ctrlY1,
                 ctrlX2, ctrlY2, x2, y2)
     }
 
-    override // from interface ICubicCurve
+    override
     fun flatness(): Float {
         return CubicCurves.flatness(x1, y1, ctrlX1, ctrlY1,
                 ctrlX2, ctrlY2, x2, y2)
     }
 
-    override // from interface ICubicCurve
+    override
     fun subdivide(left: CubicCurve, right: CubicCurve) {
         CubicCurves.subdivide(this, left, right)
     }
 
-    override // from interface ICubicCurve
+    override
     fun clone(): CubicCurve {
         return CubicCurve(x1, y1, ctrlX1, ctrlY1,
                 ctrlX2, ctrlY2, x2, y2)
     }
 
-    override // from interface IShape
+    override
             // curves contain no space
     val isEmpty: Boolean
         get() = true
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         return Crossing.isInsideEvenOdd(Crossing.crossShape(this, x, y))
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && Crossing.isInsideEvenOdd(cross)
     }
 
-    override // from interface IShape
+    override
     fun contains(point: XY): Boolean {
         return contains(point.x, point.y)
     }
 
-    override // from interface IShape
+    override
     fun contains(rect: IRectangle): Boolean {
         return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || Crossing.isInsideEvenOdd(cross)
     }
 
-    override // from interface IShape
+    override
     fun intersects(rect: IRectangle): Boolean {
         return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun bounds(): Rectangle {
         return bounds(Rectangle())
     }
 
-    override // from interface IShape
+    override
     fun bounds(target: Rectangle): Rectangle {
         val rx1 = min(min(x1, x2), min(ctrlX1, ctrlX2))
         val ry1 = min(min(y1, y2), min(ctrlY1, ctrlY2))
@@ -121,12 +121,12 @@ abstract class AbstractCubicCurve : ICubicCurve {
         return target
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }

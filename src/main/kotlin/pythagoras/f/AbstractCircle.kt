@@ -25,36 +25,36 @@ import pythagoras.util.Platform
  * from the derived class.
  */
 abstract class AbstractCircle : ICircle {
-    override // from ICircle
+    override
     fun intersects(c: ICircle): Boolean {
         val maxDist = radius + c.radius
         return Points.distanceSq(x, y, c.x, c.y) < maxDist * maxDist
     }
 
-    override // from ICircle
+    override
     fun contains(p: XY): Boolean {
         val r = radius
         return Points.distanceSq(x, y, p.x, p.y) < r * r
     }
 
-    override // from ICircle
+    override
     fun contains(x: Float, y: Float): Boolean {
         val r = radius
         return Points.distanceSq(x, y, x, y) < r * r
     }
 
-    override // from ICircle
+    override
     fun offset(x: Float, y: Float): Circle {
         return Circle(x + x, y + y, radius)
     }
 
-    override // from ICircle
+    override
     fun offset(x: Float, y: Float, result: Circle): Circle {
         result.set(x + x, y + y, radius)
         return result
     }
 
-    override // from ICircle
+    override
     fun clone(): Circle {
         return Circle(this)
     }

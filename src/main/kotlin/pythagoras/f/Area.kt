@@ -205,32 +205,32 @@ class Area : IShape {
         subtract(a)
     }
 
-    override // from interface IShape
+    override
     val isEmpty: Boolean
         get() = _rulesSize == 0 && _coordsSize == 0
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         return !isEmpty && containsExact(x, y) > 0
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val crossCount = Crossing.intersectPath(pathIterator(null), x, y, width, height)
         return crossCount != Crossing.CROSSING && Crossing.isInsideEvenOdd(crossCount)
     }
 
-    override // from interface IShape
+    override
     fun contains(point: XY): Boolean {
         return contains(point.x, point.y)
     }
 
-    override // from interface IShape
+    override
     fun contains(rect: IRectangle): Boolean {
         return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (width <= 0f || height <= 0f) {
             return false
@@ -241,17 +241,17 @@ class Area : IShape {
         return Crossing.isInsideEvenOdd(crossCount)
     }
 
-    override // from interface IShape
+    override
     fun intersects(rect: IRectangle): Boolean {
         return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun bounds(): Rectangle {
         return bounds(Rectangle())
     }
 
-    override // from interface IShape
+    override
     fun bounds(target: Rectangle): Rectangle {
         var maxX = _coords[0]
         var maxY = _coords[1]
@@ -267,17 +267,17 @@ class Area : IShape {
         return Rectangle(minX, minY, maxX - minX, maxY - minY)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return AreaPathIterator(transform)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
-    override // from Object
+    override
     fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
@@ -295,7 +295,7 @@ class Area : IShape {
         return area
     }
 
-    override // from Object
+    override
     fun toString(): String {
         return "Area[coords=" + _coordsSize + ", rules=" + _rulesSize +
                 ", isPoly=" + isPolygonal + "]"

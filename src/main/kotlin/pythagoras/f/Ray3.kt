@@ -75,12 +75,12 @@ class Ray3 : IRay3 {
     //     return transform(transform, this);
     // }
 
-    // @Override // from IRay3
+    // @Override
     // public Ray3 transform (Transform3D transform) {
     //     return transform(transform, new Ray3());
     // }
 
-    // @Override // from IRay3
+    // @Override
     // public Ray3 transform (Transform3D transform, Ray3 result) {
     //     transform.transformPoint(origin, result.origin);
     //     transform.transformVector(direction, result.direction).normalizeLocal();

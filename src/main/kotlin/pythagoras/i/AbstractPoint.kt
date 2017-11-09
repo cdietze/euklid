@@ -21,37 +21,37 @@ package pythagoras.i
  * derived class.
  */
 abstract class AbstractPoint : IPoint {
-    override // from IPoint
+    override
     fun distanceSq(px: Int, py: Int): Int {
         return Points.distanceSq(x, y, px, py)
     }
 
-    override // from IPoint
+    override
     fun distanceSq(p: IPoint): Int {
         return Points.distanceSq(x, y, p.x, p.y)
     }
 
-    override // from IPoint
+    override
     fun distance(px: Int, py: Int): Int {
         return Points.distance(x, y, px, py)
     }
 
-    override // from IPoint
+    override
     fun distance(p: IPoint): Int {
         return Points.distance(x, y, p.x, p.y)
     }
 
-    override // from IPoint
+    override
     fun add(x: Int, y: Int): Point {
         return Point(this.x + x, this.y + y)
     }
 
-    override // from IPoint
+    override
     fun add(x: Int, y: Int, result: Point): Point {
         return result.set(this.x + x, this.y + y)
     }
 
-    override // from IPoint
+    override
     fun subtract(x: Int, y: Int): Point {
         return subtract(x, y, Point())
     }

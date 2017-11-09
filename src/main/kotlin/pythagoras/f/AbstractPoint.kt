@@ -27,77 +27,77 @@ import kotlin.math.sin
  * derived class.
  */
 abstract class AbstractPoint : IPoint {
-    override // from IPoint
+    override
     fun distanceSq(px: Float, py: Float): Float {
         return Points.distanceSq(x, y, px, py)
     }
 
-    override // from IPoint
+    override
     fun distanceSq(p: XY): Float {
         return Points.distanceSq(x, y, p.x, p.y)
     }
 
-    override // from IPoint
+    override
     fun distance(px: Float, py: Float): Float {
         return Points.distance(x, y, px, py)
     }
 
-    override // from IPoint
+    override
     fun distance(p: XY): Float {
         return Points.distance(x, y, p.x, p.y)
     }
 
-    override // from interface IPoint
+    override
     fun direction(other: XY): Float {
         return atan2(other.y - y, other.x - x)
     }
 
-    override // from IPoint
+    override
     fun mult(s: Float): Point {
         return mult(s, Point())
     }
 
-    override // from IPoint
+    override
     fun mult(s: Float, result: Point): Point {
         return result.set(x * s, y * s)
     }
 
-    override // from IPoint
+    override
     fun add(x: Float, y: Float): Point {
         return Point(this.x + x, this.y + y)
     }
 
-    override // from IPoint
+    override
     fun add(x: Float, y: Float, result: Point): Point {
         return result.set(this.x + x, this.y + y)
     }
 
-    override // from IPoint
+    override
     fun add(other: XY, result: Point): Point {
         return add(other.x, other.y, result)
     }
 
-    override // from IPoint
+    override
     fun subtract(x: Float, y: Float): Point {
         return subtract(x, y, Point())
     }
 
-    override // from IPoint
+    override
     fun subtract(x: Float, y: Float, result: Point): Point {
         return result.set(this.x - x, this.y - y)
     }
 
-    override // from IPoint
+    override
     fun subtract(other: XY, result: Point): Point {
         return subtract(other.x, other.y, result)
     }
 
-    override // from IPoint
+    override
     fun rotate(angle: Float): Point {
         return rotate(angle, Point())
     }
 
-    override // from IPoint
+    override
     fun rotate(angle: Float, result: Point): Point {
         val x = x
         val y = y

@@ -98,101 +98,101 @@ abstract class RectangularShape : IRectangularShape {
         setFrameFromCenter(center.x, center.y, corner.x, corner.y)
     }
 
-    override // from IRectangularShape
+    override
     val min: Point
         get() {
             return Point(minX, minY)
         }
 
-    override // from IRectangularShape
+    override
     val minX: Float
         get() {
             return x
         }
 
-    override // from IRectangularShape
+    override
     val minY: Float
         get() {
             return y
         }
 
-    override // from IRectangularShape
+    override
     val max: Point
         get() {
             return Point(maxX, maxY)
         }
 
-    override // from IRectangularShape
+    override
     val maxX: Float
         get() {
             return x + width
         }
 
-    override // from IRectangularShape
+    override
     val maxY: Float
         get() {
             return y + height
         }
 
-    override // from IRectangularShape
+    override
     val center: Point
         get() {
             return Point(centerX, centerY)
         }
 
-    override // from IRectangularShape
+    override
     val centerX: Float
         get() {
             return x + width / 2
         }
 
-    override // from IRectangularShape
+    override
     val centerY: Float
         get() {
             return y + height / 2
         }
 
-    override // from IRectangularShape
+    override
     fun frame(): Rectangle {
         return bounds()
     }
 
-    override // from IRectangularShape
+    override
     fun frame(target: Rectangle): Rectangle {
         return bounds(target)
     }
 
-    override // from interface IShape
+    override
     val isEmpty: Boolean
         get() = width <= 0 || height <= 0
 
-    override // from interface IShape
+    override
     fun contains(point: XY): Boolean {
         return contains(point.x, point.y)
     }
 
-    override // from interface IShape
+    override
     fun contains(rect: IRectangle): Boolean {
         return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun intersects(rect: IRectangle): Boolean {
         return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun bounds(): Rectangle {
         return bounds(Rectangle())
     }
 
-    override // from interface IShape
+    override
     fun bounds(target: Rectangle): Rectangle {
         target.setBounds(x, y, width, height)
         return target
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }

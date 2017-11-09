@@ -47,7 +47,7 @@ class Ellipse : AbstractEllipse {
         setFrame(x, y, width, height)
     }
 
-    override // from RectangularShape
+    override
     fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         this.x = x
         this.y = y

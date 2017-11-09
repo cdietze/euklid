@@ -492,7 +492,7 @@ data class Matrix3(
         return this
     }
 
-    override // from IMatrix3
+    override
     fun element(row: Int, col: Int): Float {
         when (col) {
             0 -> when (row) {
@@ -514,7 +514,7 @@ data class Matrix3(
         error("Matrix access out of bounds")
     }
 
-    override // from IMatrix3
+    override
     fun getRow(row: Int, result: Vector3) {
         when (row) {
             0 -> {
@@ -536,7 +536,7 @@ data class Matrix3(
         }
     }
 
-    override // from IMatrix3
+    override
     fun getColumn(col: Int, result: Vector3) {
         when (col) {
             0 -> {
@@ -558,24 +558,24 @@ data class Matrix3(
         }
     }
 
-    override // from IMatrix3
+    override
     fun transpose(): Matrix3 {
         return transpose(Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun transpose(result: Matrix3): Matrix3 {
         return result.set(m00, m01, m02,
                 m10, m11, m12,
                 m20, m21, m22)
     }
 
-    override // from IMatrix3
+    override
     fun mult(other: IMatrix3): Matrix3 {
         return mult(other, Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun mult(other: IMatrix3, result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -608,28 +608,28 @@ data class Matrix3(
                 m02 * om20 + m12 * om21 + m22 * om22)
     }
 
-    override // from IMatrix3
+    override
     fun add(other: IMatrix3): Matrix3 {
         return add(other, Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun add(other: IMatrix3, result: Matrix3): Matrix3 {
         return result.set(m00 + other.m00, m01 + other.m01, m02 + other.m02,
                 m10 + other.m10, m11 + other.m11, m12 + other.m12,
                 m20 + other.m20, m21 + other.m21, m22 + other.m22)
     }
 
-    override // from IMatrix3
+    override
     val isAffine: Boolean
         get() = m02 == 0f && m12 == 0f && m22 == 1f
 
-    override // from IMatrix3
+    override
     fun multAffine(other: IMatrix3): Matrix3 {
         return multAffine(other, Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun multAffine(other: IMatrix3, result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -654,7 +654,7 @@ data class Matrix3(
                 0f, 0f, 1f)
     }
 
-    override // from IMatrix3
+    override
     fun invert(): Matrix3 {
         return invert(Matrix3())
     }
@@ -663,7 +663,7 @@ data class Matrix3(
      * {@inheritDoc} This code is based on the examples in the
      * [Matrix and Quaternion FAQ](http://www.j3d.org/matrix_faq/matrfaq_latest.html).
      */
-    override // from IMatrix3
+    override
     fun invert(result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -697,12 +697,12 @@ data class Matrix3(
                 +(m00 * m11 - m10 * m01) * rdet)
     }
 
-    override // from IMatrix3
+    override
     fun invertAffine(): Matrix3 {
         return invertAffine(Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun invertAffine(result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -728,12 +728,12 @@ data class Matrix3(
                 0f, 0f, 1f)
     }
 
-    override // from IMatrix3
+    override
     fun lerp(other: IMatrix3, t: Float): Matrix3 {
         return lerp(other, t, Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun lerp(other: IMatrix3, t: Float, result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -766,12 +766,12 @@ data class Matrix3(
                 m22 + t * (om22 - m22))
     }
 
-    override // from IMatrix3
+    override
     fun lerpAffine(other: IMatrix3, t: Float): Matrix3 {
         return lerpAffine(other, t, Matrix3())
     }
 
-    override // from IMatrix3
+    override
     fun lerpAffine(other: IMatrix3, t: Float, result: Matrix3): Matrix3 {
         val m00 = this.m00
         val m01 = this.m01
@@ -796,17 +796,17 @@ data class Matrix3(
                 0f, 0f, 1f)
     }
 
-    override // from IMatrix3
+    override
     fun transformLocal(vector: Vector3): Vector3 {
         return transform(vector, vector)
     }
 
-    override // from IMatrix3
+    override
     fun transform(vector: IVector3): Vector3 {
         return transform(vector, Vector3())
     }
 
-    override // from IMatrix3
+    override
     fun transform(vector: IVector3, result: Vector3): Vector3 {
         val vx = vector.x
         val vy = vector.y
@@ -816,34 +816,34 @@ data class Matrix3(
                 m02 * vx + m12 * vy + m22 * vz)
     }
 
-    override // from IMatrix3
+    override
     fun transformPointLocal(point: Vector): Vector {
         return transformPoint(point, point)
     }
 
-    override // from IMatrix3
+    override
     fun transformPoint(point: IVector): Vector {
         return transformPoint(point, Vector())
     }
 
-    override // from IMatrix3
+    override
     fun transformPoint(point: IVector, result: Vector): Vector {
         val px = point.x
         val py = point.y
         return result.set(m00 * px + m10 * py + m20, m01 * px + m11 * py + m21)
     }
 
-    override // from IMatrix3
+    override
     fun transformVectorLocal(vector: Vector): Vector {
         return transformVector(vector, vector)
     }
 
-    override // from IMatrix3
+    override
     fun transformVector(vector: IVector): Vector {
         return transformVector(vector, Vector())
     }
 
-    override // from IMatrix3
+    override
     fun transformVector(vector: IVector, result: Vector): Vector {
         val vx = vector.x
         val vy = vector.y
@@ -855,7 +855,7 @@ data class Matrix3(
      * [Ken
        * Shoemake](http://www.cs.wisc.edu/graphics/Courses/838-s2002/Papers/polar-decomp.pdf).
      */
-    override // from IMatrix3
+    override
     fun extractRotation(): Float {
         // start with the contents of the upper 2x2 portion of the matrix
         var n00 = m00
@@ -895,12 +895,12 @@ data class Matrix3(
         return atan2(n01, n00)
     }
 
-    override // from IMatrix3
+    override
     fun extractScale(): Vector {
         return extractScale(Vector())
     }
 
-    override // from IMatrix3
+    override
     fun extractScale(result: Vector): Vector {
         val m00 = this.m00
         val m01 = this.m01
@@ -910,7 +910,7 @@ data class Matrix3(
                 sqrt(m10 * m10 + m11 * m11))
     }
 
-    override // from IMatrix3
+    override
     fun approximateUniformScale(): Float {
         val cp = m00 * m11 - m01 * m10
         return if (cp < 0f) -sqrt(-cp) else sqrt(cp)

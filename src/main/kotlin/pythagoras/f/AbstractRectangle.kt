@@ -24,28 +24,28 @@ import kotlin.math.min
  * dimensions from the derived class.
  */
 abstract class AbstractRectangle : RectangularShape(), IRectangle {
-    override // from interface IRectangle
+    override
     fun location(): Point {
         return location(Point())
     }
 
-    override // from interface IRectangle
+    override
     fun location(target: Point): Point {
         return target.set(x, y)
     }
 
-    override // from interface IRectangle
+    override
     fun size(): Dimension {
         return size(Dimension())
     }
 
-    override // from interface IRectangle
+    override
     fun size(target: Dimension): Dimension {
         target.setSize(width, height)
         return target
     }
 
-    override // from interface IRectangle
+    override
     fun intersection(rx: Float, ry: Float, rw: Float, rh: Float): Rectangle {
         val x1 = max(x, rx)
         val y1 = max(y, ry)
@@ -54,29 +54,29 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
     }
 
-    override // from interface IRectangle
+    override
     fun intersection(r: IRectangle): Rectangle {
         return intersection(r.x, r.y, r.width, r.height)
     }
 
-    override // from interface IRectangle
+    override
     fun union(r: IRectangle): Rectangle {
         val rect = Rectangle(this)
         rect.add(r)
         return rect
     }
 
-    override // from interface IRectangle
+    override
     fun intersectsLine(x1: Float, y1: Float, x2: Float, y2: Float): Boolean {
         return Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
     }
 
-    override // from interface IRectangle
+    override
     fun intersectsLine(l: ILine): Boolean {
         return intersectsLine(l.x1, l.y1, l.x2, l.y2)
     }
 
-    override // from interface IRectangle
+    override
     fun outcode(px: Float, py: Float): Int {
         var code = 0
 
@@ -99,12 +99,12 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return code
     }
 
-    override // from interface IRectangle
+    override
     fun outcode(point: XY): Int {
         return outcode(point.x, point.y)
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         var px = x
         var py = y
@@ -117,7 +117,7 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return px <= width && py <= height
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
@@ -128,7 +128,7 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return x1 <= x && x + width <= x2 && y1 <= y && y + height <= y2
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty) return false
 
@@ -139,17 +139,17 @@ abstract class AbstractRectangle : RectangularShape(), IRectangle {
         return x + width > x1 && x < x2 && y + height > y1 && y < y2
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return Iterator(this, transform)
     }
 
-    override // from Object
+    override
     fun toString(): String {
         return Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
     }

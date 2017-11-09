@@ -25,12 +25,12 @@ import kotlin.math.sqrt
  * the derived class.
  */
 abstract class AbstractEllipse : RectangularShape(), IEllipse {
-    override // from IEllipse
+    override
     fun clone(): Ellipse {
         return Ellipse(x, y, width, height)
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         if (isEmpty) return false
         val a = (x - this.x) / width - 0.5f
@@ -38,7 +38,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         return a * a + b * b < 0.25f
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val rx1 = x
@@ -48,7 +48,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val cx = this.x + this.width / 2f
@@ -62,7 +62,7 @@ abstract class AbstractEllipse : RectangularShape(), IEllipse {
         return contains(nx, ny)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }

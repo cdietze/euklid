@@ -22,128 +22,128 @@ package pythagoras.f
  * Implements some code shared by the various [Transform] implementations.
  */
 abstract class AbstractTransform : Transform {
-    override // from Transform
+    override
     val scale: Vector
         get() {
             return Vector(scaleX, scaleY)
         }
 
-    override // from Transform
+    override
     val translation: Vector
         get() {
             return Vector(tx, ty)
         }
 
-    override // from Transform
+    override
     fun setUniformScale(scale: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setScale(scaleX: Float, scaleY: Float): Transform {
         setScaleX(scaleX)
         setScaleY(scaleY)
         return this
     }
 
-    override // from Transform
+    override
     fun setScaleX(scaleX: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setScaleY(scaleY: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setRotation(angle: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setTranslation(tx: Float, ty: Float): Transform {
         setTx(tx)
         setTy(ty)
         return this
     }
 
-    override // from Transform
+    override
     fun uniformScale(scale: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun scale(scaleX: Float, scaleY: Float): Transform {
         scaleX(scaleX)
         scaleY(scaleY)
         return this
     }
 
-    override // from Transform
+    override
     fun scaleX(scaleX: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun scaleY(scaleY: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun rotate(angle: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun translate(tx: Float, ty: Float): Transform {
         translateX(tx)
         translateY(ty)
         return this
     }
 
-    override // from Transform
+    override
     fun translateX(tx: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun translateY(ty: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun shear(sx: Float, sy: Float): Transform {
         shearX(sx)
         shearY(sy)
         return this
     }
 
-    override // from Transform
+    override
     fun shearX(sx: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun shearY(sy: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setTx(tx: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setTy(ty: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    override // from Transform
+    override
     fun setTransform(m00: Float, m01: Float, m10: Float, m11: Float, tx: Float, ty: Float): Transform {
         throw UnsupportedOperationException()
     }
 
-    abstract override // from Transform
+    abstract override
     fun copy(): Transform
 }

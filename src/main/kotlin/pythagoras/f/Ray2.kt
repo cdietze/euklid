@@ -79,19 +79,19 @@ class Ray2 : IRay2 {
         return transform(transform, this)
     }
 
-    override // from IRay2
+    override
     fun transform(transform: Transform): Ray2 {
         return transform(transform, Ray2())
     }
 
-    override // from IRay2
+    override
     fun transform(transform: Transform, result: Ray2): Ray2 {
         transform.transformPoint(origin, result.origin)
         transform.transform(direction, result.direction).normalizeLocal()
         return result
     }
 
-    override // from IRay2
+    override
     fun intersects(pt: IVector): Boolean {
         if (abs(direction.x) > abs(direction.y)) {
             val t = (pt.x - origin.x) / direction.x
@@ -102,7 +102,7 @@ class Ray2 : IRay2 {
         }
     }
 
-    override // from IRay2
+    override
     fun getIntersection(start: IVector, end: IVector, result: Vector): Boolean {
         // ray is a + t*b, segment is c + s*d
         val ax = origin.x
@@ -138,7 +138,7 @@ class Ray2 : IRay2 {
         return isect
     }
 
-    override // from IRay2
+    override
     fun getIntersection(start: IVector, end: IVector, radius: Float, result: Vector): Boolean {
         val startx = start.x
         val starty = start.y
@@ -193,7 +193,7 @@ class Ray2 : IRay2 {
         }
     }
 
-    override // from IRay2
+    override
     fun getIntersection(center: IVector, radius: Float, result: Vector): Boolean {
         // see if we start inside the circle
         if (origin.distanceSq(center) <= radius * radius) {
@@ -217,7 +217,7 @@ class Ray2 : IRay2 {
         return isect
     }
 
-    override // from IRay2
+    override
     fun getNearestPoint(point: IVector, result: Vector): Vector {
         val r = point.subtract(origin).dot(direction)
         result.set(origin.add(direction.scale(r)))

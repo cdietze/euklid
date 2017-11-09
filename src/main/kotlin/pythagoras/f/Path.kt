@@ -159,12 +159,12 @@ class Path : IShape {
         return p
     }
 
-    override // from interface IShape
+    override
     fun bounds(): Rectangle {
         return bounds(Rectangle())
     }
 
-    override // from interface IShape
+    override
     fun bounds(target: Rectangle): Rectangle {
         var rx1: Float
         var ry1: Float
@@ -200,49 +200,49 @@ class Path : IShape {
         return target
     }
 
-    override // from interface IShape
+    override
             // TODO: will this be insanely difficult to do correctly?
     val isEmpty: Boolean
         get() = bounds().isEmpty
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         return isInside(Crossing.crossShape(this, x, y))
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross != Crossing.CROSSING && isInside(cross)
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || isInside(cross)
     }
 
-    override // from interface IShape
+    override
     fun contains(point: XY): Boolean {
         return contains(point.x, point.y)
     }
 
-    override // from interface IShape
+    override
     fun contains(rect: IRectangle): Boolean {
         return contains(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun intersects(rect: IRectangle): Boolean {
         return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }

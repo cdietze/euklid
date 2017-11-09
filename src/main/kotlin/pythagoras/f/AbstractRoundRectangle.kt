@@ -26,13 +26,13 @@ import kotlin.math.sqrt
  * from the derived class.
  */
 abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
-    override // from interface IRoundRectangle
+    override
     fun clone(): RoundRectangle {
         return RoundRectangle(x, y, width, height,
                 arcWidth, arcHeight)
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float): Boolean {
         var px = x
         var py = y
@@ -71,7 +71,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return px * px + py * py <= 1f
     }
 
-    override // from interface IShape
+    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
         val rx1 = x
@@ -81,7 +81,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return contains(rx1, ry1) && contains(rx2, ry1) && contains(rx2, ry2) && contains(rx1, ry2)
     }
 
-    override // from interface IShape
+    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (isEmpty || width <= 0f || height <= 0f) return false
 
@@ -104,7 +104,7 @@ abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
         return contains(nx, ny)
     }
 
-    override // from interface IShape
+    override
     fun pathIterator(transform: Transform?): PathIterator {
         return Iterator(this, transform)
     }

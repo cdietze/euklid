@@ -112,12 +112,12 @@ data class Plane(
      */
     fun negateLocal(): Plane = negate(this)
 
-    // @Override // from IPlane
+    // @Override
     // public Plane transform (Transform3D transform) {
     //     return transform(transform, new Plane());
     // }
 
-    // @Override // from IPlane
+    // @Override
     // public Plane transform (Transform3D transform, Plane result) {
     //     transform.transformPointLocal(_normal.mult(-constant, _v1));
     //     transform.transformVector(_normal, _v2).normalizeLocal();

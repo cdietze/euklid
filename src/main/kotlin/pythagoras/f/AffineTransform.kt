@@ -76,7 +76,7 @@ class AffineTransform : AbstractTransform {
         return setTransform(other.m00, other.m01, other.m10, other.m11, other.tx, other.ty)
     }
 
-    override // from Transform
+    override
     val uniformScale: Float
         get() {
             // the square root of the signed area of the parallelogram spanned by the axis vectors
@@ -84,19 +84,19 @@ class AffineTransform : AbstractTransform {
             return if (cp < 0f) -sqrt(-cp) else sqrt(cp)
         }
 
-    override // from Transform
+    override
     val scaleX: Float
         get() {
             return sqrt(m00 * m00 + m01 * m01)
         }
 
-    override // from Transform
+    override
     val scaleY: Float
         get() {
             return sqrt(m10 * m10 + m11 * m11)
         }
 
-    override // from Transform
+    override
     val rotation: Float
         get() {
             // use the iterative polar decomposition algorithm described by Ken Shoemake:
@@ -140,7 +140,7 @@ class AffineTransform : AbstractTransform {
             return atan2(n01, n00)
         }
 
-    override // from Transform
+    override
     fun get(matrix: FloatArray) {
         matrix[0] = m00
         matrix[1] = m01
@@ -150,12 +150,12 @@ class AffineTransform : AbstractTransform {
         matrix[5] = ty
     }
 
-    override // from Transform
+    override
     fun setUniformScale(scale: Float): AffineTransform {
         return setScale(scale, scale) as AffineTransform
     }
 
-    override // from Transform
+    override
     fun setScaleX(scaleX: Float): AffineTransform {
         // normalize the scale to 1, then re-apply
         val mult = scaleX / scaleX
@@ -164,7 +164,7 @@ class AffineTransform : AbstractTransform {
         return this
     }
 
-    override // from Transform
+    override
     fun setScaleY(scaleY: Float): AffineTransform {
         // normalize the scale to 1, then re-apply
         val mult = scaleY / scaleY
@@ -173,7 +173,7 @@ class AffineTransform : AbstractTransform {
         return this
     }
 
-    override // from Transform
+    override
     fun setRotation(angle: Float): AffineTransform {
         // extract the scale, then reapply rotation and scale together
         val sx = scaleX
@@ -187,26 +187,26 @@ class AffineTransform : AbstractTransform {
         return this
     }
 
-    override // from Transform
+    override
     fun setTranslation(tx: Float, ty: Float): AffineTransform {
         this.tx = tx
         this.ty = ty
         return this
     }
 
-    override // from Transform
+    override
     fun setTx(tx: Float): AffineTransform {
         this.tx = tx
         return this
     }
 
-    override // from Transform
+    override
     fun setTy(ty: Float): AffineTransform {
         this.ty = ty
         return this
     }
 
-    override // from Transform
+    override
     fun setTransform(m00: Float, m01: Float, m10: Float, m11: Float,
                      tx: Float, ty: Float): AffineTransform {
         this.m00 = m00
@@ -218,12 +218,12 @@ class AffineTransform : AbstractTransform {
         return this
     }
 
-    override // from Transform
+    override
     fun uniformScale(scale: Float): AffineTransform {
         return scale(scale, scale)
     }
 
-    override // from Transform
+    override
     fun scale(scaleX: Float, scaleY: Float): AffineTransform {
         m00 *= scaleX
         m01 *= scaleX
@@ -232,56 +232,56 @@ class AffineTransform : AbstractTransform {
         return this
     }
 
-    override // from Transform
+    override
     fun scaleX(scaleX: Float): AffineTransform {
         return Transforms.multiply(this, scaleX, 0f, 0f, 1f, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun scaleY(scaleY: Float): AffineTransform {
         return Transforms.multiply(this, 1f, 0f, 0f, scaleY, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun rotate(angle: Float): AffineTransform {
         val sina = sin(angle)
         val cosa = cos(angle)
         return Transforms.multiply(this, cosa, sina, -sina, cosa, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun translate(tx: Float, ty: Float): AffineTransform {
         this.tx += m00 * tx + m10 * ty
         this.ty += m11 * ty + m01 * tx
         return this
     }
 
-    override // from Transform
+    override
     fun translateX(tx: Float): AffineTransform {
         return Transforms.multiply(this, 1f, 0f, 0f, 1f, tx, 0f, this)
     }
 
-    override // from Transform
+    override
     fun translateY(ty: Float): AffineTransform {
         return Transforms.multiply(this, 1f, 0f, 0f, 1f, 0f, ty, this)
     }
 
-    override // from Transform
+    override
     fun shear(sx: Float, sy: Float): AffineTransform {
         return Transforms.multiply(this, 1f, sy, sx, 1f, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun shearX(sx: Float): AffineTransform {
         return Transforms.multiply(this, 1f, 0f, sx, 1f, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun shearY(sy: Float): AffineTransform {
         return Transforms.multiply(this, 1f, sy, 0f, 1f, 0f, 0f, this)
     }
 
-    override // from Transform
+    override
     fun invert(): AffineTransform {
         // compute the determinant, storing the subdeterminants for later use
         val det = m00 * m11 - m10 * m01
@@ -296,7 +296,7 @@ class AffineTransform : AbstractTransform {
                 (m10 * ty - m11 * tx) * rdet, (m01 * tx - m00 * ty) * rdet)
     }
 
-    override // from Transform
+    override
     fun concatenate(other: Transform): Transform {
         if (generality() < other.generality()) {
             return other.preConcatenate(this)
@@ -309,7 +309,7 @@ class AffineTransform : AbstractTransform {
         }
     }
 
-    override // from Transform
+    override
     fun preConcatenate(other: Transform): Transform {
         if (generality() < other.generality()) {
             return other.concatenate(this)
@@ -322,7 +322,7 @@ class AffineTransform : AbstractTransform {
         }
     }
 
-    override // from Transform
+    override
     fun lerp(other: Transform, t: Float): Transform {
         if (generality() < other.generality()) {
             return other.lerp(this, -t) // TODO: is this correct?
@@ -335,14 +335,14 @@ class AffineTransform : AbstractTransform {
                 tx + t * (ot.tx - tx), ty + t * (ot.ty - ty))
     }
 
-    override // from Transform
+    override
     fun transform(p: IPoint, into: Point): Point {
         val x = p.x
         val y = p.y
         return into.set(m00 * x + m10 * y + tx, m01 * x + m11 * y + ty)
     }
 
-    override // from Transform
+    override
     fun transform(src: Array<IPoint>, srcOff: Int, dst: Array<Point>, dstOff: Int, count: Int) {
         var srcOff = srcOff
         var dstOff = dstOff
@@ -351,7 +351,7 @@ class AffineTransform : AbstractTransform {
         }
     }
 
-    override // from Transform
+    override
     fun transform(src: FloatArray, srcOff: Int, dst: FloatArray, dstOff: Int, count: Int) {
         var srcOff = srcOff
         var dstOff = dstOff
@@ -363,7 +363,7 @@ class AffineTransform : AbstractTransform {
         }
     }
 
-    override // from Transform
+    override
     fun inverseTransform(p: IPoint, into: Point): Point {
         val x = p.x - tx
         val y = p.y - ty
@@ -377,21 +377,21 @@ class AffineTransform : AbstractTransform {
                 (y * m00 - x * m01) * rdet)
     }
 
-    override // from Transform
+    override
     fun transformPoint(v: IVector, into: Vector): Vector {
         val x = v.x
         val y = v.y
         return into.set(m00 * x + m10 * y + tx, m01 * x + m11 * y + ty)
     }
 
-    override // from Transform
+    override
     fun transform(v: IVector, into: Vector): Vector {
         val x = v.x
         val y = v.y
         return into.set(m00 * x + m10 * y, m01 * x + m11 * y)
     }
 
-    override // from Transform
+    override
     fun inverseTransform(v: IVector, into: Vector): Vector {
         val x = v.x
         val y = v.y
@@ -405,12 +405,12 @@ class AffineTransform : AbstractTransform {
                 (y * m00 - x * m01) * rdet)
     }
 
-    override // from Transform
+    override
     fun copy(): AffineTransform {
         return AffineTransform(m00, m01, m10, m11, tx, ty)
     }
 
-    override // from Transform
+    override
     fun generality(): Int {
         return GENERALITY
     }

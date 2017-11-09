@@ -293,7 +293,7 @@ class Quaternion : IQuaternion {
         return integrate(velocity, t, this)
     }
 
-    override // from IQuaternion
+    override
     fun get(values: FloatArray) {
         values[0] = x
         values[1] = y
@@ -301,12 +301,12 @@ class Quaternion : IQuaternion {
         values[3] = w
     }
 
-    override // from IQuaternion
+    override
     fun hasNaN(): Boolean {
         return x.isNaN() || y.isNaN() || z.isNaN() || w.isNaN()
     }
 
-    override // from IQuaternion
+    override
     fun toAngles(result: Vector3): Vector3 {
         val sy = 2f * (y * w - x * z)
         if (sy < 1f - MathUtil.EPSILON) {
@@ -328,38 +328,38 @@ class Quaternion : IQuaternion {
         }
     }
 
-    override // from IQuaternion
+    override
     fun toAngles(): Vector3 {
         return toAngles(Vector3())
     }
 
-    override // from IQuaternion
+    override
     fun normalize(): Quaternion {
         return normalize(Quaternion())
     }
 
-    override // from IQuaternion
+    override
     fun normalize(result: Quaternion): Quaternion {
         val rlen = 1f / sqrt(x * x + y * y + z * z + w * w)
         return result.set(x * rlen, y * rlen, z * rlen, w * rlen)
     }
 
-    override // from IQuaternion
+    override
     fun invert(): Quaternion {
         return invert(Quaternion())
     }
 
-    override // from IQuaternion
+    override
     fun invert(result: Quaternion): Quaternion {
         return result.set(-x, -y, -z, w)
     }
 
-    override // from IQuaternion
+    override
     fun mult(other: IQuaternion): Quaternion {
         return mult(other, Quaternion())
     }
 
-    override // from IQuaternion
+    override
     fun mult(other: IQuaternion, result: Quaternion): Quaternion {
         val ox = other.x
         val oy = other.y
@@ -371,12 +371,12 @@ class Quaternion : IQuaternion {
                 w * ow - x * ox - y * oy - z * oz)
     }
 
-    override // from IQuaternion
+    override
     fun slerp(other: IQuaternion, t: Float): Quaternion {
         return slerp(other, t, Quaternion())
     }
 
-    override // from IQuaternion
+    override
     fun slerp(other: IQuaternion, t: Float, result: Quaternion): Quaternion {
         var ox = other.x
         var oy = other.y
@@ -410,12 +410,12 @@ class Quaternion : IQuaternion {
         return result.set(s0 * x + s1 * ox, s0 * y + s1 * oy, s0 * z + s1 * oz, s0 * w + s1 * ow)
     }
 
-    override // from IQuaternion
+    override
     fun transform(vector: IVector3): Vector3 {
         return transform(vector, Vector3())
     }
 
-    override // from IQuaternion
+    override
     fun transform(vector: IVector3, result: Vector3): Vector3 {
         val xx = x * x
         val yy = y * y
@@ -437,22 +437,22 @@ class Quaternion : IQuaternion {
                 vz + vx2 * (xz - yw) + vy2 * (yz + xw) - vz2 * (xx + yy))
     }
 
-    override // from IQuaternion
+    override
     fun transformUnitX(result: Vector3): Vector3 {
         return result.set(1f - 2f * (y * y + z * z), 2f * (x * y + z * w), 2f * (x * z - y * w))
     }
 
-    override // from IQuaternion
+    override
     fun transformUnitY(result: Vector3): Vector3 {
         return result.set(2f * (x * y - z * w), 1f - 2f * (x * x + z * z), 2f * (y * z + x * w))
     }
 
-    override // from IQuaternion
+    override
     fun transformUnitZ(result: Vector3): Vector3 {
         return result.set(2f * (x * z + y * w), 2f * (y * z - x * w), 1f - 2f * (x * x + y * y))
     }
 
-    override // from IQuaternion
+    override
     fun transformAndAdd(vector: IVector3, add: IVector3, result: Vector3): Vector3 {
         val xx = x * x
         val yy = y * y
@@ -474,7 +474,7 @@ class Quaternion : IQuaternion {
                 vz + vx2 * (xz - yw) + vy2 * (yz + xw) - vz2 * (xx + yy) + add.z)
     }
 
-    override // from IQuaternion
+    override
     fun transformScaleAndAdd(vector: IVector3, scale: Float, add: IVector3,
                              result: Vector3): Vector3 {
         val xx = x * x
@@ -498,22 +498,22 @@ class Quaternion : IQuaternion {
                 (vz + vx2 * (xz - yw) + vy2 * (yz + xw) - vz2 * (xx + yy)) * scale + add.z)
     }
 
-    override // from IQuaternion
+    override
     fun transformZ(vector: IVector3): Float {
         return vector.z + vector.x * 2f * (x * z - y * w) +
                 vector.y * 2f * (y * z + x * w) - vector.z * 2f * (x * x + y * y)
     }
 
-    override // from IQuaternion
+    override
     val rotationZ: Float
         get() = atan2(2f * (x * y + z * w), 1f - 2f * (y * y + z * z))
 
-    override // from IQuaternion
+    override
     fun integrate(velocity: IVector3, t: Float): Quaternion {
         return integrate(velocity, t, Quaternion())
     }
 
-    override // from IQuaternion
+    override
     fun integrate(velocity: IVector3, t: Float, result: Quaternion): Quaternion {
         // TODO: use Runge-Kutta integration?
         val qx = 0.5f * velocity.x
