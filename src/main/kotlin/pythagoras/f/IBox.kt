@@ -39,7 +39,6 @@ interface IBox {
 
     /**
      * Places the location of the center of the box into the given result vector.
-
      * @return a reference to the result vector, for chaining.
      */
     fun center(result: Vector3): Vector3
@@ -65,7 +64,6 @@ interface IBox {
      * with flags indicating which values should be selected from the minimum extent, and which
      * from the maximum extent. For example, the code 011b selects the vertex with the minimum x,
      * maximum y, and maximum z.
-
      * @return a reference to the result, for chaining.
      */
     fun vertex(code: Int, result: Vector3): Vector3
@@ -98,7 +96,6 @@ interface IBox {
 
     /**
      * Expands this box to include the specified point.
-
      * @return a new box containing the result.
      */
     fun add(point: IVector3): Box
@@ -106,14 +103,12 @@ interface IBox {
     /**
      * Expands this box to include the specified point, placing the result in the object
      * provided.
-
      * @return a reference to the result box, for chaining.
      */
     fun add(point: IVector3, result: Box): Box
 
     /**
      * Expands this box to include the bounds of another box.
-
      * @return a new box containing the result.
      */
     fun add(other: IBox): Box
@@ -121,14 +116,12 @@ interface IBox {
     /**
      * Expands this box to include the bounds of another box, placing the result in the object
      * provided.
-
      * @return a reference to the result box, for chaining.
      */
     fun add(other: IBox, result: Box): Box
 
     /**
      * Finds the intersection between this box and another box.
-
      * @return a new box containing the result.
      */
     fun intersect(other: IBox): Box
@@ -136,35 +129,30 @@ interface IBox {
     /**
      * Finds the intersection between this box and another box and places the result in the
      * provided object.
-
      * @return a reference to this box, for chaining.
      */
     fun intersect(other: IBox, result: Box): Box
 
     /**
      * Projects this box.
-
      * @return a new box containing the result.
      */
     fun project(matrix: IMatrix4): Box
 
     /**
      * Projects this box, placing the result in the object provided.
-
      * @return a reference to the result, for chaining.
      */
     fun project(matrix: IMatrix4, result: Box): Box
 
     /**
      * Expands the box by the specified amounts.
-
      * @return a new box containing the result.
      */
     fun expand(x: Float, y: Float, z: Float): Box
 
     /**
      * Expands the box by the specified amounts, placing the result in the object provided.
-
      * @return a reference to the result box, for chaining.
      */
     fun expand(x: Float, y: Float, z: Float, result: Box): Box
@@ -177,7 +165,6 @@ interface IBox {
     /**
      * Finds the location of the (first) intersection between the specified ray and this box. This
      * will be the ray origin if the ray starts inside the box.
-
      * @param result a vector to hold the location of the intersection.
      * *
      * @return true if the ray intersects the box (in which case the result vector will be

@@ -51,7 +51,6 @@ class Box : IBox {
     /**
      * Sets the parameters of the box to the empty values ([Vector3.MAX_VALUE] and
      * [Vector3.MIN_VALUE] for the minimum and maximum, respectively).
-
      * @return a reference to this box, for chaining.
      */
     fun setToEmpty(): Box {
@@ -60,7 +59,6 @@ class Box : IBox {
 
     /**
      * Copies the parameters of another box.
-
      * @return a reference to this box, for chaining.
      */
     fun set(other: IBox): Box {
@@ -69,7 +67,6 @@ class Box : IBox {
 
     /**
      * Sets the box parameters to the values contained in the supplied vectors.
-
      * @return a reference to this box, for chaining.
      */
     fun set(minExtent: IVector3, maxExtent: IVector3): Box {
@@ -80,7 +77,6 @@ class Box : IBox {
 
     /**
      * Initializes this box with the extents of an array of points.
-
      * @return a reference to this box, for chaining.
      */
     fun fromPoints(vararg points: IVector3): Box {
@@ -93,7 +89,6 @@ class Box : IBox {
 
     /**
      * Expands this box in-place to include the specified point.
-
      * @return a reference to this box, for chaining.
      */
     fun addLocal(point: IVector3): Box {
@@ -102,7 +97,6 @@ class Box : IBox {
 
     /**
      * Expands this box to include the bounds of another box.
-
      * @return a reference to this box, for chaining.
      */
     fun addLocal(other: IBox): Box {
@@ -111,7 +105,6 @@ class Box : IBox {
 
     /**
      * Finds the intersection between this box and another box and places the result in this box.
-
      * @return a reference to this box, for chaining.
      */
     fun intersectLocal(other: IBox): Box {
@@ -129,7 +122,6 @@ class Box : IBox {
 
     /**
      * Projects this box in-place.
-
      * @return a reference to this box, for chaining.
      */
     fun projectLocal(matrix: IMatrix4): Box {
@@ -138,7 +130,6 @@ class Box : IBox {
 
     /**
      * Expands the box in-place by the specified amounts.
-
      * @return a reference to this box, for chaining.
      */
     fun expandLocal(x: Float, y: Float, z: Float): Box {

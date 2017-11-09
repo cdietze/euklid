@@ -34,14 +34,12 @@ interface IRay2 {
 
     /**
      * Transforms this ray.
-
      * @return a new ray containing the result.
      */
     fun transform(transform: Transform): Ray2
 
     /**
      * Transforms this ray, placing the result in the object provided.
-
      * @return a reference to the result ray, for chaining.
      */
     fun transform(transform: Transform, result: Ray2): Ray2
@@ -54,7 +52,6 @@ interface IRay2 {
     /**
      * Finds the intersection between the ray and a line segment with the given start and end
      * points.
-
      * @return true if the ray intersected the segment (in which case the result will contain the
      * * point of intersection), false otherwise.
      */
@@ -63,7 +60,6 @@ interface IRay2 {
     /**
      * Finds the intersection between the ray and a capsule with the given start point, end point,
      * and radius.
-
      * @return true if the ray intersected the circle (in which case the result will contain the
      * * point of intersection), false otherwise.
      */
@@ -71,7 +67,6 @@ interface IRay2 {
 
     /**
      * Finds the intersection between the ray and a circle with the given center and radius.
-
      * @return true if the ray intersected the circle (in which case the result will contain the
      * * point of intersection), false otherwise.
      */

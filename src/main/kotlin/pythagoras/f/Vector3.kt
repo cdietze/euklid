@@ -62,7 +62,6 @@ class Vector3 : IVector3 {
     /**
      * Computes the cross product of this and the specified other vector, storing the result
      * in this vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun crossLocal(other: IVector3): Vector3 {
@@ -71,7 +70,6 @@ class Vector3 : IVector3 {
 
     /**
      * Negates this vector in-place.
-
      * @return a reference to this vector, for chaining.
      */
     fun negateLocal(): Vector3 {
@@ -80,7 +78,6 @@ class Vector3 : IVector3 {
 
     /**
      * Absolute-values this vector in-place.
-
      * @return a reference to this vector, for chaining.
      */
     fun absLocal(): Vector3 {
@@ -89,7 +86,6 @@ class Vector3 : IVector3 {
 
     /**
      * Normalizes this vector in-place.
-
      * @return a reference to this vector, for chaining.
      */
     fun normalizeLocal(): Vector3 {
@@ -98,7 +94,6 @@ class Vector3 : IVector3 {
 
     /**
      * Multiplies this vector in-place by a scalar.
-
      * @return a reference to this vector, for chaining.
      */
     fun multLocal(v: Float): Vector3 {
@@ -107,7 +102,6 @@ class Vector3 : IVector3 {
 
     /**
      * Multiplies this vector in-place by another.
-
      * @return a reference to this vector, for chaining.
      */
     fun multLocal(other: IVector3): Vector3 {
@@ -116,7 +110,6 @@ class Vector3 : IVector3 {
 
     /**
      * Adds a vector in-place to this one.
-
      * @return a reference to this vector, for chaining.
      */
     fun addLocal(other: IVector3): Vector3 {
@@ -125,7 +118,6 @@ class Vector3 : IVector3 {
 
     /**
      * Subtracts a vector in-place from this one.
-
      * @return a reference to this vector, for chaining.
      */
     fun subtractLocal(other: IVector3): Vector3 {
@@ -134,7 +126,6 @@ class Vector3 : IVector3 {
 
     /**
      * Adds a vector in-place to this one.
-
      * @return a reference to this vector, for chaining.
      */
     fun addLocal(x: Float, y: Float, z: Float): Vector3 {
@@ -143,7 +134,6 @@ class Vector3 : IVector3 {
 
     /**
      * Adds a scaled vector in-place to this one.
-
      * @return a reference to this vector, for chaining.
      */
     fun addScaledLocal(other: IVector3, v: Float): Vector3 {
@@ -153,7 +143,6 @@ class Vector3 : IVector3 {
     /**
      * Linearly interpolates between this and the specified other vector in-place by the supplied
      * amount.
-
      * @return a reference to this vector, for chaining.
      */
     fun lerpLocal(other: IVector3, t: Float): Vector3 {
@@ -162,7 +151,6 @@ class Vector3 : IVector3 {
 
     /**
      * Copies the elements of another vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(other: IVector3): Vector3 {
@@ -171,7 +159,6 @@ class Vector3 : IVector3 {
 
     /**
      * Copies the elements of an array.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(values: FloatArray): Vector3 {
@@ -180,7 +167,6 @@ class Vector3 : IVector3 {
 
     /**
      * Sets all of the elements of the vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(x: Float, y: Float, z: Float): Vector3 {

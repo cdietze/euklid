@@ -176,7 +176,6 @@ data class Matrix3(
 
     /**
      * Sets this matrix to the identity matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToIdentity(): Matrix3 {
@@ -187,7 +186,6 @@ data class Matrix3(
 
     /**
      * Sets this matrix to all zeroes.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToZero(): Matrix3 {
@@ -198,7 +196,6 @@ data class Matrix3(
 
     /**
      * Sets this to a rotation matrix that rotates one vector onto another.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(from: IVector3, to: IVector3): Matrix3 {
@@ -211,7 +208,6 @@ data class Matrix3(
 
     /**
      * Sets this to a rotation matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float, axis: IVector3): Matrix3 {
@@ -221,7 +217,6 @@ data class Matrix3(
     /**
      * Sets this to a rotation matrix. The formula comes from the OpenGL documentation for the
      * glRotatef function.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float, x: Float, y: Float, z: Float): Matrix3 {
@@ -242,7 +237,6 @@ data class Matrix3(
     /**
      * Sets this to a rotation matrix. The formula comes from the
      * [Matrix and Quaternion FAQ](http://www.j3d.org/matrix_faq/matrfaq_latest.html).
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(quat: IQuaternion): Matrix3 {
@@ -266,7 +260,6 @@ data class Matrix3(
 
     /**
      * Sets this to a scale matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToScale(scale: IVector3): Matrix3 {
@@ -275,7 +268,6 @@ data class Matrix3(
 
     /**
      * Sets this to a uniform scale matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToScale(s: Float): Matrix3 {
@@ -284,7 +276,6 @@ data class Matrix3(
 
     /**
      * Sets this to a scale matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToScale(x: Float, y: Float, z: Float): Matrix3 {
@@ -295,7 +286,6 @@ data class Matrix3(
 
     /**
      * Sets this to a reflection across a plane intersecting the origin with the supplied normal.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToReflection(normal: IVector3): Matrix3 {
@@ -304,7 +294,6 @@ data class Matrix3(
 
     /**
      * Sets this to a reflection across a plane intersecting the origin with the supplied normal.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToReflection(x: Float, y: Float, z: Float): Matrix3 {
@@ -321,7 +310,6 @@ data class Matrix3(
 
     /**
      * Sets this to a matrix that first rotates, then translates.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToTransform(translation: IVector, rotation: Float): Matrix3 {
@@ -330,7 +318,6 @@ data class Matrix3(
 
     /**
      * Sets this to a matrix that first scales, then rotates, then translates.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToTransform(translation: IVector, rotation: Float, scale: Float): Matrix3 {
@@ -341,7 +328,6 @@ data class Matrix3(
 
     /**
      * Sets this to a matrix that first scales, then rotates, then translates.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToTransform(translation: IVector, rotation: Float, scale: IVector): Matrix3 {
@@ -354,7 +340,6 @@ data class Matrix3(
 
     /**
      * Sets this to a translation matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToTranslation(translation: IVector): Matrix3 {
@@ -363,7 +348,6 @@ data class Matrix3(
 
     /**
      * Sets this to a translation matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToTranslation(x: Float, y: Float): Matrix3 {
@@ -374,7 +358,6 @@ data class Matrix3(
 
     /**
      * Sets the translation component of this matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setTranslation(translation: IVector): Matrix3 {
@@ -383,7 +366,6 @@ data class Matrix3(
 
     /**
      * Sets the translation component of this matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setTranslation(x: Float, y: Float): Matrix3 {
@@ -394,7 +376,6 @@ data class Matrix3(
 
     /**
      * Sets this to a rotation matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun setToRotation(angle: Float): Matrix3 {
@@ -407,7 +388,6 @@ data class Matrix3(
 
     /**
      * Transposes this matrix in-place.
-
      * @return a reference to this matrix, for chaining.
      */
     fun transposeLocal(): Matrix3 {
@@ -416,7 +396,6 @@ data class Matrix3(
 
     /**
      * Multiplies this matrix in-place by another.
-
      * @return a reference to this matrix, for chaining.
      */
     fun multLocal(other: IMatrix3): Matrix3 {
@@ -425,7 +404,6 @@ data class Matrix3(
 
     /**
      * Adds `other` to this matrix, in place.
-
      * @return a reference to this matrix, for chaining.
      */
     fun addLocal(other: IMatrix3): Matrix3 {
@@ -434,7 +412,6 @@ data class Matrix3(
 
     /**
      * Multiplies this matrix in-place by another, treating the matricees as affine.
-
      * @return a reference to this matrix, for chaining.
      */
     fun multAffineLocal(other: IMatrix3): Matrix3 {
@@ -443,7 +420,6 @@ data class Matrix3(
 
     /**
      * Inverts this matrix in-place.
-
      * @return a reference to this matrix, for chaining.
      */
     fun invertLocal(): Matrix3 {
@@ -452,7 +428,6 @@ data class Matrix3(
 
     /**
      * Inverts this matrix in-place as an affine matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun invertAffineLocal(): Matrix3 {
@@ -462,7 +437,6 @@ data class Matrix3(
     /**
      * Linearly interpolates between the this and the specified other matrix, placing the result in
      * this matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun lerpLocal(other: IMatrix3, t: Float): Matrix3 {
@@ -472,7 +446,6 @@ data class Matrix3(
     /**
      * Linearly interpolates between this and the specified other matrix (treating the matrices as
      * affine), placing the result in this matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun lerpAffineLocal(other: IMatrix3, t: Float): Matrix3 {
@@ -481,7 +454,6 @@ data class Matrix3(
 
     /**
      * Copies the contents of another matrix.
-
      * @return a reference to this matrix, for chaining.
      */
     fun set(other: IMatrix3): Matrix3 {
@@ -492,7 +464,6 @@ data class Matrix3(
 
     /**
      * Copies the elements of an array.
-
      * @return a reference to this matrix, for chaining.
      */
     fun set(values: FloatArray): Matrix3 {
@@ -503,7 +474,6 @@ data class Matrix3(
 
     /**
      * Sets all of the matrix's components at once.
-
      * @return a reference to this matrix, for chaining.
      */
     fun set(

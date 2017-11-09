@@ -41,7 +41,6 @@ interface PathIterator {
     /**
      * Returns the coordinates and type of the current path segment. The number of points stored in
      * `coords` differs by path segment type: 0 - [.SEG_CLOSE], 1 - [ ][.SEG_MOVETO], [.SEG_LINETO], 2 - [.SEG_QUADTO], 3 - [.SEG_CUBICTO].
-
      * @param coords a buffer into which the current coordinates will be copied. It must be of
      * * length 6. Each point is stored as a pair of x,y coordinates.
      * *

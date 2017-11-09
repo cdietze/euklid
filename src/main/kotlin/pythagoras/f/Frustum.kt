@@ -65,7 +65,6 @@ class Frustum {
      * Sets this frustum to one pointing in the Z- direction with the specified parameters
      * determining its size and shape (see the OpenGL documentation for
      * `gluPerspective`).
-
      * @param fovy the vertical field of view, in radians.
      * *
      * @param aspect the aspect ratio (width over height).
@@ -87,7 +86,6 @@ class Frustum {
     /**
      * Sets this frustum to one pointing in the Z- direction with the specified parameters
      * determining its size and shape (see the OpenGL documentation for `glFrustum`).
-
      * @return a reference to this frustum, for chaining.
      */
     fun setToFrustum(
@@ -98,7 +96,6 @@ class Frustum {
     /**
      * Sets this frustum to an orthographic one pointing in the Z- direction with the specified
      * parameters determining its size (see the OpenGL documentation for `glOrtho`).
-
      * @return a reference to this frustum, for chaining.
      */
     fun setToOrtho(
@@ -109,7 +106,6 @@ class Frustum {
     /**
      * Sets this frustum to a perspective or orthographic projection with the specified parameters
      * determining its size and shape.
-
      * @return a reference to this frustum, for chaining.
      */
     fun setToProjection(
@@ -246,7 +242,6 @@ class Frustum {
     /**
      * Computes the bounds of the frustum under the supplied rotation and places the results in
      * the box provided.
-
      * @return a reference to the result box, for chaining.
      */
     fun boundsUnderRotation(matrix: Matrix3, result: Box): Box {

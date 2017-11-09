@@ -41,56 +41,48 @@ interface IVector4 {
 
     /**
      * Negates this vector.
-
      * @return a new vector containing the result.
      */
     fun negate(): Vector4
 
     /**
      * Negates this vector, storing the result in the supplied object.
-
      * @return a reference to the result, for chaining.
      */
     fun negate(result: Vector4): Vector4
 
     /**
      * Absolute-values this vector.
-
      * @return a new vector containing the result.
      */
     fun abs(): Vector4
 
     /**
      * Absolute-values this vector, storing the result in the supplied object.
-
      * @return a reference to the result, for chaining.
      */
     fun abs(result: Vector4): Vector4
 
     /**
      * Multiplies this vector by a scalar.
-
      * @return a new vector containing the result.
      */
     fun mult(v: Float): Vector4
 
     /**
      * Multiplies this vector by a scalar and places the result in the supplied object.
-
      * @return a reference to the result, for chaining.
      */
     fun mult(v: Float, result: Vector4): Vector4
 
     /**
      * Multiplies this vector by a matrix (V * M).
-
      * @return a new vector containing the result.
      */
     fun mult(matrix: IMatrix4): Vector4
 
     /**
      * Multiplies this vector by a matrix (V * M) and stores the result in the object provided.
-
      * @return a reference to the result vector, for chaining.
      */
     fun mult(matrix: IMatrix4, result: Vector4): Vector4

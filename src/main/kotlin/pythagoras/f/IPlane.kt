@@ -53,14 +53,12 @@ interface IPlane {
 
     /**
      * Negates this plane.
-
      * @return a new plane containing the result.
      */
     fun negate(): Plane = negate(Plane())
 
     /**
      * Negates this plane, placing the result in the object provided.
-
      * @return a reference to the result, for chaining.
      */
     fun negate(result: Plane): Plane {
@@ -72,7 +70,6 @@ interface IPlane {
     /**
      * Computes the intersection of the supplied ray with this plane, placing the result
      * in the given vector (if the ray intersects).
-
      * @return true if the ray intersects the plane (in which case the result will contain
      * * the point of intersection), false if not.
      */
@@ -88,7 +85,6 @@ interface IPlane {
 
     /**
      * Computes the signed distance to this plane along the specified ray.
-
      * @return the signed distance, or [Float.NaN] if the ray runs parallel to the plane.
      */
     fun distance(ray: IRay3): Float {

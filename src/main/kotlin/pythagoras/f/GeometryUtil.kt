@@ -58,7 +58,6 @@ object GeometryUtil {
      * Checks whether line (x1, y1) - (x2, y2) and line (x3, y3) - (x4, y4) intersect. If lines
      * intersect then the result parameters are saved to point array. The size of `point`
      * must be at least 2.
-
      * @return 1 if two lines intersect in the defined interval, otherwise 0.
      */
     fun intersectLines(x1: Float, y1: Float, x2: Float, y2: Float, x3: Float, y3: Float,
@@ -93,7 +92,6 @@ object GeometryUtil {
      * Checks whether there is intersection of the line (x1, y1) - (x2, y2) and the quad curve
      * (qx1, qy1) - (qx2, qy2) - (qx3, qy3). The parameters of the intersection area saved to
      * `params`. Therefore `params` must be of length at least 4.
-
      * @return the number of roots that lie in the defined interval.
      */
     fun intersectLineAndQuad(x1: Float, y1: Float, x2: Float, y2: Float,
@@ -138,7 +136,6 @@ object GeometryUtil {
      * Checks whether the line (x1, y1) - (x2, y2) and the cubic curve (cx1, cy1) - (cx2, cy2) -
      * (cx3, cy3) - (cx4, cy4) intersect. The points of intersection are saved to `points`.
      * Therefore `points` must be of length at least 6.
-
      * @return the numbers of roots that lie in the defined interval.
      */
     fun intersectLineAndCubic(x1: Float, y1: Float, x2: Float, y2: Float,
@@ -185,7 +182,6 @@ object GeometryUtil {
      * Checks whether two quads (x1, y1) - (x2, y2) - (x3, y3) and (qx1, qy1) - (qx2, qy2) - (qx3,
      * qy3) intersect. The result is saved to `params`. Thus `params` must be of length
      * at least 4.
-
      * @return the number of roots that lie in the interval.
      */
     fun intersectQuads(x1: Float, y1: Float, x2: Float, y2: Float, x3: Float, y3: Float,
@@ -240,7 +236,6 @@ object GeometryUtil {
      * Checks whether the quad (x1, y1) - (x2, y2) - (x3, y3) and the cubic (cx1, cy1) - (cx2, cy2)
      * - (cx3, cy3) - (cx4, cy4) curves intersect. The points of the intersection are saved to
      * `params`. Thus `params` must be of length at least 6.
-
      * @return the number of intersection points that lie in the interval.
      */
     fun intersectQuadAndCubic(qx1: Float, qy1: Float, qx2: Float, qy2: Float,
@@ -305,7 +300,6 @@ object GeometryUtil {
      * Checks whether two cubic curves (x1, y1) - (x2, y2) - (x3, y3) - (x4, y4) and (cx1, cy1) -
      * (cx2, cy2) - (cx3, cy3) - (cx4, cy4) intersect. The result is saved to `params`. Thus
      * `params` must be of length at least 6.
-
      * @return the number of intersection points that lie in the interval.
      */
     fun intersectCubics(x1: Float, y1: Float, x2: Float, y2: Float, x3: Float, y3: Float,

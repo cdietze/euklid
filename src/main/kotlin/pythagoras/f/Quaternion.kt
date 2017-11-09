@@ -64,7 +64,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Copies the elements of another quaternion.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun set(other: IQuaternion): Quaternion {
@@ -73,7 +72,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Copies the elements of an array.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun set(values: FloatArray): Quaternion {
@@ -82,7 +80,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Sets all of the elements of the quaternion.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun set(x: Float, y: Float, z: Float, w: Float): Quaternion {
@@ -95,7 +92,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Sets this quaternion to the rotation of the first normalized vector onto the second.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun fromVectors(from: IVector3, to: IVector3): Quaternion {
@@ -117,7 +113,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Sets this quaternion to the rotation of (0, 0, -1) onto the supplied normalized vector.
-
      * @return a reference to the quaternion, for chaining.
      */
     fun fromVectorFromNegativeZ(to: IVector3): Quaternion {
@@ -126,7 +121,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Sets this quaternion to the rotation of (0, 0, -1) onto the supplied normalized vector.
-
      * @return a reference to the quaternion, for chaining.
      */
     fun fromVectorFromNegativeZ(tx: Float, ty: Float, tz: Float): Quaternion {
@@ -143,7 +137,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Sets this quaternion to one that rotates onto the given unit axes.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun fromAxes(nx: IVector3, ny: IVector3, nz: IVector3): Quaternion {
@@ -163,7 +156,6 @@ class Quaternion : IQuaternion {
     /**
      * Sets this quaternion to the rotation described by the given angle and normalized
      * axis.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun fromAngleAxis(angle: Float, axis: IVector3): Quaternion {
@@ -173,7 +165,6 @@ class Quaternion : IQuaternion {
     /**
      * Sets this quaternion to the rotation described by the given angle and normalized
      * axis.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun fromAngleAxis(angle: Float, x: Float, y: Float, z: Float): Quaternion {
@@ -256,7 +247,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Normalizes this quaternion in-place.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun normalizeLocal(): Quaternion {
@@ -265,7 +255,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Inverts this quaternion in-place.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun invertLocal(): Quaternion {
@@ -274,7 +263,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Multiplies this quaternion in-place by another.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun multLocal(other: IQuaternion): Quaternion {
@@ -283,7 +271,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Interpolates in-place between this and the specified other quaternion.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun slerpLocal(other: IQuaternion, t: Float): Quaternion {
@@ -292,7 +279,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Transforms a vector in-place by this quaternion.
-
      * @return a reference to the vector, for chaining.
      */
     fun transformLocal(vector: Vector3): Vector3 {
@@ -301,7 +287,6 @@ class Quaternion : IQuaternion {
 
     /**
      * Integrates in-place the provided angular velocity over the specified timestep.
-
      * @return a reference to this quaternion, for chaining.
      */
     fun integrateLocal(velocity: IVector3, t: Float): Quaternion {

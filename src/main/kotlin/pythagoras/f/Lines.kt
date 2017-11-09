@@ -153,7 +153,6 @@ object Lines {
     /**
      * Returns an indicator of where the specified point (px,py) lies with respect to the line
      * segment from (x1,y1) to (x2,y2).
-
      * See http://download.oracle.com/javase/6/docs/api/java/awt/geom/Line2D.html
      */
     fun relativeCCW(px: Float, py: Float, x1: Float, y1: Float, x2: Float, y2: Float): Int {

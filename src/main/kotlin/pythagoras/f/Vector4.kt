@@ -60,7 +60,6 @@ class Vector4 : IVector4 {
 
     /**
      * Copies the elements of another vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(other: IVector4): Vector4 {
@@ -69,7 +68,6 @@ class Vector4 : IVector4 {
 
     /**
      * Sets all of the elements of the vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(values: FloatArray): Vector4 {
@@ -78,7 +76,6 @@ class Vector4 : IVector4 {
 
     /**
      * Sets all of the elements of the vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun set(x: Float, y: Float, z: Float, w: Float): Vector4 {
@@ -91,7 +88,6 @@ class Vector4 : IVector4 {
 
     /**
      * Negates this vector in-place.
-
      * @return a reference to this vector, for chaining.
      */
     fun negateLocal(): Vector4 {
@@ -100,7 +96,6 @@ class Vector4 : IVector4 {
 
     /**
      * Absolute-values this vector in-place.
-
      * @return a reference to this vector, for chaining.
      */
     fun absLocal(): Vector4 {
@@ -109,7 +104,6 @@ class Vector4 : IVector4 {
 
     /**
      * Multiplies this vector by a scalar and stores the result back in this vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun multLocal(v: Float): Vector4 {
@@ -118,7 +112,6 @@ class Vector4 : IVector4 {
 
     /**
      * Multiplies this vector by a matrix (V * M) and stores the result back in this vector.
-
      * @return a reference to this vector, for chaining.
      */
     fun multLocal(matrix: IMatrix4): Vector4 {

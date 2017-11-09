@@ -34,7 +34,6 @@ object MathUtil {
     /**
      * Computes the floored division `dividend/divisor` which is useful when dividing
      * potentially negative numbers into bins.
-
      *
      *  For example, the following numbers `floorDiv` 10 are:
      * <pre>

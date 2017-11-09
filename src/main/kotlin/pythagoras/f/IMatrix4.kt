@@ -72,28 +72,24 @@ interface IMatrix4 {
 
     /**
      * Transposes this matrix.
-
      * @return a new matrix containing the result.
      */
     fun transpose(): Matrix4
 
     /**
      * Transposes this matrix, storing the result in the provided object.
-
      * @return the result matrix, for chaining.
      */
     fun transpose(result: Matrix4): Matrix4
 
     /**
      * Multiplies this matrix by another.
-
      * @return a new matrix containing the result.
      */
     fun mult(other: IMatrix4): Matrix4
 
     /**
      * Multiplies this matrix by another and stores the result in the object provided.
-
      * @return a reference to the result matrix, for chaining.
      */
     fun mult(other: IMatrix4, result: Matrix4): Matrix4
@@ -110,7 +106,6 @@ interface IMatrix4 {
 
     /**
      * Multiplies this matrix by another, treating the matrices as affine.
-
      * @return a new matrix containing the result.
      */
     fun multAffine(other: IMatrix4): Matrix4
@@ -118,42 +113,36 @@ interface IMatrix4 {
     /**
      * Multiplies this matrix by another, treating the matrices as affine, and stores the result
      * in the object provided.
-
      * @return a reference to the result matrix, for chaining.
      */
     fun multAffine(other: IMatrix4, result: Matrix4): Matrix4
 
     /**
      * Inverts this matrix.
-
      * @return a new matrix containing the result.
      */
     fun invert(): Matrix4
 
     /**
      * Inverts this matrix and places the result in the given object.
-
      * @return a reference to the result matrix, for chaining.
      */
     fun invert(result: Matrix4): Matrix4
 
     /**
      * Inverts this matrix as an affine matrix.
-
      * @return a new matrix containing the result.
      */
     fun invertAffine(): Matrix4
 
     /**
      * Inverts this matrix as an affine matrix and places the result in the given object.
-
      * @return a reference to the result matrix, for chaining.
      */
     fun invertAffine(result: Matrix4): Matrix4
 
     /**
      * Linearly interpolates between this and the specified other matrix.
-
      * @return a new matrix containing the result.
      */
     fun lerp(other: IMatrix4, t: Float): Matrix4
@@ -161,7 +150,6 @@ interface IMatrix4 {
     /**
      * Linearly interpolates between this and the specified other matrix, placing the result in
      * the object provided.
-
      * @return a reference to the result object, for chaining.
      */
     fun lerp(other: IMatrix4, t: Float, result: Matrix4): Matrix4
@@ -169,7 +157,6 @@ interface IMatrix4 {
     /**
      * Linearly interpolates between this and the specified other matrix, treating the matrices as
      * affine.
-
      * @return a new matrix containing the result.
      */
     fun lerpAffine(other: IMatrix4, t: Float): Matrix4
@@ -177,49 +164,42 @@ interface IMatrix4 {
     /**
      * Linearly interpolates between this and the specified other matrix (treating the matrices as
      * affine), placing the result in the object provided.
-
      * @return a reference to the result object, for chaining.
      */
     fun lerpAffine(other: IMatrix4, t: Float, result: Matrix4): Matrix4
 
     /**
      * Projects the supplied point in-place using this matrix.
-
      * @return a reference to the point, for chaining.
      */
     fun projectPointLocal(point: Vector3): Vector3
 
     /**
      * Projects the supplied point using this matrix.
-
      * @return a new vector containing the result.
      */
     fun projectPoint(point: IVector3): Vector3
 
     /**
      * Projects the supplied point using this matrix and places the result in the object supplied.
-
      * @return a reference to the result vector, for chaining.
      */
     fun projectPoint(point: IVector3, result: Vector3): Vector3
 
     /**
      * Transforms a point in-place by this matrix.
-
      * @return a reference to the point, for chaining.
      */
     fun transformPointLocal(point: Vector3): Vector3
 
     /**
      * Transforms a point by this matrix.
-
      * @return a new vector containing the result.
      */
     fun transformPoint(point: IVector3): Vector3
 
     /**
      * Transforms a point by this matrix and places the result in the object provided.
-
      * @return a reference to the result, for chaining.
      */
     fun transformPoint(point: IVector3, result: Vector3): Vector3
@@ -231,14 +211,12 @@ interface IMatrix4 {
 
     /**
      * Transforms a vector in-place by the inner 3x3 part of this matrix.
-
      * @return a reference to the vector, for chaining.
      */
     fun transformVectorLocal(vector: Vector3): Vector3
 
     /**
      * Transforms a vector by this inner 3x3 part of this matrix.
-
      * @return a new vector containing the result.
      */
     fun transformVector(vector: IVector3): Vector3
@@ -246,14 +224,12 @@ interface IMatrix4 {
     /**
      * Transforms a vector by the inner 3x3 part of this matrix and places the result in the object
      * provided.
-
      * @return a reference to the result, for chaining.
      */
     fun transformVector(vector: IVector3, result: Vector3): Vector3
 
     /**
      * Transforms `vector` by this matrix (M * V).
-
      * @return a new vector containing the result.
      */
     fun transform(vector: IVector4): Vector4
@@ -261,14 +237,12 @@ interface IMatrix4 {
     /**
      * Transforms `vector` by this matrix (M * V) and stores the result in the object
      * provided.
-
      * @return a reference to the result vector, for chaining.
      */
     fun transform(vector: IVector4, result: Vector4): Vector4
 
     /**
      * Extracts the rotation component of the matrix.
-
      * @return a new quaternion containing the result.
      */
     fun extractRotation(): Quaternion
@@ -276,28 +250,24 @@ interface IMatrix4 {
     /**
      * Extracts the rotation component of the matrix and places it in the provided result
      * quaternion.
-
      * @return a reference to the result quaternion, for chaining.
      */
     fun extractRotation(result: Quaternion): Quaternion
 
     /**
      * Extracts the rotation and scale components and places them in the provided result.
-
      * @return a reference to `result`, for chaining.
      */
     fun extractRotationScale(result: Matrix3): Matrix3
 
     /**
      * Extracts the scale component of the matrix.
-
      * @return a new vector containing the result.
      */
     fun extractScale(): Vector3
 
     /**
      * Extracts the scale component of the matrix and places it in the provided result vector.
-
      * @return a reference to the result vector, for chaining.
      */
     fun extractScale(result: Vector3): Vector3

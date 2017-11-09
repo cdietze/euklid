@@ -105,7 +105,6 @@ object MathUtil {
     /**
      * Returns a random value according to the normal distribution with the provided mean and
      * standard deviation.
-
      * @param normal a normally distributed random value.
      * *
      * @param mean the desired mean.
@@ -118,7 +117,6 @@ object MathUtil {
 
     /**
      * Returns a random value according to the exponential distribution with the provided mean.
-
      * @param random a uniformly distributed random value.
      * *
      * @param mean the desired mean.
@@ -260,7 +258,6 @@ object MathUtil {
 
     /**
      * Converts from radians to degrees.
-
      * @see Math.toDegrees
      */
     fun toDegrees(a: Float): Float {
@@ -269,7 +266,6 @@ object MathUtil {
 
     /**
      * Converts from degrees to radians.
-
      * @see Math.toRadians
      */
     fun toRadians(a: Float): Float {

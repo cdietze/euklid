@@ -50,7 +50,6 @@ class Ray3 : IRay3 {
 
     /**
      * Copies the parameters of another ray.
-
      * @return a reference to this ray, for chaining.
      */
     fun set(other: Ray3): Ray3 {
@@ -59,7 +58,6 @@ class Ray3 : IRay3 {
 
     /**
      * Sets the ray parameters to the values contained in the supplied vectors.
-
      * @return a reference to this ray, for chaining.
      */
     fun set(origin: Vector3, direction: Vector3): Ray3 {

@@ -55,7 +55,6 @@ class Ray2 : IRay2 {
 
     /**
      * Copies the parameters of another ray.
-
      * @return a reference to this ray, for chaining.
      */
     fun set(other: IRay2): Ray2 {
@@ -64,7 +63,6 @@ class Ray2 : IRay2 {
 
     /**
      * Sets the ray parameters to the values contained in the supplied vectors.
-
      * @return a reference to this ray, for chaining.
      */
     fun set(origin: IVector, direction: IVector): Ray2 {
@@ -75,7 +73,6 @@ class Ray2 : IRay2 {
 
     /**
      * Transforms this ray in-place.
-
      * @return a reference to this ray, for chaining.
      */
     fun transformLocal(transform: Transform): Ray2 {
