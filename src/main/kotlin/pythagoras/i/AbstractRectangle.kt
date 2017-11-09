@@ -135,11 +135,6 @@ abstract class AbstractRectangle : IRectangle {
     }
 
     override
-    fun contains(point: IPoint): Boolean {
-        return contains(point.x, point.y)
-    }
-
-    override
     fun contains(x: Int, y: Int, width: Int, height: Int): Boolean {
         if (isEmpty) return false
         val x1 = this.x
@@ -150,11 +145,6 @@ abstract class AbstractRectangle : IRectangle {
     }
 
     override
-    fun contains(rect: IRectangle): Boolean {
-        return contains(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
     fun intersects(x: Int, y: Int, width: Int, height: Int): Boolean {
         if (isEmpty) return false
         val x1 = this.x
@@ -162,16 +152,6 @@ abstract class AbstractRectangle : IRectangle {
         val x2 = x1 + this.width
         val y2 = y1 + this.height
         return x + width > x1 && x < x2 && y + height > y1 && y < y2
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return intersects(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
     }
 
     override
