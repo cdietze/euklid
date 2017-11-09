@@ -221,16 +221,6 @@ class Area : IShape {
     }
 
     override
-    fun contains(point: XY): Boolean {
-        return contains(point.x, point.y)
-    }
-
-    override
-    fun contains(rect: IRectangle): Boolean {
-        return contains(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         if (width <= 0f || height <= 0f) {
             return false
@@ -239,16 +229,6 @@ class Area : IShape {
         }
         val crossCount = Crossing.intersectShape(this, x, y, width, height)
         return Crossing.isInsideEvenOdd(crossCount)
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return intersects(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
     }
 
     override

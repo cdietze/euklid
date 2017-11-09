@@ -167,26 +167,6 @@ abstract class RectangularShape : IRectangularShape {
         get() = width <= 0 || height <= 0
 
     override
-    fun contains(point: XY): Boolean {
-        return contains(point.x, point.y)
-    }
-
-    override
-    fun contains(rect: IRectangle): Boolean {
-        return contains(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return intersects(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
-    }
-
-    override
     fun bounds(target: Rectangle): Rectangle {
         target.setBounds(x, y, width, height)
         return target

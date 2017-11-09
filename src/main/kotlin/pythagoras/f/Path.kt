@@ -160,11 +160,6 @@ class Path : IShape {
     }
 
     override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
-    }
-
-    override
     fun bounds(target: Rectangle): Rectangle {
         var rx1: Float
         var ry1: Float
@@ -220,21 +215,6 @@ class Path : IShape {
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || isInside(cross)
-    }
-
-    override
-    fun contains(point: XY): Boolean {
-        return contains(point.x, point.y)
-    }
-
-    override
-    fun contains(rect: IRectangle): Boolean {
-        return contains(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return intersects(rect.x, rect.y, rect.width, rect.height)
     }
 
     override

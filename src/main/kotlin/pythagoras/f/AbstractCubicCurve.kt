@@ -86,29 +86,9 @@ abstract class AbstractCubicCurve : ICubicCurve {
     }
 
     override
-    fun contains(point: XY): Boolean {
-        return contains(point.x, point.y)
-    }
-
-    override
-    fun contains(rect: IRectangle): Boolean {
-        return contains(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         val cross = Crossing.intersectShape(this, x, y, width, height)
         return cross == Crossing.CROSSING || Crossing.isInsideEvenOdd(cross)
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return intersects(rect.x, rect.y, rect.width, rect.height)
-    }
-
-    override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
     }
 
     override

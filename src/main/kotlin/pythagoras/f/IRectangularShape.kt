@@ -70,4 +70,5 @@ interface IRectangularShape : IShape {
      * @return the supplied rectangle.
      */
     fun frame(target: Rectangle): Rectangle
+
 }

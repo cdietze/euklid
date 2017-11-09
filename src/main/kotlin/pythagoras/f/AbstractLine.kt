@@ -108,33 +108,13 @@ abstract class AbstractLine : ILine {
     }
 
     override
-    fun contains(point: XY): Boolean {
-        return false
-    }
-
-    override
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
-        return false
-    }
-
-    override
-    fun contains(rect: IRectangle): Boolean {
         return false
     }
 
     override
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean {
         return Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
-    }
-
-    override
-    fun intersects(rect: IRectangle): Boolean {
-        return rect.intersectsLine(this)
-    }
-
-    override
-    fun bounds(): Rectangle {
-        return bounds(Rectangle())
     }
 
     override

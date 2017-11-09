@@ -29,22 +29,22 @@ interface IShape {
     fun contains(x: Float, y: Float): Boolean
 
     /** Returns true if this shape contains the supplied point.  */
-    fun contains(point: XY): Boolean
+    fun contains(point: XY): Boolean = contains(point.x, point.y)
 
     /** Returns true if this shape completely contains the specified rectangle.  */
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean
 
     /** Returns true if this shape completely contains the supplied rectangle.  */
-    fun contains(rect: IRectangle): Boolean
+    fun contains(rect: IRectangle): Boolean = contains(rect.x, rect.y, rect.width, rect.height)
 
     /** Returns true if this shape intersects the specified rectangle.  */
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean
 
     /** Returns true if this shape intersects the supplied rectangle.  */
-    fun intersects(rect: IRectangle): Boolean
+    fun intersects(rect: IRectangle): Boolean = intersects(rect.x, rect.y, rect.width, rect.height)
 
     /** Returns a copy of the bounding rectangle for this shape.  */
-    fun bounds(): Rectangle
+    fun bounds(): Rectangle = bounds(Rectangle())
 
     /** Initializes the supplied rectangle with this shape's bounding rectangle.
      * @return the supplied rectangle.
