@@ -26,40 +26,18 @@ import kotlin.math.sqrt
 /**
  * A ray consisting of an origin point and a unit direction vector.
  */
-class Ray2 : IRay2 {
-    /** The ray's point of origin.  */
-    override val origin = Vector()
-
-    /** The ray's unit direction vector.  */
-    override val direction = Vector()
-
-    /**
-     * Creates a ray with the values contained in the supplied origin point and unit direction
-     * vector.
-     */
-    constructor(origin: Vector, direction: Vector) {
-        set(origin, direction)
-    }
-
-    /**
-     * Copy constructor.
-     */
-    constructor(other: Ray2) {
-        set(other)
-    }
-
-    /**
-     * Creates an empty (invalid) ray.
-     */
-    constructor()
+data class Ray2(
+        /** The ray's point of origin.  */
+        override val origin: Vector = Vector(),
+        /** The ray's unit direction vector.  */
+        override val direction: Vector = Vector()
+) : IRay2 {
 
     /**
      * Copies the parameters of another ray.
      * @return a reference to this ray, for chaining.
      */
-    fun set(other: IRay2): Ray2 {
-        return set(other.origin, other.direction)
-    }
+    fun set(other: IRay2): Ray2 = set(other.origin, other.direction)
 
     /**
      * Sets the ray parameters to the values contained in the supplied vectors.
@@ -75,13 +53,9 @@ class Ray2 : IRay2 {
      * Transforms this ray in-place.
      * @return a reference to this ray, for chaining.
      */
-    fun transformLocal(transform: Transform): Ray2 {
-        return transform(transform, this)
-    }
+    fun transformLocal(transform: Transform): Ray2 = transform(transform, this)
 
-    override fun transform(transform: Transform): Ray2 {
-        return transform(transform, Ray2())
-    }
+    override fun transform(transform: Transform): Ray2 = transform(transform, Ray2())
 
     override fun transform(transform: Transform, result: Ray2): Ray2 {
         transform.transformPoint(origin, result.origin)
@@ -217,15 +191,11 @@ class Ray2 : IRay2 {
         return result
     }
 
-    override fun toString(): String {
-        return "[origin=$origin, direction=$direction]"
-    }
-
     /**
      * Returns the parameter of the ray when it intersects the supplied point, or
      * [Float.MAX_VALUE] if there is no such intersection.
      */
-    protected fun getIntersection(pt: IVector): Float {
+    private fun getIntersection(pt: IVector): Float {
         if (abs(direction.x) > abs(direction.y)) {
             val t = (pt.x - origin.x) / direction.x
             return if (t >= 0f && origin.y + t * direction.y == pt.y) t else Float.MAX_VALUE
