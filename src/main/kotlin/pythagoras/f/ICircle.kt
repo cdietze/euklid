@@ -35,7 +35,7 @@ interface ICircle {
     fun intersects(c: ICircle): Boolean
 
     /** Returns true if this circle contains the supplied point.  */
-    operator fun contains(p: XY): Boolean
+    fun contains(p: XY): Boolean
 
     /** Returns true if this circle contains the specified point.  */
     fun contains(x: Float, y: Float): Boolean

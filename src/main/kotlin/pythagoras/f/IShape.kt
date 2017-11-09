@@ -29,13 +29,13 @@ interface IShape {
     fun contains(x: Float, y: Float): Boolean
 
     /** Returns true if this shape contains the supplied point.  */
-    operator fun contains(point: XY): Boolean
+    fun contains(point: XY): Boolean
 
     /** Returns true if this shape completely contains the specified rectangle.  */
     fun contains(x: Float, y: Float, width: Float, height: Float): Boolean
 
     /** Returns true if this shape completely contains the supplied rectangle.  */
-    operator fun contains(rect: IRectangle): Boolean
+    fun contains(rect: IRectangle): Boolean
 
     /** Returns true if this shape intersects the specified rectangle.  */
     fun intersects(x: Float, y: Float, width: Float, height: Float): Boolean

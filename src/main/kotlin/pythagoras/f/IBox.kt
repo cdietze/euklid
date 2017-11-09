@@ -71,7 +71,7 @@ interface IBox {
     /**
      * Determines whether this box contains the specified point.
      */
-    operator fun contains(point: IVector3): Boolean
+    fun contains(point: IVector3): Boolean
 
     /**
      * Determines whether this box contains the specified point.
@@ -87,7 +87,7 @@ interface IBox {
     /**
      * Determines whether this box completely contains the specified box.
      */
-    operator fun contains(other: IBox): Boolean
+    fun contains(other: IBox): Boolean
 
     /**
      * Determines whether this box intersects the specified other box.
