@@ -66,27 +66,6 @@ class Ray3 : IRay3 {
         return this
     }
 
-    // /**
-    //  * Transforms this ray in-place.
-    //  *
-    //  * @return a reference to this ray, for chaining.
-    //  */
-    // public Ray3 transformLocal (Transform3D transform) {
-    //     return transform(transform, this);
-    // }
-
-    // @Override
-    // public Ray3 transform (Transform3D transform) {
-    //     return transform(transform, new Ray3());
-    // }
-
-    // @Override
-    // public Ray3 transform (Transform3D transform, Ray3 result) {
-    //     transform.transformPoint(origin, result.origin);
-    //     transform.transformVector(direction, result.direction).normalizeLocal();
-    //     return result;
-    // }
-
     override fun toString(): String {
         return "[origin=$origin, direction=$direction]"
     }
