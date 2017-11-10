@@ -26,91 +26,43 @@ import kotlin.math.sin
 /**
  * Represents an arc defined by a framing rectangle, start angle, angular extend, and closure type.
  */
-class Arc : AbstractArc {
-
-    /** The x-coordinate of this arc's framing rectangle.  */
-    override var x: Float = 0f
-
-    /** The y-coordinate of this arc's framing rectangle.  */
-    override var y: Float = 0f
-
-    /** The width of this arc's framing rectangle.  */
-    override var width: Float = 0f
-
-    /** The height of this arc's framing rectangle.  */
-    override var height: Float = 0f
-
-    /** The starting angle of this arc.  */
-    var start: Float = 0f
-
-    /** The angular extent of this arc.  */
-    var extent: Float = 0f
-
-    /**
-     * Creates an arc of the specified type with frame (0x0+0+0) and zero angles.
-     */
-    constructor(type: Int = IArc.OPEN) {
-        setArcType(type)
-    }
-
-    /**
-     * Creates an arc of the specified type with the specified framing rectangle, starting angle
-     * and angular extent.
-     */
-    constructor(x: Float, y: Float, width: Float, height: Float, start: Float, extent: Float, type: Int) {
-        setArc(x, y, width, height, start, extent, type)
-    }
+data class Arc(
+        /** The x-coordinate of this arc's framing rectangle.  */
+        override var x: Float = 0f,
+        /** The y-coordinate of this arc's framing rectangle.  */
+        override var y: Float = 0f,
+        /** The width of this arc's framing rectangle.  */
+        override var width: Float = 0f,
+        /** The height of this arc's framing rectangle.  */
+        override var height: Float = 0f,
+        /** The starting angle of this arc.  */
+        override var angleStart: Float = 0f,
+        /** The angular extent of this arc.  */
+        override var angleExtent: Float = 0f,
+        /** The type of this arc: [IArc.OPEN], etc.  */
+        override var arcType: Int = 0
+) : AbstractArc() {
 
     /**
      * Creates an arc of the specified type with the supplied framing rectangle, starting angle and
      * angular extent.
      */
-    constructor(bounds: IRectangle, start: Float, extent: Float, type: Int) {
-        setArc(bounds.x, bounds.y, bounds.width, bounds.height,
-                start, extent, type)
-    }
-
-    override val arcType: Int get() = type
-    override val angleStart: Float get() = start
-    override val angleExtent: Float get() = extent
-
-    /**
-     * Sets the type of this arc to the specified value.
-     */
-    fun setArcType(type: Int) {
-        if (type != IArc.OPEN && type != IArc.CHORD && type != IArc.PIE) {
-            throw IllegalArgumentException("Invalid Arc type: " + type)
-        }
-        this.type = type
-    }
-
-    /**
-     * Sets the starting angle of this arc to the specified value.
-     */
-    fun setAngleStart(start: Float) {
-        this.start = start
-    }
-
-    /**
-     * Sets the angular extent of this arc to the specified value.
-     */
-    fun setAngleExtent(extent: Float) {
-        this.extent = extent
-    }
+    constructor(bounds: IRectangle, start: Float, extent: Float, type: Int) :
+            this(bounds.x, bounds.y, bounds.width, bounds.height, start, extent, type)
 
     /**
      * Sets the location, size, angular extents, and closure type of this arc to the specified
      * values.
      */
     fun setArc(x: Float, y: Float, width: Float, height: Float,
-               start: Float, extent: Float, type: Int) {
-        setArcType(type)
+               angleStart: Float, angleExtent: Float, arcType: Int) {
         this.x = x
         this.y = y
         this.width = width
         this.height = height
-        this.start = start
-        this.extent = extent
+        this.angleStart = angleStart
+        this.angleExtent = angleExtent
+        this.arcType = arcType
     }
 
     /**
@@ -167,7 +119,7 @@ class Arc : AbstractArc {
         if (delta <= 0f) {
             delta += 360f
         }
-        setArcByCenter(x, y, radius, a1, delta, type)
+        setArcByCenter(x, y, radius, a1, delta, arcType)
     }
 
     /**
@@ -176,7 +128,7 @@ class Arc : AbstractArc {
      */
     fun setAngleStart(point: XY) {
         val angle = atan2(point.y - centerY, point.x - centerX)
-        setAngleStart(normAngle(-MathUtil.toDegrees(angle)))
+        this.angleStart = normAngle(-MathUtil.toDegrees(angle))
     }
 
     /**
@@ -195,8 +147,8 @@ class Arc : AbstractArc {
         if (a2 <= 0f) {
             a2 += 360f
         }
-        setAngleStart(a1)
-        setAngleExtent(a2)
+        this.angleStart = a1
+        this.angleExtent = a2
     }
 
     /**
@@ -211,15 +163,10 @@ class Arc : AbstractArc {
     }
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
-        setArc(x, y, width, height, angleStart, angleExtent, type)
+        setArc(x, y, width, height, angleStart, angleExtent, arcType)
     }
-
-    private var type: Int = 0
 
     companion object {
         private const val serialVersionUID = 378120636227888073L
     }
 }
-/**
- * Creates an open arc with frame (0x0+0+0) and zero angles.
- */
