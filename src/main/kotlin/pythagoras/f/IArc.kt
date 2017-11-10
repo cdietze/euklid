@@ -23,8 +23,8 @@ package pythagoras.f
  */
 interface IArc : IRectangularShape {
 
-    /** Returns the type of this arc: [.OPEN], etc.  */
-    val arcType: Int
+    /** Returns the type of this arc: [ArcType.OPEN], etc.  */
+    val arcType: ArcType
 
     /** Returns the starting angle of this arc.  */
     val angleStart: Float
@@ -58,17 +58,17 @@ interface IArc : IRectangularShape {
     /** Returns a mutable copy of this arc.  */
     fun clone(): Arc
 
-    companion object {
+    enum class ArcType {
         /** An arc type indicating a simple, unconnected curve.  */
-        val OPEN = 0
+        OPEN,
 
         /** An arc type indicating a closed curve, connected by a straight line from the starting to
          * the ending point of the arc.  */
-        val CHORD = 1
+        CHORD,
 
         /** An arc type indicating a closed curve, connected by a line from the starting point of the
          * arc to the center of the circle defining the arc, and another straight line from that center
          * to the ending point of the arc.  */
-        val PIE = 2
+        PIE
     }
 }

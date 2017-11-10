@@ -18,6 +18,7 @@
 
 package pythagoras.f
 
+import pythagoras.f.IArc.ArcType
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -39,15 +40,15 @@ data class Arc(
         override var angleStart: Float = 0f,
         /** The angular extent of this arc.  */
         override var angleExtent: Float = 0f,
-        /** The type of this arc: [IArc.OPEN], etc.  */
-        override var arcType: Int = 0
+        /** The type of this arc: [IArc.ArcType.OPEN], etc.  */
+        override var arcType: ArcType = ArcType.OPEN
 ) : AbstractArc() {
 
     /**
      * Creates an arc of the specified type with the supplied framing rectangle, starting angle and
      * angular extent.
      */
-    constructor(bounds: IRectangle, start: Float, extent: Float, type: Int) :
+    constructor(bounds: IRectangle, start: Float, extent: Float, type: ArcType) :
             this(bounds.x, bounds.y, bounds.width, bounds.height, start, extent, type)
 
     /**
@@ -55,7 +56,7 @@ data class Arc(
      * values.
      */
     fun setArc(x: Float, y: Float, width: Float, height: Float,
-               angleStart: Float, angleExtent: Float, arcType: Int) {
+               angleStart: Float, angleExtent: Float, arcType: ArcType) {
         this.x = x
         this.y = y
         this.width = width
@@ -69,7 +70,7 @@ data class Arc(
      * Sets the location, size, angular extents, and closure type of this arc to the specified
      * values.
      */
-    fun setArc(point: XY, size: IDimension, start: Float, extent: Float, type: Int) {
+    fun setArc(point: XY, size: IDimension, start: Float, extent: Float, type: ArcType) {
         setArc(point.x, point.y, size.width, size.height, start, extent, type)
     }
 
@@ -77,7 +78,7 @@ data class Arc(
      * Sets the location, size, angular extents, and closure type of this arc to the specified
      * values.
      */
-    fun setArc(rect: IRectangle, start: Float, extent: Float, type: Int) {
+    fun setArc(rect: IRectangle, start: Float, extent: Float, type: ArcType) {
         setArc(rect.x, rect.y, rect.width, rect.height, start, extent, type)
     }
 
@@ -95,7 +96,7 @@ data class Arc(
      * specified values.
      */
     fun setArcByCenter(x: Float, y: Float, radius: Float,
-                       start: Float, extent: Float, type: Int) {
+                       start: Float, extent: Float, type: ArcType) {
         setArc(x - radius, y - radius, radius * 2f, radius * 2f, start, extent, type)
     }
 

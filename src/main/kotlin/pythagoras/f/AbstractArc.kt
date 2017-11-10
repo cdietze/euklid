@@ -16,6 +16,7 @@
 
 package pythagoras.f
 
+import pythagoras.f.IArc.ArcType
 import kotlin.math.*
 
 /**
@@ -62,7 +63,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
     }
 
     override val isEmpty: Boolean
-        get() = arcType == IArc.OPEN || super.isEmpty
+        get() = arcType == ArcType.OPEN || super.isEmpty
 
     override fun contains(x: Float, y: Float): Boolean {
         // normalize point
@@ -79,7 +80,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         }
 
         val containsAngle = containsAngle(MathUtil.toDegrees(-atan2(ny, nx)))
-        if (arcType == IArc.PIE) {
+        if (arcType == ArcType.PIE) {
             return containsAngle
         }
         if (absExtent <= 180f && !containsAngle) {
@@ -99,7 +100,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         }
 
         val absExtent = abs(angleExtent)
-        if (arcType != IArc.PIE || absExtent <= 180f || absExtent >= 360f) {
+        if (arcType != ArcType.PIE || absExtent <= 180f || absExtent >= 360f) {
             return true
         }
 
@@ -133,11 +134,11 @@ abstract class AbstractArc : RectangularShape(), IArc {
 
         // check: does rectangle contain arc's points
         val r = Rectangle(x, y, width, height)
-        if (r.contains(p1) || r.contains(p2) || arcType == IArc.PIE && r.contains(cx, cy)) {
+        if (r.contains(p1) || r.contains(p2) || arcType == ArcType.PIE && r.contains(cx, cy)) {
             return true
         }
 
-        if (arcType == IArc.PIE) {
+        if (arcType == ArcType.PIE) {
             if (r.intersectsLine(p1.x, p1.y, cx, cy) || r.intersectsLine(p2.x, p2.y, cx, cy)) {
                 return true
             }
@@ -172,7 +173,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         var bx2 = if (containsAngle(0f)) rx2 else max(p1.x, p2.x)
         var by2 = if (containsAngle(270f)) ry2 else max(p1.y, p2.y)
 
-        if (arcType == IArc.PIE) {
+        if (arcType == ArcType.PIE) {
             val cx = centerX
             val cy = centerY
             bx1 = min(bx1, cx)
@@ -212,7 +213,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
         private val extent: Float
 
         /** The closure type of the arc  */
-        private val type: Int
+        private val type: ArcType
 
         /** The current segment index  */
         private var index: Int = 0
@@ -276,9 +277,9 @@ abstract class AbstractArc : RectangularShape(), IArc {
                 }
 
                 lineCount = 0
-                if (type == IArc.CHORD) {
+                if (type == ArcType.CHORD) {
                     lineCount++
-                } else if (type == IArc.PIE) {
+                } else if (type == ArcType.PIE) {
                     lineCount += 2
                 }
             }
