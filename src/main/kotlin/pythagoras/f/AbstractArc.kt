@@ -23,10 +23,7 @@ import kotlin.math.*
  * from the derived class.
  */
 abstract class AbstractArc : RectangularShape(), IArc {
-    override val startPoint: Point
-        get() {
-            return startPoint(Point())
-        }
+    override val startPoint: Point get() = startPoint(Point())
 
     override fun startPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart)
@@ -34,10 +31,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
                 y + (1f - sin(a)) * height / 2f)
     }
 
-    override val endPoint: Point
-        get() {
-            return endPoint(Point())
-        }
+    override val endPoint: Point get() = endPoint(Point())
 
     override fun endPoint(target: Point): Point {
         val a = MathUtil.toRadians(angleStart + angleExtent)
@@ -50,16 +44,16 @@ abstract class AbstractArc : RectangularShape(), IArc {
         if (extent >= 360f) {
             return true
         }
-        val angle = normAngle(angle)
+        val normAngle = normAngle(angle)
         val a1 = normAngle(angleStart)
         val a2 = a1 + extent
         if (a2 > 360f) {
-            return angle >= a1 || angle <= a2 - 360f
+            return normAngle >= a1 || normAngle <= a2 - 360f
         }
         if (a2 < 0f) {
-            return angle >= a2 + 360f || angle <= a1
+            return normAngle >= a2 + 360f || normAngle <= a1
         }
-        return if (extent > 0f) angle in a1..a2 else angle in a2..a1
+        return if (extent > 0f) normAngle in a1..a2 else normAngle in a2..a1
     }
 
     override fun clone(): Arc {
@@ -190,14 +184,10 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return target
     }
 
-    override fun pathIterator(transform: Transform?): PathIterator {
-        return Iterator(this, transform)
-    }
+    override fun pathIterator(transform: Transform?): PathIterator = Iterator(this, transform)
 
     /** Returns a normalized angle (bound between 0 and 360 degrees).  */
-    protected fun normAngle(angle: Float): Float {
-        return angle - floor(angle / 360f) * 360f
-    }
+    protected fun normAngle(angle: Float): Float = angle - floor(angle / 360f) * 360f
 
     /** An iterator over an [IArc].  */
     protected class Iterator internal constructor(a: IArc,
@@ -294,9 +284,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
             }
         }
 
-        override fun windingRule(): Int {
-            return PathIterator.WIND_NON_ZERO
-        }
+        override fun windingRule(): Int = PathIterator.WIND_NON_ZERO
 
         override val isDone: Boolean
             get() = index > arcCount + lineCount
@@ -311,41 +299,46 @@ abstract class AbstractArc : RectangularShape(), IArc {
             }
             val type: Int
             val count: Int
-            if (index == 0) {
-                type = PathIterator.SEG_MOVETO
-                count = 1
-                cos = cos(angle)
-                sin = sin(angle)
-                kx = k * width * sin
-                ky = k * height * cos
-                mx = x + cos * width
-                coords[0] = mx
-                my = y + sin * height
-                coords[1] = my
-            } else if (index <= arcCount) {
-                type = PathIterator.SEG_CUBICTO
-                count = 3
-                coords[0] = mx - kx
-                coords[1] = my + ky
-                angle += step
-                cos = cos(angle)
-                sin = sin(angle)
-                kx = k * width * sin
-                ky = k * height * cos
-                mx = x + cos * width
-                coords[4] = mx
-                my = y + sin * height
-                coords[5] = my
-                coords[2] = mx + kx
-                coords[3] = my - ky
-            } else if (index == arcCount + lineCount) {
-                type = PathIterator.SEG_CLOSE
-                count = 0
-            } else {
-                type = PathIterator.SEG_LINETO
-                count = 1
-                coords[0] = x
-                coords[1] = y
+            when {
+                index == 0 -> {
+                    type = PathIterator.SEG_MOVETO
+                    count = 1
+                    cos = cos(angle)
+                    sin = sin(angle)
+                    kx = k * width * sin
+                    ky = k * height * cos
+                    mx = x + cos * width
+                    coords[0] = mx
+                    my = y + sin * height
+                    coords[1] = my
+                }
+                index <= arcCount -> {
+                    type = PathIterator.SEG_CUBICTO
+                    count = 3
+                    coords[0] = mx - kx
+                    coords[1] = my + ky
+                    angle += step
+                    cos = cos(angle)
+                    sin = sin(angle)
+                    kx = k * width * sin
+                    ky = k * height * cos
+                    mx = x + cos * width
+                    coords[4] = mx
+                    my = y + sin * height
+                    coords[5] = my
+                    coords[2] = mx + kx
+                    coords[3] = my - ky
+                }
+                index == arcCount + lineCount -> {
+                    type = PathIterator.SEG_CLOSE
+                    count = 0
+                }
+                else -> {
+                    type = PathIterator.SEG_LINETO
+                    count = 1
+                    coords[0] = x
+                    coords[1] = y
+                }
             }
             t?.transform(coords, 0, coords, 0, count)
             return type
