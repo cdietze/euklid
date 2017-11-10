@@ -32,24 +32,31 @@ interface ICircle {
     val radius: Float
 
     /** Returns true if this circle intersects the supplied circle.  */
-    fun intersects(c: ICircle): Boolean
+    fun intersects(c: ICircle): Boolean {
+        val maxDist = radius + c.radius
+        return Points.distanceSq(x, y, c.x, c.y) < maxDist * maxDist
+    }
 
     /** Returns true if this circle contains the supplied point.  */
-    fun contains(p: XY): Boolean
+    fun contains(p: XY): Boolean = contains(p.x, p.y)
 
     /** Returns true if this circle contains the specified point.  */
-    fun contains(x: Float, y: Float): Boolean
+    fun contains(x: Float, y: Float): Boolean {
+        val r = radius
+        return Points.distanceSq(x, y, x, y) < r * r
+    }
 
     /** Translates the circle by the specified offset.
      * @return a new Circle containing the result.
      */
-    fun offset(x: Float, y: Float): Circle
+    fun offset(x: Float, y: Float): Circle = Circle(x + x, y + y, radius)
 
     /** Translates the circle by the specified offset and stores the result in the supplied object.
      * @return a reference to the result, for chaining.
      */
-    fun offset(x: Float, y: Float, result: Circle): Circle
+    fun offset(x: Float, y: Float, result: Circle): Circle = result.set(x + x, y + y, radius)
 
     /** Returns a mutable copy of this circle.  */
-    fun clone(): Circle
+    fun copy(x: Float = this.x, y: Float = this.y, radius: Float = this.radius): Circle
+            = Circle(x, y, radius)
 }
