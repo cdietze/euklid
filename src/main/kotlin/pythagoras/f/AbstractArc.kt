@@ -57,11 +57,6 @@ abstract class AbstractArc : RectangularShape(), IArc {
         return if (extent > 0f) normAngle in a1..a2 else normAngle in a2..a1
     }
 
-    override fun clone(): Arc {
-        return Arc(x, y, width, height, angleStart, angleExtent,
-                arcType)
-    }
-
     override val isEmpty: Boolean
         get() = arcType == ArcType.OPEN || super.isEmpty
 

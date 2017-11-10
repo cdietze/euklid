@@ -27,6 +27,7 @@ import kotlin.math.sin
 /**
  * Represents an arc defined by a framing rectangle, start angle, angular extend, and closure type.
  */
+@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Arc(
         /** The x-coordinate of this arc's framing rectangle.  */
         override var x: Float = 0f,
