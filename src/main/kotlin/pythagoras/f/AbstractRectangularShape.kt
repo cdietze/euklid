@@ -24,7 +24,7 @@ import kotlin.math.abs
  * The base class for various [IShape] objects whose geometry is defined by a rectangular
  * frame.
  */
-abstract class RectangularShape : IRectangularShape {
+abstract class AbstractRectangularShape : IRectangularShape {
     /**
      * Sets the location and size of the framing rectangle of this shape to the specified values.
      */
@@ -96,70 +96,5 @@ abstract class RectangularShape : IRectangularShape {
      */
     fun setFrameFromCenter(center: XY, corner: XY) {
         setFrameFromCenter(center.x, center.y, corner.x, corner.y)
-    }
-
-    override val min: Point
-        get() {
-            return Point(minX, minY)
-        }
-
-    override val minX: Float
-        get() {
-            return x
-        }
-
-    override val minY: Float
-        get() {
-            return y
-        }
-
-    override val max: Point
-        get() {
-            return Point(maxX, maxY)
-        }
-
-    override val maxX: Float
-        get() {
-            return x + width
-        }
-
-    override val maxY: Float
-        get() {
-            return y + height
-        }
-
-    override val center: Point
-        get() {
-            return Point(centerX, centerY)
-        }
-
-    override val centerX: Float
-        get() {
-            return x + width / 2
-        }
-
-    override val centerY: Float
-        get() {
-            return y + height / 2
-        }
-
-    override fun frame(): Rectangle {
-        return bounds()
-    }
-
-    override fun frame(target: Rectangle): Rectangle {
-        return bounds(target)
-    }
-
-    override val isEmpty: Boolean
-        get() = width <= 0 || height <= 0
-
-    override fun bounds(target: Rectangle): Rectangle {
-        target.setBounds(x, y, width, height)
-        return target
-    }
-
-    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator {
-        return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 }

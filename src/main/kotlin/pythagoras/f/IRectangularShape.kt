@@ -38,37 +38,56 @@ interface IRectangularShape : IShape {
 
     /** Returns the minimum x,y-coordinate of the framing rectangle.  */
     val min: Point
+        get() = Point(minX, minY)
 
     /** Returns the minimum x-coordinate of the framing rectangle.  */
     val minX: Float
+        get() = x
 
     /** Returns the minimum y-coordinate of the framing rectangle.  */
     val minY: Float
+        get() = y
 
     /** Returns the maximum x,y-coordinate of the framing rectangle.  */
     val max: Point
+        get() = Point(maxX, maxY)
 
     /** Returns the maximum x-coordinate of the framing rectangle.  */
     val maxX: Float
+        get() = x + width
 
     /** Returns the maximum y-coordinate of the framing rectangle.  */
     val maxY: Float
+        get() = y + height
 
     /** Returns the center of the framing rectangle.  */
     val center: Point
+        get() = Point(centerX, centerY)
 
     /** Returns the x-coordinate of the center of the framing rectangle.  */
     val centerX: Float
+        get() = x + width / 2
 
     /** Returns the y-coordinate of the center of the framing rectangle.  */
     val centerY: Float
+        get() = y + height / 2
 
     /** Returns a copy of this shape's framing rectangle.  */
-    fun frame(): Rectangle
+    fun frame(): Rectangle = bounds()
 
     /** Initializes the supplied rectangle with this shape's framing rectangle.
      * @return the supplied rectangle.
      */
-    fun frame(target: Rectangle): Rectangle
+    fun frame(target: Rectangle): Rectangle = bounds(target)
 
+    override val isEmpty: Boolean
+        get() = width <= 0 || height <= 0
+
+    override fun bounds(target: Rectangle): Rectangle {
+        target.setBounds(x, y, width, height)
+        return target
+    }
+
+    override fun pathIterator(transform: Transform?, flatness: Float): PathIterator =
+            FlatteningPathIterator(pathIterator(transform), flatness)
 }

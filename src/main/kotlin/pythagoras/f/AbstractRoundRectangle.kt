@@ -25,7 +25,7 @@ import kotlin.math.sqrt
  * Provides most of the implementation of [IRoundRectangle], obtaining the framing rectangle
  * from the derived class.
  */
-abstract class AbstractRoundRectangle : RectangularShape(), IRoundRectangle {
+abstract class AbstractRoundRectangle : AbstractRectangularShape(), IRoundRectangle {
     override fun clone(): RoundRectangle {
         return RoundRectangle(x, y, width, height,
                 arcWidth, arcHeight)

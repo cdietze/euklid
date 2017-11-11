@@ -23,7 +23,7 @@ import kotlin.math.min
  * Provides most of the implementation of [IRectangle], obtaining only the location and
  * dimensions from the derived class.
  */
-abstract class AbstractRectangle : RectangularShape(), IRectangle {
+abstract class AbstractRectangle : AbstractRectangularShape(), IRectangle {
     override fun location(): Point {
         return location(Point())
     }

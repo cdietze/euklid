@@ -23,7 +23,7 @@ import kotlin.math.*
  * Provides most of the implementation of [IArc], obtaining only the frame and other metrics
  * from the derived class.
  */
-abstract class AbstractArc : RectangularShape(), IArc {
+abstract class AbstractArc : AbstractRectangularShape(), IArc {
     override val startPoint: Point get() = startPoint(Point())
 
     override fun startPoint(target: Point): Point {
@@ -58,7 +58,7 @@ abstract class AbstractArc : RectangularShape(), IArc {
     }
 
     override val isEmpty: Boolean
-        get() = arcType == ArcType.OPEN || super.isEmpty
+        get() = arcType == ArcType.OPEN || super<AbstractRectangularShape>.isEmpty
 
     override fun contains(x: Float, y: Float): Boolean {
         // normalize point

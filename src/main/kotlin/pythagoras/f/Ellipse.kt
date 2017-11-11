@@ -30,7 +30,7 @@ data class Ellipse(
         override var width: Float = 0f,
         /** The height of the framing rectangle.  */
         override var height: Float = 0f
-) : RectangularShape(), IEllipse {
+) : AbstractRectangularShape(), IEllipse {
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         this.x = x
