@@ -68,7 +68,7 @@ data class Point(
      */
     fun subtractLocal(x: Float, y: Float): Point = subtract(x, y, this)
 
-    /** @return a string of the form `+x+y`, `+x-y`, `-x-y`, etc. */
+    /** @return a string describing this point, of the form `+x+y`, `+x-y`, `-x-y`, etc. */
     override fun toString(): String = Points.pointToString(x, y)
 
     companion object {

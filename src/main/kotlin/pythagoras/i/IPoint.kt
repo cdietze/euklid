@@ -27,41 +27,41 @@ interface IPoint {
     val y: Int
 
     /** Returns the squared Euclidian distance between this point and the specified point.  */
-    fun distanceSq(px: Int, py: Int): Int
+    fun distanceSq(px: Int, py: Int): Int = Points.distanceSq(x, y, px, py)
 
     /** Returns the squared Euclidian distance between this point and the supplied point.  */
-    fun distanceSq(p: IPoint): Int
+    fun distanceSq(p: IPoint): Int = Points.distanceSq(x, y, p.x, p.y)
 
     /** Returns the Euclidian distance between this point and the specified point.  */
-    fun distance(px: Int, py: Int): Int
+    fun distance(px: Int, py: Int): Int = Points.distance(x, y, px, py)
 
     /** Returns the Euclidian distance between this point and the supplied point.  */
-    fun distance(p: IPoint): Int
+    fun distance(p: IPoint): Int = Points.distance(x, y, p.x, p.y)
 
     /** Translates this point by the specified offset.
      * @return a new point containing the result.
      */
-    fun add(x: Int, y: Int): Point
+    fun add(x: Int, y: Int): Point = Point(this.x + x, this.y + y)
 
     /** Translates this point by the specified offset and stores the result in the object provided.
      * @return a reference to the result, for chaining.
      */
-    fun add(x: Int, y: Int, result: Point): Point
+    fun add(x: Int, y: Int, result: Point): Point = result.set(this.x + x, this.y + y)
 
     /** Subtracts the supplied point from `this`.
      * @return a new point containing the result.
      */
-    fun subtract(x: Int, y: Int): Point
+    fun subtract(x: Int, y: Int): Point = subtract(x, y, Point())
 
     /** Subtracts the supplied point from `this` and stores the result in `result`.
      * @return a reference to the result, for chaining.
      */
-    fun subtract(x: Int, y: Int, result: Point): Point
+    fun subtract(x: Int, y: Int, result: Point): Point = result.set(this.x - x, this.y - y)
 
     /** Subtracts the supplied point from `this` and stores the result in `result`.
      * @return a reference to the result, for chaining.
      */
-    fun subtract(other: IPoint, result: Point): Point
+    fun subtract(other: IPoint, result: Point): Point = subtract(other.x, other.y, result)
 
     /** Returns a mutable copy of this point.  */
     fun copy(x: Int = this.x, y: Int = this.y): Point

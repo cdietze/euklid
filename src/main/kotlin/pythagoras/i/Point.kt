@@ -19,17 +19,13 @@ package pythagoras.i
 /**
  * Represents a point on a plane.
  */
-data class Point
-/**
- * Constructs a point at the specified coordinates.
- */
-(
+@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
+data class Point(
         /** The x-coordinate of the point.  */
         override var x: Int = 0,
         /** The y-coordinate of the point.  */
         override var y: Int = 0
-
-) : AbstractPoint() {
+) : IPoint {
 
     /**
      * Constructs a point with coordinates equal to the supplied point.
@@ -39,9 +35,7 @@ data class Point
     /**
      * Sets the coordinates of this point to be equal to those of the supplied point.
      */
-    fun setLocation(p: IPoint) {
-        setLocation(p.x, p.y)
-    }
+    fun setLocation(p: IPoint) = setLocation(p.x, p.y)
 
     /**
      * Sets the coordinates of this point to the supplied values.
@@ -54,9 +48,7 @@ data class Point
     /**
      * A synonym for [.setLocation].
      */
-    fun move(x: Int, y: Int) {
-        setLocation(x, y)
-    }
+    fun move(x: Int, y: Int) = setLocation(x, y)
 
     /**
      * Translates this point by the specified offset.
@@ -69,9 +61,7 @@ data class Point
     /** Sets the coordinates of this point to be equal to those of the supplied point.
      * @return a reference to this this, for chaining.
      */
-    fun set(p: IPoint): Point {
-        return set(p.x, p.y)
-    }
+    fun set(p: IPoint): Point = set(p.x, p.y)
 
     /** Sets the coordinates of this point to the supplied values.
      * @return a reference to this this, for chaining.
@@ -85,16 +75,15 @@ data class Point
     /** Translates this point by the specified offset.
      * @return a reference to this point, for chaining.
      */
-    fun addLocal(dx: Int, dy: Int): Point {
-        return add(dx, dy, this)
-    }
+    fun addLocal(dx: Int, dy: Int): Point = add(dx, dy, this)
 
     /** Subtracts the supplied x/y from this point.
      * @return a reference to this point, for chaining.
      */
-    fun subtractLocal(x: Int, y: Int): Point {
-        return subtract(x, y, this)
-    }
+    fun subtractLocal(x: Int, y: Int): Point = subtract(x, y, this)
+
+    /** @return a string describing this point, of the form `+x+y`, `+x-y`, `-x-y`, etc. */
+    override fun toString(): String = Points.pointToString(x, y)
 
     companion object {
         private const val serialVersionUID = -6346341779228562585L
