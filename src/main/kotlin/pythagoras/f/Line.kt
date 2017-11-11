@@ -21,38 +21,21 @@ package pythagoras.f
 /**
  * Represents a line segment.
  */
-class Line : AbstractLine {
-
-    /** The x-coordinate of the start of this line segment.  */
-    override var x1: Float = 0f
-
-    /** The y-coordinate of the start of this line segment.  */
-    override var y1: Float = 0f
-
-    /** The x-coordinate of the end of this line segment.  */
-    override var x2: Float = 0f
-
-    /** The y-coordinate of the end of this line segment.  */
-    override var y2: Float = 0f
-
-    /**
-     * Creates a line from (0,0) to (0,0).
-     */
-    constructor()
-
-    /**
-     * Creates a line from (x1,y1), to (x2,y2).
-     */
-    constructor(x1: Float, y1: Float, x2: Float, y2: Float) {
-        setLine(x1, y1, x2, y2)
-    }
+data class Line(
+        /** The x-coordinate of the start of this line segment.  */
+        override var x1: Float = 0f,
+        /** The y-coordinate of the start of this line segment.  */
+        override var y1: Float = 0f,
+        /** The x-coordinate of the end of this line segment.  */
+        override var x2: Float = 0f,
+        /** The y-coordinate of the end of this line segment.  */
+        override var y2: Float = 0f
+) : ILine {
 
     /**
      * Creates a line from p1 to p2.
      */
-    constructor(p1: XY, p2: XY) {
-        setLine(p1, p2)
-    }
+    constructor(p1: XY, p2: XY) : this(p1.x, p1.y, p2.x, p2.y)
 
     /**
      * Sets the start and end point of this line to the specified values.
