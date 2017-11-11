@@ -161,7 +161,7 @@ data class Rectangle(
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) = setBounds(x, y, width, height)
 
-    /** @return a string describing this rectangle, of the form TODO */
+    /** @return a string describing this rectangle, of the form `width`x`height`+`x`+y` */
     override fun toString(): String = Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
 
     companion object {

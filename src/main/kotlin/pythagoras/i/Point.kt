@@ -34,28 +34,34 @@ data class Point(
 
     /**
      * Sets the coordinates of this point to be equal to those of the supplied point.
+     * @return a reference to this this, for chaining.
      */
-    fun setLocation(p: IPoint) = setLocation(p.x, p.y)
+    fun setLocation(p: IPoint): Point = setLocation(p.x, p.y)
 
     /**
      * Sets the coordinates of this point to the supplied values.
+     * @return a reference to this this, for chaining.
      */
-    fun setLocation(x: Int, y: Int) {
+    fun setLocation(x: Int, y: Int): Point {
         this.x = x
         this.y = y
+        return this
     }
 
     /**
-     * A synonym for [.setLocation].
+     * A synonym for [setLocation].
+     * @return a reference to this this, for chaining.
      */
-    fun move(x: Int, y: Int) = setLocation(x, y)
+    fun move(x: Int, y: Int): Point = setLocation(x, y)
 
     /**
      * Translates this point by the specified offset.
+     * @return a reference to this this, for chaining.
      */
-    fun translate(dx: Int, dy: Int) {
+    fun translate(dx: Int, dy: Int): Point {
         x += dx
         y += dy
+        return this
     }
 
     /** Sets the coordinates of this point to be equal to those of the supplied point.

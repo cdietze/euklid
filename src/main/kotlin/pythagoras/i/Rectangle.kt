@@ -22,6 +22,7 @@ import kotlin.math.min
 /**
  * Represents an area in two dimensions.
  */
+@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Rectangle(
         /** The x-coordinate of the rectangle's upper left corner.  */
         override var x: Int = 0,
@@ -31,7 +32,7 @@ data class Rectangle(
         override var width: Int = 0,
         /** The height of the rectangle.  */
         override var height: Int = 0
-) : AbstractRectangle() {
+) : IRectangle {
 
     /**
      * Constructs a rectangle at (0,0) and with dimensions (0,0).
@@ -61,99 +62,110 @@ data class Rectangle(
 
     /**
      * Sets the upper-left corner of this rectangle to the specified point.
+     * @return a reference to this this, for chaining.
      */
-    fun setLocation(x: Int, y: Int) {
+    fun setLocation(x: Int, y: Int): Rectangle {
         this.x = x
         this.y = y
+        return this
     }
 
     /**
      * Sets the upper-left corner of this rectangle to the supplied point.
+     * @return a reference to this this, for chaining.
      */
-    fun setLocation(p: IPoint) {
-        setLocation(p.x, p.y)
-    }
+    fun setLocation(p: IPoint): Rectangle = setLocation(p.x, p.y)
 
     /**
      * Sets the size of this rectangle to the specified dimensions.
+     * @return a reference to this this, for chaining.
      */
-    fun setSize(width: Int, height: Int) {
+    fun setSize(width: Int, height: Int): Rectangle {
         this.width = width
         this.height = height
+        return this
     }
 
     /**
      * Sets the size of this rectangle to the supplied dimensions.
+     * @return a reference to this this, for chaining.
      */
-    fun setSize(d: IDimension) {
-        setSize(d.width, d.height)
-    }
+    fun setSize(d: IDimension): Rectangle = setSize(d.width, d.height)
 
     /**
      * Sets the bounds of this rectangle to the specified bounds.
+     * @return a reference to this this, for chaining.
      */
-    fun setBounds(x: Int, y: Int, width: Int, height: Int) {
+    fun setBounds(x: Int, y: Int, width: Int, height: Int): Rectangle {
         this.x = x
         this.y = y
         this.height = height
         this.width = width
+        return this
     }
 
     /**
      * Sets the bounds of this rectangle to those of the supplied rectangle.
+     * @return a reference to this this, for chaining.
      */
-    fun setBounds(r: IRectangle) {
-        setBounds(r.x, r.y, r.width, r.height)
-    }
+    fun setBounds(r: IRectangle): Rectangle = setBounds(r.x, r.y, r.width, r.height)
 
     /**
      * Grows the bounds of this rectangle by the specified amount (i.e. the upper-left corner moves
      * by the specified amount in the negative x and y direction and the width and height grow by
      * twice the specified amount).
+     * @return a reference to this this, for chaining.
      */
-    fun grow(dx: Int, dy: Int) {
+    fun grow(dx: Int, dy: Int): Rectangle {
         x -= dx
         y -= dy
         width += dx + dx
         height += dy + dy
+        return this
     }
 
     /**
      * Translates the upper-left corner of this rectangle by the specified amount.
+     * @return a reference to this this, for chaining.
      */
-    fun translate(mx: Int, my: Int) {
+    fun translate(mx: Int, my: Int): Rectangle {
         x += mx
         y += my
+        return this
     }
 
     /**
      * Expands the bounds of this rectangle to contain the specified point.
+     * @return a reference to this this, for chaining.
      */
-    fun add(px: Int, py: Int) {
+    fun add(px: Int, py: Int): Rectangle {
         val x1 = min(x, px)
         val x2 = max(x + width, px)
         val y1 = min(y, py)
         val y2 = max(y + height, py)
-        setBounds(x1, y1, x2 - x1, y2 - y1)
+        return setBounds(x1, y1, x2 - x1, y2 - y1)
     }
 
     /**
      * Expands the bounds of this rectangle to contain the supplied point.
+     * @return a reference to this this, for chaining.
      */
-    fun add(p: IPoint) {
-        add(p.x, p.y)
-    }
+    fun add(p: IPoint): Rectangle = add(p.x, p.y)
 
     /**
      * Expands the bounds of this rectangle to contain the supplied rectangle.
+     * @return a reference to this this, for chaining.
      */
-    fun add(r: IRectangle) {
+    fun add(r: IRectangle): Rectangle {
         val x1 = min(x, r.x)
         val x2 = max(x + width, r.x + r.width)
         val y1 = min(y, r.y)
         val y2 = max(y + height, r.y + r.height)
-        setBounds(x1, y1, x2 - x1, y2 - y1)
+        return setBounds(x1, y1, x2 - x1, y2 - y1)
     }
+
+    /** @return a string describing this rectangle, of the form `width`x`height`+`x`+y` */
+    override fun toString(): String = Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
 
     companion object {
         private const val serialVersionUID = -2937911833523020174L
