@@ -21,31 +21,16 @@ package pythagoras.f
 /**
  * Represents an ellipse that is described by a framing rectangle.
  */
-class Ellipse : AbstractEllipse {
-
-    /** The x-coordinate of the framing rectangle.  */
-    override var x: Float = 0f
-
-    /** The y-coordinate of the framing rectangle.  */
-    override var y: Float = 0f
-
-    /** The width of the framing rectangle.  */
-    override var width: Float = 0f
-
-    /** The height of the framing rectangle.  */
-    override var height: Float = 0f
-
-    /**
-     * Creates an ellipse with framing rectangle (0x0+0+0).
-     */
-    constructor()
-
-    /**
-     * Creates an ellipse with the specified framing rectangle.
-     */
-    constructor(x: Float, y: Float, width: Float, height: Float) {
-        setFrame(x, y, width, height)
-    }
+data class Ellipse(
+        /** The x-coordinate of the framing rectangle.  */
+        override var x: Float = 0f,
+        /** The y-coordinate of the framing rectangle.  */
+        override var y: Float = 0f,
+        /** The width of the framing rectangle.  */
+        override var width: Float = 0f,
+        /** The height of the framing rectangle.  */
+        override var height: Float = 0f
+) : RectangularShape(), IEllipse {
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
         this.x = x
