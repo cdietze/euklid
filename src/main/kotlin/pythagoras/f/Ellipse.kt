@@ -32,11 +32,12 @@ data class Ellipse(
         override var height: Float = 0f
 ) : AbstractRectangularShape(), IEllipse {
 
-    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float): Ellipse {
         this.x = x
         this.y = y
         this.width = width
         this.height = height
+        return this
     }
 
     companion object {

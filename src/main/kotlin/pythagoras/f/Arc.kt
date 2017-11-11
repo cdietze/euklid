@@ -55,9 +55,10 @@ data class Arc(
     /**
      * Sets the location, size, angular extents, and closure type of this arc to the specified
      * values.
+     * @return a reference to this this, for chaining.
      */
     fun setArc(x: Float, y: Float, width: Float, height: Float,
-               angleStart: Float, angleExtent: Float, arcType: ArcType) {
+               angleStart: Float, angleExtent: Float, arcType: ArcType): Arc {
         this.x = x
         this.y = y
         this.width = width
@@ -65,6 +66,7 @@ data class Arc(
         this.angleStart = angleStart
         this.angleExtent = angleExtent
         this.arcType = arcType
+        return this
     }
 
     /**
@@ -164,9 +166,7 @@ data class Arc(
         setAngles(p1.x, p1.y, p2.x, p2.y)
     }
 
-    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
-        setArc(x, y, width, height, angleStart, angleExtent, arcType)
-    }
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float) = setArc(x, y, width, height, angleStart, angleExtent, arcType)
 
     companion object {
         private const val serialVersionUID = 378120636227888073L

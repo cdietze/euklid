@@ -28,7 +28,7 @@ abstract class AbstractRectangularShape : IRectangularShape {
     /**
      * Sets the location and size of the framing rectangle of this shape to the specified values.
      */
-    abstract fun setFrame(x: Float, y: Float, width: Float, height: Float)
+    abstract fun setFrame(x: Float, y: Float, width: Float, height: Float): AbstractRectangularShape
 
     /**
      * Sets the location and size of the framing rectangle of this shape to the supplied values.

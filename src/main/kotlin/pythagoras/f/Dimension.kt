@@ -38,18 +38,19 @@ constructor(
 
     /**
      * Sets the magnitudes of this dimension to the specified width and height.
+     * @return a reference to this this, for chaining.
      */
-    fun setSize(width: Float, height: Float) {
+    fun setSize(width: Float, height: Float): Dimension {
         this.width = width
         this.height = height
+        return this
     }
 
     /**
      * Sets the magnitudes of this dimension to be equal to the supplied dimension.
+     * @return a reference to this this, for chaining.
      */
-    fun setSize(d: IDimension) {
-        setSize(d.width, d.height)
-    }
+    fun setSize(d: IDimension): Dimension = setSize(d.width, d.height)
 
     override fun toString(): String {
         return Dimensions.dimenToString(width, height)

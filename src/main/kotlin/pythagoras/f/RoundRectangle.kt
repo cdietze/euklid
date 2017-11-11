@@ -56,15 +56,17 @@ class RoundRectangle : AbstractRoundRectangle {
 
     /**
      * Sets the frame and corner dimensions of this rectangle to the specified values.
+     * @return a reference to this this, for chaining.
      */
     fun setRoundRect(x: Float, y: Float, width: Float, height: Float,
-                     arcwidth: Float, archeight: Float) {
+                     arcwidth: Float, archeight: Float): RoundRectangle {
         this.x = x
         this.y = y
         this.width = width
         this.height = height
         this.arcWidth = arcwidth
         this.arcHeight = archeight
+        return this
     }
 
     /**
@@ -76,9 +78,7 @@ class RoundRectangle : AbstractRoundRectangle {
                 rr.arcWidth, rr.arcHeight)
     }
 
-    override fun setFrame(x: Float, y: Float, width: Float, height: Float) {
-        setRoundRect(x, y, width, height, arcWidth, arcHeight)
-    }
+    override fun setFrame(x: Float, y: Float, width: Float, height: Float) = setRoundRect(x, y, width, height, arcWidth, arcHeight)
 
     companion object {
         private const val serialVersionUID = 5850741513376725608L
