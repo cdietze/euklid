@@ -22,15 +22,13 @@ import kotlin.math.sin
 /**
  * Represents a vector in a plane.
  */
+@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Vector(
         /** The x-component of the vector.  */
         override var x: Float = 0f,
         /** The y-component of the vector.  */
         override var y: Float = 0f
-) : AbstractVector() {
-
-    /** Creates a vector with zero x and y components.  */
-    constructor() : this(0f, 0f)
+) : IVector {
 
     /** Creates a vector equal to `other`.  */
     constructor(other: XY) : this(other.x, other.y)
@@ -39,101 +37,73 @@ data class Vector(
      * this vector.
      * @return a reference to this vector, for chaining.
      */
-    fun crossLocal(other: IVector): Vector {
-        return cross(other, this)
-    }
+    fun crossLocal(other: IVector): Vector = cross(other, this)
 
     /** Negates this vector in-place.
      * @return a reference to this vector, for chaining.
      */
-    fun negateLocal(): Vector {
-        return negate(this)
-    }
+    fun negateLocal(): Vector = negate(this)
 
     /** Normalizes this vector in-place.
      * @return a reference to this vector, for chaining.
      */
-    fun normalizeLocal(): Vector {
-        return normalize(this)
-    }
+    fun normalizeLocal(): Vector = normalize(this)
 
     /** Scales this vector in place, uniformly by the specified magnitude.
      * @return a reference to this vector, for chaining.
      */
-    fun scaleLocal(v: Float): Vector {
-        return scale(v, this)
-    }
+    fun scaleLocal(v: Float): Vector = scale(v, this)
 
     /** Scales this vector's x and y components, in place, independently by the x and y components
      * of the supplied vector.
      * @return a reference to this vector, for chaining.
      */
-    fun scaleLocal(other: IVector): Vector {
-        return scale(other, this)
-    }
+    fun scaleLocal(other: IVector): Vector = scale(other, this)
 
     /** Adds a vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addLocal(other: IVector): Vector {
-        return add(other, this)
-    }
+    fun addLocal(other: IVector): Vector = add(other, this)
 
     /** Subtracts a vector in-place from this one.
      * @return a reference to this vector, for chaining.
      */
-    fun subtractLocal(other: IVector): Vector {
-        return subtract(other, this)
-    }
+    fun subtractLocal(other: IVector): Vector = subtract(other, this)
 
     /** Adds a vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addLocal(x: Float, y: Float): Vector {
-        return add(x, y, this)
-    }
+    fun addLocal(x: Float, y: Float): Vector = add(x, y, this)
 
     /** Subtracts a vector in-place from this one.
      * @return a reference to this vector, for chaining.
      */
-    fun subtractLocal(x: Float, y: Float): Vector {
-        return subtract(x, y, this)
-    }
+    fun subtractLocal(x: Float, y: Float): Vector = subtract(x, y, this)
 
     /** Adds a scaled vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addScaledLocal(other: IVector, v: Float): Vector {
-        return addScaled(other, v, this)
-    }
+    fun addScaledLocal(other: IVector, v: Float): Vector = addScaled(other, v, this)
 
     /** Rotates this vector in-place by the specified angle.
      * @return a reference to this vector, for chaining.
      */
-    fun rotateLocal(angle: Float): Vector {
-        return rotate(angle, this)
-    }
+    fun rotateLocal(angle: Float): Vector = rotate(angle, this)
 
     /** Linearly interpolates between this and `other` in-place by the supplied amount.
      * @return a reference to this vector, for chaining.
      */
-    fun lerpLocal(other: IVector, t: Float): Vector {
-        return lerp(other, t, this)
-    }
+    fun lerpLocal(other: IVector, t: Float): Vector = lerp(other, t, this)
 
     /** Copies the elements of another vector.
      * @return a reference to this vector, for chaining.
      */
-    fun set(other: XY): Vector {
-        return set(other.x, other.y)
-    }
+    fun set(other: XY): Vector = set(other.x, other.y)
 
     /** Copies the elements of an array.
      * @return a reference to this vector, for chaining.
      */
-    fun set(values: FloatArray): Vector {
-        return set(values[0], values[1])
-    }
+    fun set(values: FloatArray): Vector = set(values[0], values[1])
 
     /** Sets all of the elements of the vector.
      * @return a reference to this vector, for chaining.
@@ -156,7 +126,10 @@ data class Vector(
     /**
      * Sets this vector's magnitude, preserving its angle.
      */
-    fun setLength(length: Float): Vector {
-        return normalizeLocal().scaleLocal(length)
-    }
+    fun setLength(length: Float): Vector = normalizeLocal().scaleLocal(length)
+
+    /**
+     * @return a string describing this vector, of the form `+x+y`, `+x-y`, `-x-y`, etc.
+     */
+    override fun toString(): String = Vectors.vectorToString(x, y)
 }
