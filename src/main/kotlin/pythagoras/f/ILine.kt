@@ -87,7 +87,7 @@ interface ILine : IShape {
     fun clone(): Line = Line(x1, y1, x2, y2)
 
     override val isEmpty: Boolean
-        get() = false
+        get() = true
 
     override fun contains(x: Float, y: Float): Boolean = false
 
