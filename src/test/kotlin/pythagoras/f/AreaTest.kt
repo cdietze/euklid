@@ -57,8 +57,8 @@ class AreaTest {
     }
 
     protected fun assertEquals(one: Area, two: Area) {
-        val iter1 = one.pathIterator(IdentityTransform())
-        val iter2 = two.pathIterator(IdentityTransform())
+        val iter1 = one.pathIterator(IdentityTransform)
+        val iter2 = two.pathIterator(IdentityTransform)
         val coords1 = FloatArray(2)
         val coords2 = FloatArray(2)
         while (!iter1.isDone) {

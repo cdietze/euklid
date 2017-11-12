@@ -21,37 +21,25 @@ package pythagoras.f
 /**
  * Implements the identity transform.
  */
-class IdentityTransform : AbstractTransform() {
+object IdentityTransform : AbstractTransform() {
 
     override val uniformScale: Float
-        get() {
-            return 1f
-        }
+        get() = 1f
 
     override val scaleX: Float
-        get() {
-            return 1f
-        }
+        get() = 1f
 
     override val scaleY: Float
-        get() {
-            return 1f
-        }
+        get() = 1f
 
     override val rotation: Float
-        get() {
-            return 0f
-        }
+        get() = 0f
 
     override val tx: Float
-        get() {
-            return 0f
-        }
+        get() = 0f
 
     override val ty: Float
-        get() {
-            return 0f
-        }
+        get() = 0f
 
     override fun get(matrix: FloatArray) {
         matrix[0] = 1f
@@ -62,72 +50,48 @@ class IdentityTransform : AbstractTransform() {
         matrix[5] = 0f
     }
 
-    override fun invert(): Transform {
-        return this
-    }
+    override fun invert(): Transform = this
 
-    override fun concatenate(other: Transform): Transform {
-        return other
-    }
+    override fun concatenate(other: Transform): Transform = other
 
-    override fun preConcatenate(other: Transform): Transform {
-        return other
-    }
+    override fun preConcatenate(other: Transform): Transform = other
 
     override fun lerp(other: Transform, t: Float): Transform {
         throw UnsupportedOperationException() // TODO
     }
 
-    override fun transform(p: IPoint, into: Point): Point {
-        return into.set(p)
-    }
+    override fun transform(p: IPoint, into: Point): Point = into.set(p)
 
     override fun transform(src: Array<IPoint>, srcOff: Int, dst: Array<Point>, dstOff: Int, count: Int) {
-        var srcOff = srcOff
-        var dstOff = dstOff
-        for (ii in 0..count - 1) {
-            transform(src[srcOff++], dst[dstOff++])
+        var srcOff2 = srcOff
+        var dstOff2 = dstOff
+        for (ii in 0 until count) {
+            transform(src[srcOff2++], dst[dstOff2++])
         }
     }
 
     override fun transform(src: FloatArray, srcOff: Int, dst: FloatArray, dstOff: Int, count: Int) {
-        var srcOff = srcOff
-        var dstOff = dstOff
-        for (ii in 0..count - 1) {
-            dst[dstOff++] = src[srcOff++]
+        var srcOff2 = srcOff
+        var dstOff2 = dstOff
+        for (ii in 0 until count) {
+            dst[dstOff2++] = src[srcOff2++]
         }
     }
 
-    override fun inverseTransform(p: IPoint, into: Point): Point {
-        return into.set(p)
-    }
+    override fun inverseTransform(p: IPoint, into: Point): Point = into.set(p)
 
-    override fun transformPoint(v: IVector, into: Vector): Vector {
-        return into.set(v)
-    }
+    override fun transformPoint(v: IVector, into: Vector): Vector = into.set(v)
 
-    override fun transform(v: IVector, into: Vector): Vector {
-        return into.set(v)
-    }
+    override fun transform(v: IVector, into: Vector): Vector = into.set(v)
 
-    override fun inverseTransform(v: IVector, into: Vector): Vector {
-        return into.set(v)
-    }
+    override fun inverseTransform(v: IVector, into: Vector): Vector = into.set(v)
 
-    override fun copy(): IdentityTransform {
-        return this
-    }
+    override fun copy(): IdentityTransform = this
 
-    override fun generality(): Int {
-        return GENERALITY
-    }
+    override fun generality(): Int = GENERALITY
 
-    override fun toString(): String {
-        return "ident"
-    }
+    override fun toString(): String = "ident"
 
-    companion object {
-        /** Identifies the identity transform in [.generality].  */
-        val GENERALITY = 0
-    }
+    /** Identifies the identity transform in [generality].  */
+    val GENERALITY = 0
 }

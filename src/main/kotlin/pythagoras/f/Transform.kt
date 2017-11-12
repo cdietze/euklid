@@ -31,6 +31,7 @@ interface Transform {
 
     /** Returns the scale vector for this transform.  */
     val scale: Vector
+        get() = Vector(scaleX, scaleY)
 
     /** Returns the x-component of the scale applied by this transform. Note that this will be
      * extracted and therefore approximate for affine transforms.  */
@@ -48,6 +49,7 @@ interface Transform {
 
     /** Returns the translation vector for this transform.  */
     val translation: Vector
+        get() = Vector(tx, ty)
 
     /** Returns the x-coordinate of the translation component.  */
     val tx: Float
@@ -76,7 +78,11 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not non-uniform or greater.
      */
-    fun setScale(scaleX: Float, scaleY: Float): Transform
+    fun setScale(scaleX: Float, scaleY: Float): Transform {
+        setScaleX(scaleX)
+        setScaleY(scaleY)
+        return this
+    }
 
     /** Sets the x scale of this transform.
      * @return this instance, for chaining.
@@ -108,7 +114,11 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not rigid body or greater.
      */
-    fun setTranslation(tx: Float, ty: Float): Transform
+    fun setTranslation(tx: Float, ty: Float): Transform {
+        setTx(tx)
+        setTy(ty)
+        return this
+    }
 
     /** Sets the x-component of this transform's translation.
      * @return this instance, for chaining.
@@ -148,7 +158,11 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not non-uniform or greater.
      */
-    fun scale(scaleX: Float, scaleY: Float): Transform
+    fun scale(scaleX: Float, scaleY: Float): Transform {
+        scaleX(scaleX)
+        scaleY(scaleY)
+        return this
+    }
 
     /** Scales this transform by the specified amount in the x dimension.
      * @return this instance, for chaining.
@@ -180,7 +194,11 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not rigid body or greater.
      */
-    fun translate(tx: Float, ty: Float): Transform
+    fun translate(tx: Float, ty: Float): Transform {
+        translateX(tx)
+        translateY(ty)
+        return this
+    }
 
     /** Translates this transform in the x dimension.
      * @return this instance, for chaining.
@@ -201,7 +219,11 @@ interface Transform {
      * *
      * @throws UnsupportedOperationException if the transform is not affine or greater.
      */
-    fun shear(sx: Float, sy: Float): Transform
+    fun shear(sx: Float, sy: Float): Transform {
+        shearX(sx)
+        shearY(sy)
+        return this
+    }
 
     /** Shears this transform in the x dimension.
      * @return this instance, for chaining.

@@ -23,58 +23,28 @@ import kotlin.math.*
 
 /**
  * Implements an affine (3x2 matrix) transform. The transformation matrix has the form:
- * <pre>`[ m00, m10, tx ]
+ * ```
+ * [ m00, m10, tx ]
  * [ m01, m11, ty ]
  * [   0,   0,  1 ]
-`</pre> *
+ * ```
  */
-class AffineTransform : AbstractTransform {
-
-    /** The scale, rotation and shear components of this transform.  */
-    var m00: Float = 1.toFloat()
-    var m01: Float = 0f
-    var m10: Float = 0f
-    var m11: Float = 1.toFloat()
-
-    /** The translation components of this transform.  */
-    override var tx: Float = 0f
-    override var ty: Float = 0f
-
-    /** Creates an affine transform configured with the identity transform. */
-    constructor()
-
-    /** Creates an affine transform from the supplied scale, rotation and translation.  */
-    constructor(scale: Float, angle: Float, tx: Float, ty: Float) : this(scale, scale, angle, tx, ty) {}
-
-    /** Creates an affine transform from the supplied scale, rotation and translation.  */
-    constructor(scaleX: Float, scaleY: Float, angle: Float, tx: Float, ty: Float) {
-        val sina = sin(angle)
-        val cosa = cos(angle)
-
-        this.m00 = cosa * scaleX
-        this.m01 = sina * scaleY
-        this.m10 = -sina * scaleX
-        this.m11 = cosa * scaleY
-        this.tx = tx
-        this.ty = ty
-    }
-
-    /** Creates an affine transform with the specified transform matrix.  */
-    constructor(m00: Float, m01: Float, m10: Float, m11: Float, tx: Float, ty: Float) {
-        this.m00 = m00
-        this.m01 = m01
-        this.m10 = m10
-        this.m11 = m11
-        this.tx = tx
-        this.ty = ty
-    }
+data class AffineTransform(
+        /** The scale, rotation and shear components of this transform.  */
+        var m00: Float = 1f,
+        var m01: Float = 0f,
+        var m10: Float = 0f,
+        var m11: Float = 1f,
+        /** The translation components of this transform.  */
+        override var tx: Float = 0f,
+        override var ty: Float = 0f
+) : Transform {
 
     /** Sets this affine transform matrix to `other`.
      * @return this instance, for chaining.
      */
-    fun set(other: AffineTransform): AffineTransform {
-        return setTransform(other.m00, other.m01, other.m10, other.m11, other.tx, other.ty)
-    }
+    fun set(other: AffineTransform): AffineTransform =
+            setTransform(other.m00, other.m01, other.m10, other.m11, other.tx, other.ty)
 
     override val uniformScale: Float
         get() {
@@ -151,7 +121,7 @@ class AffineTransform : AbstractTransform {
 
     override fun setScaleX(scaleX: Float): AffineTransform {
         // normalize the scale to 1, then re-apply
-        val mult = scaleX / scaleX
+        val mult = scaleX / this.scaleX
         m00 *= mult
         m01 *= mult
         return this
@@ -159,7 +129,7 @@ class AffineTransform : AbstractTransform {
 
     override fun setScaleY(scaleY: Float): AffineTransform {
         // normalize the scale to 1, then re-apply
-        val mult = scaleY / scaleY
+        val mult = scaleY / this.scaleY
         m10 *= mult
         m11 *= mult
         return this
@@ -314,21 +284,21 @@ class AffineTransform : AbstractTransform {
     }
 
     override fun transform(src: Array<IPoint>, srcOff: Int, dst: Array<Point>, dstOff: Int, count: Int) {
-        var srcOff = srcOff
-        var dstOff = dstOff
+        var srcOff2 = srcOff
+        var dstOff2 = dstOff
         for (ii in 0..count - 1) {
-            transform(src[srcOff++], dst[dstOff++])
+            transform(src[srcOff2++], dst[dstOff2++])
         }
     }
 
     override fun transform(src: FloatArray, srcOff: Int, dst: FloatArray, dstOff: Int, count: Int) {
-        var srcOff = srcOff
-        var dstOff = dstOff
+        var srcOff2 = srcOff
+        var dstOff2 = dstOff
         for (ii in 0..count - 1) {
-            val x = src[srcOff++]
-            val y = src[srcOff++]
-            dst[dstOff++] = m00 * x + m10 * y + tx
-            dst[dstOff++] = m01 * x + m11 * y + ty
+            val x = src[srcOff2++]
+            val y = src[srcOff2++]
+            dst[dstOff2++] = m00 * x + m10 * y + tx
+            dst[dstOff2++] = m01 * x + m11 * y + ty
         }
     }
 
@@ -370,33 +340,42 @@ class AffineTransform : AbstractTransform {
                 (y * m00 - x * m01) * rdet)
     }
 
-    override fun copy(): AffineTransform {
-        return AffineTransform(m00, m01, m10, m11, tx, ty)
-    }
+    override fun copy(): AffineTransform =
+            copy(m00 = m00, m01 = m01, m10 = m10, m11 = m11, tx = tx, ty = ty)
 
-    override fun generality(): Int {
-        return GENERALITY
-    }
+    override fun generality(): Int = GENERALITY
 
-    override fun toString(): String {
-        if (m00 != 1f || m01 != 0f || m10 != 0f || m11 != 1f)
-            return "affine [" +
+    override fun toString(): String = when {
+        m00 != 1f || m01 != 0f || m10 != 0f || m11 != 1f ->
+            "affine [" +
                     MathUtil.toString(m00) + " " + MathUtil.toString(m01) + " " +
                     MathUtil.toString(m10) + " " + MathUtil.toString(m11) + " " + translation + "]"
-        else if (tx != 0f || ty != 0f)
-            return "trans " + translation
-        else
-            return "ident"
+        tx != 0f || ty != 0f ->
+            "trans " + translation
+        else ->
+            "ident"
     }
 
     // we don't publicize this because it might encourage someone to do something stupid like
     // create a new AffineTransform from another AffineTransform using this instead of copy()
-    protected constructor(other: Transform) : this(other.scaleX, other.scaleY, other.rotation,
+    private constructor(other: Transform) : this(other.scaleX, other.scaleY, other.rotation,
             other.tx, other.ty)
 
     companion object {
-        /** Identifies the affine transform in [.generality].  */
+        /** Identifies the affine transform in [generality].  */
         val GENERALITY = 4
     }
 }
-/** Creates an affine transform configured with the identity transform.  */
+
+/** Creates an affine transform from the supplied scale, rotation and translation.  */
+fun AffineTransform(scaleX: Float, scaleY: Float, angle: Float, tx: Float, ty: Float): AffineTransform {
+    val sina = sin(angle)
+    val cosa = cos(angle)
+    return AffineTransform(
+            cosa * scaleX,
+            sina * scaleY,
+            -sina * scaleX,
+            cosa * scaleY,
+            tx,
+            ty)
+}

@@ -22,24 +22,9 @@ package pythagoras.f
  * Implements some code shared by the various [Transform] implementations.
  */
 abstract class AbstractTransform : Transform {
-    override val scale: Vector
-        get() {
-            return Vector(scaleX, scaleY)
-        }
-
-    override val translation: Vector
-        get() {
-            return Vector(tx, ty)
-        }
 
     override fun setUniformScale(scale: Float): Transform {
         throw UnsupportedOperationException()
-    }
-
-    override fun setScale(scaleX: Float, scaleY: Float): Transform {
-        setScaleX(scaleX)
-        setScaleY(scaleY)
-        return this
     }
 
     override fun setScaleX(scaleX: Float): Transform {
@@ -54,20 +39,8 @@ abstract class AbstractTransform : Transform {
         throw UnsupportedOperationException()
     }
 
-    override fun setTranslation(tx: Float, ty: Float): Transform {
-        setTx(tx)
-        setTy(ty)
-        return this
-    }
-
     override fun uniformScale(scale: Float): Transform {
         throw UnsupportedOperationException()
-    }
-
-    override fun scale(scaleX: Float, scaleY: Float): Transform {
-        scaleX(scaleX)
-        scaleY(scaleY)
-        return this
     }
 
     override fun scaleX(scaleX: Float): Transform {
@@ -82,24 +55,12 @@ abstract class AbstractTransform : Transform {
         throw UnsupportedOperationException()
     }
 
-    override fun translate(tx: Float, ty: Float): Transform {
-        translateX(tx)
-        translateY(ty)
-        return this
-    }
-
     override fun translateX(tx: Float): Transform {
         throw UnsupportedOperationException()
     }
 
     override fun translateY(ty: Float): Transform {
         throw UnsupportedOperationException()
-    }
-
-    override fun shear(sx: Float, sy: Float): Transform {
-        shearX(sx)
-        shearY(sy)
-        return this
     }
 
     override fun shearX(sx: Float): Transform {
@@ -121,6 +82,4 @@ abstract class AbstractTransform : Transform {
     override fun setTransform(m00: Float, m01: Float, m10: Float, m11: Float, tx: Float, ty: Float): Transform {
         throw UnsupportedOperationException()
     }
-
-    abstract override fun copy(): Transform
 }
