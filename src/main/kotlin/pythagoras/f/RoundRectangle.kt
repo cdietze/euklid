@@ -21,38 +21,20 @@ package pythagoras.f
 /**
  * Represents a rectangle with rounded corners, defined by an arc width and height.
  */
-class RoundRectangle : AbstractRoundRectangle {
-
-    /** The x-coordinate of the framing rectangle.  */
-    override var x: Float = 0f
-
-    /** The y-coordinate of the framing rectangle.  */
-    override var y: Float = 0f
-
-    /** The width of the framing rectangle.  */
-    override var width: Float = 0f
-
-    /** The height of the framing rectangle.  */
-    override var height: Float = 0f
-
-    /** The width of the arc that defines the rounded corners.  */
-    override var arcWidth: Float = 0f
-
-    /** The height of the arc that defines the rounded corners.  */
-    override var arcHeight: Float = 0f
-
-    /**
-     * Creates a rounded rectangle with frame (0x0+0+0) and corners of size (0x0).
-     */
-    constructor()
-
-    /**
-     * Creates a rounded rectangle with the specified frame and corner dimensions.
-     */
-    constructor(x: Float, y: Float, width: Float, height: Float,
-                arcwidth: Float, archeight: Float) {
-        setRoundRect(x, y, width, height, arcwidth, archeight)
-    }
+data class RoundRectangle(
+        /** The x-coordinate of the framing rectangle.  */
+        override var x: Float = 0f,
+        /** The y-coordinate of the framing rectangle.  */
+        override var y: Float = 0f,
+        /** The width of the framing rectangle.  */
+        override var width: Float = 0f,
+        /** The height of the framing rectangle.  */
+        override var height: Float = 0f,
+        /** The width of the arc that defines the rounded corners.  */
+        override var arcWidth: Float = 0f,
+        /** The height of the arc that defines the rounded corners.  */
+        override var arcHeight: Float = 0f
+) : AbstractRectangularShape(), IRoundRectangle {
 
     /**
      * Sets the frame and corner dimensions of this rectangle to the specified values.
