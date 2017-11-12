@@ -48,7 +48,7 @@ node {
 }
 
 task installQunit(type: NpmTask) {
-    args = ['install', 'qunitjs']
+    args = ['install', 'qunit']
 }
 
 task runQunit(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules, installQunit]) {
