@@ -46,15 +46,14 @@ object MathUtil {
     val E = kotlin.math.E.toFloat()
 
     /**
-     * A cheaper version of [Math.round] that doesn't handle the special cases.
+     * A cheaper version of [kotlin.math.roundToInt] that doesn't handle the special cases.
      */
-    fun round(v: Float): Int {
-        return if (v < 0f) (v - 0.5f).toInt() else (v + 0.5f).toInt()
-    }
+    fun round(v: Float): Int =
+            if (v < 0f) (v - 0.5f).toInt() else (v + 0.5f).toInt()
 
     /**
      * Returns the floor of v as an integer without calling the relatively expensive
-     * [Math.floor].
+     * [kotlin.math.floor].
      */
     fun ifloor(v: Float): Int {
         val iv = v.toInt()
@@ -63,7 +62,7 @@ object MathUtil {
 
     /**
      * Returns the ceiling of v as an integer without calling the relatively expensive
-     * [Math.ceil].
+     * [kotlin.math.ceil].
      */
     fun iceil(v: Float): Int {
         val iv = v.toInt()
@@ -73,34 +72,31 @@ object MathUtil {
     /**
      * Clamps a value to the range [lower, upper].
      */
-    fun clamp(v: Float, lower: Float, upper: Float): Float {
-        if (v < lower)
-            return lower
-        else if (v > upper)
-            return upper
-        else
-            return v
+    fun clamp(v: Float, lower: Float, upper: Float): Float = when {
+        v < lower -> lower
+        v > upper -> upper
+        else -> v
     }
 
     /**
      * Rounds a value to the nearest multiple of a target.
      */
     fun roundNearest(v: Float, target: Float): Float {
+        @Suppress("NAME_SHADOWING")
         var target = target
         target = abs(target)
-        if (v >= 0) {
-            return target * kotlin.math.floor((v + 0.5f * target) / target)
+        return if (v >= 0) {
+            target * kotlin.math.floor((v + 0.5f * target) / target)
         } else {
-            return target * kotlin.math.ceil((v - 0.5f * target) / target)
+            target * kotlin.math.ceil((v - 0.5f * target) / target)
         }
     }
 
     /**
      * Checks whether the value supplied is in [lower, upper].
      */
-    fun isWithin(v: Float, lower: Float, upper: Float): Boolean {
-        return v in lower..upper
-    }
+    fun isWithin(v: Float, lower: Float, upper: Float): Boolean =
+            v in lower..upper
 
     /**
      * Returns a random value according to the normal distribution with the provided mean and
@@ -111,9 +107,7 @@ object MathUtil {
      * *
      * @param stddev the desired standard deviation.
      */
-    fun normal(normal: Float, mean: Float, stddev: Float): Float {
-        return stddev * normal + mean
-    }
+    fun normal(normal: Float, mean: Float, stddev: Float): Float = stddev * normal + mean
 
     /**
      * Returns a random value according to the exponential distribution with the provided mean.
@@ -121,9 +115,7 @@ object MathUtil {
      * *
      * @param mean the desired mean.
      */
-    fun exponential(random: Float, mean: Float): Float {
-        return -ln(1f - random) * mean
-    }
+    fun exponential(random: Float, mean: Float): Float = -ln(1f - random) * mean
 
     /**
      * Linearly interpolates between two angles, taking the shortest path around the circle.
@@ -140,16 +132,12 @@ object MathUtil {
     /**
      * Linearly interpolates between v1 and v2 by the parameter t.
      */
-    fun lerp(v1: Float, v2: Float, t: Float): Float {
-        return v1 + t * (v2 - v1)
-    }
+    fun lerp(v1: Float, v2: Float, t: Float): Float = v1 + t * (v2 - v1)
 
     /**
      * Determines whether two values are "close enough" to equal.
      */
-    fun epsilonEquals(v1: Float, v2: Float): Boolean {
-        return abs(v1 - v2) < EPSILON
-    }
+    fun epsilonEquals(v1: Float, v2: Float): Boolean = abs(v1 - v2) < EPSILON
 
     /**
      * Returns the (shortest) distance between two angles, assuming that both angles are in
@@ -177,6 +165,7 @@ object MathUtil {
      * Returns an angle in the range [-pi, pi).
      */
     fun normalizeAngle(a: Float): Float {
+        @Suppress("NAME_SHADOWING")
         var a = a
         while (a < -PI) {
             a += TWO_PI
@@ -191,6 +180,7 @@ object MathUtil {
      * Returns an angle in the range [0, 2pi).
      */
     fun normalizeAnglePositive(a: Float): Float {
+        @Suppress("NAME_SHADOWING")
         var a = a
         while (a < 0f) {
             a += TWO_PI
@@ -206,9 +196,7 @@ object MathUtil {
      * mirrored around the PI/2 if it is positive, and -PI/2 if it is negative. One can visualize
      * this as mirroring around the "y-axis".
      */
-    fun mirrorAngle(a: Float): Float {
-        return (if (a > 0f) PI else -PI) - a
-    }
+    fun mirrorAngle(a: Float): Float = (if (a > 0f) PI else -PI) - a
 
     /**
      * Sets the number of decimal places to show when formatting values. By default, they are
@@ -224,6 +212,7 @@ object MathUtil {
      * The value is also always preceded by a sign (e.g. +1.0 or -0.5).
      */
     fun toString(value: Float, decimalPlaces: Int = TO_STRING_DECIMAL_PLACES): String {
+        @Suppress("NAME_SHADOWING")
         var value = value
         if (value.isNaN()) return "NaN"
 
@@ -258,19 +247,13 @@ object MathUtil {
 
     /**
      * Converts from radians to degrees.
-     * @see Math.toDegrees
      */
-    fun toDegrees(a: Float): Float {
-        return a * (180f / PI)
-    }
+    fun toDegrees(a: Float): Float = a * (180f / PI)
 
     /**
      * Converts from degrees to radians.
-     * @see Math.toRadians
      */
-    fun toRadians(a: Float): Float {
-        return a * (PI / 180f)
-    }
+    fun toRadians(a: Float): Float = a * (PI / 180f)
 
     /**
      * Returns the cube root of the supplied value.
