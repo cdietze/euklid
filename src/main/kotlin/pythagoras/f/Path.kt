@@ -50,7 +50,7 @@ class Path : IShape {
         return rule
     }
 
-    fun moveTo(x: Float, y: Float) {
+    fun moveTo(x: Float, y: Float): Path {
         if (typeSize > 0 && types[typeSize - 1].toInt() == PathIterator.SEG_MOVETO) {
             points[pointSize - 2] = x
             points[pointSize - 1] = y
@@ -60,25 +60,28 @@ class Path : IShape {
             points[pointSize++] = x
             points[pointSize++] = y
         }
+        return this
     }
 
-    fun lineTo(x: Float, y: Float) {
+    fun lineTo(x: Float, y: Float): Path {
         checkBuf(2, true)
         types[typeSize++] = PathIterator.SEG_LINETO.toByte()
         points[pointSize++] = x
         points[pointSize++] = y
+        return this
     }
 
-    fun quadTo(x1: Float, y1: Float, x2: Float, y2: Float) {
+    fun quadTo(x1: Float, y1: Float, x2: Float, y2: Float): Path {
         checkBuf(4, true)
         types[typeSize++] = PathIterator.SEG_QUADTO.toByte()
         points[pointSize++] = x1
         points[pointSize++] = y1
         points[pointSize++] = x2
         points[pointSize++] = y2
+        return this
     }
 
-    fun curveTo(x1: Float, y1: Float, x2: Float, y2: Float, x3: Float, y3: Float) {
+    fun curveTo(x1: Float, y1: Float, x2: Float, y2: Float, x3: Float, y3: Float): Path {
         checkBuf(6, true)
         types[typeSize++] = PathIterator.SEG_CUBICTO.toByte()
         points[pointSize++] = x1
@@ -87,21 +90,23 @@ class Path : IShape {
         points[pointSize++] = y2
         points[pointSize++] = x3
         points[pointSize++] = y3
+        return this
     }
 
-    fun closePath() {
+    fun closePath(): Path {
         if (typeSize == 0 || types[typeSize - 1].toInt() != PathIterator.SEG_CLOSE) {
             checkBuf(0, true)
             types[typeSize++] = PathIterator.SEG_CLOSE.toByte()
         }
+        return this
     }
 
-    fun append(shape: IShape, connect: Boolean) {
+    fun append(shape: IShape, connect: Boolean): Path {
         val p = shape.pathIterator()
-        append(p, connect)
+        return append(p, connect)
     }
 
-    fun append(path: PathIterator, connect: Boolean) {
+    fun append(path: PathIterator, connect: Boolean): Path {
         var connect = connect
         while (!path.isDone) {
             val coords = FloatArray(6)
@@ -123,6 +128,7 @@ class Path : IShape {
             path.next()
             connect = false
         }
+        return this
     }
 
     fun currentPoint(): Point? {
@@ -142,13 +148,15 @@ class Path : IShape {
         return Point(points[j], points[j + 1])
     }
 
-    fun reset() {
+    fun reset(): Path {
         typeSize = 0
         pointSize = 0
+        return this
     }
 
-    fun transform(t: Transform) {
+    fun transform(t: Transform): Path {
         t.transform(points, 0, points, 0, pointSize / 2)
+        return this
     }
 
     fun createTransformedShape(t: Transform?): IShape {
