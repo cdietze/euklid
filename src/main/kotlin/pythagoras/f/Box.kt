@@ -24,6 +24,8 @@ import kotlin.math.min
 
 /**
  * An axis-aligned box.
+ *
+ * TODO(cdi) make this into a data class
  */
 class Box : IBox {
 

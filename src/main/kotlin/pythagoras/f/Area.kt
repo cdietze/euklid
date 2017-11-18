@@ -26,6 +26,8 @@ import kotlin.math.min
 /**
  * Stores and manipulates an enclosed area of 2D space.
  * See http://download.oracle.com/javase/6/docs/api/java/awt/geom/Area.html
+ *
+ * TODO(cdi) make this into a data class
  */
 class Area : IShape {
     /**

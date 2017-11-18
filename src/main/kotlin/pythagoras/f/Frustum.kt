@@ -23,6 +23,8 @@ import kotlin.math.tan
 
 /**
  * A pyramidal frustum.
+ *
+ * TODO(cdi) make this into a data class
  */
 class Frustum {
     /** Intersection types indicating that the frustum does not intersect, intersects, or fully
