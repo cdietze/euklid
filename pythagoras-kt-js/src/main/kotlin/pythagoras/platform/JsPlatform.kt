@@ -1,4 +1,4 @@
-package pythagoras.system
+package pythagoras.platform
 
 actual fun arrayCopy(src: ByteArray, srcPos: Int, dest: ByteArray, destPos: Int, length: Int) {
     if (srcPos < 0 || destPos < 0 || length < 0 || srcPos + length > src.size || destPos + length > dest.size) {

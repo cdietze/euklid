@@ -18,7 +18,6 @@
 
 package pythagoras.f
 
-import pythagoras.system.Random
 import kotlin.math.*
 
 /**
@@ -143,12 +142,13 @@ data class Quaternion(
 
     /**
      * Sets this to a random rotation obtained from a completely uniform distribution.
+     * @param randomFloat a function that returns a random float between 0f (inclusive) and 1f (exclusive)
      */
-    fun randomize(rand: Random): Quaternion {
+    fun randomize(randomFloat: () -> Float): Quaternion {
         // pick angles according to the surface area distribution
-        return fromAngles(MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, rand.nextFloat()),
-                asin(MathUtil.lerp(-1f, +1f, rand.nextFloat())),
-                MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, rand.nextFloat()))
+        return fromAngles(MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, randomFloat()),
+                asin(MathUtil.lerp(-1f, +1f, randomFloat())),
+                MathUtil.lerp(-MathUtil.PI, +MathUtil.PI, randomFloat()))
     }
 
     /**

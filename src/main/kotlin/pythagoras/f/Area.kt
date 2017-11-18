@@ -18,7 +18,7 @@
 
 package pythagoras.f
 
-import pythagoras.system.arrayCopy
+import pythagoras.platform.arrayCopy
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

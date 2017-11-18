@@ -1,4 +1,4 @@
-package pythagoras.system
+package pythagoras.platform
 
 actual fun arrayCopy(src: ByteArray, srcPos: Int, dest: ByteArray, destPos: Int, length: Int) {
     java.lang.System.arraycopy(src, srcPos, dest, destPos, length)
