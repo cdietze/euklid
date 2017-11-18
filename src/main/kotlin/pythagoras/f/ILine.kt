@@ -84,7 +84,7 @@ interface ILine : IShape {
     fun relativeCCW(p: XY): Int = Lines.relativeCCW(p.x, p.y, x1, y1, x2, y2)
 
     /** Returns a mutable copy of this line.  */
-    fun clone(): Line = Line(x1, y1, x2, y2)
+    fun copy(): Line = Line(x1, y1, x2, y2)
 
     override val isEmpty: Boolean
         get() = true

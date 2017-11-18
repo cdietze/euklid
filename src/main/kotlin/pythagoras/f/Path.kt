@@ -159,7 +159,7 @@ class Path : IShape {
     }
 
     fun createTransformedShape(t: Transform?): IShape {
-        val p = clone()
+        val p = copy()
         if (t != null) {
             p.transform(t)
         }
@@ -227,10 +227,9 @@ class Path : IShape {
         return FlatteningPathIterator(pathIterator(transform), flatness)
     }
 
-    // @Override // can't declare @Override due to GWT
-    fun clone(): Path {
-        return Path(rule, types.copyOf(), points.copyOf(), typeSize, pointSize)
-    }
+    /** Returns a copy of this path. */
+    fun copy(): Path =
+            Path(rule, types.copyOf(), points.copyOf(), typeSize, pointSize)
 
     /**
      * Checks points and types buffer size to add pointCount points. If necessary realloc buffers

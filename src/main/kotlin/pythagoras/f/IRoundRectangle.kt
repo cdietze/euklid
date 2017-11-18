@@ -32,7 +32,7 @@ interface IRoundRectangle : IRectangularShape {
     val arcHeight: Float
 
     /** Returns a mutable copy of this round rectangle.  */
-    fun clone(): RoundRectangle = RoundRectangle(x, y, width, height, arcWidth, arcHeight)
+    fun copy(): RoundRectangle = RoundRectangle(x, y, width, height, arcWidth, arcHeight)
 
     override fun contains(x: Float, y: Float): Boolean {
         var px = x

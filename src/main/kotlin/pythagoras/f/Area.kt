@@ -198,7 +198,7 @@ class Area : IShape {
      * result.
      */
     fun exclusiveOr(area: Area) {
-        val a = clone()
+        val a = copy()
         a.intersect(area)
         add(area)
         subtract(a)
@@ -255,12 +255,13 @@ class Area : IShape {
         } else if (other !is Area) {
             return false
         }
-        val area = clone()
+        val area = copy()
         area.subtract(other as Area?)
         return area.isEmpty
     }
 
-    fun clone(): Area {
+    /** Returns a copy of this area. */
+    fun copy(): Area {
         val area = Area()
         copy(this, area)
         return area

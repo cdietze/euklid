@@ -25,7 +25,7 @@ import kotlin.math.sqrt
  */
 interface IEllipse : IRectangularShape {
     /** Returns a mutable copy of this ellipse.  */
-    fun clone(): Ellipse = Ellipse(x, y, width, height)
+    fun copy(): Ellipse = Ellipse(x, y, width, height)
 
     override fun contains(x: Float, y: Float): Boolean {
         if (isEmpty) return false
