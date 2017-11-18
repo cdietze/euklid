@@ -904,7 +904,6 @@ internal object Crossing {
                     continue
                 }
                 return CROSSING
-                i += 4
             }
         }
 
