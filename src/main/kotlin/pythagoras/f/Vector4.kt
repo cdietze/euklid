@@ -18,7 +18,6 @@
 
 package pythagoras.f
 
-import pythagoras.util.Platform
 import kotlin.math.abs
 
 /**
@@ -185,8 +184,8 @@ class Vector4 : IVector4 {
     }
 
     override fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y) xor Platform.hashCode(z) xor
-                Platform.hashCode(w)
+        return x.hashCode() xor y.hashCode() xor z.hashCode() xor
+                w.hashCode()
     }
 
     override fun equals(other: Any?): Boolean {

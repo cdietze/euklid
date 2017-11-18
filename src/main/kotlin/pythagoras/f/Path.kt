@@ -19,7 +19,6 @@
 package pythagoras.f
 
 import pythagoras.system.arrayCopy
-import pythagoras.util.Platform
 import kotlin.math.max
 
 /**
@@ -230,7 +229,7 @@ class Path : IShape {
 
     // @Override // can't declare @Override due to GWT
     fun clone(): Path {
-        return Path(rule, Platform.clone(types), Platform.clone(points), typeSize, pointSize)
+        return Path(rule, types.copyOf(), points.copyOf(), typeSize, pointSize)
     }
 
     /**

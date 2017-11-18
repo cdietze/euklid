@@ -19,7 +19,6 @@
 package pythagoras.f
 
 import pythagoras.system.arrayCopy
-import pythagoras.util.Platform
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -993,11 +992,11 @@ class Area : IShape {
 
     private fun copy(src: Area, dst: Area) {
         dst._coordsSize = src._coordsSize
-        dst._coords = Platform.clone(src._coords)
+        dst._coords = src._coords.copyOf()
         dst._rulesSize = src._rulesSize
-        dst._rules = Platform.clone(src._rules)
+        dst._rules = src._rules.copyOf()
         dst._moveToCount = src._moveToCount
-        dst._offsets = Platform.clone(src._offsets)
+        dst._offsets = src._offsets.copyOf()
     }
 
     private fun containsExact(x: Float, y: Float): Int {

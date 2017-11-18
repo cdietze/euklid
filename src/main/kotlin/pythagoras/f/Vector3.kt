@@ -18,7 +18,6 @@
 
 package pythagoras.f
 
-import pythagoras.util.Platform
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.sqrt
@@ -337,7 +336,7 @@ class Vector3 : IVector3 {
     }
 
     override fun hashCode(): Int {
-        return Platform.hashCode(x) xor Platform.hashCode(y) xor Platform.hashCode(z)
+        return x.hashCode() xor y.hashCode() xor z.hashCode()
     }
 
     override fun equals(other: Any?): Boolean {
