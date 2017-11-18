@@ -91,8 +91,4 @@ data class CubicCurve(
         setCurve(curve.x1, curve.y1, curve.ctrlX1, curve.ctrlY1,
                 curve.ctrlX2, curve.ctrlY2, curve.x2, curve.y2)
     }
-
-    companion object {
-        private const val serialVersionUID = -3306427309314031213L
-    }
 }

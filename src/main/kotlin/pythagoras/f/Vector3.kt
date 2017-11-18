@@ -349,8 +349,6 @@ class Vector3 : IVector3 {
     }
 
     companion object {
-        private const val serialVersionUID = -3884541171214417861L
-
         /** A unit vector in the X+ direction.  */
         val UNIT_X: IVector3 = Vector3(1f, 0f, 0f)
 

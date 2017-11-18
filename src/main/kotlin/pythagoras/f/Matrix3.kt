@@ -890,8 +890,6 @@ data class Matrix3(
     }
 
     companion object {
-        private const val serialVersionUID = 2090355290484132872L
-
         /** the identity matrix.  */
         val IDENTITY = Matrix3()
     }

@@ -518,8 +518,6 @@ class Box : IBox {
     protected val _maxExtent = Vector3()
 
     companion object {
-        private const val serialVersionUID = -367110846212429910L
-
         /** The unit box.  */
         val UNIT = Box(Vector3.UNIT_XYZ.negate(), Vector3.UNIT_XYZ)
 

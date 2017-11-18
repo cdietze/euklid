@@ -83,8 +83,4 @@ data class QuadCurve(
         setCurve(curve.x1, curve.y1, curve.ctrlX, curve.ctrlY,
                 curve.x2, curve.y2)
     }
-
-    companion object {
-        private const val serialVersionUID = -6760122161413212105L
-    }
 }

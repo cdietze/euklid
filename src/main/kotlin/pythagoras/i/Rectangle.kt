@@ -166,8 +166,4 @@ data class Rectangle(
 
     /** @return a string describing this rectangle, of the form `width`x`height`+`x`+y` */
     override fun toString(): String = Dimensions.dimenToString(width, height) + Points.pointToString(x, y)
-
-    companion object {
-        private const val serialVersionUID = -2937911833523020174L
-    }
 }

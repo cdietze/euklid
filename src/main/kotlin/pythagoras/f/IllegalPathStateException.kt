@@ -28,8 +28,4 @@ class IllegalPathStateException : RuntimeException {
     constructor()
 
     constructor(s: String) : super(s)
-
-    companion object {
-        private val serialVersionUID = 5494939619370624441L
-    }
 }

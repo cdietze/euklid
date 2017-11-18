@@ -23,7 +23,4 @@ package pythagoras.util
  * satisfied.
  */
 class NoninvertibleTransformException(s: String) : RuntimeException(s) {
-    companion object {
-        private val serialVersionUID = 5208863644264280750L
-    }
 }

@@ -457,8 +457,6 @@ data class Quaternion(
     override fun toString(): String = "[$x, $y, $z, $w]"
 
     companion object {
-        private const val serialVersionUID = 6152317379736947895L
-
         /** The identity quaternion.  */
         val IDENTITY: IQuaternion = Quaternion(0f, 0f, 0f, 1f)
     }

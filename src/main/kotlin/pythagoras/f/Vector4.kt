@@ -196,8 +196,4 @@ class Vector4 : IVector4 {
         val ovec = other
         return x == ovec.x && y == ovec.y && z == ovec.z && w == ovec.w
     }
-
-    companion object {
-        private const val serialVersionUID = -775706366125314150L
-    }
 }

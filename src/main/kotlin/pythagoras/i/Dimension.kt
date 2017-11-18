@@ -49,8 +49,4 @@ data class Dimension(
     fun setSize(d: IDimension): Dimension = setSize(d.width, d.height)
 
     override fun toString(): String = Dimensions.dimenToString(width, height)
-
-    companion object {
-        private const val serialVersionUID = 5773214044931265346L
-    }
 }

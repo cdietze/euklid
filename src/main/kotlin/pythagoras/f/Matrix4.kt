@@ -1034,8 +1034,6 @@ data class Matrix4(
     }
 
     companion object {
-        private const val serialVersionUID = -4239146234415362557L
-
         /** The identity matrix.  */
         val IDENTITY: IMatrix4 = Matrix4()
 

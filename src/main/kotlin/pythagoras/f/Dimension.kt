@@ -55,8 +55,4 @@ constructor(
     override fun toString(): String {
         return Dimensions.dimenToString(width, height)
     }
-
-    companion object {
-        private const val serialVersionUID = 3237732020142181995L
-    }
 }

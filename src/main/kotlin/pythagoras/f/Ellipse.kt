@@ -39,8 +39,4 @@ data class Ellipse(
         this.height = height
         return this
     }
-
-    companion object {
-        private const val serialVersionUID = -1205529661373764424L
-    }
 }

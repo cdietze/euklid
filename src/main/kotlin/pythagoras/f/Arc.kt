@@ -167,8 +167,4 @@ data class Arc(
     }
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) = setArc(x, y, width, height, angleStart, angleExtent, arcType)
-
-    companion object {
-        private const val serialVersionUID = 378120636227888073L
-    }
 }

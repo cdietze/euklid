@@ -129,8 +129,6 @@ data class Plane(
     private val _v2 = Vector3()
 
     companion object {
-        private const val serialVersionUID = -1683127117567129189L
-
         /** The X/Y plane.  */
         val XY_PLANE = Plane(Vector3.UNIT_Z, 0f)
 

@@ -49,8 +49,4 @@ data class Circle(
         this.radius = radius
         return this
     }
-
-    companion object {
-        private const val serialVersionUID = -4841212861047390886L
-    }
 }

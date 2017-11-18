@@ -53,8 +53,4 @@ data class Line(
     fun setLine(p1: XY, p2: XY) {
         setLine(p1.x, p1.y, p2.x, p2.y)
     }
-
-    companion object {
-        private const val serialVersionUID = -1771222822536940013L
-    }
 }

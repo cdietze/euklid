@@ -70,8 +70,4 @@ data class Point(
 
     /** @return a string describing this point, of the form `+x+y`, `+x-y`, `-x-y`, etc. */
     override fun toString(): String = Points.pointToString(x, y)
-
-    companion object {
-        private const val serialVersionUID = -2666598890366249427L
-    }
 }

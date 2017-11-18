@@ -61,8 +61,4 @@ data class RoundRectangle(
     }
 
     override fun setFrame(x: Float, y: Float, width: Float, height: Float) = setRoundRect(x, y, width, height, arcWidth, arcHeight)
-
-    companion object {
-        private const val serialVersionUID = 5850741513376725608L
-    }
 }
