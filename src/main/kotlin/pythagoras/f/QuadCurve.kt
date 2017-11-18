@@ -21,37 +21,20 @@ package pythagoras.f
 /**
  * Represents a quadratic curve.
  */
-class QuadCurve : AbstractQuadCurve {
-
-    /** The x-coordinate of the start of this curve.  */
-    override var x1: Float = 0f
-
-    /** The y-coordinate of the start of this curve.  */
-    override var y1: Float = 0f
-
-    /** The x-coordinate of the control point.  */
-    override var ctrlX: Float = 0f
-
-    /** The y-coordinate of the control point.  */
-    override var ctrlY: Float = 0f
-
-    /** The x-coordinate of the end of this curve.  */
-    override var x2: Float = 0f
-
-    /** The y-coordinate of the end of this curve.  */
-    override var y2: Float = 0f
-
-    /**
-     * Creates a quad curve with all points at (0,0).
-     */
-    constructor()
-
-    /**
-     * Creates a quad curve with the specified start, control, and end points.
-     */
-    constructor(x1: Float, y1: Float, ctrlx: Float, ctrly: Float, x2: Float, y2: Float) {
-        setCurve(x1, y1, ctrlx, ctrly, x2, y2)
-    }
+data class QuadCurve(
+        /** The x-coordinate of the start of this curve.  */
+        override var x1: Float = 0f,
+        /** The y-coordinate of the start of this curve.  */
+        override var y1: Float = 0f,
+        /** The x-coordinate of the control point.  */
+        override var ctrlX: Float = 0f,
+        /** The y-coordinate of the control point.  */
+        override var ctrlY: Float = 0f,
+        /** The x-coordinate of the end of this curve.  */
+        override var x2: Float = 0f,
+        /** The y-coordinate of the end of this curve.  */
+        override var y2: Float = 0f
+) : IQuadCurve {
 
     /**
      * Configures the start, control, and end points for this curve.
