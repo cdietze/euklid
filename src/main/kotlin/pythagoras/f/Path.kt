@@ -34,7 +34,7 @@ class Path : IShape {
     }
 
     constructor(shape: IShape) : this(WIND_NON_ZERO, BUFFER_SIZE) {
-        val p = shape.pathIterator(null)
+        val p = shape.pathIterator()
         setWindingRule(p.windingRule())
         append(p, false)
     }
@@ -97,7 +97,7 @@ class Path : IShape {
     }
 
     fun append(shape: IShape, connect: Boolean) {
-        val p = shape.pathIterator(null)
+        val p = shape.pathIterator()
         append(p, connect)
     }
 

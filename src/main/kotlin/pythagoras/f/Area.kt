@@ -44,7 +44,7 @@ class Area : IShape {
         var rulesIndex = 0
         var coordsIndex = 0
 
-        val pi = s.pathIterator(null)
+        val pi = s.pathIterator()
         while (!pi.isDone) {
             _coords = adjustSize(_coords, coordsIndex + 6)
             _rules = adjustSize(_rules, rulesIndex + 1)
@@ -213,7 +213,7 @@ class Area : IShape {
     }
 
     override fun contains(x: Float, y: Float, width: Float, height: Float): Boolean {
-        val crossCount = Crossing.intersectPath(pathIterator(null), x, y, width, height)
+        val crossCount = Crossing.intersectPath(pathIterator(), x, y, width, height)
         return crossCount != Crossing.CROSSING && Crossing.isInsideEvenOdd(crossCount)
     }
 
@@ -1001,7 +1001,7 @@ class Area : IShape {
     }
 
     private fun containsExact(x: Float, y: Float): Int {
-        var pi = pathIterator(null)
+        var pi = pathIterator()
         val crossCount = Crossing.crossPath(pi, x, y)
         if (Crossing.isInsideEvenOdd(crossCount)) {
             return 1
@@ -1015,7 +1015,7 @@ class Area : IShape {
         var moveX = -1f
         var moveY = -1f
 
-        pi = pathIterator(null)
+        pi = pathIterator()
         while (!pi.isDone) {
             rule = pi.currentSegment(segmentCoords)
             when (rule) {

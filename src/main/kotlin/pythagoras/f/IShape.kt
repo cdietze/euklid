@@ -55,7 +55,7 @@ interface IShape {
      * Returns an iterator over the path described by this shape.
      * @param transform if supplied, the points in the path are transformed using this.
      */
-    fun pathIterator(transform: Transform?): PathIterator
+    fun pathIterator(transform: Transform? = null): PathIterator
 
     /**
      * Returns an iterator over the path described by this shape.

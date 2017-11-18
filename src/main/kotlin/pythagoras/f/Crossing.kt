@@ -527,7 +527,7 @@ internal object Crossing {
         if (!s.bounds().contains(x, y)) {
             return 0
         }
-        return crossPath(s.pathIterator(null), x, y)
+        return crossPath(s.pathIterator(), x, y)
     }
 
     /**
@@ -827,7 +827,7 @@ internal object Crossing {
         if (!s.bounds().intersects(x, y, w, h)) {
             return 0
         }
-        return intersectPath(s.pathIterator(null), x, y, w, h)
+        return intersectPath(s.pathIterator(), x, y, w, h)
     }
 
     /**
