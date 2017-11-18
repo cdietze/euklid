@@ -18,151 +18,100 @@
 
 package pythagoras.f
 
-import kotlin.math.abs
-import kotlin.math.acos
-import kotlin.math.sqrt
-
 /**
  * A three element vector.
  */
-class Vector3 : IVector3 {
-
-    /** The components of the vector.  */
-    override var x: Float = 0f
-    override var y: Float = 0f
-    override var z: Float = 0f
-
-    /**
-     * Creates a vector from three components.
-     */
-    constructor(x: Float, y: Float, z: Float) {
-        set(x, y, z)
-    }
+@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
+data class Vector3(
+        override var x: Float = 0f,
+        override var y: Float = 0f,
+        override var z: Float = 0f
+) : IVector3 {
 
     /**
      * Creates a vector from an array of values.
      */
-    constructor(values: FloatArray) {
-        set(values)
-    }
-
-    /**
-     * Copy constructor.
-     */
-    constructor(other: IVector3) {
-        set(other)
-    }
-
-    /**
-     * Creates a zero vector.
-     */
-    constructor()
+    constructor(values: FloatArray) : this(values[0], values[1], values[2])
 
     /**
      * Computes the cross product of this and the specified other vector, storing the result
      * in this vector.
      * @return a reference to this vector, for chaining.
      */
-    fun crossLocal(other: IVector3): Vector3 {
-        return cross(other, this)
-    }
+    fun crossLocal(other: IVector3): Vector3 = cross(other, this)
 
     /**
      * Negates this vector in-place.
      * @return a reference to this vector, for chaining.
      */
-    fun negateLocal(): Vector3 {
-        return negate(this)
-    }
+    fun negateLocal(): Vector3 = negate(this)
 
     /**
      * Absolute-values this vector in-place.
      * @return a reference to this vector, for chaining.
      */
-    fun absLocal(): Vector3 {
-        return abs(this)
-    }
+    fun absLocal(): Vector3 = abs(this)
 
     /**
      * Normalizes this vector in-place.
      * @return a reference to this vector, for chaining.
      */
-    fun normalizeLocal(): Vector3 {
-        return normalize(this)
-    }
+    fun normalizeLocal(): Vector3 = normalize(this)
 
     /**
      * Multiplies this vector in-place by a scalar.
      * @return a reference to this vector, for chaining.
      */
-    fun multLocal(v: Float): Vector3 {
-        return mult(v, this)
-    }
+    fun multLocal(v: Float): Vector3 = mult(v, this)
 
     /**
      * Multiplies this vector in-place by another.
      * @return a reference to this vector, for chaining.
      */
-    fun multLocal(other: IVector3): Vector3 {
-        return mult(other, this)
-    }
+    fun multLocal(other: IVector3): Vector3 = mult(other, this)
 
     /**
      * Adds a vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addLocal(other: IVector3): Vector3 {
-        return add(other, this)
-    }
+    fun addLocal(other: IVector3): Vector3 = add(other, this)
 
     /**
      * Subtracts a vector in-place from this one.
      * @return a reference to this vector, for chaining.
      */
-    fun subtractLocal(other: IVector3): Vector3 {
-        return subtract(other, this)
-    }
+    fun subtractLocal(other: IVector3): Vector3 = subtract(other, this)
 
     /**
      * Adds a vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addLocal(x: Float, y: Float, z: Float): Vector3 {
-        return add(x, y, z, this)
-    }
+    fun addLocal(x: Float, y: Float, z: Float): Vector3 = add(x, y, z, this)
 
     /**
      * Adds a scaled vector in-place to this one.
      * @return a reference to this vector, for chaining.
      */
-    fun addScaledLocal(other: IVector3, v: Float): Vector3 {
-        return addScaled(other, v, this)
-    }
+    fun addScaledLocal(other: IVector3, v: Float): Vector3 = addScaled(other, v, this)
 
     /**
      * Linearly interpolates between this and the specified other vector in-place by the supplied
      * amount.
      * @return a reference to this vector, for chaining.
      */
-    fun lerpLocal(other: IVector3, t: Float): Vector3 {
-        return lerp(other, t, this)
-    }
+    fun lerpLocal(other: IVector3, t: Float): Vector3 = lerp(other, t, this)
 
     /**
      * Copies the elements of another vector.
      * @return a reference to this vector, for chaining.
      */
-    fun set(other: IVector3): Vector3 {
-        return set(other.x, other.y, other.z)
-    }
+    fun set(other: IVector3): Vector3 = set(other.x, other.y, other.z)
 
     /**
      * Copies the elements of an array.
      * @return a reference to this vector, for chaining.
      */
-    fun set(values: FloatArray): Vector3 {
-        return set(values[0], values[1], values[2])
-    }
+    fun set(values: FloatArray): Vector3 = set(values[0], values[1], values[2])
 
     /**
      * Sets all of the elements of the vector.
@@ -175,177 +124,7 @@ class Vector3 : IVector3 {
         return this
     }
 
-    override fun dot(other: IVector3): Float {
-        return x * other.x + y * other.y + z * other.z
-    }
-
-    override fun cross(other: IVector3): Vector3 {
-        return cross(other, Vector3())
-    }
-
-    override fun cross(other: IVector3, result: Vector3): Vector3 {
-        val x = this.x
-        val y = this.y
-        val z = this.z
-        val ox = other.x
-        val oy = other.y
-        val oz = other.z
-        return result.set(y * oz - z * oy, z * ox - x * oz, x * oy - y * ox)
-    }
-
-    override fun triple(b: IVector3, c: IVector3): Float {
-        val bx = b.x
-        val by = b.y
-        val bz = b.z
-        val cx = c.x
-        val cy = c.y
-        val cz = c.z
-        return x * (by * cz - bz * cy) + y * (bz * cx - bx * cz) + z * (bx * cy - by * cx)
-    }
-
-    override fun negate(): Vector3 {
-        return negate(Vector3())
-    }
-
-    override fun negate(result: Vector3): Vector3 {
-        return result.set(-x, -y, -z)
-    }
-
-    override fun abs(): Vector3 {
-        return abs(Vector3())
-    }
-
-    override fun abs(result: Vector3): Vector3 {
-        return result.set(abs(x), abs(y), abs(z))
-    }
-
-    override fun normalize(): Vector3 {
-        return normalize(Vector3())
-    }
-
-    override fun normalize(result: Vector3): Vector3 {
-        return mult(1f / length(), result)
-    }
-
-    override fun angle(other: IVector3): Float {
-        return acos(dot(other) / (length() * other.length()))
-    }
-
-    override fun length(): Float {
-        return sqrt(lengthSquared())
-    }
-
-    override fun lengthSquared(): Float {
-        val x = this.x
-        val y = this.y
-        val z = this.z
-        return x * x + y * y + z * z
-    }
-
-    override fun distance(other: IVector3): Float {
-        return sqrt(distanceSquared(other))
-    }
-
-    override fun distanceSquared(other: IVector3): Float {
-        val dx = x - other.x
-        val dy = y - other.y
-        val dz = z - other.z
-        return dx * dx + dy * dy + dz * dz
-    }
-
-    override fun manhattanDistance(other: IVector3): Float {
-        return abs(x - other.x) + abs(y - other.y) + abs(z - other.z)
-    }
-
-    override fun mult(v: Float): Vector3 {
-        return mult(v, Vector3())
-    }
-
-    override fun mult(v: Float, result: Vector3): Vector3 {
-        return result.set(x * v, y * v, z * v)
-    }
-
-    override fun mult(other: IVector3): Vector3 {
-        return mult(other, Vector3())
-    }
-
-    override fun mult(other: IVector3, result: Vector3): Vector3 {
-        return result.set(x * other.x, y * other.y, z * other.z)
-    }
-
-    override fun add(other: IVector3): Vector3 {
-        return add(other, Vector3())
-    }
-
-    override fun add(other: IVector3, result: Vector3): Vector3 {
-        return add(other.x, other.y, other.z, result)
-    }
-
-    override fun subtract(other: IVector3): Vector3 {
-        return subtract(other, Vector3())
-    }
-
-    override fun subtract(other: IVector3, result: Vector3): Vector3 {
-        return add(-other.x, -other.y, -other.z, result)
-    }
-
-    override fun add(x: Float, y: Float, z: Float): Vector3 {
-        return add(x, y, z, Vector3())
-    }
-
-    override fun add(x: Float, y: Float, z: Float, result: Vector3): Vector3 {
-        return result.set(this.x + x, this.y + y, this.z + z)
-    }
-
-    override fun addScaled(other: IVector3, v: Float): Vector3 {
-        return addScaled(other, v, Vector3())
-    }
-
-    override fun addScaled(other: IVector3, v: Float, result: Vector3): Vector3 {
-        return result.set(x + other.x * v, y + other.y * v, z + other.z * v)
-    }
-
-    override fun lerp(other: IVector3, t: Float): Vector3 {
-        return lerp(other, t, Vector3())
-    }
-
-    override fun lerp(other: IVector3, t: Float, result: Vector3): Vector3 {
-        val x = this.x
-        val y = this.y
-        val z = this.z
-        return result.set(x + t * (other.x - x), y + t * (other.y - y), z + t * (other.z - z))
-    }
-
-    override fun get(idx: Int): Float {
-        when (idx) {
-            0 -> return x
-            1 -> return y
-            2 -> return z
-        }
-        throw IndexOutOfBoundsException(idx.toString())
-    }
-
-    override fun get(values: FloatArray) {
-        values[0] = x
-        values[1] = y
-        values[2] = z
-    }
-
-    override fun toString(): String {
-        return "[$x, $y, $z]"
-    }
-
-    override fun hashCode(): Int {
-        return x.hashCode() xor y.hashCode() xor z.hashCode()
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other !is Vector3) {
-            return false
-        }
-        val ovec = other
-        return x == ovec.x && y == ovec.y && z == ovec.z
-    }
+    override fun toString(): String = "[$x, $y, $z]"
 
     companion object {
         /** A unit vector in the X+ direction.  */

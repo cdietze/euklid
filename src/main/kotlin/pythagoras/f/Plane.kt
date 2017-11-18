@@ -37,7 +37,7 @@ data class Plane(
     /**
      * Creates a plane with the specified parameters.
      */
-    constructor(normal: IVector3, constant: Float) : this(Vector3(normal), constant)
+    constructor(normal: IVector3, constant: Float) : this(normal.copy(), constant)
 
     /**
      * Creates a plane with the specified parameters.
