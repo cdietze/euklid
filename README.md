@@ -1,6 +1,7 @@
-# Euklid
-
+[![Release](https://jitpack.io/v/cdietze/euklid.svg)](https://jitpack.io/#cdietze/euklid)
 [![Build Status](https://travis-ci.org/cdietze/euklid.svg?branch=master)](https://travis-ci.org/cdietze/euklid)
+
+# Euklid
 
 Euklid is a cross-platform geometry library in Kotlin.
 
