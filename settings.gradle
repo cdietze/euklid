@@ -1,3 +1,3 @@
-rootProject.name = 'pythagoras-kt'
+rootProject.name = 'euklid'
 
-include 'pythagoras-kt-jvm', 'pythagoras-kt-js'
+include 'euklid-jvm', 'euklid-js'
