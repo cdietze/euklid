@@ -10,7 +10,7 @@ It is a port in Kotlin of the [Pythagoras project in java](https://github.com/sa
 Building
 ---
 
-The library is built using [Gradle].
+The library is built using [Gradle](https://gradle.org).
 
 Invoke `./gradlew build` to build the library or
 `./gradlew publishToMavenLocal` to install it to your local Maven repository.
