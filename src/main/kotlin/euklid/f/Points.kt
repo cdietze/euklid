@@ -34,11 +34,9 @@ object Points {
      * Returns the squared Euclidean distance between the specified two points.
      */
     fun distanceSq(x1: Float, y1: Float, x2: Float, y2: Float): Float {
-        var x2 = x2
-        var y2 = y2
-        x2 -= x1
-        y2 -= y1
-        return x2 * x2 + y2 * y2
+        val xDiff = x2 - x1
+        val yDiff = y2 - y1
+        return xDiff * xDiff + yDiff * yDiff
     }
 
     /**
@@ -76,6 +74,7 @@ object Points {
     /** Inverse transforms a point as specified, storing the result in the point provided.
      * @return a reference to the result point, for chaining.
      */
+    @Suppress("NAME_SHADOWING")
     fun inverseTransform(x: Float, y: Float, sx: Float, sy: Float, rotation: Float,
                          tx: Float, ty: Float, result: Point): Point {
         var x = x

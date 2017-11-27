@@ -29,11 +29,9 @@ object Points {
      * Returns the squared Euclidian distance between the specified two points.
      */
     fun distanceSq(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        var x2 = x2
-        var y2 = y2
-        x2 -= x1
-        y2 -= y1
-        return x2 * x2 + y2 * y2
+        val xDiff = x2 - x1
+        val yDiff = y2 - y1
+        return xDiff * xDiff + yDiff * yDiff
     }
 
     /**
