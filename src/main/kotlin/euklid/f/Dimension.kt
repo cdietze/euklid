@@ -25,11 +25,11 @@ data class Dimension
  * using (0,0) as default.
  */
 constructor(
-        /** The magnitude in the x-dimension.  */
-        override var width: Float = 0f,
-        /** The magnitude in the y-dimension.  */
-        override var height: Float = 0f)
-    : IDimension {
+    /** The magnitude in the x-dimension.  */
+    override var width: Float = 0f,
+    /** The magnitude in the y-dimension.  */
+    override var height: Float = 0f
+) : IDimension {
 
     /**
      * Creates a dimension with width and height equal to the supplied dimension.

@@ -203,8 +203,10 @@ interface IVector : XY {
         val y = y
         val sina = sin(angle)
         val cosa = cos(angle)
-        return result.set((x * cosa - y * sina) * scale + add.x,
-                (x * sina + y * cosa) * scale + add.y)
+        return result.set(
+            (x * cosa - y * sina) * scale + add.x,
+            (x * sina + y * cosa) * scale + add.y
+        )
     }
 
     /** Linearly interpolates between this and the specified other vector by the supplied amount.
@@ -225,5 +227,5 @@ interface IVector : XY {
     }
 
     /** Returns a mutable copy of this vector.  */
-    fun copy(x: Float = this.x, y: Float = this.y): Vector
+    fun toVector(x: Float = this.x, y: Float = this.y): Vector = Vector(x, y)
 }

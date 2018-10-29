@@ -56,14 +56,15 @@ interface IArc : IRectangularShape {
     fun containsAngle(angle: Float): Boolean
 
     /** Returns a mutable copy of this arc.  */
-    fun copy(x: Float = this.x,
-             y: Float = this.y,
-             width: Float = this.width,
-             height: Float = this.height,
-             angleStart: Float = this.angleStart,
-             angleExtent: Float = 0f,
-             arcType: IArc.ArcType = this.arcType): Arc
-            = Arc(x, y, width, height, angleStart, angleExtent, arcType)
+    fun toArc(
+        x: Float = this.x,
+        y: Float = this.y,
+        width: Float = this.width,
+        height: Float = this.height,
+        angleStart: Float = this.angleStart,
+        angleExtent: Float = 0f,
+        arcType: IArc.ArcType = this.arcType
+    ): Arc = Arc(x, y, width, height, angleStart, angleExtent, arcType)
 
     enum class ArcType {
         /** An arc type indicating a simple, unconnected curve.  */

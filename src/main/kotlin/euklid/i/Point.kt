@@ -19,7 +19,6 @@ package euklid.i
 /**
  * Represents a point on a plane.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Point(
         /** The x-coordinate of the point.  */
         override var x: Int = 0,

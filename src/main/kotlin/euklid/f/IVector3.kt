@@ -210,7 +210,7 @@ interface IVector3 {
      * @return a reference to the result, for chaining.
      */
     fun addScaled(other: IVector3, v: Float, result: Vector3): Vector3 =
-            result.set(x + other.x * v, y + other.y * v, z + other.z * v)
+        result.set(x + other.x * v, y + other.y * v, z + other.z * v)
 
     /**
      * Subtracts a vector from this one.
@@ -264,5 +264,5 @@ interface IVector3 {
     }
 
     /** Returns a mutable copy of this vector.  */
-    fun copy(x: Float = this.x, y: Float = this.y, z: Float = this.z): Vector3
+    fun copy(): Vector3 = Vector3(this)
 }

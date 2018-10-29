@@ -22,16 +22,15 @@ import kotlin.math.min
 /**
  * Represents an area in two dimensions.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Rectangle(
-        /** The x-coordinate of the rectangle's upper left corner.  */
-        override var x: Float = 0f,
-        /** The y-coordinate of the rectangle's upper left corner.  */
-        override var y: Float = 0f,
-        /** The width of the rectangle.  */
-        override var width: Float = 0f,
-        /** The height of the rectangle.  */
-        override var height: Float = 0f
+    /** The x-coordinate of the rectangle's upper left corner.  */
+    override var x: Float = 0f,
+    /** The y-coordinate of the rectangle's upper left corner.  */
+    override var y: Float = 0f,
+    /** The width of the rectangle.  */
+    override var width: Float = 0f,
+    /** The height of the rectangle.  */
+    override var height: Float = 0f
 ) : AbstractRectangularShape(), IRectangle {
 
     /**

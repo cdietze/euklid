@@ -64,5 +64,5 @@ interface IPoint {
     fun subtract(other: IPoint, result: Point): Point = subtract(other.x, other.y, result)
 
     /** Returns a mutable copy of this point.  */
-    fun copy(x: Int = this.x, y: Int = this.y): Point
+    fun copy(): Point = Point(this)
 }

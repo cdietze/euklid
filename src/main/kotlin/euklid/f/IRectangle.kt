@@ -66,7 +66,7 @@ interface IRectangle : IRectangularShape {
 
     /** Returns true if the specified line segment intersects this rectangle.  */
     fun intersectsLine(x1: Float, y1: Float, x2: Float, y2: Float): Boolean =
-            Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
+        Lines.lineIntersectsRect(x1, y1, x2, y2, x, y, width, height)
 
     /** Returns true if the supplied line segment intersects this rectangle.  */
     fun intersectsLine(l: ILine): Boolean = intersectsLine(l.x1, l.y1, l.x2, l.y2)
@@ -93,7 +93,7 @@ interface IRectangle : IRectangularShape {
     fun outcode(point: XY): Int = outcode(point.x, point.y)
 
     /** Returns a mutable copy of this rectangle.  */
-    fun copy(x: Float = this.x, y: Float = this.y, width: Float = this.width, height: Float = this.height): Rectangle
+    fun copy(): Rectangle = Rectangle(this)
 
     override fun contains(x: Float, y: Float): Boolean {
         var px = x

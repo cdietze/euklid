@@ -21,7 +21,6 @@ package euklid.f
 /**
  * Represents a circle on a plane.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Circle(
         /** The x-coordinate of the circle.  */
         override var x: Float = 0f,

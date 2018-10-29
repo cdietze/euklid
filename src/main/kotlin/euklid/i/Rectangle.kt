@@ -22,7 +22,6 @@ import kotlin.math.min
 /**
  * Represents an area in two dimensions.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Rectangle(
         /** The x-coordinate of the rectangle's upper left corner.  */
         override var x: Int = 0,

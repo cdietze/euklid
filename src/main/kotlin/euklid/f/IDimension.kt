@@ -33,5 +33,5 @@ interface IDimension {
     /**
      * Returns a mutable copy of this dimension.
      */
-    fun copy(width: Float = this.width, height: Float = this.height): Dimension
+    fun copy(): Dimension = Dimension(this)
 }

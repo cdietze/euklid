@@ -57,6 +57,5 @@ interface ICircle {
     fun offset(x: Float, y: Float, result: Circle): Circle = result.set(x + x, y + y, radius)
 
     /** Returns a mutable copy of this circle.  */
-    fun copy(x: Float = this.x, y: Float = this.y, radius: Float = this.radius): Circle
-            = Circle(x, y, radius)
+    fun toCircle(x: Float = this.x, y: Float = this.y, radius: Float = this.radius): Circle = Circle(x, y, radius)
 }

@@ -15,8 +15,8 @@
  */
 package euklid.f
 
-import org.junit.Test
 import euklid.assertEqualsWithDelta
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**

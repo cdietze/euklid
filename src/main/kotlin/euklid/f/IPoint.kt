@@ -100,5 +100,5 @@ interface IPoint : XY {
     }
 
     /** Returns a mutable copy of this point.  */
-    fun copy(x: Float = this.x, y: Float = this.y): Point
+    fun copy(): Point = Point(this)
 }

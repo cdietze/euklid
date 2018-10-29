@@ -21,18 +21,19 @@ package euklid.f
 /**
  * A four element vector.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Vector4(
-        override var x: Float = 0f,
-        override var y: Float = 0f,
-        override var z: Float = 0f,
-        override var w: Float = 0f
+    override var x: Float = 0f,
+    override var y: Float = 0f,
+    override var z: Float = 0f,
+    override var w: Float = 0f
 ) : IVector4 {
 
     /**
      * Creates a vector from four components.
      */
     constructor(values: FloatArray) : this(values[0], values[1], values[2], values[3])
+
+    constructor(v: IVector4) : this(v.x, v.y, v.z, v.w)
 
     /**
      * Copies the elements of another vector.

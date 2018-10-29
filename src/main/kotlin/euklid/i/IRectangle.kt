@@ -108,10 +108,10 @@ interface IRectangle : IShape {
 
     /** Returns a set of flags indicating where the supplied point lies in relation to the bounds of
      * this rectangle. See [.OUT_LEFT], etc.  */
-    fun outcode(point: IPoint): Int= outcode(point.x, point.y)
+    fun outcode(point: IPoint): Int = outcode(point.x, point.y)
 
     /** Returns a mutable copy of this rectangle.  */
-    fun copy(x: Int = this.x, y: Int = this.y, width: Int = this.width, height: Int = this.height): Rectangle
+    fun copy(): Rectangle = Rectangle(this)
 
     override val isEmpty: Boolean
         get() = width <= 0 || height <= 0

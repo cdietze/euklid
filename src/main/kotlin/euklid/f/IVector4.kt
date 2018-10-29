@@ -67,7 +67,7 @@ interface IVector4 {
      * @return a reference to the result, for chaining.
      */
     fun abs(result: Vector4): Vector4 =
-            result.set(kotlin.math.abs(x), kotlin.math.abs(y), kotlin.math.abs(z), kotlin.math.abs(w))
+        result.set(kotlin.math.abs(x), kotlin.math.abs(y), kotlin.math.abs(z), kotlin.math.abs(w))
 
     /**
      * Multiplies this vector by a scalar.
@@ -112,12 +112,14 @@ interface IVector4 {
         val vy = y
         val vz = z
         val vw = w
-        return result.set(m00 * vx + m01 * vy + m02 * vz + m03 * vw,
-                m10 * vx + m11 * vy + m12 * vz + m13 * vw,
-                m20 * vx + m21 * vy + m22 * vz + m23 * vw,
-                m30 * vx + m31 * vy + m32 * vz + m33 * vw)
+        return result.set(
+            m00 * vx + m01 * vy + m02 * vz + m03 * vw,
+            m10 * vx + m11 * vy + m12 * vz + m13 * vw,
+            m20 * vx + m21 * vy + m22 * vz + m23 * vw,
+            m30 * vx + m31 * vy + m32 * vz + m33 * vw
+        )
     }
 
     /** Returns a mutable copy of this vector.  */
-    fun copy(x: Float = this.x, y: Float = this.y, z: Float = this.z, w: Float = this.w): Vector4
+    fun copy(): Vector4 = Vector4(this)
 }

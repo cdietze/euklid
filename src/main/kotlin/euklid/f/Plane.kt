@@ -25,8 +25,8 @@ package euklid.f
  * where (A, B, C) is the plane normal and D is the constant.
  */
 data class Plane(
-        override val normal: Vector3 = Vector3(),
-        override var constant: Float = 0f
+    override val normal: Vector3 = Vector3(),
+    override var constant: Float = 0f
 ) : IPlane {
 
     /**

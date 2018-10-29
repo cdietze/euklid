@@ -21,17 +21,18 @@ package euklid.f
 /**
  * A three element vector.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Vector3(
-        override var x: Float = 0f,
-        override var y: Float = 0f,
-        override var z: Float = 0f
+    override var x: Float = 0f,
+    override var y: Float = 0f,
+    override var z: Float = 0f
 ) : IVector3 {
 
     /**
      * Creates a vector from an array of values.
      */
     constructor(values: FloatArray) : this(values[0], values[1], values[2])
+
+    constructor(v: IVector3) : this(v.x, v.y, v.z)
 
     /**
      * Computes the cross product of this and the specified other vector, storing the result

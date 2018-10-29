@@ -22,7 +22,6 @@ import kotlin.math.sin
 /**
  * Represents a vector in a plane.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Vector(
         /** The x-component of the vector.  */
         override var x: Float = 0f,

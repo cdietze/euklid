@@ -19,7 +19,6 @@ package euklid.i
 /**
  * Represents a magnitude in two dimensions.
  */
-@Suppress("DATA_CLASS_OVERRIDE_DEFAULT_VALUES_WARNING")
 data class Dimension(
         /** The magnitude in the x-dimension.  */
         override var width: Int = 0,
